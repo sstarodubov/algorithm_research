@@ -16,9 +16,9 @@ def find_second(nums, s):
 
 # O(n Lg n) Space(1)
 def find_second_v2(nums, s):
-    sorted_nums = sorted(nums)
+    nums.sort()
     p_left = 0
-    p_right = len(sorted_nums) - 1
+    p_right = len(nums) - 1
 
     def find_rec(list_in, left, right):
         if right == left:
@@ -32,4 +32,4 @@ def find_second_v2(nums, s):
 
         return find_rec(list_in, left, right)
 
-    return find_rec(sorted_nums, p_left, p_right)
+    return find_rec(nums, p_left, p_right)
