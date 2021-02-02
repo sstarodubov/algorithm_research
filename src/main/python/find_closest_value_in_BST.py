@@ -35,7 +35,7 @@ n13.left = n14
 
 def find_closest(node: Node, target: int, closest: (int, Node) = (sys.maxsize, None)):
     if node is None:
-        return closest if closest[0] != sys.maxsize else None
+        return closest
 
     if node.value == target:
         return node.value, node
