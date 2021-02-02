@@ -31,9 +31,11 @@ n15.left = n13
 n15.right = n22
 n2.left = n1
 n13.left = n14
+
+
 ############################
 
-def find_closest(node: Node, target: int, closest: (int, Node) = (sys.maxsize, None)):
+def find_closest(node: Node, target: int, closest: (int, Node) = (sys.maxsize, None)) -> (int, Node):
     if node is None:
         return closest
 
