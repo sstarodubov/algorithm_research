@@ -40,7 +40,7 @@ def find_closest(node: Node, target: int, closest: (int, Node) = (sys.maxsize, N
         return closest
 
     if node.value == target:
-        return node.value, node
+        return 0, node
 
     if target > node.value:
         diff = target - node.value
