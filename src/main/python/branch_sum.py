@@ -40,5 +40,3 @@ def calculate(node: Node, sums: List[int], running_sum: int = 0):
     calculate(node.left, sums, new_running_sum)
     calculate(node.right, sums, new_running_sum)
 
-
-print(sum_branches_rec(tree))
