@@ -1,13 +1,13 @@
 # time O(n) space O(n)
-def nth_fibonacci(n: int, repeat: {} = {}):
-    if n in repeat:
-        return repeat[n]
+def nth_fibonacci(n: int, memoize: {} = {}):
+    if n in memoize:
+        return memoize[n]
     if n == 1:
         return 0
     if n == 2:
         return 1
-    repeat[n] = nth_fibonacci(n - 1) + nth_fibonacci(n - 2)
-    return repeat[n]
+    memoize[n] = nth_fibonacci(n - 1) + nth_fibonacci(n - 2)
+    return memoize[n]
 
 
 # time O(n^2) Space O(n)
