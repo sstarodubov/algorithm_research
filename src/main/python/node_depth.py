@@ -1,6 +1,5 @@
 from binarytree import build
 from binarytree import Node
-from typing import List
 
 # Дано бинарное дерево
 #         _____1__
@@ -19,7 +18,7 @@ print('Binary tree from list :\n',
       tree)
 
 
-def find_each_node_depth(root: Node):
+def find_each_node_depth(root: Node) -> {str: int}:
     records = {}
     depth_count = 0
     dive(root, records, depth_count)
@@ -33,4 +32,3 @@ def dive(node: Node, records: {}, depth_count: int):
     depth_count += 1
     dive(node.left, records, depth_count)
     dive(node.right, records, depth_count)
-
