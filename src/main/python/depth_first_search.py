@@ -19,7 +19,7 @@ graph = {'A': ['B', 'C', "D"],
          'G': ["K"],
          "K": []}
 
-
+# Time = O (Vertexes + Edges) ; Space (Vertexes)
 def depth_first_search(graph: {}, vertex: str, arr: [str] = []):
     if not vertex:
         return
