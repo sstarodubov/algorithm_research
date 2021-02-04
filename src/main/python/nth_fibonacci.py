@@ -6,7 +6,7 @@ def nth_fibonacci(n: int, memoize: {} = {}):
         return 0
     if n == 2:
         return 1
-    memoize[n] = nth_fibonacci(n - 1) + nth_fibonacci(n - 2)
+    memoize[n] = nth_fibonacci(n - 1, memoize) + nth_fibonacci(n - 2, memoize)
     return memoize[n]
 
 
