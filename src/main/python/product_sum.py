@@ -18,9 +18,6 @@ def sum_up_products(prods: [], depth: int = 1):
 
     return (head * depth) + sum_up_products(tail, depth)
 
-#
-# print(sum_up_products(products))
-
 
 def product_sum(prods: [], depth: int = 1):
     sum = 0
@@ -31,4 +28,3 @@ def product_sum(prods: [], depth: int = 1):
             sum += element
     return sum * depth
 
-print(product_sum(products))
