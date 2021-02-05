@@ -1,6 +1,7 @@
 products = [5, 2, [7, -1], 3, [6, [-13, 8], 4]]
 
-
+# time O(n) where n is amount of all elements in all arrays
+# space O(n) where n is max depth
 def sum_up_products(prods: [], depth: int = 1):
     if not prods: return 0
     head, *tail = prods
