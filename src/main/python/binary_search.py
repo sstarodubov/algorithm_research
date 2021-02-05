@@ -1,4 +1,3 @@
-
 # Time O(lg n)
 def binary_search(arr: [int], target: int):
     left_ptr = 0
@@ -8,8 +7,7 @@ def binary_search(arr: [int], target: int):
         if arr[middle_idx] == target: return middle_idx
         if arr[middle_idx] < target:
             left_ptr = middle_idx + 1
-            continue
-        if arr[middle_idx] > target:
+        else:
             right_ptr = middle_idx - 1
 
     return None
