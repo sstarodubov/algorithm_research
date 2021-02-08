@@ -13,5 +13,5 @@ def binary_search(arr: [int], target: int):
     return None
 
 
-res = binary_search([0, 1, 21, 33, 45, 46, 61, 71, 72, 73], 33)
+res = binary_search([0, 1, 21, 33, 45, 46, 61, 71, 72, 73], 21313)
 print(res)
