@@ -13,20 +13,6 @@ def insertion_sort(arr: [int]) -> [int]:
 
 
 def bubble_sort(arr: [int]):
-    right_p = len(arr) - 2
-    while True:
-        cur_inx = 0
-        swap = False
-        while cur_inx <= right_p:
-            if arr[cur_inx] > arr[cur_inx + 1]:
-                arr[cur_inx], arr[cur_inx + 1] = arr[cur_inx + 1], arr[cur_inx]
-                swap = True
-            cur_inx += 1
-        right_p -= 1
-        if not swap: return arr
-
-
-def bubble_sort2(arr: [int]):
     sorted = False
     count = 0
     while not sorted:
@@ -39,4 +25,15 @@ def bubble_sort2(arr: [int]):
     return arr
 
 
-print(bubble_sort2(arr))
+def selection_sort(arr: [int]):
+    left_ptr = 0
+    while left_ptr < len(arr) - 1:
+        smallest_idx = left_ptr
+        for i in range(left_ptr, len(arr)):
+            if arr[i] < arr[smallest_idx]:
+                smallest_idx = i
+        arr[smallest_idx], arr[left_ptr] = arr[left_ptr], arr[smallest_idx]
+        left_ptr += 1
+    return arr
+
+print(selection_sort(arr))
