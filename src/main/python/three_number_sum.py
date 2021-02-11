@@ -34,11 +34,13 @@ def find_three_sum(arr: [int], goal: int, window: [int] = [0, 1], result=[]):
 
     return find_three_sum(arr, goal, window, result)
 
-
+# time O(n^2) Space O(1)
 def find_three_sum_up(nums: [int], target: int):
     nums.sort()
     result = []
     for i in range(len(nums)):
+        if nums[i] > target:
+            return result
         left_ptr = i + 1
         right_ptr = len(nums) - 1
         while left_ptr < right_ptr:
