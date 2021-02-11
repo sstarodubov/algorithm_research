@@ -44,8 +44,6 @@ def find_three_sum_up(nums: [int], target: int):
         left_ptr = i + 1
         right_ptr = len(nums) - 1
         while left_ptr < right_ptr:
-            if left_ptr == i: left_ptr += 1
-            if right_ptr == i: right_ptr -= 1
             cs = nums[i] + nums[left_ptr] + nums[right_ptr]
 
             if cs > target:
