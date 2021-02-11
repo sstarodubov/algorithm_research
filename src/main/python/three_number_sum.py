@@ -1,3 +1,6 @@
+"""
+найти три числа в массиве сумма которых равно target
+"""
 nums = [12, 3, 1, 2, -6, 5, -8, 6]
 target = 0
 
@@ -32,4 +35,27 @@ def find_three_sum(arr: [int], goal: int, window: [int] = [0, 1], result=[]):
     return find_three_sum(arr, goal, window, result)
 
 
-print(find_three_sum(nums, target))
+def find_three_sum_up(nums: [int], target: int):
+    nums.sort()
+    result = []
+    for i in range(len(nums)):
+        left_ptr = i + 1
+        right_ptr = len(nums) - 1
+        while left_ptr < right_ptr:
+            if left_ptr == i: left_ptr += 1
+            if right_ptr == i: right_ptr -= 1
+            cs = nums[i] + nums[left_ptr] + nums[right_ptr]
+
+            if cs > target:
+                right_ptr -= 1
+            elif cs < target:
+                left_ptr += 1
+            else:
+                result.append((nums[i], nums[right_ptr], nums[left_ptr]))
+                right_ptr -= 1
+                left_ptr += 1
+
+    return result
+
+
+print(find_three_sum_up(nums, target))
