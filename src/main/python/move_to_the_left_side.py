@@ -2,7 +2,7 @@
 дан массив с числами и число n
 нужно переместить все числа вправо в массиве значение которых равно n
 """
-nums = [2, 1, 2, 3, 2, 2, 3, 4, 2]
+nums = [2, 1, 2,  2, 2, 3, 4, 2]
 target = 2
 
 
@@ -22,9 +22,11 @@ def move_without_order(numbers: [int], num: int):
     left_ptr = 0
     right_ptr = len(numbers) - 1
     while left_ptr < right_ptr:
-        if numbers[right_ptr] == num:
+        while left_ptr < right_ptr and numbers[right_ptr] == num:
             right_ptr -= 1
         if numbers[left_ptr] == num:
             numbers[left_ptr], numbers[right_ptr] = numbers[right_ptr], numbers[left_ptr]
         left_ptr += 1
     return numbers
+
+
