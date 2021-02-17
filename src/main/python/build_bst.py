@@ -87,7 +87,3 @@ def find_parent(cur_node: Node, find_parent_node: Node):
     if cur_node.value < find_parent_node.value:
         return find_parent(cur_node.right, find_parent_node)
     return find_parent(cur_node.left, find_parent_node)
-
-
-delete_node(Node(13), tree)
-print(tree)
