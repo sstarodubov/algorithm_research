@@ -9,7 +9,7 @@ from binarytree import build
 #   2       6    13  22
 #  /             / \
 # 1             12  14
-# вставка, поиск и удаление нод
+# валидировать что это BST
 nodes = [10, 5, 15, 2, 6, 13, 22, 1, None, None, None, 12, 14]
 
 # Building the tree
