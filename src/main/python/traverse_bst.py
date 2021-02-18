@@ -18,11 +18,10 @@ print('Binary tree from list :\n', tree)
 
 # Time O(n) and Space O(n)
 def in_order_traverse(node: Node, arr: [] = []):
-    if node is None:
-        return arr
-    in_order_traverse(node.left)
-    arr.append(node.value)
-    in_order_traverse(node.right)
+    if node is not None:
+        in_order_traverse(node.left)
+        arr.append(node.value)
+        in_order_traverse(node.right)
     return arr
 
 print(in_order_traverse(tree))
