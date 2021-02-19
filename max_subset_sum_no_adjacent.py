@@ -1,5 +1,6 @@
 nums = [7, 10, 12, 7, 9, 14]
 
+# Time O(n) Space O(n)
 def find_max_subset_no_adjacent(numbers:[int], idx:int = 0, max_sums:[int] = []):
     if idx >= len(numbers):
         return max_sums.pop()
