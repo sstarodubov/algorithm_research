@@ -13,7 +13,6 @@ def find_min_number_of_coins(amount: int, coins: [int]):
             rest_of_money = change
         else:
             coin_denam_ptr -= 1
-
     return used_coins
 
 
