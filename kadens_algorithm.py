@@ -8,6 +8,3 @@ def kadene_algorithm(nums: [int]) -> int:
         else: cur_sum = nums[idx]
         if max_subset_sum < cur_sum: max_subset_sum = cur_sum
     return max_subset_sum
-
-
-print(kadene_algorithm([3, 5, -9, 1, 3, -2, 3, 4, 7, 2, -9, 6, 3, 1, -5, 4]))
