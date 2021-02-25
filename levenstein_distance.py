@@ -11,7 +11,7 @@ def levenshteinDistance(str1: str, str2: str) -> int:
                 edits[i][j] = edits[i -1][j -1]
             else:
                 edits[i][j] = 1 + min(edits[i - 1][j - 1], edits[i][j -1], edits[i -1][j])
-    return edits[-1][-1]
+    return edits[-1][-1 ]
 
 
 print(levenshteinDistance("abc", "yabd"))
