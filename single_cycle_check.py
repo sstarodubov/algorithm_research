@@ -36,19 +36,12 @@ def is_arr_filled2(nums: [int]):
 
 # time O(n) Space O(1)
 def has_single_cycle_with_less_used_memory(nums: [int]) -> bool:
-    ptr = 0
-    count = 0
+    ptr, count = 0, 0
     ptr += nums[ptr]
     while True:
-        if ptr >= len(nums) or ptr < 0:
-            ptr = abs(ptr % len(nums))
-
-        if nums[ptr] is None:
-            return False
-
-        if ptr == 0:
-            return count == (len(nums) - 1)
-
+        if ptr >= len(nums) or ptr < 0: ptr = abs(ptr % len(nums))
+        if nums[ptr] is None: return False
+        if ptr == 0: return count == (len(nums) - 1)
         if nums[ptr] is not None:
             tmp = ptr
             ptr += nums[ptr]
