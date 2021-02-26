@@ -1,4 +1,3 @@
-
 def is_arr_filled(nums: [int]):
     for n in nums:
         if n is None:
@@ -28,13 +27,12 @@ def has_single_cycle(nums: [int]) -> bool:
             match_arr[ptr] = nums[ptr]
 
 
-
-
 def is_arr_filled2(nums: [int]):
     for n in nums:
         if n is not None:
             return False
     return True
+
 
 # time O(n) Space O(1)
 def has_single_cycle_with_less_used_memory(nums: [int]) -> bool:
