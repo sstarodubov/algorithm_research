@@ -40,9 +40,7 @@ def has_single_cycle_with_less_used_memory(nums: [int]) -> bool:
     count = 0
     ptr += nums[ptr]
     while True:
-        if ptr >= len(nums):
-            ptr = ptr % len(nums)
-        elif ptr < 0:
+        if ptr >= len(nums) or ptr < 0:
             ptr = abs(ptr % len(nums))
 
         if nums[ptr] is None:
