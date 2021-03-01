@@ -1,30 +1,32 @@
 graph = [[1, 0, 0, 1, 0], [1, 0, 1, 0, 0], [0, 0, 1, 0, 1], [1, 0, 1, 0, 1], [1, 0, 1, 1, 0]]
 visited = [[0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0]]
-"""
- 1, 0, 0, 1, 0
- 1, 0, 1, 0, 0
- 0, 0, 1, 0, 1
- 1, 0, 1, 0, 1
- 1, 0, 1, 1, 0
- 
- find rivers length
- 
- rives are:
-  1
-  1
-  or 
-  1
-  1
-  1
-  1 1
 
-"""
+
+#
+# 1, 0, 0, 1, 0
+# 1, 0, 1, 0, 0
+# 0, 0, 1, 0, 1
+# 1, 0, 1, 0, 1
+# 1, 0, 1, 1, 0
+#
+# find rivers length
+#
+# rives are:
+#  1
+#  1
+#  or
+#  1
+#  1
+#  1
+#  1 1
+
 
 class Lenght:
     val: int = 0
 
     def increment(self):
         self.val += 1
+
 
 def find_river_helper(x: int, y: int, length: Lenght):
     if x < 0 or y < 0: return length
@@ -40,7 +42,8 @@ def find_river_helper(x: int, y: int, length: Lenght):
 
     return length
 
-#Space O(n) and Time O(n)
+
+# Space O(n) and Time O(n)
 def find_rivers():
     result = []
     for x in range(len(graph)):
@@ -49,4 +52,3 @@ def find_rivers():
             if river_length.val != 0:
                 result.append(river_length.val)
     return result
-
