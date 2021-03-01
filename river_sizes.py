@@ -54,6 +54,7 @@ def find_rivers():
                 continue
             else:
                 river_length = find_river_helper(x, y, Lenght())
-                if river_length.val != 0:
-                    result.append(river_length.val)
+                result.append(river_length.val)
     return result
+
+
