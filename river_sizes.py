@@ -50,6 +50,8 @@ def find_rivers():
         for y in range(len(graph[x])):
             if graph[x][y] == 0:
                 visited[x][y] = 1
+            elif visited[x][y] == 1:
+                continue
             else:
                 river_length = find_river_helper(x, y, Lenght())
                 if river_length.val != 0:
