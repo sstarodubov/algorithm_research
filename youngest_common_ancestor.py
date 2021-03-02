@@ -45,14 +45,9 @@ def youngest_common_ancestor(graph: {str, str}, a: str, b: str):
     cur_b_ancestor = graph[b]
     if level_b < level_a:
         cur_a_ancestor = up(graph, level_b, level_a, a)
-        cur_b_ancestor = graph[b]
     elif level_b > level_a:
         cur_b_ancestor = up(graph, level_a, level_b, b)
-        cur_a_ancestor = graph[a]
 
     if cur_b_ancestor == cur_a_ancestor:
         return cur_b_ancestor
     return graph[cur_b_ancestor]
-
-
-print(youngest_common_ancestor(graph, "r", "u"))
