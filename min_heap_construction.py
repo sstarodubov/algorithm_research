@@ -32,6 +32,17 @@ def insert(heap: [int], el: int) -> [int]:
 insert(heap, 9)
 
 
+"""
+I'd like to discuss Jim Carry playing in a film called by Truman's show.
+Honestly It was usual Jim Carry. There was a lot of facial expressions, childish behavior and 
+funny jokes during all films. I think everybody agrees these are main features of Jim Carry playing.
+But also we could see in this film something new in his playing. He was playing as drama actor also.
+He expressed disappointment when his personage found out about the show. 
 
+Also we could notice how quickly Jim could change emotions for short time. Just now he is crying, after 10 seconds
+he is laughing as if there wasn't tears before        
+
+
+"""
 
 
