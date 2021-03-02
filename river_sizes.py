@@ -45,7 +45,7 @@ def find_river_helper(x: int, y: int, length: Lenght):
 
 # Space O(n) and Time O(w * h) w - width and height of graph
 def find_rivers():
-    result = []
+    result:[int] = []
     for x in range(len(graph)):
         for y in range(len(graph[x])):
             if graph[x][y] == 0:
@@ -53,7 +53,7 @@ def find_rivers():
             elif visited[x][y] == 1:
                 continue
             else:
-                river_length = find_river_helper(x, y, Lenght())
+                river_length:Lenght = find_river_helper(x, y, Lenght())
                 result.append(river_length.val)
     return result
 
