@@ -39,7 +39,7 @@ def up(graph: {}, from_level, to_level, el):
     return up(graph, from_level + 1, to_level, graph[el])
 
 
-# Time O(h) - h - heigh of tree, Space O(h)
+# Time O(h) - h - height of tree, Space O(h)
 def youngest_common_ancestor(graph: {str, str}, a: str, b: str):
     level_a = define_depth(graph, a)
     level_b = define_depth(graph, b)
