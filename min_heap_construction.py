@@ -14,9 +14,11 @@ def child_left_idx(i):
 def child_right_idx(i):
     return (2 * i) + 2
 
+
 def sift_up(heap, i):
     parent_idx = parent_node_idx(i)
     heap[parent_idx], heap[i] = heap[i], heap[parent_idx]
+
 
 def insert(heap: [int], el: int) -> [int]:
     heap.append(el)
@@ -29,6 +31,32 @@ def insert(heap: [int], el: int) -> [int]:
     print(heap)
 
 
-insert(heap, 9)
+def remove(heap: [int]):
+    if len(heap) == 1: heap.pop()
+    if not heap: return
+
+    heap[0], heap[len(heap) - 1] = heap[len(heap) - 1], heap[0]
+    heap.pop()
+    cur_el_idx = 0
+    while True:
+        left_child_idx = child_left_idx(cur_el_idx)
+        right_child_idx = child_right_idx(cur_el_idx)
+        if left_child_idx >= len(heap) and right_child_idx >= len(heap):
+            print(heap)
+            break
+        if left_child_idx >= len(heap):
+            heap[right_child_idx], heap[cur_el_idx] = heap[cur_el_idx], heap[right_child_idx]
+            cur_el_idx = right_child_idx
+        elif right_child_idx >= len(heap):
+            heap[left_child_idx], heap[cur_el_idx] = heap[cur_el_idx], heap[left_child_idx]
+            cur_el_idx = left_child_idx
+        elif heap[left_child_idx] < heap[right_child_idx]:
+            heap[left_child_idx], heap[cur_el_idx] = heap[cur_el_idx], heap[left_child_idx]
+            cur_el_idx = left_child_idx
+        else:
+            heap[right_child_idx], heap[cur_el_idx] = heap[cur_el_idx], heap[right_child_idx]
+            cur_el_idx = right_child_idx
 
 
+
+remove(heap)
