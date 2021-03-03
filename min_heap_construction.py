@@ -32,7 +32,9 @@ def insert(heap: [int], el: int) -> [int]:
 
 
 def remove(heap: [int]):
-    if len(heap) == 1: heap.pop()
+    if len(heap) == 1:
+        heap.pop()
+        return
     if not heap: return
 
     heap[0], heap[len(heap) - 1] = heap[len(heap) - 1], heap[0]
