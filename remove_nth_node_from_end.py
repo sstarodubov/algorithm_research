@@ -5,7 +5,7 @@ class Node:
     def __init__(self, _val):
         self.val = _val
 
-
+# Time O(n) Space O(1)
 class LinkedList:
     head: Node = None
 
