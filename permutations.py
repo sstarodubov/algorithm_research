@@ -22,7 +22,7 @@ def permutations_helper(array:[], current_permutation:[], permutations:[]):
             permutations_helper(new_array, new_permutation, permutations)
 
 ############################################
-
+# time O (n * n!) Space O(n * n!)
 def find_permutations(array):
     permutations = []
     permutations_helper_finder(0, array, permutations)
