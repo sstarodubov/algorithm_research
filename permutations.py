@@ -1,6 +1,6 @@
-
 def swap(arr, i, y):
     arr[i], arr[y] = arr[y], arr[i]
+
 
 def cicle_first_element(arr):
     i = 0
@@ -15,13 +15,14 @@ def cicle_first_element(arr):
     tmp = arr.pop()
     arr.insert(0, tmp)
 
+
 def permutation(arr: [int]) -> [[int]]:
-   ptr = 0
-   cicle_first_element(arr)
-   while ptr < len(arr) - 1:
-       ptr += 1
-       swap(arr, 0, ptr)
-       cicle_first_element(arr)
+    ptr = 0
+    cicle_first_element(arr)
+    while ptr < len(arr) - 1:
+        ptr += 1
+        swap(arr, 0, ptr)
+        cicle_first_element(arr)
 
 
-permutation([1,2,3,4])
+permutation([1, 2, 3, 4])
