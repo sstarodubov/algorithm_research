@@ -1,28 +1,42 @@
+import time
+
 def swap(arr, i, y):
     arr[i], arr[y] = arr[y], arr[i]
 
 
-def cicle_first_element(arr):
-    i = 0
-    idx_to_swap = i + 1
-    while idx_to_swap != len(arr):
-        print(arr)
-        swap(arr, i, idx_to_swap)
-        idx_to_swap += 1
-        i += 1
-    print(arr)
-    print("---------------")
-    tmp = arr.pop()
-    arr.insert(0, tmp)
+# =======================================
+# time O (n^2 * n!) Space O(n * n!)
+def get_permutations(array):
+    permutations = []
+    permutations_helper(array, [], permutations)
+    return permutations
 
 
-def permutation(arr: [int]) -> [[int]]:
-    ptr = 0
-    cicle_first_element(arr)
-    while ptr < len(arr) - 1:
-        ptr += 1
-        swap(arr, 0, ptr)
-        cicle_first_element(arr)
+def permutations_helper(array:[], current_permutation:[], permutations:[]):
+    if not len(array) and len(current_permutation):
+        permutations.append(current_permutation)
+    else:
+        for i in range(len(array)):
+            new_array = array[:i] + array[i + 1:]
+            new_permutation = current_permutation + [array[i]]
+            permutations_helper(new_array, new_permutation, permutations)
 
+############################################
 
-permutation([1, 2, 3, 4])
+def find_permutations(array):
+    permutations = []
+    permutations_helper_finder(0, array, permutations)
+    return permutations
+
+def permutations_helper_finder(i, array, permutations):
+    if i == len(array) - 1:
+        permutations.append(array[:])
+    else:
+        for j in range(i, len(array)):
+            swap(array, i, j)
+            permutations_helper_finder(i + 1, array, permutations)
+            swap(array, j, i)
+
+# =====================================
+
+print(find_permutations([1,2,3]))
