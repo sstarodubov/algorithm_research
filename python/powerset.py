@@ -33,5 +33,3 @@ def move_window(window, arr, result:[]):
         if window[0] == len(arr) - 1:
             flag = True
     return result
-
-print(power_set([10,20,30]))
