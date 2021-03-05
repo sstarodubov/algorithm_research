@@ -1,3 +1,15 @@
+# time O((2^n) * n) space O((2 ^ n) * n)
+def power_set_another(array):
+    subsets = [[]]
+    for el in array:
+        for i in range(len(subsets)):
+            current_subset = subsets[i]
+            subsets.append(current_subset + [el])
+    return subsets
+
+
+#==================================================
+# time O((2^n) * n) space O((2 ^ n) * n)
 def power_set(arr: [int]) -> [[int]]:
     result: list = [[]]
     window_size = 1
@@ -33,3 +45,4 @@ def move_window(window, arr, result:[]):
         if window[0] == len(arr) - 1:
             flag = True
     return result
+#==================================================
