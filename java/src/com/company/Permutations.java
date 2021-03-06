@@ -6,25 +6,19 @@ import java.util.List;
 
 public class Permutations {
 
-    public static void main(String[] args) {
-        int[] arr = new int[]{1, 2, 3,4};
-        List<int[]> ints = permuteWrapper(arr);
-        System.out.println(ints);
-    }
-
-    public static List<int[]> permuteWrapper(int[] arr) {
+    public List<int[]> permuteWrapper(int[] arr) {
         var permutations = new LinkedList<int[]>();
         permute(0, arr, permutations);
         return permutations;
     }
 
-    public static void swap(int[] arr, int i, int y) {
+    public void swap(int[] arr, int i, int y) {
         int tmp = arr[i];
         arr[i] = arr[y];
         arr[y] = tmp;
     }
 
-    public static void permute(int idx, int[] arr, List<int[]> permutations) {
+    public void permute(int idx, int[] arr, List<int[]> permutations) {
         if (idx == arr.length - 1) {
             int[] newArr = Arrays.copyOf(arr, arr.length);
             permutations.add(newArr);
