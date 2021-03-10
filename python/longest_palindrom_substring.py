@@ -8,10 +8,10 @@ def is_palindrome(word: str, left_ptr, right_ptr) -> bool:
 
 # time O(n^2) space O(1)
 def longest_palindrome_substring(word: str):
-    global longest_substring
     left_ptr = 0
     right_ptr = len(word) - 1
     max_length = 0
+    longest_substring:str
     while left_ptr < len(word):
         palindrome = is_palindrome(word, left_ptr, right_ptr)
         if not palindrome:
