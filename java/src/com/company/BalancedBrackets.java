@@ -5,6 +5,9 @@ import java.util.LinkedList;
 
 public class BalancedBrackets {
 
+    /*
+     * Space O(n) Time O(n)
+     */
     public boolean isBalancedBrackets(String brackets) {
         Deque<Character> stack = new LinkedList<>();
         for (char e : brackets.toCharArray()) {
