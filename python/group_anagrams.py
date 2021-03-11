@@ -3,7 +3,6 @@
 def is_word_anagram(original, word:str):
     return sorted(original) == sorted(word)
 
-#  Time O(n^2 lg(n)) and Space O(n)
 def find_group(array:[str], word:str):
     group = [word]
     removed_indexes = []
@@ -15,7 +14,8 @@ def find_group(array:[str], word:str):
         del array[idx]
     return group
 
-# Time O(n^3) and Space O(n)
+
+#  Time O(n^2 lg(n)) and Space O(n)
 def group_anagrams(array):
     result = []
     while array:
