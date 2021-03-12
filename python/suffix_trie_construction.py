@@ -12,7 +12,7 @@ class Node:
 
 root = Node("root")
 
-# Space O(a1 + a2 + n.. ) n -  suffix length and Time O(n^2)
+# Space O(1 + 2 + .. + n ) n -  suffix length and Time O(n^2)
 def add_element(suffix:str, node:Node):
     cur_str = suffix
     while cur_str:
@@ -23,12 +23,12 @@ def add_element(suffix:str, node:Node):
 def add_element_helper(suffix:str, node:Node):
     if not suffix:
         return node
-    head, *tail = suffix
-    str_tail = "".join(tail)
+    head = suffix[:1]
+    tail = suffix[1:]
     new_node = Node(head)
     existed_node = node.children.get(new_node.name)
     if existed_node:
-        return add_element_helper(str_tail, existed_node)
+        return add_element_helper(tail, existed_node)
     else:
         node.children[new_node.name] = new_node
-        return add_element_helper(str_tail, new_node)
+        return add_element_helper(tail, new_node)
