@@ -32,3 +32,13 @@ def add_element_helper(suffix:str, node:Node):
     else:
         node.children[new_node.name] = new_node
         return add_element_helper(tail, new_node)
+
+def search(suffix, node:Node):
+    if not suffix and not bool(node.children):
+        return True
+    head = suffix[:1]
+    tail = suffix[1:]
+    existed_node = node.children.get(head)
+    if existed_node:
+        return search(tail, existed_node)
+    return False
