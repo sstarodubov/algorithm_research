@@ -15,7 +15,7 @@ def find_group(array:[str], word:str):
     return group
 
 
-#  Time O(n^2 lg(n)) and Space O(n)
+#  Time O(n^2 * lg(n)) and Space O(n)
 def group_anagrams(array):
     result = []
     while array:
