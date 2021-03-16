@@ -2,11 +2,11 @@ package com.company;
 
 import java.util.Arrays;
 
-public class BobbleSort {
+public class SimpleSort {
 
     public static void main(String[] args) {
         int[] list = {10, 4, 9, 5, 1};
-        bobbleSort(list);
+        selectSort(list);
         System.out.println(Arrays.toString(list));
     }
 
@@ -24,6 +24,22 @@ public class BobbleSort {
                 }
             }
             lastSortedIdx--;
+        }
+    }
+
+    public static void selectSort(int[] arr) {
+        int curIdx = 0;
+        while (curIdx < arr.length) {
+            int minIdx = curIdx;
+            for (int i = curIdx; i < arr.length; i++) {
+                if (arr[curIdx] > arr[i]) {
+                    minIdx = i;
+                }
+            }
+            int tmp = arr[curIdx];
+            arr[curIdx] = arr[minIdx];
+            arr[minIdx] = tmp;
+            curIdx++;
         }
     }
 }
