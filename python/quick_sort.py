@@ -6,9 +6,6 @@ def make_pivot(arr: [int], left_bound, right_bound):
     while left_ptr <= right_ptr:
         if arr[left_ptr] > pivot and arr[right_ptr] < pivot:
             arr[left_ptr], arr[right_ptr] = arr[right_ptr], arr[left_ptr]
-            right_ptr -= 1
-            left_ptr += 1
-            continue
 
         if arr[left_ptr] <= pivot:
             left_ptr += 1
