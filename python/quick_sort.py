@@ -29,7 +29,3 @@ def quick_sort(arr:[int], left_bound, right_bound):
     quick_sort(arr, left_bound, pivot_idx - 1)
     quick_sort(arr, pivot_idx + 1, right_bound)
     return arr
-
-arr = [10,9,8,6,5,4,3,2,1]
-
-print(quick_sort(arr, 0, len(arr) - 1))
