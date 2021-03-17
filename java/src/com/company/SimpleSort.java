@@ -6,8 +6,27 @@ public class SimpleSort {
 
     public static void main(String[] args) {
         int[] list = {10, 4, 9, 5, 1};
-        selectSort(list);
+        insertSort(list);
         System.out.println(Arrays.toString(list));
+    }
+
+
+    public static void insertSort(int[] list) {
+        int curElementPtr = 1;
+        int prevElementPtr = 0;
+
+        while (curElementPtr < list.length) {
+            int initCurPosition = curElementPtr;
+            while (prevElementPtr >= 0 && list[prevElementPtr] > list[curElementPtr]) {
+                int tmp = list[curElementPtr];
+                list[curElementPtr] = list[prevElementPtr];
+                list[prevElementPtr] = tmp;
+                prevElementPtr--;
+                curElementPtr--;
+            }
+            curElementPtr = initCurPosition + 1;
+            prevElementPtr = curElementPtr - 1;
+        }
     }
 
     public static void bobbleSort(int[] list) {
