@@ -4,7 +4,7 @@ def make_pivot(arr: [int], left_bound, right_bound):
     right_ptr = right_bound
 
     while left_ptr <= right_ptr:
-        if arr[left_ptr] > pivot > arr[right_ptr]:
+        if arr[left_ptr] > pivot and arr[right_ptr] < pivot:
             arr[left_ptr], arr[right_ptr] = arr[right_ptr], arr[left_ptr]
             right_ptr -= 1
             left_ptr += 1
@@ -29,3 +29,7 @@ def quick_sort(arr:[int], left_bound, right_bound):
     quick_sort(arr, left_bound, pivot_idx - 1)
     quick_sort(arr, pivot_idx + 1, right_bound)
     return arr
+
+arr = [10,9,8,6,5,4,3,2,1]
+
+print(quick_sort(arr, 0, len(arr) - 1))
