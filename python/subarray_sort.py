@@ -1,24 +1,31 @@
 
 
 # time O(n) Space O(1)
-def sub_array_sort(arr:[int]):
-    left_ptr = 0
-    right_ptr = len(arr) - 1
+def subarray_sort(arr:[int]):
+    min_out_of_order = float("inf")
+    max_out_of_order = float("-inf")
 
-    while arr[left_ptr] < arr[left_ptr + 1]:
-        left_ptr += 1
-    while arr[right_ptr] > arr[right_ptr - 1]:
-        right_ptr -= 1
+    for i in range(len(arr)):
+        num = arr[i]
+        if is_out_of_order(i, num, arr):
+            min_out_of_order = min(min_out_of_order, num)
+            max_out_of_order = max(max_out_of_order, num)
 
-    left_bound = left_ptr + 1
-    right_bound = right_ptr - 1
-    while arr[left_bound] <= arr[left_ptr]:
-        left_ptr -= 1
+    if min_out_of_order == float("inf"):
+        return [-1, -1]
 
-    while arr[right_bound] >= arr[right_ptr]:
-        right_ptr += 1
+    subarray_left_idx = 0
+    while min_out_of_order >= arr[subarray_left_idx]:
+        subarray_left_idx+= 1
+    subarray_right_idx = len(arr) - 1
+    while max_out_of_order <= arr[subarray_right_idx]:
+        subarray_right_idx -= 1
 
-    return left_ptr + 1, right_ptr - 1
 
+def is_out_of_order(i, num, arr):
+    if i == 0:
+        return num > arr[i+ 1]
+    if i == len(arr) - 1:
+        return num < arr[i - 1]
 
-sub_array_sort([1,2,4,7,10,11,7,12,6,7,16,18,19])
+    return num > arr[i + 1] or num < arr[i - 1]
