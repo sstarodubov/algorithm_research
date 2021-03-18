@@ -6,8 +6,38 @@ public class SimpleSort {
 
     public static void main(String[] args) {
         int[] list = {10, 4, 9, 5, 1};
-        insertSort(list);
+        quickSort(list, 0 , list.length - 1);
         System.out.println(Arrays.toString(list));
+    }
+
+
+
+
+    public static  void quickSort(int[] arr, int leftBound, int rightBound) {
+        if (leftBound > rightBound) return;
+
+        int pivot = arr[leftBound];
+        int leftPtr = leftBound + 1;
+        int rightPtr = rightBound;
+
+        while (leftPtr <= rightPtr) {
+            if (arr[leftPtr] > pivot && arr[rightPtr] < pivot) {
+                int tmp = arr[leftPtr];
+                arr[leftPtr] = arr[rightPtr];
+                arr[rightPtr] = tmp;
+            }
+
+            if (arr[leftPtr] <= pivot) leftPtr++;
+            if (arr[rightPtr] > pivot) rightPtr--;
+        }
+
+        int tmp = arr[leftBound];
+        arr[leftBound] = arr[rightPtr];
+        arr[rightPtr] = tmp;
+
+        int pivotIdx = rightPtr;
+        quickSort(arr, leftBound, pivotIdx -1);
+        quickSort(arr, pivotIdx + 1, rightBound);
     }
 
 
