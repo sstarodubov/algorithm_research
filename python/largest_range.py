@@ -55,4 +55,30 @@ def largest_range_v2_helper(storage:{}, start:int, end:int, cur_result:(), limit
         cur_result = (start, end)
     return largest_range_v2_helper(storage, cur_element, cur_element + 1, cur_result, limit)
 
-print(largest_range_v2([1,11,3,0,15,5,2,4,10,7,12,6]))
+# Time O(n) | Space O(n)
+def largest_range_v3(array:[int]):
+    best_range = ()
+    longest_length = 0
+    nums = {}
+    for a in array:
+        nums[a] = True
+
+    for num in array:
+        if not nums[nums]:
+            continue
+        nums[num] = False
+        cur_length = 1
+        left = num - 1
+        right = num + 1
+        while left in nums:
+            nums[left] = False
+            cur_length += 1
+            left -= 1
+        while right in nums:
+            nums[right] = False
+            cur_length += 1
+            right += 1
+        if cur_length > longest_length:
+            longest_length = cur_length
+            best_range = (left, right)
+    return best_range
