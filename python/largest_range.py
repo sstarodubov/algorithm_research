@@ -28,6 +28,7 @@ def largest_range_v1(arr: [int]):
     print(cur_result)
 
 
+# Time O(n) Space O(n)
 def largest_range_v2(arr:[int]):
     storage = {}
     minimum = float("inf")
