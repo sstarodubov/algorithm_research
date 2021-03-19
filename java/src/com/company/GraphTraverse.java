@@ -43,7 +43,7 @@ public class GraphTraverse {
         graph.addVertex(K);
 
         graph.addEdges(A, List.of(B, C, D));
-        graph.addEdges(B, List.of(E,F));
+        graph.addEdges(B, List.of(E, F));
         graph.addEdges(C, Collections.emptyList());
         graph.addEdges(E, Collections.emptyList());
         graph.addEdges(F, List.of(I, J));
