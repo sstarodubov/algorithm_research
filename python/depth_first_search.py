@@ -30,3 +30,5 @@ def depth_first_search(graph: {}, vertex: str, arr: [str] = []):
     return arr
 
 
+
+print(depth_first_search(graph, "A"))

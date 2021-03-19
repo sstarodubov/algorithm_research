@@ -68,7 +68,7 @@ class Graph {
         adj.put(src, edges);
     }
 
-    List<String> depthFirstSearch(String curVert, ArrayList<String> vertexes) {
+    List<String> depthFirstSearch(String curVert, List<String> vertexes) {
         if (curVert == null) return vertexes;
         vertexes.add(curVert);
         List<String> children = adj.get(curVert);
