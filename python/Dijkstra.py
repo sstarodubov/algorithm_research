@@ -16,18 +16,18 @@ graph = {
 }
 
 
-def find_lowest_cost_node(costs, processed):
-    lowest_cost = float("inf")
-    lowest_cost_node = None
-    for node in costs:
-        cost = costs[node]
-        if cost < lowest_cost and node not in processed:
-            lowest_cost = cost
-            lowest_cost_node = node
-    return lowest_cost_node
-
 
 def dijkstra(graph, from_node, to_node):
+    def find_lowest_cost_node(costs, processed):
+        lowest_cost = float("inf")
+        lowest_cost_node = None
+        for node in costs:
+            cost = costs[node]
+            if cost < lowest_cost and node not in processed:
+                lowest_cost = cost
+                lowest_cost_node = node
+        return lowest_cost_node
+
     processed = []
     costs = {}
     for a in graph[from_node].keys():
@@ -57,7 +57,7 @@ def dijkstra(graph, from_node, to_node):
         next_node_el = parents_list[cur_node]
         return find_way(next_node_el, goal, parents_list, result)
 
-    return find_way("end", "start", parent)
+    return find_way(to_node, from_node, parent)
 
 
 print(dijkstra(graph, "start", "end"))
