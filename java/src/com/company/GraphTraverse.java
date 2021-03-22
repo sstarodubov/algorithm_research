@@ -57,7 +57,6 @@ public class GraphTraverse {
         var result = graph.depthFirstSearch(A, new ArrayList<>());
         var res = graph.breadthFirstSearch(A);
         System.out.println(res);
-
     }
 }
 

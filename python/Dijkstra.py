@@ -60,4 +60,4 @@ def dijkstra(graph, from_node, to_node):
     return find_way(to_node, from_node, parent)
 
 
-print(dijkstra(graph, "start", "end"))
+print(dijkstra(graph, "start", "b"))
