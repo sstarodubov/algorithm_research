@@ -41,5 +41,3 @@ def same_bsts(bst_a:[int], bst_b:[int]):
             new_bst_left_b.append(a)
 
     return same_bsts(new_bst_left_a, new_bst_left_b) and same_bsts(new_bst_right_a, new_bst_right_b)
-
-print(same_bsts(bst1, bst2))
