@@ -32,8 +32,6 @@ def max_sum(array:[int]):
     return max(mx_sum, cur_sum)
 
 
-print(max_sum([10,11,1,2,3,5,6,7,100]))
-
 
 
 
