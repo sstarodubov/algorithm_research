@@ -1,35 +1,37 @@
 
 
-# space O(n) Time O(n)
+# space O(n) Time O(n ^ 2)
 def max_sum(array:[int]):
+    sums = [0 for x in array]
+    subs =[ -1 for x in array ]
+    sums[0] = array[0]
 
-    base_idx = 0
-    storage = {}
-    ptr = 1
-    mx_sum = 0
-    cur_sum = array[0]
-    storage[array[0]] = True
-    while len(storage.keys()) != len(array):
-        if ptr == len(array):
-            mx_sum = max(mx_sum, cur_sum)
-            cur_sum = 0
-            base_idx = None
-            ptr = 0
-            while base_idx is None:
-                is_used = storage.get(array[ptr])
-                if is_used:
-                    ptr += 1
-                else:
-                    base_idx = ptr
-                    storage[array[base_idx]] = True
-                    cur_sum += array[base_idx]
-        if array[ptr] > array[base_idx]:
-            base_idx = ptr
-            cur_sum += array[base_idx]
-            storage[array[base_idx]] = True
-        ptr += 1
+    for i in range(1, len(array)):
+        sums[i] = array[i]
+        for y in range(i):
+            if array[i] > array[y]:
+                if sums[y] + array[i] > sums[i]:
+                    sums[i] = sums[y] + array[i]
+                    subs[i] = y
 
-    return max(mx_sum, cur_sum)
+    max_sum_idx = 0
+    for i in range(1, len(sums)):
+        if sums[max_sum_idx] < sums[i]:
+            max_sum_idx = i
+
+    def find_sums_details(idx, result = []):
+        result.append(array[idx])
+        if subs[idx] == -1:
+            return result
+        return find_sums_details(subs[idx], result)
+
+    return find_sums_details(max_sum_idx)
+
+print(max_sum([8,12,2,3,15,5,7]))
+
+
+
+
 
 
 
