@@ -3,7 +3,7 @@
 # space O(n) Time O(n ^ 2)
 def max_sum(array:[int]):
     sums = [0 for x in array]
-    subs =[ -1 for x in array ]
+    subs =[ -1 for x in array]
     sums[0] = array[0]
 
     for i in range(1, len(array)):
