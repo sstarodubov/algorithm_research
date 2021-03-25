@@ -1,4 +1,15 @@
 
+# Time O(nm * min(n,m)) and Space O(nm * min(n,m))
+def lcs_v2(str1, str2):
+    lcs = [["" for x in range(len(str1) + 1)] for y in range(len(str2) + 1)]
+    for i in range(1, len(str2) + 1):
+        for j in range(1, len(str1) + 1):
+            if str2[i - 1] == str1[j - 1]:
+                lcs[i][j] = lcs[i - 1][j - 1] + str2[i - 1]
+            else:
+                lcs[i][j] = max(lcs[i -1][j], lcs[i][j -1], key=len)
+    return lcs[-1][-1]
+
 
 # Time O(nm * min(n,m)) and Space O(nm * min(n,m))
 def longest_common_subsequence(str1, str2):
@@ -17,4 +28,5 @@ def longest_common_subsequence(str1, str2):
                 matrix[x][y] = cur_letter + str1[y]
     return matrix[len(str1) - 1][len(str2) - 1]
 
-print(longest_common_subsequence("xkykzpw", "zxvvyzw"))
+
+print(lcs_v2("xkykzpw", "zxvvyzw"))
