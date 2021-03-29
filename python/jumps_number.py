@@ -1,4 +1,3 @@
-
 # time O(n ^ 2) Space O(1)
 def min_number_jumps(array: [int]):
     cur_idx = 0
@@ -20,6 +19,16 @@ def min_number_jumps(array: [int]):
     jumps_count += 1
     return jumps_count
 
-def min_number_jumps_dp(array:[int]):
-    pass
-print(min_number_jumps([3, 4, 2, 1, 2, 3, 7, 1, 1, 1, 3]))
+
+# space O(n) and time O (n ^2)
+def min_number_jumps_dp(array: [int]):
+    jumps = [float("inf") for x in array]
+    jumps[0] = 0
+    for i in range(1, len(array)):
+        for j in range(0, i):
+            if array[j] + j >= i:
+                jumps[i] = min(jumps[j] + 1, jumps[i])
+    return jumps[-1]
+
+
+print(min_number_jumps_dp([3, 4, 2, 1, 2, 3, 7, 1, 1, 1, 3]))
