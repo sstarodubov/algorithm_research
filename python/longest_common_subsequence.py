@@ -35,6 +35,7 @@ def build_seq(lcs):
         i = cur_entry[2]
         j = cur_entry[3]
     return list(reversed(seq))
+
 # Time O(nm * min(n,m)) and Space O(nm * min(n,m))
 def longest_common_subsequence(str1, str2):
     matrix = [["" for b in str2] for a in str1]
