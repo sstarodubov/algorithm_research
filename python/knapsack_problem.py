@@ -27,7 +27,6 @@ def knap_sack(elements, capacity) -> [[int]]:
             i -= 1
             if j > 0 and i > 0:
                 out.append(product)
-
     return out
 
 print(knap_sack([[1,2], [4,3], [5,6], [6,7]], 10))
