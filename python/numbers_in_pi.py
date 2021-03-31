@@ -1,33 +1,23 @@
 
 
-def numbers_in_pi(target: str, nums:{}):
-    out = []
-    num_in_pi_helper(nums, target, 0, out)
-    return min(out)
+def nums_in_PI(pi, numbers):
+    table = {number: True for number in numbers}
+    min_spaces = get_min_spaces(pi, table, {}, 0)
+    return min_spaces
+
+def get_min_spaces(pi, table, cache, idx):
+    if idx == len(pi):
+        return -1
+    if idx in cache:
+        return cache[idx]
+    min_spaces = float("inf")
+    for i in range(idx, len(pi)):
+        prefix = pi[idx:i + 1]
+        if prefix in table:
+            min_spaces_in_suffix = get_min_spaces(pi, table, cache, i + 1)
+            min_spaces = min(min_spaces, min_spaces_in_suffix + 1)
+    cache[idx] = min_spaces
+    return cache[idx]
 
 
-def num_in_pi_helper(nums:{}, cur_val:str, count:int, out = []):
-    if not cur_val:
-        out.append(count)
-        return count
-    ptr = 1
-    while ptr <= len(cur_val):
-        head = cur_val[0:ptr]
-        tail = cur_val[ptr:]
-        if head in nums:
-            result = num_in_pi_helper(nums, tail, count + 1, out)
-            result = max(result, count)
-        ptr += 1
-    return result
-
-st = {
-    "3141":True,
-    "5":True,
-    "31":True,
-    "2":True,
-    "4159":True,
-    "9":True,
-    "42":True
-}
-print(numbers_in_pi("3141592", st))
-
+print(nums_in_PI("314592", ["3141", "5", "31", "2", "4159", "9", "42"]))
