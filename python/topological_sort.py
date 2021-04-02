@@ -54,7 +54,7 @@ def depth_first_traverse(node:JobNode, order_jobs):
     node.visited = True
     node.visiting = False
     order_jobs.append(node.job)
-
+    return False
 
 def create_job_graph(jobs, deps):
     graph = JobGraph(jobs)
