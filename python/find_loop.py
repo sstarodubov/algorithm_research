@@ -8,6 +8,7 @@ class Node:
         return f"Node({self.val})"
 
 
+
 n1 = Node(1)
 n2 = Node(2)
 n3 = Node(3)
@@ -28,4 +29,28 @@ n7.next = n8
 n8.next = n9
 n9.next = n4
 
-print(n1)
+
+# Time O(n^2) and Space O(1)
+def find_loop(head:Node):
+    count = 1
+    n = 2
+    target = head.next
+    cur = head
+
+    while True:
+        while count != n or target is not None:
+            if n == count and cur == target:
+                target = cur.next
+                cur = head
+                count = 1
+                n += 1
+            elif target is None:
+                return None
+            elif cur == target:
+                return cur
+            else:
+                cur = cur.next
+                count += 1
+
+
+print(find_loop(n1))
