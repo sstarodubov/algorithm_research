@@ -37,9 +37,12 @@ print(lists)
 
 
 class Solution:
+
+    # Time O (n * lg n) and Space O (n)
     def mergeKLists(self, lists: List[ListNode]) -> ListNode:
 
-        def merge(l1:ListNode, l2:ListNode) ->ListNode:
+        # Space O(l1 + l2) and Time (l1 + l2)
+        def merge(l1:ListNode, l2:ListNode) -> ListNode:
             ptr1 = l1
             ptr2 = l2
             hd = ListNode(l1.val) if l1.val < l2.val else ListNode(l2.val)
@@ -66,13 +69,15 @@ class Solution:
                     cur = cur.next
             return hd
 
-        hd = merge(lists[0], lists[1])
+        def mergeListsHelper(lists, start, end):
+            if end <= start:
+                return lists[end]
 
-        return None
+            middle = (start + end) // 2
+            l = mergeListsHelper(lists, start, middle)
+            r = mergeListsHelper(lists, middle + 1, end)
+            return merge(l, r)
+
+        return mergeListsHelper(lists, 0, len(lists) -1)
 
 s = Solution()
-
-
-
-
-print(s.mergeKLists(lists))
