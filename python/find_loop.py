@@ -52,5 +52,17 @@ def find_loop(head:Node):
                 cur = cur.next
                 count += 1
 
+# space O(1) and time O(n)
+def findLoop(head):
+    first = head.next
+    second = head.next.next
 
-print(find_loop(n1))
+    while first != second:
+        first = first.next
+        second = second.next.next
+
+    first = head
+    while first != second:
+        first = first.next
+        second = second.next
+    return second
