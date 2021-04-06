@@ -3,7 +3,7 @@ from typing import List
 
 
 class ListNode:
-    def __init__(self, val=0, next=None):
+    def __init__(self, val=None, next=None):
         self.val = val
         self.next = next
 
@@ -40,7 +40,8 @@ class Solution:
 
     # Time O (n * lg n) and Space O (n)
     def mergeKLists(self, lists: List[ListNode]) -> ListNode:
-
+        if not lists:
+            return ListNode()
         # Space O(l1 + l2) and Time (l1 + l2)
         def merge(l1:ListNode, l2:ListNode) -> ListNode:
             ptr1 = l1
@@ -70,6 +71,8 @@ class Solution:
             return hd
 
         def mergeListsHelper(lists, start, end):
+            if not lists:
+                return ListNode()
             if end <= start:
                 return lists[end]
 
@@ -81,3 +84,5 @@ class Solution:
         return mergeListsHelper(lists, 0, len(lists) -1)
 
 s = Solution()
+
+
