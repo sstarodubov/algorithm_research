@@ -28,6 +28,3 @@ def mergeLinkedList(l1:Node, l2:Node):
             br.next = cur
             prev = br
             br = tmp
-
-r = mergeLinkedList(l1, l2)
-print(r)
