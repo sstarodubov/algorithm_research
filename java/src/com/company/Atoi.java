@@ -19,32 +19,6 @@ public class Atoi {
     }
 
     public int myAtoi(String s) {
-        if (!s.matches("^\\s*([+\\-])?\\d+\\.?\\d*[a-zA-Z\\s0-9\\-]*")) return 0;
-        boolean started = true;
-        String[] ar = s.split("");
-        var out = new StringBuilder();
-        for (String a : ar) {
-            if (a.matches("\\s") && started) continue;
-            if (!a.matches("[a-zA-Z\\s]")) {
-                out.append(a);
-                started = false;
-            } else break;
-        }
-        if (out.toString().contains(".")) {
-            var r = new StringBuilder();
-            for (var a : out.toString().split("")) {
-                if (a.equals(".")) {
-                    out = r;
-                    break;
-                } else r.append(a);
-            }
-        }
-        boolean isNegative = out.toString().contains("-");
-        var r = out.toString().replaceAll("^[\\s*0+-]+", "0").replaceAll("-$", "");
-        if (r.length() > 11) return isNegative ? Integer.MIN_VALUE : Integer.MAX_VALUE;
-        long lnum = Long.parseLong(isNegative ? "-" + r : r);
-        if (lnum < Integer.MIN_VALUE) return  Integer.MIN_VALUE;
-        if (lnum > Integer.MAX_VALUE) return Integer.MAX_VALUE;
-        return (int) lnum;
+       return 0;
     }
 }
