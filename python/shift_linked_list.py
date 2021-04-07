@@ -9,7 +9,7 @@ def shiftLinkedList(node: Node, k: int):
     while cur is not None:
         l += 1
         cur = cur.next
-    b = k if k < 6 else k % l
+    b = k if k < l else k % l
     if b % l == 0:
         return node
     lastNodeIdx = l - b
