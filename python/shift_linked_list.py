@@ -2,6 +2,7 @@ from build_ll_from_array import buildLinkedList, Node
 
 lHead: Node = buildLinkedList([0, 1, 2, 3, 4, 5])
 
+
 # time O(n) and Space O(1)
 def shiftLinkedList(node: Node, k: int):
     l = 0
@@ -16,11 +17,11 @@ def shiftLinkedList(node: Node, k: int):
     c = 0
     p = node
     while c != (lNIdx - 1):
-        c +=1
+        c += 1
         p = p.next
 
     r = p.next
-    nx:Node = p.next
+    nx: Node = p.next
     while nx.next is not None:
         nx = nx.next
     nx.next = node

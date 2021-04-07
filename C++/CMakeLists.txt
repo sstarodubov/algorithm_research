@@ -3,4 +3,4 @@ project(C__)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(C__ main.cpp permutations/Permutations.cpp permutations/Permutations.h bobblesort/bobblesort.cpp bobblesort/bobblesort.h)
+add_executable(C__ main.cpp permutations/Permutations.cpp permutations/Permutations.h)
