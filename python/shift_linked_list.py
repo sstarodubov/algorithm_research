@@ -12,10 +12,10 @@ def shiftLinkedList(node: Node, k: int):
     b = k if k < l else k % l
     if b % l == 0:
         return node
-    lastNodeIdx = l - b
+    lNIdx = l - b
     c = 0
     p = node
-    while c != (lastNodeIdx - 1):
+    while c != (lNIdx - 1):
         c +=1
         p = p.next
 
