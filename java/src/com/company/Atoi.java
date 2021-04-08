@@ -3,9 +3,9 @@ package com.company;
 public class Atoi {
     public static void main(String[] args) {
         var a = new Atoi();
-        assert 0 == a.myAtoi("+-12"): "+-12";
-        assert 0 == a.myAtoi(".1"): ".1";
-        assert -5 == a.myAtoi("-5-"): "-5-";
+        assert -5 == a.myAtoi("-5-") : "-5-";
+        assert 0 == a.myAtoi("+-12") : "+-12";
+        assert 0 == a.myAtoi(".1") : ".1";
         assert Integer.MAX_VALUE == a.myAtoi("20000000000000000000") : "really big int";
         assert -2147483648 == a.myAtoi("-91283472332") : "big int";
         assert -2147483647 == a.myAtoi("-2147483647") : "low bound of big integer";
@@ -23,45 +23,20 @@ public class Atoi {
 
     // Space O(1) and Time O(n)
     public int myAtoi(String s) {
+        int i = 0;
+        int sign = 1;
+        int result = 0;
+        if (s.length() == 0) return 0;
         s = s.trim();
-        boolean readMode = false;
-        boolean isPositive = true;
-        var out = new StringBuilder();
-        for (int i = 0; i < s.length(); i++) {
-            char letter = s.charAt(i);
-            if ((Character.isSpaceChar(letter) || letter == '0') && !readMode) continue;
-            if ((Character.isLetter(letter) || letter == '.') && !readMode) return 0;
+        if (i < s.length() && (s.charAt(i) == '+' || s.charAt(i) == '-'))
+            sign = s.charAt(i++) == '-' ? -1 : 1;
 
-            if (letter == '-' && !readMode) {
-                readMode = true;
-                isPositive = false;
-                continue;
+        while (i < s.length() && s.charAt(i) >= '0' && s.charAt(i) <= '9') {
+            if (result > Integer.MAX_VALUE / 10 || (result == Integer.MAX_VALUE / 10 && s.charAt(i) - '0' > Integer.MAX_VALUE % 10)) {
+                return (sign == 1) ? Integer.MAX_VALUE : Integer.MIN_VALUE;
             }
-            if (letter == '+' && !readMode) {
-                readMode = true;
-                continue;
-            }
-
-            if (!Character.isDigit(letter) && readMode) {
-                break;
-            }
-            if (Character.isDigit(letter)) {
-                readMode = true;
-                out.append(letter);
-            }
+            result = result * 10 + (s.charAt(i++) - '0');
         }
-
-        if (out.toString().isBlank()) return 0;
-        if (isPositive) {
-            if (out.toString().length() > 11) return Integer.MAX_VALUE;
-            long tmp = Long.parseLong(out.toString());
-            if (tmp > Integer.MAX_VALUE) return Integer.MAX_VALUE;
-            return (int) tmp;
-        }
-        var negativeOut = out.insert(0, "-").toString();
-        if (negativeOut.length() > 11) return Integer.MIN_VALUE;
-        long tmp = Long.parseLong(negativeOut);
-        if (tmp < Integer.MIN_VALUE) return Integer.MIN_VALUE;
-        return (int) tmp;
+        return result * sign;
     }
 }
