@@ -3,6 +3,9 @@ package com.company;
 public class Atoi {
     public static void main(String[] args) {
         var a = new Atoi();
+        assert 0 == a.myAtoi("+-12"): "+-12";
+        assert 0 == a.myAtoi(".1"): ".1";
+        assert -5 == a.myAtoi("-5-"): "-5-";
         assert Integer.MAX_VALUE == a.myAtoi("20000000000000000000") : "really big int";
         assert -2147483648 == a.myAtoi("-91283472332") : "big int";
         assert -2147483647 == a.myAtoi("-2147483647") : "low bound of big integer";
@@ -27,7 +30,8 @@ public class Atoi {
         for (int i = 0; i < s.length(); i++) {
             char letter = s.charAt(i);
             if ((Character.isSpaceChar(letter) || letter == '0') && !readMode) continue;
-            if (Character.isLetter(letter) && !readMode) return 0;
+            if ((Character.isLetter(letter) || letter == '.') && !readMode) return 0;
+
             if (letter == '-' && !readMode) {
                 readMode = true;
                 isPositive = false;
@@ -38,12 +42,16 @@ public class Atoi {
                 continue;
             }
 
-            if (!Character.isDigit(letter) && readMode) break;
+            if (!Character.isDigit(letter) && readMode) {
+                break;
+            }
             if (Character.isDigit(letter)) {
                 readMode = true;
                 out.append(letter);
             }
         }
+
+        if (out.toString().isBlank()) return 0;
         if (isPositive) {
             if (out.toString().length() > 11) return Integer.MAX_VALUE;
             long tmp = Long.parseLong(out.toString());
