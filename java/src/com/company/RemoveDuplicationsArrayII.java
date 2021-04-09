@@ -13,20 +13,20 @@ public class RemoveDuplicationsArrayII {
 
     public int removeDuplications(int[] nums) {
         int count = 1;
-        int ponter = 0;
+        int pointer = 0;
         for (int i = 1; i < nums.length; i++) {
             if ((nums[i - 1] == nums[i]) && count < 2) {
-                nums[ponter] = nums[i];
+                nums[pointer] = nums[i];
                 count++;
-                ponter++;
+                pointer++;
             } else if (nums[i - 1] != nums[i]) {
-                nums[ponter] = nums[i - 1];
-                ponter++;
+                nums[pointer] = nums[i - 1];
+                pointer++;
                 count = 1;
             }
         }
-        nums[ponter] = nums[nums.length - 1];
-        return ponter + 1;
+        nums[pointer] = nums[nums.length - 1];
+        return pointer + 1;
 
     }
 }
