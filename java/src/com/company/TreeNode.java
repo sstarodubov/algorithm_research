@@ -49,6 +49,8 @@ public class TreeNode {
                     queue.add(node);
                 }
             }
+
+            if (queue.isEmpty()) return root;
         }
     }
 }
