@@ -8,8 +8,9 @@ def search_for_range(arr: [int], l: int, r: int, k: int, t: [int, int]):
         if t[0] < m: t[0] = m
         search_for_range(arr, l, m - 1, k, t)
         search_for_range(arr, m + 1, r, k, t)
-    if k < arr[m]: search_for_range(arr, l, m - 1, k, t)
-    else: search_for_range(arr, m + 1, r, k, t)
+    else:
+        if k < arr[m]: search_for_range(arr, l, m - 1, k, t)
+        else: search_for_range(arr, m + 1, r, k, t)
     return [t[1], t[0]]
 
 def search_for_range_main(arr, k):
