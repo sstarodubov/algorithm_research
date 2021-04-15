@@ -1,17 +1,17 @@
 # time O(n) and space O(n)
 def shortest_path(url: str) -> str:
     is_absolute = False
-    paths = url.split("/")
-    paths[0] = "/" if paths[0] == "" else paths[0]
-    if paths[0] == "/": is_absolute = True
+    tokens = url.split("/")
+    tokens[0] = "/" if tokens[0] == "" else tokens[0]
+    if tokens[0] == "/": is_absolute = True
     stack = []
-    for path in paths:
-        if path == "..":
+    for token in tokens:
+        if token == "..":
             stack.pop()
-        elif path == "." or path == "":
+        elif token == "." or token == "":
             continue
         else:
-            stack.append(path)
+            stack.append(token)
     out = ""
     for p in range(len(stack)):
         if p != 0 and p != len(stack) - 1 and is_absolute:
