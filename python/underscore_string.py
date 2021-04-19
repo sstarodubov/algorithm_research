@@ -6,7 +6,7 @@ def indexof(s: str, w: str, start: int = 0) -> int:
     except:
         return -1
 
-
+# space O(n) and time O(n^2)
 def underscore_string(s: str, word: str) -> str:
     out = ""
     str_prt = s.index(word)
@@ -25,7 +25,6 @@ def underscore_string(s: str, word: str) -> str:
 
         out += s[cur_ptr]
         cur_ptr += 1
-    print(out)
     return out
 
 
