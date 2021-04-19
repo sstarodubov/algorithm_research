@@ -1,9 +1,9 @@
 # space O(n) and time O(n^2)
 def underscore_string(s: str, word: str) -> str:
     buffer: [str] = []
-    str_prt = s.find(word)
-    end_ptr = str_prt + len(word) if str_prt != -1 else -1
-    cur_ptr = 0
+    str_prt: int = s.find(word)
+    end_ptr: int = str_prt + len(word) if str_prt != -1 else -1
+    cur_ptr: int = 0
     while cur_ptr < len(s):
         if cur_ptr == end_ptr:
             if end_ptr != str_prt:
