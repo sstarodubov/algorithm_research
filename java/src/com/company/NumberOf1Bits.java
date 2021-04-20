@@ -3,7 +3,6 @@ package com.company;
 public class NumberOf1Bits {
     public static void main(String[] args) {
         var b = new NumberOf1Bits();
-
         assert 3 == b.hammingWeight(11) : "3";
         assert 31 == b.hammingWeight(-3) : "31";
         assert 1 == b.hammingWeight(128) : "1";
