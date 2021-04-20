@@ -15,11 +15,9 @@ public class XorDecoding {
         int[] out = new int[encoded.length + 1];
         out[0] = first;
         int po = 1;
-        int pe = 0;
         while (po < out.length) {
-            out[po] = out[po - 1] ^ encoded[pe];
+            out[po] = out[po - 1] ^ encoded[po - 1];
             po++;
-            pe++;
         }
         return out;
     }
