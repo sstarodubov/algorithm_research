@@ -10,8 +10,18 @@ public class NumberOf1Bits {
         System.out.println("tests passed");
     }
 
-    // Time O(n) and Space O(n)
+    // Time O(n) and Space O(1)
     public int hammingWeight(int n) {
+        int out = 0;
+        while (n != 0) {
+            n = n & (n - 1);
+            out++;
+        }
+        return out;
+    }
+
+    // Time O(n) and Space O(n)
+    public int hammingWeightNotEffective(int n) {
         char[] binary = Integer.toBinaryString(n).toCharArray();
         int out = 0;
         for (char b : binary) {
@@ -19,5 +29,4 @@ public class NumberOf1Bits {
         }
         return out;
     }
-
 }
