@@ -5,7 +5,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Permutations {
-
     public List<int[]> permuteWrapper(int[] arr) {
         var permutations = new LinkedList<int[]>();
         permute(0, arr, permutations);
