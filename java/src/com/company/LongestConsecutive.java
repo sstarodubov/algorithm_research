@@ -12,6 +12,7 @@ public class LongestConsecutive {
         System.out.println("tests passed");
     }
 
+    // Time O(n * log n) Space O(1)
     public static int longestConsecutive(int[] nums) {
         if (nums.length == 0) return 0;
         int res = 0;
