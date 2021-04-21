@@ -23,4 +23,9 @@ public class ListNode {
         }
         return root;
     }
+
+    @Override
+    public String toString() {
+        return "Node(" + val + ")";
+    }
 }
