@@ -9,6 +9,7 @@ public class MergeKSortedLinkedList {
         var ll = new ListNode[]{l1, l2, l3};
 
         ListNode a = mergeKLists(new ListNode[] {});
+        assert a == null;
 
         ListNode ans = mergeKLists(ll);
         assert ans.val == 1;
