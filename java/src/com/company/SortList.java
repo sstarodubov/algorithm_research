@@ -1,22 +1,9 @@
 package com.company;
 
 public class SortList {
-    public static void main(String[] args) {
-        var l1 = ListNode.buildLinkedList(new int[]{4, 2, 3, 1});
-        ListNode n = sortList(l1);
-        assert 1 == n.val : "1";
-        assert 2 == n.next.val : "2";
-        assert 3 == n.next.next.val : "3";
-        assert 4 == n.next.next.next.val : "4";
-
-        ListNode n2 = sortList(null);
-        assert null == n2 : "n2 is null";
-
-        System.out.println("tests passed");
-    }
 
     // Time O(n^2) and Space O(1)
-    public static ListNode sortList(ListNode head) {
+    public static ListNode sortListLikeABubble(ListNode head) {
         if (head == null) return null;
         ListNode cur = head, prev = null;
         int bound = Integer.MAX_VALUE;
@@ -53,5 +40,45 @@ public class SortList {
         next.next = cur;
         cur.next = nn;
         if (prev != null) prev.next = next;
+    }
+
+    // MergeSort
+    // Time O(n * log n) and space O(1)
+    public ListNode sortList(ListNode head) {
+        if (head == null || head.next == null)
+            return head;
+        ListNode mid = getMid(head);
+        ListNode left = sortList(head);
+        ListNode right = sortList(mid);
+        return merge(left, right);
+    }
+
+    ListNode merge(ListNode list1, ListNode list2) {
+        ListNode dummyHead = new ListNode();
+        ListNode tail = dummyHead;
+        while (list1 != null && list2 != null) {
+            if (list1.val < list2.val) {
+                tail.next = list1;
+                list1 = list1.next;
+                tail = tail.next;
+            } else {
+                tail.next = list2;
+                list2 = list2.next;
+                tail = tail.next;
+            }
+        }
+        tail.next = (list1 != null) ? list1 : list2;
+        return dummyHead.next;
+    }
+
+    ListNode getMid(ListNode head) {
+        ListNode midPrev = null;
+        while (head != null && head.next != null) {
+            midPrev = (midPrev == null) ? head : midPrev.next;
+            head = head.next.next;
+        }
+        ListNode mid = midPrev.next;
+        midPrev.next = null;
+        return mid;
     }
 }
