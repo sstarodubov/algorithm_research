@@ -45,16 +45,16 @@ public class UniquePaths {
         }
 
         @Override
-        public int hashCode() {
-            return Objects.hash(m, n);
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            Key key = (Key) o;
+            return m == key.m && n == key.n;
         }
 
         @Override
-        public boolean equals(Object o) {
-            if (o == this) return true;
-            if (!(o instanceof Key)) return false;
-            Key key = (Key) o;
-            return m == key.m && n == key.n;
+        public int hashCode() {
+            return Objects.hash(m, n);
         }
     }
 }
