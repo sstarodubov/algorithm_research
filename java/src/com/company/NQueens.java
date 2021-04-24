@@ -6,7 +6,19 @@ import java.util.List;
 public class NQueens {
     public static void main(String[] args) {
         var q = new NQueens();
-        q.solveNQueens(4);
+        List<List<String>> anss = q.solveNQueens(4);
+
+        assert ".Q..".equals(anss.get(0).get(0));
+        assert "...Q".equals(anss.get(0).get(1));
+        assert "Q...".equals(anss.get(0).get(2));
+        assert "..Q.".equals(anss.get(0).get(3));
+
+        assert "..Q.".equals(anss.get(1).get(0));
+        assert "Q...".equals(anss.get(1).get(1));
+        assert "...Q".equals(anss.get(1).get(2));
+        assert ".Q..".equals(anss.get(1).get(3));
+
+        System.out.println("tests passed");
     }
 
     public int[][] board;
