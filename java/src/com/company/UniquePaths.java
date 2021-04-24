@@ -3,12 +3,14 @@ package com.company;
 public class UniquePaths {
     public static void main(String[] args) {
         var up = new UniquePaths();
-//        assert 28 == up.uniquePaths(3, 7) : 1;
-//        assert 3 == up.uniquePaths(3, 2) : 2;
-//        assert 28 == up.uniquePaths(7, 3) : 3;
-//        int r = up.uniquePaths(3, 3);
-//        assert 6 == r : 4;
-//        assert 193536720 == up.uniquePaths(23, 12) : 5;
+        assert 28 == up.uniquePaths(3, 7) : 1;
+        assert 3 == up.uniquePaths(3, 2) : 2;
+        assert 28 == up.uniquePaths(7, 3) : 3;
+        int r = up.uniquePaths(3, 3);
+        assert 6 == r : 4;
+        assert 193536720 == up.uniquePaths(23, 12) : 5;
+
+        // paths with obstacles
         assert 2 == up.uniquePathsWithObstacles(new int[][]{
                 new int[]{0, 0, 0},
                 new int[]{0, 1, 0},
