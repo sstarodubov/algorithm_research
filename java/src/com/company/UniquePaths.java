@@ -24,7 +24,6 @@ public class UniquePaths {
         return uniquePathsWithObstaclesHelper(obstacleGrid.length - 1, obstacleGrid[0].length - 1, obstacleGrid, memo);
     }
 
-
     public int uniquePathsWithObstaclesHelper(int m, int n, int[][] grid, int[][] memo) {
         if (m < 0 || n < 0) return 0;
         if (grid[m][n] == 1) return 0;
