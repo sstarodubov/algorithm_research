@@ -18,7 +18,7 @@ public class LongestValidParentheses {
         System.out.println("tests passed");
     }
 
-    // Space O(n) and Space O(n)
+    // Time O(n) and Space O(n)
     public int longestValidParentheses(String s) {
         BitSet mask = new BitSet(s.length());
         var stack = new ArrayDeque<Integer>();
