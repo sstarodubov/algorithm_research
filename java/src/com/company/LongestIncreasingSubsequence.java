@@ -12,6 +12,7 @@ public class LongestIncreasingSubsequence {
     // Time O(n ^ 2 ) and Space O(n)
     public int lengthOfLIS(int[] nums) {
         if (nums.length == 0) return 0;
+        int ans = 1;
         var lens = new int[nums.length];
         lens[0] = 1;
         for (int i = 1; i < nums.length; i++) {
@@ -24,12 +25,8 @@ public class LongestIncreasingSubsequence {
                 cur--;
             }
             lens[i] = len + 1;
+            ans = Math.max(lens[i], ans);
         }
-
-        int m = 0;
-        for (var l : lens) {
-            if (l > m) m = l;
-        }
-        return m;
+        return ans;
     }
 }
