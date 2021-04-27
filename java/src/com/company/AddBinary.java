@@ -47,9 +47,8 @@ public class AddBinary {
                 ans.insert(0, '1');
             } else if (aEl == '0' && bEl == '0') ans.insert(0, '0');
         }
-        while (carry != 0) {
+        if (carry != 0) {
             ans.insert(0, '1');
-            carry--;
         }
         return ans.toString();
     }
