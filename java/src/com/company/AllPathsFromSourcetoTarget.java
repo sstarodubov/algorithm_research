@@ -23,11 +23,11 @@ public class AllPathsFromSourcetoTarget {
 
     public List<List<Integer>> allPathsSourceTarget(int[][] graph) {
         List<List<Integer>> ans = new ArrayList<>();
-        helper(graph, 0, new ArrayList<>(), ans);
+        dfs(graph, 0, new ArrayList<>(), ans);
         return ans;
     }
 
-    public void helper(int[][] graph, int cur, List<Integer> tmp, List<List<Integer>> ans) {
+    public void dfs(int[][] graph, int cur, List<Integer> tmp, List<List<Integer>> ans) {
         tmp.add(cur);
 
         if (cur == graph.length - 1) {
@@ -38,9 +38,8 @@ public class AllPathsFromSourcetoTarget {
         int[] children = graph[cur];
 
         for (int child : children) {
-            helper(graph, child, tmp, ans);
+            dfs(graph, child, tmp, ans);
             tmp.remove(tmp.size() - 1);
         }
-
     }
 }
