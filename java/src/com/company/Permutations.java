@@ -1,13 +1,19 @@
 package com.company;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
 public class Permutations {
-    public List<int[]> permuteWrapper(int[] arr) {
-        var permutations = new LinkedList<int[]>();
-        permute(0, arr, permutations);
+    public static void main(String[] args) {
+        var p = new Permutations();
+        List<List<Integer>> permute = p.permute(new int[]{1, 2, 3});
+        System.out.println("done");
+    }
+    public List<List<Integer>> permute(int[] nums) {
+        var permutations = new LinkedList<List<Integer>>();
+        permuteHelper(0, nums, permutations);
         return permutations;
     }
 
@@ -17,14 +23,17 @@ public class Permutations {
         arr[y] = tmp;
     }
 
-    public void permute(int idx, int[] arr, List<int[]> permutations) {
+    public void permuteHelper(int idx, int[] arr, List<List<Integer>> permutations) {
         if (idx == arr.length - 1) {
-            int[] newArr = Arrays.copyOf(arr, arr.length);
+            var newArr = new ArrayList<Integer>();
+            for (var el : arr) {
+                newArr.add(el);
+            }
             permutations.add(newArr);
         } else {
             for (int y = idx; y < arr.length; y++) {
                 swap(arr, idx, y);
-                permute(idx + 1, arr, permutations);
+                permuteHelper(idx + 1, arr, permutations);
                 swap(arr, y, idx);
             }
         }
