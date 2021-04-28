@@ -16,7 +16,7 @@ public class SudokuSolver {
 
         var el = new SudokuSolver();
         el.solveSudoku(board);
-        System.out.println("done");
+
     }
 
     public void solveSudoku(char[][] board) {
