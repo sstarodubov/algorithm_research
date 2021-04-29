@@ -1,8 +1,5 @@
 package com.company;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * There are n cities. Some of them are connected, while some are not.
  * If city a is connected directly with city b, and city b is connected directly with city c,
@@ -26,21 +23,21 @@ public class NumberofProvinces {
 
     public int findCircleNum(int[][] isConnected) {
         int[] v = new int[isConnected.length];
-        int out = 0;
+        int ans = 0;
         for (int i = 0; i < isConnected.length; i++) {
             if (v[i] == 0) {
                 helper(isConnected, i, v);
-                out++;
+                ans++;
             }
         }
-        return out;
+        return ans;
     }
 
     public void helper(int[][] graph, int cur, int[] v) {
-        if (v[cur] == 1) return;
         v[cur] = 1;
         int[] map = graph[cur];
-        for (int node = 0; node < map.length ; node++) {
+        for (int node = 0; node < map.length; node++) {
+            if (v[node] == 1) continue;
             if (node == cur) continue;
             if (map[node] == 1) {
                 helper(graph, node, v);
