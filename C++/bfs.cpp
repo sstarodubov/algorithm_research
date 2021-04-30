@@ -6,7 +6,7 @@
 using namespace std;
 
 void bfs(std::vector<std::vector<int>> &graph, int s) {
-    int visited[graph.size()] = {0};
+    vector<int> visited(graph.size());
     queue<int> q;
     q.push(s);
     while (!q.empty()) {
