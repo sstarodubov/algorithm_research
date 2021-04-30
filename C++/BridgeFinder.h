@@ -40,9 +40,6 @@ public:
 
 
     void find_bridges() {
-        timer = 0;
-        for (int i = 0; i < this->size; ++i)
-            used[i] = false;
         for (int i = 0; i < this->size; ++i)
             if (!used[i])
                 dfs(i);
