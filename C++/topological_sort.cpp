@@ -27,7 +27,6 @@ void topological_sort(vii &graph, vector<bool> &visited, vi& ans) {
         if (!visited[i]) {
             traverse(i, visited, graph, ans);
         }
-        reverse(ans.begin(), ans.end());
     }
 }
 
