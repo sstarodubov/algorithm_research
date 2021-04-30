@@ -21,31 +21,28 @@ public class FindWordsCanBeFormedbyCharacters {
         System.out.println("tests passed");
     }
 
-    // Time (n ^2 * log n) and Space O(n)
+    // Time (n ^2) and Space O(n)
     public int countCharacters(String[] words, String chars) {
-        char[] ys = chars.toCharArray();
-        Arrays.sort(ys);
-        ArrayList<char[]> list = new ArrayList<>();
-        int ans = 0;
-        for (var word : words) {
-            var arr = word.toCharArray();
-            Arrays.sort(arr);
-            list.add(arr);
-        }
-        for (char[] word : list) {
-            if (isEqual(word, ys)) ans += word.length;
+        char[] count = new char[26];
+        int goodStrings = 0;
+        chars.chars().forEach(ch -> ++count[ch-'a']);
 
+        for(String word : words){
+            if(isGoodString(word, count)){
+                goodStrings += word.length();
+            }
         }
-        return ans;
+        return goodStrings;
     }
 
-    public boolean isEqual(char[] xs, char[] ys) {
-        int xPtr = 0;
-        int yPtr = 0;
-        while (xPtr < xs.length) {
-            if (yPtr >= ys.length) return false;
-            if (xs[xPtr] == ys[yPtr]) xPtr++;
-            yPtr++;
+    public boolean isGoodString(String word, char[] count){
+        char[] currCount = new char[26];
+
+        for(char ch : word.toCharArray()){
+            currCount[ch-'a']++;
+            if(currCount[ch-'a'] > count[ch-'a']){
+                return false;
+            }
         }
         return true;
     }
