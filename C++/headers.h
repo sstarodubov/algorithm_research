@@ -1,0 +1,2 @@
+
+int phi (int n);
