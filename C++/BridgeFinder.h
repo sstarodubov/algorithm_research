@@ -41,7 +41,6 @@ public:
 
     void find_bridges() {
         for (int i = 0; i < this->size; ++i)
-            if (!used[i])
-                dfs(i);
+            if (!used[i]) dfs(i);
     }
 };
