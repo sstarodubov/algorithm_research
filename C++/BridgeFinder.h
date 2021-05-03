@@ -27,7 +27,9 @@ public:
         for (size_t i = 0; i < this->graph[v].size(); ++i) {
             int to = this->graph[v][i];
             if (to == p) continue;
-            if (used[to]) fup[v] = min(fup[v], tin[to]);
+            if (used[to]) {
+                fup[v] = min(fup[v], tin[to]);
+            }
             else {
                 dfs(to, v);
                 fup[v] = min(fup[v], fup[to]);
