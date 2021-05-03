@@ -48,8 +48,6 @@ public class MedianofTwoSortedArrays {
 
     public double findMedian(int[] nums) {
         if (nums.length == 0) return 0.0;
-        if (nums.length == 1) return nums[0];
-
         int idx = nums.length / 2;
         if ((nums.length & 1) == 1) return nums[idx];
         return ((double) nums[idx] + (double) nums[idx - 1]) / 2;
