@@ -8,7 +8,7 @@ public class MergeTwoBinaryTrees {
         var inc = new MergeTwoBinaryTrees();
 
         TreeNode treeNode = inc.mergeTrees(t1, t2);
-
+        assert treeNode != null;
         System.out.println("tests passed");
     }
 
