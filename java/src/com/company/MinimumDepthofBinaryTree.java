@@ -11,11 +11,13 @@ public class MinimumDepthofBinaryTree {
 
     int ans = Integer.MAX_VALUE;
 
+    // Time O(n) and Space O(log n)
     public int minDepth(TreeNode root) {
         if (root == null) return 0;
         helper(root, 1);
         return ans;
     }
+
 
     public void helper(TreeNode node, int depth) {
         if (node != null) {
