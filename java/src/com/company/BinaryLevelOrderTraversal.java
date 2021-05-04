@@ -9,7 +9,7 @@ public class BinaryLevelOrderTraversal {
         var exp = new BinaryLevelOrderTraversal();
 
         List<List<Integer>> lists = exp.levelOrder(tree);
-        System.out.println("tests");
+        assert lists.size() == 3;
     }
 
     public List<List<Integer>> ans = new ArrayList<>();
