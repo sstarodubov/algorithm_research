@@ -8,7 +8,7 @@ int dijkstra(vvp &g, int start, int end) {
 
     int n = g.size();
     int s = start;
-    const int BIG_NUMBER = 999999999;
+    const int INF = 999999999;
     vector<int> distances(n, BIG_NUMBER), parents(n);
     distances[s] = 0;
     vector<bool> visited(n, false);
@@ -19,7 +19,7 @@ int dijkstra(vvp &g, int start, int end) {
             if (!visited[j] && (v == -1 || distances[j] < distances[v])) {
                 v = j;
             }
-        if (distances[v] == BIG_NUMBER) {
+        if (distances[v] == INF) {
             break;
         }
         visited[v] = true;
