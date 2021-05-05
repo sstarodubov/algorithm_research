@@ -57,8 +57,6 @@ public class CountRange {
 
     public static void main(String[] args) {
         var one = new CountRange();
-
-        System.out.println(one.countRangeSum(new int[] {-2,5,0,1}, -2, 2));
         assert 380593 == one.countRangeSum(new int[]{
                 -10, 29, 23, 8, 6, -7, 16, 14, 15, 11, -4, 24, 21, -27, 21, -12, 3, -25, -22, 28, 0, 10, -9, -3, -24, -5, -16, -10, -3, -20,
                 21, 6, -3, 22, 22, -30, 23, 10, 20, -16, -23, -18, -25, 1, 16, -5, -15, -10, -25, 10, -22, -20, -25, 24, 3, 29, -4, 27, -12,
