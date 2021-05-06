@@ -9,7 +9,7 @@ int dijkstra(vvp &g, int start, int end) {
     int n = g.size();
     int s = start;
     const int INF = 999999999;
-    vector<int> distances(n, BIG_NUMBER), parents(n);
+    vector<int> distances(n, INF), parents(n);
     distances[s] = 0;
     vector<bool> visited(n, false);
 
