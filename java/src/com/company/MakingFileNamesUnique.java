@@ -1,7 +1,7 @@
 package com.company;
 
 import java.util.Arrays;
-import java.util.LinkedHashMap;
+import java.util.HashMap;
 
 public class MakingFileNamesUnique {
 
@@ -13,21 +13,23 @@ public class MakingFileNamesUnique {
 
     // Time O(n ^2 ) and Space O(n)
     public String[] getFolderNames(String[] names) {
-        var table = new LinkedHashMap<String, Integer>();
-        for (var name : names) {
-            if (!table.containsKey(name)) table.put(name, 0);
+
+        var table = new HashMap<String, Integer>();
+        for (int i = 0; i < names.length; i++) {
+            if (!table.containsKey(names[i])) table.put(names[i], 0);
             else {
                 int n = 1;
                 while (true) {
-                    String newKey = name + "(" + n + ")";
+                    String newKey = names[i] + "(" + n + ")";
                     if (!table.containsKey(newKey)) {
                         table.put(newKey, 0);
+                        names[i] = newKey;
                         break;
                     }
                     n++;
                 }
             }
         }
-        return table.keySet().toArray(new String[0]);
+        return names;
     }
 }
