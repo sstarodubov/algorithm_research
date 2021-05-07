@@ -1,4 +1,6 @@
 class Solution:
+
+    # Time O(n) and Space O(n)
     def convertToTitle(self, columnNumber: int) -> str:
         alpha = {
             1: "A",
@@ -28,20 +30,20 @@ class Solution:
             25: "Y",
             26: "Z"
         }
-        cur = columnNumber
-        ans = ""
-        while cur > 26:
-            r = cur % 26
-            if r != 0:
-                ans = alpha[r] + ans
-                tmp = cur - r
-                cur = tmp // 26
-            else:
-                ans = "Z" + ans
-                cur = (cur // 26) - 1
 
-        ans = alpha[cur] + ans
-        return ans
+        ans = []
+        while columnNumber > 26:
+            r = columnNumber % 26
+            if r != 0:
+                ans.append(alpha[r])
+                tmp = columnNumber - r
+                columnNumber = tmp // 26
+            else:
+                ans.append("Z")
+                columnNumber = (columnNumber // 26) - 1
+
+        ans.append(alpha[columnNumber])
+        return "".join(reversed(ans))
 
 
 s = Solution()
