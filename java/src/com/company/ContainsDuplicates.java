@@ -1,8 +1,6 @@
 package com.company;
 
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.concurrent.ConcurrentHashMap;
 
 public class ContainsDuplicates {
     public static void main(String[] args) {
