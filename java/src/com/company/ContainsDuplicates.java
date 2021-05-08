@@ -1,5 +1,6 @@
 package com.company;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -15,16 +16,17 @@ public class ContainsDuplicates {
     }
 
 
-    // Time O(n) and Space O(n)
+    // Time O(n log n) and Space O(1)
     public boolean containsDuplicate(int[] nums) {
-        HashMap<Integer, Integer> table = new HashMap<>();
-        for (int i = 0; i < nums.length; i++) {
-            Integer n = table.getOrDefault(nums[i], 0);
-            n++;
-            if (n > 1) return true;
-            table.put(nums[i], n);
+        if (nums.length == 1) return false;
+        if (nums.length == 0) return false;
+
+        Arrays.sort(nums);
+        for (int i = 1; i < nums.length; i++) {
+            if (nums[i - 1] == nums[i]) return true;
         }
         return false;
-
     }
+
+
 }
