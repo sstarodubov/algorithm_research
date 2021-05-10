@@ -8,13 +8,27 @@ public class ContainsDuplicates {
 
         var main = new ContainsDuplicates();
 
-        assert main.containsNearbyDuplicate(new int[]{1, 2, 3, 1}, 3) : 11;
-        assert !main.containsNearbyDuplicate(new int[]{1, 2, 3, 1, 2, 3}, 2);
 
-        assert main.containsDuplicate(new int[]{1, 2, 3, 1}) : 0;
-        assert !main.containsDuplicate(new int[]{1, 2, 3, 4}) : 1;
+        assert main.containsNearbyAlmostDuplicate(new int[]{8, 7, 15, 1, 6, 1, 9, 15}, 1, 3);
+        assert main.containsNearbyAlmostDuplicate(new int[]{1, 2, 3, 1}, 3, 0) : 99;
+        assert !main.containsNearbyAlmostDuplicate(new int[]{1, 5, 9, 1, 5, 9}, 2, 3) : 91;
+
+       assert main.containsNearbyDuplicate(new int[]{1, 2, 3, 1}, 3) : 11;
+       assert !main.containsNearbyDuplicate(new int[]{1, 2, 3, 1, 2, 3}, 2);
+
+       assert main.containsDuplicate(new int[]{1, 2, 3, 1}) : 0;
+       assert !main.containsDuplicate(new int[]{1, 2, 3, 4}) : 1;
 
         System.out.println("tests passed");
+    }
+
+    public boolean containsNearbyAlmostDuplicate(int[] nums, int k, int t) {
+        for (int i = 0; i < nums.length; i++) {
+            for (int j = i + 1; j < nums.length; j++) {
+                if (Math.abs(i - j) <= k && Math.abs(nums[i] - nums[j]) <= t) return true;
+            }
+        }
+        return false;
     }
 
     // Time O(n) and Space O(n)
