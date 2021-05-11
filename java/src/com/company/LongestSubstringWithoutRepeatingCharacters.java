@@ -15,6 +15,7 @@ public class LongestSubstringWithoutRepeatingCharacters {
         System.out.println("tests passed");
     }
 
+    // Time O(n^2) and Space O(n)
     public int lengthOfLongestSubstring(String s) {
         if (s.isEmpty()) return 0;
         var table = new HashMap<Character, Integer>();
@@ -27,7 +28,7 @@ public class LongestSubstringWithoutRepeatingCharacters {
             } else {
                 max = Math.max(max, i - start);
                 int d = table.get(letter);
-                start = d+ 1;
+                start = d + 1;
                 i = d + 1;
                 table.clear();
                 table.put(s.charAt(i), i);
