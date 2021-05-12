@@ -17,8 +17,8 @@ graph = [
     [Edge(3, 5), Edge(5, 2), Edge(4, 5)]
 ]
 
-inArr = []
-outArr = []
+inArr = [0, 0, 0, 0, 0, 0]
+outArr = [0, 0, 0, 0, 0, 0]
 path = []
 
 
