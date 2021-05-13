@@ -28,14 +28,10 @@ public class IntegerToRoman {
                 else if (n == 9) letter.append("IX");
                 else if (n == 5) letter.append("V");
                 else if (n < 5) {
-                    for (int j = 0; j < n; j++) {
-                        letter.append("I");
-                    }
+                    letter.append("I".repeat(Math.max(0, n)));
                 } else {
                     letter.append("V");
-                    for (int j = 0; j < n - 5; j++) {
-                        letter.append("I");
-                    }
+                    letter.append("I".repeat(n - 5));
                 }
             } else if (n == 10) letter.insert(0, "X");
             else if (n < 50) {
