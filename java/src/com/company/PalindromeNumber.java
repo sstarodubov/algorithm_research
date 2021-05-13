@@ -20,14 +20,12 @@ public class PalindromeNumber {
         if (x < 0) return false;
         if (x < 10) return true;
         long devider = 10;
-        long splitter = 1;
-        Deque<Long> buf = new ArrayDeque<>();
+        Deque<Integer> buf = new ArrayDeque<>();
         while (x != 0) {
-            long r = (((long) x) % devider);
-            buf.addFirst(r / splitter);
+            int r = (int) (((long) x) % devider);
+            buf.addFirst((int) (r / (devider / 10)));
             x -= r;
             devider *= 10;
-            splitter *= 10;
         }
 
         while (!buf.isEmpty()) {
