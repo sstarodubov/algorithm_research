@@ -7,8 +7,8 @@ public class IntegerToRoman {
 
         var m = new IntegerToRoman();
 
-//        assert "MM".equals(m.intToRoman(2000)) : 2000;
-//        assert "MCMXCIV".equals(m.intToRoman(1994)) : 1994;
+        assert "MM".equals(m.intToRoman(2000)) : 2000;
+        assert "MCMXCIV".equals(m.intToRoman(1994)) : 1994;
         assert "LXXXV".equals(m.intToRoman(85)) : 85;
         assert "LVIII".equals(m.intToRoman(58)) : 58;
         assert "XLV".equals(m.intToRoman(45)) : 45;
@@ -19,20 +19,10 @@ public class IntegerToRoman {
     }
 
     public String intToRoman(int num) {
-        var buffer = new ArrayList<Integer>();
         int devider = 10;
-        while (num != 0) {
-            int d = num % devider;
-
-            buffer.add(d);
-
-            num -= d;
-            devider *= 10;
-        }
-
         StringBuilder letter = new StringBuilder();
-        for (int i = 0; i < buffer.size(); i++) {
-            int n = buffer.get(i);
+        while (num != 0) {
+            int n = num % devider;
             if (n < 10) {
                 if (n == 4) letter.append("IV");
                 else if (n == 9) letter.append("IX");
@@ -80,10 +70,15 @@ public class IntegerToRoman {
                 }
             } else if (n > 1000) {
                 for (int j = 0; j < (n / 1000); j++) {
-                    letter.insert(0,"M");
+                    letter.insert(0, "M");
                 }
             }
+
+            //
+            num -= n;
+            devider *= 10;
         }
+
         return letter.toString();
     }
 }
