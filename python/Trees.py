@@ -17,17 +17,16 @@ tree = {
 }
 
 
-def findLeafSum(tree, curNode, sum= [0]):
+def findLeafSum(tree, curNode):
     if curNode is None: return
     if not tree[curNode]:
-        sum[0] += curNode
-        return
-
+        return curNode
+    total = 0
     children = tree[curNode]
     for child in children:
-        findLeafSum(tree, child, sum)
+        total += findLeafSum(tree, child)
 
-    return sum[0]
+    return total
 
 
 print(findLeafSum(tree, 5))
