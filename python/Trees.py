@@ -29,4 +29,16 @@ def findLeafSum(tree, curNode):
     return total
 
 
-print(findLeafSum(tree, 5))
+def findHeight(tree, node, depth, ans=0):
+    if node is not None:
+        children = tree[node]
+        if not children:
+            return depth
+        else:
+            for child in children:
+                curDepth = findHeight(tree, child, depth + 1, ans)
+                ans = max(curDepth, ans)
+    return ans
+
+
+print(findHeight(tree, 5, 1))
