@@ -1,6 +1,6 @@
 from binarytree import build
 from binarytree import Node
-from typing import List
+from typing import List, Dict
 
 tree = {
     0: [1],
@@ -16,8 +16,8 @@ tree = {
 }
 
 
-def center(tree: {int, int}) -> List[int]:
-    def removeLeaf(tree: {}) -> List[int]:
+def center(tree: Dict) -> List:
+    def removeLeaf(tree: Dict) -> List:
         nodesToRemove: {} = {}
         for node in tree:
             if len(tree[node]) == 1:
@@ -32,14 +32,10 @@ def center(tree: {int, int}) -> List[int]:
 
     size = len(tree)
     while True:
-
         removedNodes = removeLeaf(tree)
         size -= len(removedNodes)
         if size == 0:
             return removedNodes
-
-
-print(center(tree))
 
 
 def findLeafSum(tree, curNode):
