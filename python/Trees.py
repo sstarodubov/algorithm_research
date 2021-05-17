@@ -3,18 +3,43 @@ from binarytree import Node
 from typing import List
 
 tree = {
-    5: [4, 3],
-    4: [1, -6],
-    3: [0, 7, -4],
-    1: [2, 9],
-    7: [8],
-    -4: [],
-    0: [],
-    2: [],
-    9: [],
-    8: [],
-    -6: []
+    0: [1],
+    1: [0, 3, 4],
+    2: [3],
+    3: [1, 2, 6, 7],
+    4: [5, 8],
+    5: [4],
+    6: [3, 9],
+    7: [3],
+    8: [4],
+    9: [6],
 }
+
+
+def center(tree: {int, int}) -> List[int]:
+    def removeLeaf(tree: {}) -> List[int]:
+        nodesToRemove: {} = {}
+        for node in tree:
+            if len(tree[node]) == 1:
+                nodesToRemove[node] = True
+                tree[node] = []
+
+        for node in tree:
+            for child in tree[node]:
+                if child in nodesToRemove:
+                    tree[node].remove(child)
+        return list(nodesToRemove.keys())
+
+    size = len(tree)
+    while True:
+
+        removedNodes = removeLeaf(tree)
+        size -= len(removedNodes)
+        if size == 0:
+            return removedNodes
+
+
+print(center(tree))
 
 
 def findLeafSum(tree, curNode):
@@ -39,6 +64,3 @@ def findHeight(tree, node, depth, ans=0):
                 curDepth = findHeight(tree, child, depth + 1, ans)
                 ans = max(curDepth, ans)
     return ans
-
-
-print(findHeight(tree, 5, 1))
