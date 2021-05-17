@@ -10,6 +10,7 @@ public class RemoveElement {
         System.out.println("tests passed");
     }
 
+    // Time O(n) and Space O(1)
     public static int removeElement(int[] nums, int val) {
         if (nums.length == 0) return 0;
         if (nums.length == 1 && nums[0] == val) return 0;
