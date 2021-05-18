@@ -1,9 +1,5 @@
 package com.company;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-
 public class ValidateBinarySearchTree {
     public static void main(String[] args) {
         var m = new ValidateBinarySearchTree();
@@ -14,20 +10,14 @@ public class ValidateBinarySearchTree {
         System.out.println("tests passed");
     }
 
-    // Time O(n) and Space O(n)
+    // Time O(n) and Space O(1)
     public boolean isValidBST(TreeNode root) {
-        var nodes = new ArrayList<Integer>();
-        dfs(root, nodes);
-        for (int i = 1; i < nodes.size(); i++) {
-            if (nodes.get(i - 1) >= nodes.get(i)) return false;
-        }
-        return true;
+        return dfs(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
     }
 
-    public void dfs(TreeNode node, List<Integer> nodes) {
-        if (node == null) return;
-        dfs(node.left, nodes);
-        nodes.add(node.val);
-        dfs(node.right, nodes);
+    public boolean dfs(TreeNode node, int min, int max) {
+        if (node == null) return true;
+        if (node.val >= max || node.val <= min) return false;
+        return dfs(node.left, min, node.val) && dfs(node.right, node.val, max);
     }
 }
