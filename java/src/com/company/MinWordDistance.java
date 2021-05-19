@@ -15,7 +15,7 @@ public class MinWordDistance {
         assert 3 == minDistance("honda", "hyundai") : 1;
         System.out.println("tests passed");
     }
-
+    // Time O(n^2) and Space O(n^2)
     public static int minDistance(String word1, String word2) {
         word1 = " " + word1;
         word2 = " " + word2;
