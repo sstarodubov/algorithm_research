@@ -10,14 +10,13 @@ public class MaximumSubarray {
 
     // Time O(n) Space O(n)
     public int maxSubArray(int[] nums) {
-        int[] maxSoFar = new int[nums.length];
         int[] curMax = new int[nums.length];
         curMax[0] = nums[0];
-        maxSoFar[0] = nums[0];
+        int max = nums[0];
         for (int i = 1; i < nums.length; i++) {
             curMax[i] = Math.max(nums[i], curMax[i - 1] + nums[i]);
-            maxSoFar[i] = Math.max(maxSoFar[i - 1], curMax[i]);
+            max = Math.max(curMax[i], max);
         }
-        return maxSoFar[maxSoFar.length - 1];
+        return max;
     }
 }
