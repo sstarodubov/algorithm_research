@@ -11,6 +11,7 @@ public class RichestCustomerWealth {
         System.out.println("tests passed");
     }
 
+    // Time O(n^2) and Space O(1)
     public int maximumWealth(int[][] accounts) {
         int max = 0;
         for (int customer = 0; customer < accounts.length; customer++) {
