@@ -12,16 +12,14 @@ public class LongestContinuousIncreasingSubsequence {
         System.out.println("tests passed");
     }
 
-    // Time O(n) and Space O(n)
+    // Time O(n) and Space O(1)
     public int findLengthOfLCIS(int[] nums) {
-        if (nums.length == 1) return 1;
-        int[] lens = new int[nums.length];
-        Arrays.fill(lens, 1);
         int max = 1;
+        int cur = 1;
         for (int i = 1; i < nums.length; i++) {
-            if (nums[i] > nums[i - 1]) lens[i] = lens[i - 1] + 1;
-            else lens[i] = 1;
-            max = Math.max(max, lens[i]);
+            if (nums[i] > nums[i - 1]) cur += 1;
+            else cur = 1;
+            max = Math.max(max, cur);
         }
         return max;
     }
