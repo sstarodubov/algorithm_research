@@ -1,7 +1,5 @@
 package com.company;
 
-import java.util.Arrays;
-
 public class LongestContinuousIncreasingSubsequence {
     public static void main(String[] args) {
         var l = new LongestContinuousIncreasingSubsequence();
