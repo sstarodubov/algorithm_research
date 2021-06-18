@@ -2,7 +2,6 @@ package com.company;
 
 public class AddDigits {
     public static void main(String[] args) {
-
         var m = new AddDigits();
 
         assert 2 == m.addDigits(38) : 0;
