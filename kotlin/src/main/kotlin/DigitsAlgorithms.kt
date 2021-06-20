@@ -1,3 +1,5 @@
+import kotlin.math.pow
+
 // Euclid Algorithm
 // Time O(log (b))
 fun greatestCommonDelimiter(a: Int, b: Int): Int {
