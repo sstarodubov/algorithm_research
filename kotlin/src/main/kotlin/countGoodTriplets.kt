@@ -1,11 +1,7 @@
 import kotlin.math.abs
 
-fun main() {
-    val countGoodTriplets = countGoodTriplets(intArrayOf(3, 0, 1, 1, 9, 7), 7, 2, 3)
-    assert(countGoodTriplets == 4)
-    println("tests passed")
-}
 
+// Time O(n^3) and Space O(1)
 fun countGoodTriplets(arr: IntArray, a: Int, b: Int, c: Int): Int {
     var ans = 0
     for (i in 0 until arr.size) {
