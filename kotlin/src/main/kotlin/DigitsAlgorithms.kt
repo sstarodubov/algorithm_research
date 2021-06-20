@@ -1,3 +1,5 @@
+// Euclid Algorithm
+// Time O(log (b))
 fun greatestCommonDelimiter(a: Int, b: Int): Int {
     var a: Int = a
     var b: Int = b
