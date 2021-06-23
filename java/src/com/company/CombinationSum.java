@@ -9,7 +9,7 @@ public class CombinationSum {
         var c = new CombinationSum();
 
         List<List<Integer>> lists = c.combinationSum(new int[]{2, 3, 6, 7}, 7);
-
+        assert lists.size() == 2;
         System.out.println("test passed");
     }
 
