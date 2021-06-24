@@ -11,7 +11,7 @@ public class BinaryTreePath {
         System.out.println("test passed");
     }
 
-    // Time O(n^2) and Space O(1)
+    // Time O(n^2) and Space O(log (d)) d - height of the tree
     public List<String> binaryTreePaths(TreeNode root) {
         var list = new ArrayList<String>();
         helper(root, list, new ArrayList<>());
