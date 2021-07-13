@@ -13,20 +13,21 @@ Note that a subarray of size 1 is ascending.
 
 class Solution:
 
-    # CPU O(n) and Space O(n)
+    # CPU O(n) and Space O(1)
     def maxAscendingSum(self, nums: List[int]) -> int:
         if len(nums) == 1:
             return nums[0]
-        sums = []
+        curSum = 0
         acc = nums[0]
         for i in range(1, len(nums)):
             if nums[i - 1] < nums[i]:
                 acc += nums[i]
-                if i == len(nums) - 1: sums.append(acc)
+                if i == len(nums) - 1:
+                    curSum = max(curSum, acc)
             else:
-                sums.append(acc)
+                curSum = max(curSum, acc)
                 acc = nums[i]
-        return max(sums)
+        return curSum
 
 
 s = Solution()
