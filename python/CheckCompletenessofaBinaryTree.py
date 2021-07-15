@@ -20,22 +20,18 @@ class Solution:
     def isCompleteTree(self, root: TreeNode) -> bool:
         treeValues: [Union[int, None]] = []
         q: [Union[TreeNode, None]] = [root]
-
+        flag = False
         while q:
             curTreeNode: TreeNode = q.pop(0)
             value = curTreeNode.val if curTreeNode is not None else None
             treeValues.append(value)
+            if value is None and not flag:
+                flag = True
+            elif value is not None and flag:
+                return False
             if curTreeNode:
                 q.append(curTreeNode.left)
                 q.append(curTreeNode.right)
-
-        flag = False
-        for v in treeValues:
-            if v is None and not flag:
-                flag = True
-                continue
-            if v is not None and flag:
-                return False
         return True
 
 
