@@ -12,26 +12,28 @@ Follow up: Your solution should run in O(log n) time and O(1) space.
 class Solution:
 
     # CPU (log n) and RAM(log n)
+    # you can decrease ram complexity using
+    # loop instead recursion, but i am to lazy for it
     def singleNonDuplicate(self, nums: List[int]) -> int:
         if len(nums) == 1: return nums[0]
 
-        def helper(nums: List[int], l: int, r: int) -> int:
+        def helper(l: int, r: int) -> int:
             if l >= r: return nums[l]
             m = (l + r) // 2
             if nums[m + 1] == nums[m]:
                 if m % 2 == 0:
-                    return helper(nums, m, r)
+                    return helper(m, r)
                 else:
-                    return helper(nums, l, m - 1)
+                    return helper(l, m - 1)
             elif nums[m - 1] == nums[m]:
                 if m % 2 == 0:
-                    return helper(nums, l, m)
+                    return helper(l, m)
                 else:
-                    return helper(nums, m + 1, r)
+                    return helper(m + 1, r)
             else:
                 return nums[m]
 
-        return helper(nums, 0, len(nums) - 1)
+        return helper(0, len(nums) - 1)
 
 
 s = Solution()
