@@ -9,6 +9,7 @@ false otherwise.
 
 An integer x is covered by an interval ranges[i] = [starti, endi] if starti <= x <= endi."""
 
+
 class Solution:
 
     # CPU O(n^2) and RAM O(n)
@@ -23,10 +24,20 @@ class Solution:
                 return False
         return True
 
+    # CPU O(n log n) and RAM O(1)
+    def isCoveredAnother(self, ranges: List[List[int]], left: int, right: int) -> bool:
+        ranges.sort()
+
+        for start, end in ranges:
+            if start <= left <= end:
+                left = end + 1
+
+        return left > right
+
 
 s = Solution()
 
-assert s.isCovered(ranges=[[1, 2], [3, 4], [5, 6]], left=2, right=5)
+assert s.isCovered(ranges=[[3, 4], [1, 2], [5, 6]], left=2, right=5)
 assert not s.isCovered([[1, 10], [10, 20]], left=21, right=21)
 
 print("tests passed")
