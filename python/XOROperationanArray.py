@@ -8,14 +8,14 @@ Return the bitwise XOR of all elements of nums.
 
 
 class Solution:
-    def xorOperation(self, n: int, start: int) -> int:
-        arr = []
-        for i in range(n):
-            arr.append(start + (2 * i))
 
-        ans = arr[0]
+    # CPU O(n) and RAM O(1)
+    def xorOperation(self, n: int, start: int) -> int:
+        ans: int = start
         for i in range(1, n):
-            ans ^= arr[i]
+            cur = start + (2 * i)
+            ans ^= cur
+
         return ans
 
 
