@@ -11,11 +11,13 @@ Return the maximum profit you can achieve from this transaction. If you cannot a
 class Solution:
 
     def maxProfit(self, prices: List[int]) -> int:
-        ans = 0
-        for i in range(len(prices)):
-            for y in range(i, len(prices)):
-                ans = max(ans, prices[y] - prices[i])
-        return ans
+        max_profit = 0
+        cur_min = prices[0]
+        for i in range(1, len(prices)):
+            price = prices[i]
+            max_profit = max(max_profit, price - cur_min)
+            cur_min = min(cur_min, price)
+        return max_profit
 
 
 s = Solution()
