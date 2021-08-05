@@ -24,9 +24,16 @@ class Solution:
             ans.append(count_bits(x))
         return ans
 
+    # cpu O(n) and ram O(n)
+    def count_bits(self, n: int) -> List[int]:
+        memo = [0] * (n + 1)
+        for i in range(1, n + 1):
+            memo[i] = memo[i >> 1] + i % 2
+        return memo[:n + 1]
+
 
 s = Solution()
 
-assert [0, 1, 1, 2, 1, 2] == s.countBits(5)
+assert [0, 1, 1, 2, 1, 2] == s.count_bits(5)
 
 print("tests passed")
