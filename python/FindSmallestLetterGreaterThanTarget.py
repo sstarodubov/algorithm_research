@@ -1,5 +1,12 @@
 from typing import List
 
+"""
+Given a characters array letters that is sorted in non-decreasing order and a character target, return the smallest 
+character in the array that is larger than target.
+Note that the letters wrap around.
+For example, if target == 'z' and letters == ['a', 'b'], the answer is 'a'.
+"""
+
 
 class Solution:
 
@@ -7,25 +14,12 @@ class Solution:
     def nextGreatestLetter(self, letters: List[str], target: str) -> str:
         left = 0
         right = len(letters) - 1
-
         while left <= right:
-            m = (left + right) // 2
-            if ord(letters[m]) == ord(target):
-                idx = m
-                while idx < len(letters) and letters[idx] == letters[m]:
-                    idx += 1
-                if idx >= len(letters) - 1:
-                    if idx < len(letters) and ord(target) < ord(letters[idx]):
-                        return letters[idx]
-                    if ord(target) == ord(letters[idx - 1]):
-                        return letters[0]
-                    else:
-                        return letters[0]
-                return letters[idx]
-            elif ord(letters[m]) > ord(target):
-                right = m - 1
-            elif ord(letters[m]) < ord(target):
-                left = m + 1
+            middle = (left + right) // 2
+            if ord(letters[middle]) <= ord(target):
+                left = middle + 1
+            else:
+                right = middle - 1
         if left >= len(letters):
             return letters[0]
         return letters[left]
