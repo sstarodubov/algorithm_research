@@ -1,15 +1,34 @@
 from typing import List
 
+"""
+Let's call an array arr a mountain if the following properties hold:
+
+    arr.length >= 3
+    There exists some i with 0 < i < arr.length - 1 such that:
+        arr[0] < arr[1] < ... arr[i-1] < arr[i]
+        arr[i] > arr[i+1] > ... > arr[arr.length - 1]
+
+Given an integer array arr that is guaranteed to be a mountain, return any i such that 
+arr[0] < arr[1] < ... arr[i - 1] < arr[i] > arr[i + 1] > ... > arr[arr.length - 1].
+"""
+
 
 class Solution:
+
+    # cpu O( log n ) and ram O(1)
     def peakIndexInMountainArray(self, arr: List[int]) -> int:
-        m = float("-inf")
-        ans = 0
-        for i in range(len(arr)):
-            if m < arr[i]:
-                m = arr[i]
-                ans = i
-        return ans
+        left = 0
+        right = len(arr) - 1
+        while left <= right:
+            middle = (right + left) // 2
+            if arr[middle - 1] < arr[middle] > arr[middle + 1]:
+                return middle
+            elif arr[middle - 1] < arr[middle] < arr[middle + 1]:
+                left = middle
+            elif arr[middle - 1] > arr[middle] > arr[middle + 1]:
+                right = middle
+        return -1
+
 
 s = Solution()
 
