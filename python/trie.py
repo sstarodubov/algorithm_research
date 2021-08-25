@@ -114,5 +114,3 @@ assert trie.prefix_contains("abcd")
 assert trie.prefix_contains("lm")
 assert not trie.prefix_contains("")
 assert not trie.prefix_contains("dg")
-
-print("tests passed")
