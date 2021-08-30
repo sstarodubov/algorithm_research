@@ -4,11 +4,29 @@ from typing import List
 class Solution:
 
     # cpu O(log(n) *n ) and ram O(1)
+    # def findDuplicate(self, nums: List[int]) -> int:
+    #     nums.sort()
+    #     for i in range(1, len(nums)):
+    #         if nums[i] == nums[i - 1]:
+    #             return nums[i]
+
+    # Floyd's Algorithms
+    # cpu O(n) and ram O(1)
     def findDuplicate(self, nums: List[int]) -> int:
-        nums.sort()
-        for i in range(1, len(nums)):
-            if nums[i] == nums[i - 1]:
-                return nums[i]
+        # phase 1
+        slow = nums[0]
+        fast = nums[0]
+        while True:
+            slow = nums[slow]
+            fast = nums[nums[fast]]
+            if slow == fast:
+                break
+        # phase 2
+        slow = nums[0]
+        while slow != fast:
+            slow = nums[slow]
+            fast = nums[fast]
+        return slow
 
 
 s = Solution()
