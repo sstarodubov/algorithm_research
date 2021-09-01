@@ -26,6 +26,7 @@ class Solution:
                     found(y, x + 1, idx + 1) or \
                     found(y, x - 1, idx + 1):
                 return True
+            # backtrack
             used[y][x] = False
             return False
 
