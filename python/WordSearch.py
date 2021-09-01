@@ -1,38 +1,54 @@
 from typing import List
 
+
 class Solution:
     def exist(self, board: List[List[str]], word: str) -> bool:
-        used = [[False for _ in col] for col in board]
+        def startswith(xs, ys):
+            if len(ys) > len(xs):
+                return False
+            for i in range(len(ys)):
+                if ys[i] != xs[i]:
+                    return False
+            return True
 
-        def found(y, x, idx: int) -> bool:
+        used = [[False for _ in col] for col in board]
+        word_list = list(word)
+
+        def found(cur_word: [str], cell: (int, int)) -> bool:
             # found solution
-            if idx == len(word):
+            if word_list == cur_word:
                 return True
             # validation
+            y, x = cell
             if y < 0 or x < 0:
                 return False
             if y >= len(board) or x >= len(board[0]):
                 return False
 
-            if word[idx] != board[y][x]:
-                return False
-            if used[y][x]:
-                return False
-            # apply
-            used[y][x] = True
-            if found(y - 1, x, idx + 1) or \
-                    found(y + 1, x, idx + 1) or \
-                    found(y, x + 1, idx + 1) or \
-                    found(y, x - 1, idx + 1):
-                return True
-            used[y][x] = False
+            if ((startswith(word_list, cur_word)) and not used[y][x]) or cur_word == []:
+                # apply
+                cur_word.append(board[y][x])
+                used[y][x] = True
+                if found(cur_word, (y - 1, x)):
+                    return True
+                if found(cur_word, (y + 1, x)):
+                    return True
+                if found(cur_word, (y, x + 1)):
+                    return True
+                if found(cur_word, (y, x - 1)):
+                    return True
+                cur_word.pop()
+                used[y][x] = False
+                if not cur_word:
+                    y += 1
+                    if y >= len(board):
+                        y = 0
+                        x += 1
+                    return found(cur_word, (y, x))
             return False
 
-        for y in range(len(board)):
-            for x in range(len(board[0])):
-                if word[0] == board[y][x] and found(y, x, 0):
-                    return True
-        return False
+        ans = found([], (0, 0))
+        return ans
 
 
 s = Solution()
