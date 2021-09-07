@@ -6,28 +6,29 @@ class Solution:
     def combinationSum2(self, candidates: List[int], target: int) -> List[List[int]]:
         result = []
 
-        def helper(comb: List[int], counter):
+        def helper(comb: List[int], idx, counter):
             s = sum(comb)
             if s == target:
                 ar = comb[:]
-                ar.sort()
                 result.append(ar)
                 return
             if s > target:
                 return
+            cur_idx = -1
             for num in counter:
+                cur_idx += 1
+                if cur_idx < idx:
+                    continue
+
                 if counter[num] > 0:
                     comb.append(num)
                     counter[num] -= 1
-                    helper(comb, counter)
+                    helper(comb, cur_idx, counter)
                     comb.pop()
                     counter[num] += 1
 
-        helper([], Counter(candidates))
-        m = {}
-        for r in result:
-            m[r.__str__()] = r
-        return list(m.values())
+        helper([], 0, Counter(candidates))
+        return result
 
 
 s = Solution()
