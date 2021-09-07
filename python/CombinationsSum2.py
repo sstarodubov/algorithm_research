@@ -3,6 +3,8 @@ from collections import Counter
 
 
 class Solution:
+
+    # cpu O(2 ^n ) and ram O(n)
     def combinationSum2(self, candidates: List[int], target: int) -> List[List[int]]:
         result = []
 
