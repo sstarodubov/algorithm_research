@@ -51,5 +51,7 @@ class Solution:
 
 
 s = Solution()
-print(s.permuteUnique([1, 1, 2]))
-print("tests pased")
+s.permuteUnique([1, 1, 2])
+print("tests passed")
+
+
