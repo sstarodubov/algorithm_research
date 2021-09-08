@@ -28,10 +28,8 @@ Explanation: There are 5 ways to assign symbols to make the sum of nums be targe
 class Solution:
     def findTargetSumWays(self, nums: List[int], target: int) -> int:
         memo = {}
-        total = sum(nums)
 
         def helper(sum, idx, ans, depth):
-            nonlocal total
 
             if idx == len(nums):
                 if sum == target:
@@ -40,17 +38,16 @@ class Solution:
                     return 0
             else:
                 cur_num = nums[idx]
-                key = sum + total
-                if idx in memo:
-                    if key in memo[idx]:
-                        return memo[idx][key]
+                if depth in memo:
+                    if sum in memo[depth]:
+                        return memo[depth][sum]
                 pr = helper(sum + cur_num, idx + 1, ans, depth + 1)
                 lr = helper(sum - cur_num, idx + 1, ans, depth + 1)
                 if idx not in memo:
-                    memo[idx] = {key: lr + pr}
+                    memo[depth] = {sum: lr + pr}
                 else:
-                    memo[idx][key] = lr + pr
-                return memo[idx][key]
+                    memo[depth][sum] = lr + pr
+                return memo[idx][sum]
 
         a = helper(0, 0, 0, 0)
         return a
