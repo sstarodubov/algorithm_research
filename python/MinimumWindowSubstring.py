@@ -6,6 +6,7 @@ class Solution:
     def minWindow(self, s: str, t: str) -> str:
         window = [""] * len(t)
         c = Counter(t)
+        origin = Counter(t)
         begin = 0
         while len(window) <= len(s):
             if begin + len(window) > len(s):
@@ -23,9 +24,8 @@ class Solution:
             for k in c:
                 if c[k] > 0:
                     flag = True
-                    break
+                c[k] = origin[k]
             if flag:
-                c = Counter(t)
                 flag = False
             else:
                 return "".join(window)
@@ -34,8 +34,9 @@ class Solution:
 
 s = Solution()
 
-assert s.minWindow("aaaaaaaaaaaabbbbbcdd", "abcdd") == "abbbbbcdd", 100
+assert s.minWindow("abc", "ac") == "abc", 1
 assert s.minWindow("a", "b") == "", 0
+assert s.minWindow("aaaaaaaaaaaabbbbbcdd", "abcdd") == "abbbbbcdd", 100
 assert s.minWindow(s="ADOBECODEBANC", t="ABC") == "BANC", 1
 assert s.minWindow(s="a", t="a") == "a", 0
 assert s.minWindow(s="a", t="aa") == "", -1
