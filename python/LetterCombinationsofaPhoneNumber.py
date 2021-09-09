@@ -27,11 +27,11 @@ Output: ["a","b","c"]
 
 class Solution:
 
-    #cpu O(2^n *n) and ram O(n)
+    # cpu O(2^n *n) and ram O(n)
     def letterCombinations(self, digits: str) -> List[str]:
         if not digits:
             return []
-        result = []
+        result = {}
 
         m = {
             "2": "abc",
@@ -49,7 +49,7 @@ class Solution:
 
         def dfs(comb, letters, cur_button_idx, start):
             if cur_button_idx >= len(digits):
-                result.append("".join(comb))
+                result["".join(comb)] = 0
                 return
             if start > len(letters):
                 return
@@ -63,9 +63,11 @@ class Solution:
                         comb.pop()
 
         dfs([], l, 0, 0)
-        return result
+        return list(result.keys())
 
 
 s = Solution()
 
 assert ["ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"] == s.letterCombinations("23")
+
+print("tests passed")
