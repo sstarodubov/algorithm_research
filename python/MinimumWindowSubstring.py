@@ -84,12 +84,12 @@ class Solution:
 s = Solution()
 
 assert s.minWindow(s="ADOBECODEBANC", t="ABC") == "BANC", 1
-# assert s.minWindow("abc", "a") == "a", 123123
-# assert s.minWindow("ab", "A") == "", -100
-# assert s.minWindow(s="a", t="a") == "a", 0
-# assert s.minWindow(s="a", t="aa") == "", -1
-# assert s.minWindow("aaaaaaaaaaaabbbbbcdd", "abcdd") == "abbbbbcdd", 100
-# assert s.minWindow("a", "b") == "", 0
-# assert s.minWindow("abc", "ac") == "abc", 1
+assert s.minWindow("abc", "a") == "a", 123123
+assert s.minWindow("ab", "A") == "", -100
+assert s.minWindow(s="a", t="a") == "a", 0
+assert s.minWindow(s="a", t="aa") == "", -1
+assert s.minWindow("aaaaaaaaaaaabbbbbcdd", "abcdd") == "abbbbbcdd", 100
+assert s.minWindow("a", "b") == "", 0
+assert s.minWindow("abc", "ac") == "abc", 1
 
 print("tests passed")
