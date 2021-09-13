@@ -44,7 +44,6 @@ def remove(heap: [int]):
         left_child_idx = child_left_idx(cur_el_idx)
         right_child_idx = child_right_idx(cur_el_idx)
         if left_child_idx >= len(heap) and right_child_idx >= len(heap):
-            print(heap)
             break
         if left_child_idx >= len(heap):
             heap[right_child_idx], heap[cur_el_idx] = heap[cur_el_idx], heap[right_child_idx]
