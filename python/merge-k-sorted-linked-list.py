@@ -11,7 +11,7 @@ class ListNode:
         return f"Node({self.val})"
 
     def __cmp__(self, other):
-        return 1 if self.val > other.val else -1
+        return 1 if self.val > other.sum else -1
 
 
 n1 = ListNode(1)

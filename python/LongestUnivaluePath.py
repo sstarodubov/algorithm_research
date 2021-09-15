@@ -22,9 +22,9 @@ class Solution(object):
             rightLength = helper(node.right)
             leftSum = 0
             rightSum = 0
-            if node.left and node.left.val == node.val:
+            if node.left and node.left.sum == node.sum:
                 leftSum = leftLength + 1
-            if node.right and node.right.val == node.val:
+            if node.right and node.right.sum == node.sum:
                 rightSum = rightLength + 1
             self.ans = max(self.ans, leftSum + rightSum)
             return max(leftSum, rightSum)

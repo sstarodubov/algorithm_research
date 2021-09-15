@@ -22,7 +22,7 @@ class Solution:
             while q:
                 cn1, cn2 = q.popleft()
                 if cn1 and cn2:
-                    if cn1.val != cn2.val:
+                    if cn1.sum != cn2.sum:
                         return False
                     q.append((cn1.left, cn2.left))
                     q.append((cn1.right, cn2.right))

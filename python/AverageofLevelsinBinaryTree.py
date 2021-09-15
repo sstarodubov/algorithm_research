@@ -20,9 +20,9 @@ class Solution:
         while q:
             node, depth = q.popleft()
             if len(ans) == depth:
-                ans.append((node.val, 1))
+                ans.append((node.sum, 1))
             else:
-                ans[depth] = (node.val + ans[depth][0], ans[depth][1] + 1)
+                ans[depth] = (node.sum + ans[depth][0], ans[depth][1] + 1)
             if node.left:
                 q.append((node.left, depth + 1))
 

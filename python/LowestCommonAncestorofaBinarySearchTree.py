@@ -25,7 +25,7 @@ class Solution:
             dq: Deque[(TreeNode, int, Optional[TreeNode])] = deque([(node, 0, None)])
             while dq:
                 cur, d, parent = dq.popleft()
-                mp[cur.val] = (d, parent)
+                mp[cur.sum] = (d, parent)
                 lc = cur.left
                 rc = cur.right
                 if lc: dq.append((lc, d + 1, cur))
