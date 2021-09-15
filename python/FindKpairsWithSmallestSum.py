@@ -14,6 +14,9 @@ class El:
     def __gt__(self, other):
         return self.sum > other.sum
 
+    def __str__(self):
+        return f"El(pair=[{self.pair[0]}, {self.pair[1]}], idx={self.idx})"
+
 
 class Solution:
     # cpu O(n log n) and ram O(n)
@@ -39,9 +42,9 @@ class Solution:
 
 s = Solution()
 
+assert s.kSmallestPairs(nums1=[1, 7, 11], nums2=[2, 4, 6], k=3) == [[1, 2], [1, 4], [1, 6]], 1
 assert s.kSmallestPairs(nums1=[1, 2], nums2=[3], k=3) == [[1, 3], [2, 3]], 3
 assert s.kSmallestPairs([1, 1, 2], [1, 2, 3], 10) == [[1, 1], [1, 1], [2, 1], [1, 2], [1, 2], [2, 2], [1, 3], [1, 3],
                                                       [2, 3]], 0
-assert s.kSmallestPairs(nums1=[1, 7, 11], nums2=[2, 4, 6], k=3) == [[1, 2], [1, 4], [1, 6]], 1
 assert s.kSmallestPairs(nums1=[1, 1, 2], nums2=[1, 2, 3], k=2) == [[1, 1], [1, 1]], 2
 print("tests passed")
