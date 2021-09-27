@@ -13,6 +13,11 @@ public class Chopstick {
         this.lock = new ReentrantLock();
     }
 
+    public Chopstick(int id, Lock lock) {
+        this.lock = lock;
+        this.id = id;
+    }
+
     public boolean pickUp(Philosopher p, State s) throws InterruptedException {
         if (lock.tryLock(10, TimeUnit.MILLISECONDS)) {
             System.out.println(p + " picked up " + s.toString() + " " + this);
