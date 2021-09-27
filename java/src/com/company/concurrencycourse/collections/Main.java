@@ -1,7 +1,6 @@
 package com.company.concurrencycourse.collections;
 
 
-import java.util.Formatter;
 import java.util.Random;
 import java.util.concurrent.*;
 
@@ -87,16 +86,54 @@ class Consumer implements Runnable {
     }
 }
 
-public class Main {
+class DWorker implements Delayed {
 
-    public static void main(String[] args) {
-        var bq = new ArrayBlockingQueue<Integer>(10);
-        var consumer = new Consumer(bq);
-        var producer = new Producer(bq);
+    public long startTime;
+    public String message;
 
-        new Thread(consumer).start();
-        new Thread(producer).start();
+    public DWorker(long duration, String m) {
+        this.startTime = duration + System.currentTimeMillis();
+        this.message = m;
     }
+
+    @Override
+    public long getDelay(TimeUnit timeUnit) {
+        return timeUnit.convert(startTime - System.currentTimeMillis(), TimeUnit.MILLISECONDS);
+    }
+
+    @Override
+    public int compareTo(Delayed delayed) {
+        DWorker other = (DWorker) delayed;
+        return Long.compare(this.startTime, other.startTime);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) throws InterruptedException {
+        var queue = new DelayQueue<DWorker>();
+
+        var t1 = new Thread(() -> {
+            long duration = 0;
+            while (true) {
+                queue.put(new DWorker(duration, "send:  " + duration));
+                duration += 1000;
+            }
+        });
+
+        t1.start();
+        while (true) {
+            DWorker poll = queue.take();
+            System.out.println(poll.message);
+        }
+    }
+//    public static void main(String[] args) {
+//        var bq = new ArrayBlockingQueue<Integer>(10);
+//        var consumer = new Consumer(bq);
+//        var producer = new Producer(bq);
+//
+//        new Thread(consumer).start();
+//        new Thread(producer).start();
+//    }
 //    public static void main(String[] args) {
 //        var threadPool = Executors.newFixedThreadPool(1);
 //        var barrier = new CyclicBarrier(5, () -> {
