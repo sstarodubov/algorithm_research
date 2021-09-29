@@ -9,7 +9,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class Main {
 
     public static void main(String[] args) {
-        int len = 100000000;
+        int len = 100_000_000;
         var ints = new int[len];
         var r = new Random();
         long start = System.nanoTime();
@@ -18,7 +18,7 @@ public class Main {
         }
         var m = new Mergesort(ints);
         m.parallelMergesort(0, ints.length - 1);
-        System.out.println(System.nanoTime() - start);
+        System.out.println((System.nanoTime() - start) / 1000000);
     }
 }
 
@@ -28,7 +28,7 @@ class Mergesort {
     private final int[] nums;
     private final int[] tmpArr;
     private final AtomicInteger nThreads = new AtomicInteger(8);
-    public final ExecutorService poll = Executors.newFixedThreadPool(nThreads.intValue());
+    public final ExecutorService poll = Executors.newCachedThreadPool();
 
 
     public Mergesort(int[] nums) {
