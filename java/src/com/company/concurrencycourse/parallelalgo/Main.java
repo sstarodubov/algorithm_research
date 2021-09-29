@@ -28,7 +28,7 @@ class Mergesort {
     private final int[] nums;
     private final int[] tmpArr;
     private final AtomicInteger nThreads = new AtomicInteger(8);
-    public final ExecutorService poll = Executors.newFixedThreadPool(8);
+    public final ExecutorService poll = Executors.newFixedThreadPool(nThreads.intValue());
 
 
     public Mergesort(int[] nums) {
