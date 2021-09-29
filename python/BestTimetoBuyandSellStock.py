@@ -1,4 +1,5 @@
 from typing import List
+
 """
 You are given an array prices where prices[i] is the price of a given stock on the ith day.
 
@@ -8,15 +9,18 @@ the future to sell that stock.
 Return the maximum profit you can achieve from this transaction. If you cannot achieve any profit, return 0.
 """
 
+
 class Solution:
 
     def maxProfit(self, prices: List[int]) -> int:
+        l, r = 0, 1
         max_profit = 0
-        cur_min = prices[0]
-        for i in range(1, len(prices)):
-            price = prices[i]
-            max_profit = max(max_profit, price - cur_min)
-            cur_min = min(cur_min, price)
+        while r < len(prices):
+            if prices[l] < prices[r]:
+                max_profit = max(max_profit, prices[r] - prices[l])
+            else:
+                l = r
+            r += 1
         return max_profit
 
 
