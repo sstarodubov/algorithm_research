@@ -13,15 +13,20 @@ A subarray is a contiguous subsequence of the array.
 
 class Solution:
 
-    # cpu O(n ^ 2)
+    # cpu O(n)
     def maxProduct(self, nums: List[int]) -> int:
-        result = nums[0]
-        for i in range(len(nums)):
-            cur_prod = 1
-            for y in range(i, len(nums)):
-                cur_prod *= nums[y]
-                result = max(result, cur_prod)
-        return result
+        res = max(nums)
+        cur_min, cur_max = 1, 1
+        for n in nums:
+            if n == 0:
+                cur_min = 1
+                cur_max = 1
+            else:
+                tmp = cur_max * n
+                cur_max = max(n * cur_max, n * cur_min, n)
+                cur_min = min(tmp, n * cur_min, n)
+                res = max(res, cur_max, cur_min)
+        return res
 
 
 s = Solution()
