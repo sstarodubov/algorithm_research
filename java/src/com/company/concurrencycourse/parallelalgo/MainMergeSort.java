@@ -6,7 +6,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class Main {
+public class MainMergeSort {
 
     public static void main(String[] args) {
         int len = 100_000_000;
