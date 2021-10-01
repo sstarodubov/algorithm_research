@@ -15,7 +15,6 @@ public class Main {
 }
 
 class MergeSortTask extends RecursiveTask<List<Integer>> {
-
     private final List<Integer> xs;
 
     public MergeSortTask(List<Integer> xs) {
@@ -30,8 +29,7 @@ class MergeSortTask extends RecursiveTask<List<Integer>> {
         var lt = new MergeSortTask(xs.subList(0, middle));
         var rt = new MergeSortTask(xs.subList(middle, xs.size()));
 
-        lt.fork();
-        rt.fork();
+        invokeAll(lt, rt);
 
         List<Integer> lj = lt.join();
         List<Integer> rj = rt.join();
@@ -79,9 +77,20 @@ class FindMaxTask extends RecursiveTask<Integer> {
         this.r = r;
     }
 
+
     @Override
     protected Integer compute() {
-        if (l >= r) return xs.get(l);
+        // если задача не слишком сложная, решить ее последовательно
+        if (l - r < 2) {
+            int max = 0;
+            for (int i = l; i <= r; i++) {
+                max = Math.max(max, xs.get(i));
+            }
+
+            return max;
+        }
+
+        // иначе используем параллелизм
 
         var middle = (l + r) / 2;
         var lt = new FindMaxTask(xs, l, middle);
