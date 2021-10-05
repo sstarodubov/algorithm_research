@@ -90,46 +90,12 @@ def find_closest_with_same_weight2(n: int) -> int:
     return -1
 
 
-def product_two_number(x, y):
-    pass
+def add(x, y):
+    running_sum, carryin, k, tmp_x, tmp_y = 0, 0, 1, x, y
+    while tmp_x or tmp_y:
+        xk, yk = x & k, y & k
+        carryout = (xk & yk) | (xk & carryin) | (yk & carryin)
+        running_sum |= xk ^ yk ^ carryin
+        carryin, k, tmp_x, tmp_y = carryout << 1, k << 1, tmp_x >> 1, tmp_y >> 1
 
-
-def add_by_itself(x, y):
-    def set_by_idx(num, val, idx):
-        idx_bit = (num << idx) & 1
-        if idx_bit != val:
-            bit_mask = 1 << idx
-            return num ^ bit_mask
-        return num
-
-    carry, idx = 0, 0
-    result = 0
-    while x:
-        last_x_bit = x & 1
-        last_y_bit = y & 1
-
-        if last_y_bit == last_x_bit:
-            if last_x_bit == 1:
-                result = set_by_idx(result, 0, idx)
-                carry += 1
-            else:
-                if carry:
-                    result = set_by_idx(result, 1, idx)
-                    carry -= 1
-                else:
-                    result = set_by_idx(result, 0, idx)
-        else:
-            if carry:
-                result = set_by_idx(result, 0, idx)
-            else:
-                result = set_by_idx(result, 1, idx)
-
-        x = x >> 1
-        y = y >> 1
-        idx += 1
-
-    if carry:
-        bit_mask = 1 << idx
-        return result ^ bit_mask
-    else:
-        return result
+    return running_sum | carryin
