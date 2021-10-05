@@ -78,3 +78,13 @@ def find_closest_with_same_weight(n: int) -> int:
         if cur_weight == nw:
             return i
     return n
+
+
+# cpu O (n)
+def find_closest_with_same_weight2(n: int) -> int:
+    long_bits = 64
+    for row in range(long_bits):
+        if (n >> row) & 1 != (n >> row + 1) & 1:
+            bit_mask = (1 << row) | (1 << row + 1)
+            return n ^ bit_mask
+    return -1
