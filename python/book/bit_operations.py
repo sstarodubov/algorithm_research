@@ -40,7 +40,7 @@ def swap_bits(n, i, j):
 
 
 # cpu O(1)
-def set_bit(num, bit, idx):
+def set_by_idx(num, bit, idx):
     idx_bit = (num >> idx) & 1
     if idx_bit == bit:
         return num
@@ -57,7 +57,7 @@ def reverse_bit(n):
     tmp, idx = n, len - 1
     while tmp:
         last_bit = tmp & 1
-        ans = set_bit(ans, last_bit, idx)
+        ans = set_by_idx(ans, last_bit, idx)
         tmp >>= 1
         idx -= 1
     return ans
@@ -88,3 +88,48 @@ def find_closest_with_same_weight2(n: int) -> int:
             bit_mask = (1 << row) | (1 << row + 1)
             return n ^ bit_mask
     return -1
+
+
+def product_two_number(x, y):
+    pass
+
+
+def add_by_itself(x, y):
+    def set_by_idx(num, val, idx):
+        idx_bit = (num << idx) & 1
+        if idx_bit != val:
+            bit_mask = 1 << idx
+            return num ^ bit_mask
+        return num
+
+    carry, idx = 0, 0
+    result = 0
+    while x:
+        last_x_bit = x & 1
+        last_y_bit = y & 1
+
+        if last_y_bit == last_x_bit:
+            if last_x_bit == 1:
+                result = set_by_idx(result, 0, idx)
+                carry += 1
+            else:
+                if carry:
+                    result = set_by_idx(result, 1, idx)
+                    carry -= 1
+                else:
+                    result = set_by_idx(result, 0, idx)
+        else:
+            if carry:
+                result = set_by_idx(result, 0, idx)
+            else:
+                result = set_by_idx(result, 1, idx)
+
+        x = x >> 1
+        y = y >> 1
+        idx += 1
+
+    if carry:
+        bit_mask = 1 << idx
+        return result ^ bit_mask
+    else:
+        return result
