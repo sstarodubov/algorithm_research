@@ -61,3 +61,20 @@ def reverse_bit(n):
         tmp >>= 1
         idx -= 1
     return ans
+
+
+# cpu O(n^2)
+def find_closest_with_same_weight(n: int) -> int:
+    def define_weight(d):
+        w = 0
+        while d:
+            d = d & (d - 1)
+            w += 1
+        return w
+
+    nw = define_weight(n)
+    for i in range(n - 1, 0, -1):
+        cur_weight = define_weight(i)
+        if cur_weight == nw:
+            return i
+    return n
