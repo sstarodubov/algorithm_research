@@ -107,3 +107,20 @@ def multiply(x, y):
             running_sum = add(running_sum, y)
         x, y = x >> 1, y << 1
     return running_sum
+
+
+def is_polindrom(n):
+    if n < 0:
+        return False
+    if n < 10:
+        return True
+    reversed_n = reverse(n)
+    return reversed_n == n
+
+
+def reverse(n):
+    remaining, ans = n, 0
+    while remaining:
+        ans = ans * 10 + remaining % 10
+        remaining //= 10
+    return ans
