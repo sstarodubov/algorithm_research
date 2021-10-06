@@ -89,13 +89,12 @@ def find_closest_with_same_weight2(n: int) -> int:
             return n ^ bit_mask
     return -1
 
-
 def add(x, y):
-    running_sum, carryin, k, tmp_x, tmp_y = 0, 0, 1, x, y
-    while tmp_x or tmp_y:
-        xk, yk = x & k, y & k
-        carryout = (xk & yk) | (xk & carryin) | (yk & carryin)
-        running_sum |= xk ^ yk ^ carryin
-        carryin, k, tmp_x, tmp_y = carryout << 1, k << 1, tmp_x >> 1, tmp_y >> 1
+    run_sum, idx, carrin, tmpx, tmpy = 0, 1, 0, x, y
+    while tmpx or tmpy:
+        xidx, yidx = x & idx, y & idx
+        carryout = (xidx & yidx) | (xidx & carrin) | (yidx & carrin)
+        run_sum |= xidx ^ yidx ^ carrin
+        tmpy, tmpx, carrin, idx = tmpy >> 1, tmpx >> 1, carryout << 1, idx << 1
+    return run_sum | carrin
 
-    return running_sum | carryin
