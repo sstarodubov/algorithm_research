@@ -90,37 +90,41 @@ def find_closest_with_same_weight2(n: int) -> int:
     return -1
 
 
-def add(x, y):
-    run_sum, idx, carrin, tmpx, tmpy = 0, 1, 0, x, y
-    while tmpx or tmpy:
-        xidx, yidx = x & idx, y & idx
-        carryout = (xidx & yidx) | (xidx & carrin) | (yidx & carrin)
-        run_sum |= xidx ^ yidx ^ carrin
-        tmpy, tmpx, carrin, idx = tmpy >> 1, tmpx >> 1, carryout << 1, idx << 1
-    return run_sum | carrin
+def sum(x, y):
+    ans, xtmp, ytmp, idx, carryin = 0, x, y, 1, 0
+    while xtmp or ytmp:
+        xidx = x & idx
+        yidx = y & idx
+        carryout = (xidx & yidx) | (xidx & carryin) | (yidx & carryin)
+        ans |= xidx ^ yidx ^ carryin
+        xtmp >>= 1
+        ytmp >>= 1
+        carryin = carryout << 1
+        idx = idx << 1
+    return ans | carryin
 
 
 def multiply(x, y):
-    running_sum = 0
+    ans = 0
     while x:
-        if x & 1 == 1:
-            running_sum = add(running_sum, y)
+        if x & 1:
+            ans = sum(ans, y)
         x, y = x >> 1, y << 1
-    return running_sum
+    return ans
 
 
-def is_polindrom(n):
-    if n < 0:
-        return False
-    if n < 10:
-        return True
-    reversed_n = reverse(n)
-    return reversed_n == n
-
-
-def reverse(n):
+def reverse_number(n):
     remaining, ans = n, 0
     while remaining:
         ans = ans * 10 + remaining % 10
         remaining //= 10
+    return ans
+
+
+def divide(x, y):
+    ans = 0
+    while x:
+        ans += 1
+        x = x - y
+
     return ans
