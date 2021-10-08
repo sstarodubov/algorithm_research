@@ -48,3 +48,20 @@ def dutch_national_flag_problem(arr: List[int], pivotidx: int) -> None:
             lptr += 1
         elif arr[lptr] < pivot:
             lptr += 1
+
+
+def dutch(arr: List[int], pidx: int):
+    pivot = arr[pidx]
+    small_idx = 0
+    for i in range(len(arr)):
+        if arr[i] < pivot:
+            arr[i], arr[small_idx] = arr[small_idx], arr[i]
+            small_idx += 1
+
+    great_idx = len(arr) - 1
+    for i in reversed(range(len(arr))):
+        if arr[i] < pivot:
+            break
+        elif arr[great_idx] > pivot:
+            arr[great_idx], arr[i] = arr[i], arr[great_idx]
+            great_idx -= 1
