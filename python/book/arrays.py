@@ -65,3 +65,27 @@ def dutch(arr: List[int], pidx: int):
         elif arr[great_idx] > pivot:
             arr[great_idx], arr[i] = arr[i], arr[great_idx]
             great_idx -= 1
+
+
+def dutch2(arr: List[int], pidx: int):
+    pivot = arr[pidx]
+    eq = 0
+    sm = 0
+    lg = len(arr)
+
+    while eq < lg:
+        if arr[eq] < pivot:
+            arr[sm], arr[eq] = arr[eq], arr[sm]
+            sm += 1
+            eq += 1
+        elif arr[eq] == pivot:
+            eq += 1
+        else:
+            lg -= 1
+            arr[lg], arr[eq] = arr[eq], arr[lg]
+
+
+arr = [3, 10, 7, 9, 1, 1, 2, 11]
+
+dutch2(arr, 0)
+print(arr)
