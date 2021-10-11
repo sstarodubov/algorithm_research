@@ -105,3 +105,23 @@ def increment_arr_as_number(arr: List[int]):
         else:
             arr.append(cur_num)
     arr.reverse()
+
+
+# cpu O(len(xs) * len(ys)) and ram  O(len(xs) + len(ys))
+def multiply_nums(xs: List[int], ys: List[int]) -> List[int]:
+    ans = [0] * (len(xs) + len(ys))
+    xs.reverse()
+    ys.reverse()
+    start = 0
+    for y in ys:
+        idx = start
+        for x in xs:
+            ans[idx] += x * y
+            ans[idx + 1] += ans[idx] // 10
+            ans[idx] %= 10
+            idx += 1
+        start += 1
+    while ans[len(ans) - 1] == 0:
+        ans.pop()
+    ans.reverse()
+    return ans
