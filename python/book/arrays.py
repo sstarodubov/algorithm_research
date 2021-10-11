@@ -85,7 +85,23 @@ def dutch2(arr: List[int], pidx: int):
             arr[lg], arr[eq] = arr[eq], arr[lg]
 
 
-arr = [3, 10, 7, 9, 1, 1, 2, 11]
-
-dutch2(arr, 0)
-print(arr)
+# cpu O(n) and ram O(1)
+def increment_arr_as_number(arr: List[int]):
+    size = len(arr)
+    power = size - 1
+    cur_num = 0
+    for n in arr:
+        cur_num += n * (10 ** power)
+        power -= 1
+    next_num = cur_num + 1
+    remain = next_num
+    idx = 0
+    while remain:
+        cur_num = remain % 10
+        remain //= 10
+        if idx < size:
+            arr[idx] = cur_num
+            idx += 1
+        else:
+            arr.append(cur_num)
+    arr.reverse()
