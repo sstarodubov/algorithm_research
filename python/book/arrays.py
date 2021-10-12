@@ -154,5 +154,22 @@ def advance_step(arr: List[int]) -> bool:
     return True
 
 
-print(advance_step([3, 3, 1, 0, 2, 0, 1]))
-print(advance_step([3, 2, 0, 0, 2, 0, 1]))
+# cpu O(n) and ram O(n)
+def delete_duplicates_from_arr(arr: List[int]) -> List[int]:
+    count_dupl = 0
+    ans = [arr[0]]
+    for i in range(1, len(arr)):
+        last = ans[len(ans) - 1]
+        if last == arr[i]:
+            count_dupl += 1
+        else:
+            ans.append(arr[i])
+
+    while count_dupl != 0:
+        count_dupl -= 1
+        ans.append(0)
+
+    return ans
+
+
+assert delete_duplicates_from_arr([2, 3, 5, 5, 7, 11, 11, 11, 13]) == [2, 3, 5, 7, 11, 13, 0, 0, 0]
