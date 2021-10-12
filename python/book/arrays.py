@@ -172,4 +172,27 @@ def delete_duplicates_from_arr(arr: List[int]) -> List[int]:
     return ans
 
 
-assert delete_duplicates_from_arr([2, 3, 5, 5, 7, 11, 11, 11, 13]) == [2, 3, 5, 7, 11, 13, 0, 0, 0]
+# cpu O(n) and ram O(1)
+def delete_duplicates_from_arr2(arr: List[int]) -> List[int]:
+    prev = 0
+    for cur in range(1, len(arr)):
+        if arr[prev] == arr[cur]:
+            arr[cur] = 0
+        else:
+            prev = cur
+
+    cur_zero = 0
+    while arr[cur_zero] != 0:
+        cur_zero += 1
+    cur_el = cur_zero
+    while arr[cur_el] == 0:
+        cur_el += 1
+
+    while cur_el < len(arr):
+        arr[cur_zero], arr[cur_el] = arr[cur_el], arr[cur_zero]
+        while arr[cur_zero] != 0:
+            cur_zero += 1
+        while cur_el < len(arr) and arr[cur_el] == 0:
+            cur_el += 1
+
+    return arr
