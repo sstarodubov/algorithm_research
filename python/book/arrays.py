@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, TypeAlias
 
 
 # cpu O(n) and ram O(1)
@@ -125,3 +125,34 @@ def multiply_nums(xs: List[int], ys: List[int]) -> List[int]:
         ans.pop()
     ans.reverse()
     return ans
+
+
+# int_arr: TypeAlias = List[int]
+# arr: int_arr = [1, 2]
+# match arr:
+#     case [x, y]:
+#         print(x, y)
+#     case _:
+#         print("unknown")
+
+# cpu O(n) and ram O(1)
+def advance_step(arr: List[int]) -> bool:
+    cur = 0
+    while cur < len(arr) - 1:
+        next_step = 0
+        idx = 0
+        right = cur + arr[cur] + 1 if cur + arr[cur] + 1 < len(arr) else len(arr)
+        left = cur + 1 if cur + 1 < len(arr) else len(arr)
+        for i in range(left, right):
+            if next_step < arr[i]:
+                idx = i
+                next_step = arr[i]
+        cur = idx
+        if next_step == 0:
+            return False
+
+    return True
+
+
+print(advance_step([3, 3, 1, 0, 2, 0, 1]))
+print(advance_step([3, 2, 0, 0, 2, 0, 1]))
