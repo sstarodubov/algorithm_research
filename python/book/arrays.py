@@ -196,3 +196,44 @@ def delete_duplicates_from_arr2(arr: List[int]) -> List[int]:
             cur_el += 1
 
     return arr
+
+
+# cpu O(n) and ram O(1)
+def stock_once(arr: List[int]):
+    lptr, rptr, profit = 0, 1, 0
+    while rptr < len(arr):
+        cur_profit = arr[rptr] - arr[lptr]
+        profit = max(cur_profit, profit)
+        if arr[rptr] < arr[lptr]:
+            lptr = rptr
+        rptr += 1
+    return profit
+
+
+# cpu O(n log n) and ram O(n)
+def stock_twice(arr: List[int]):
+    lptr, rptr, profit = 0, 1, 0
+    profits = []
+    while rptr < len(arr):
+        cur_profit = arr[rptr] - arr[lptr]
+        profit = max(cur_profit, profit)
+        profits.append((cur_profit, lptr))
+        if arr[rptr] < arr[lptr]:
+            lptr = rptr
+        rptr += 1
+
+    m = {}
+
+    for p in profits:
+        if p[1] not in m:
+            m[p[1]] = p[0]
+        else:
+            m[p[1]] = max(m[p[1]], p[0])
+    profits = list(m.values())
+    profits.sort()
+    f = profits.pop()
+    s = profits.pop()
+    return max(f, s, f + s)
+
+
+stock_twice([5, 6, 10, 1, 5, 2, 10])
