@@ -256,4 +256,31 @@ def buy_and_sell_stock_twice(prices):
     return max_total_profit
 
 
+def computing_alternation(arr: List[int]):
+    arr.sort()
+    fptr = 0
+    sptr = 1
+    while sptr < len(arr):
+        arr[fptr], arr[sptr] = arr[sptr], arr[fptr]
+        sptr += 2
+        fptr += 2
+
+    return arr
+
+
+def permute_arr(arr: List[int]):
+    ans = []
+
+    def permute(idx: int):
+        if idx >= len(arr):
+            copy = arr[:]
+            ans.append(copy)
+        else:
+            for i in range(idx, len(arr)):
+                arr[i], arr[idx] = arr[idx], arr[i]
+                permute(idx + 1)
+                arr[i], arr[idx] = arr[idx], arr[i]
+
+    permute(0)
+    return ans
 
