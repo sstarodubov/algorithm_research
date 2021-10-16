@@ -283,4 +283,3 @@ def permute_arr(arr: List[int]):
 
     permute(0)
     return ans
-
