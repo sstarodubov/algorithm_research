@@ -7,9 +7,9 @@ class Node:
         return f"Node({self.val})"
 
 
-def buildLinkedList(values:[int])->Node:
-    head:Node = Node(values[0])
-    cur:Node = head
+def buildLinkedList(values: [int]) -> Node:
+    head: Node = Node(values[0])
+    cur: Node = head
 
     for v in range(1, len(values)):
         newNode = Node(values[v])
