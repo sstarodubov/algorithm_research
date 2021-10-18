@@ -55,3 +55,11 @@ def reverse_linked_list_funny_version(cur_node: Node, dummy_head: Node = Node(-1
             cur_node.next = child
             dummy_head.next = cur_node
             return reverse_linked_list_funny_version(next_node, dummy_head)
+
+
+def selection_sort(arr: List[int]) -> List[int]:
+    for i in range(len(arr)):
+        for y in range(i + 1, len(arr)):
+            if arr[i] > arr[y]:
+                arr[i], arr[y] = arr[y], arr[i]
+    return arr
