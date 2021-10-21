@@ -15,13 +15,17 @@ public class DefaultSubscriber implements Subscriber<Object> {
         this.name = "";
     }
 
+    private Subscription subscription;
+
     @Override
     public void onSubscribe(Subscription subscription) {
-        subscription.request(Long.MAX_VALUE);
+        this.subscription = subscription;
+        subscription.request(1);
     }
 
     @Override
     public void onNext(Object o) {
+        subscription.request(1);
         System.out.println(name + " got " + o + " " + Thread.currentThread().getName());
     }
 
