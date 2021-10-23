@@ -12,11 +12,13 @@ class Solution:
             return ans
 
         def helper(node: TreeNode, arr):
-            if not node:
-                return
-            helper(node.left, arr)
-            arr.append(node.val)
-            helper(node.right, arr)
+            match node:
+                case None:
+                    pass
+                case _:
+                    helper(node.left, arr)
+                    arr.append(node.val)
+                    helper(node.right, arr)
 
         helper(root, ans)
         return ans
