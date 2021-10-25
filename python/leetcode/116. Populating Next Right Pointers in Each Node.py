@@ -46,8 +46,7 @@ class Node:
 
 
 class Solution:
-    # TODO make O(n)
-    # cpu O(n ^ 2) and ram O(n)
+    # cpu O(n) and ram O(n)
     def connect(self, root: 'Node') -> 'Node':
         q = deque()
         q.append(root)
@@ -63,6 +62,10 @@ class Solution:
             if left_child:
                 q.append(left_child)
                 rows[left_child] = depth
+                left_child.next = right_child
+                if depth in nodes:
+                    prev_hor_node = nodes[depth][len(nodes[depth]) - 1]
+                    prev_hor_node.next = left_child
                 node_list.append(left_child)
                 nodes[depth] = node_list
             if right_child:
@@ -70,15 +73,6 @@ class Solution:
                 rows[right_child] = depth
                 node_list.append(right_child)
                 nodes[depth] = node_list
-        for key in nodes:
-            for i in range(len(nodes[key]) - 1, -1, -1):
-                cur = nodes[key][i]
-                if i == len(nodes[key]) - 1:
-                    cur.next = None
-                else:
-                    prev = nodes[key][i + 1]
-                    cur.next = prev
-
         return root
 
 

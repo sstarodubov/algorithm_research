@@ -8,13 +8,24 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 
 public class FlatMapIns {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
+        CompletableFuture.runAsync(() -> {
+            System.out.println("es");
+            throw new RuntimeException("hoho");
+        });
 
-        UserService.getUsers()
-                .flatMap(user -> OrderService.getOrders(user.getUserId()))
-                .subscribe(e -> System.out.println(e));
+        System.out.println("here");
+        Thread.sleep(2000);
+
+//        UserService.getUsers()
+//                .flatMap(user -> OrderService.getOrders(user.getUserId()))
+//                .subscribe(e -> System.out.println(e));
     }
 }
 
