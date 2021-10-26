@@ -20,12 +20,11 @@ public class DefaultSubscriber implements Subscriber<Object> {
     @Override
     public void onSubscribe(Subscription subscription) {
         this.subscription = subscription;
-        subscription.request(1);
+        subscription.request(Long.MAX_VALUE);
     }
 
     @Override
     public void onNext(Object o) {
-        subscription.request(1);
         System.out.println(name + " got " + o + " " + Thread.currentThread().getName());
     }
 

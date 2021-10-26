@@ -15,13 +15,17 @@ import java.util.concurrent.Executors;
 
 public class FlatMapIns {
     public static void main(String[] args) throws InterruptedException {
-        CompletableFuture.runAsync(() -> {
-            System.out.println("es");
-            throw new RuntimeException("hoho");
-        });
-
-        System.out.println("here");
-        Thread.sleep(2000);
+        Flux.range(1, 3)
+                .map(i -> i / (2 - i))
+                .onErrorReturn(3)
+                .subscribe(e -> System.out.println(e));
+//        CompletableFuture.runAsync(() -> {
+//            System.out.println("es");
+//            throw new RuntimeException("hoho");
+//        });
+//
+//        System.out.println("here");
+//        Thread.sleep(2000);
 
 //        UserService.getUsers()
 //                .flatMap(user -> OrderService.getOrders(user.getUserId()))
