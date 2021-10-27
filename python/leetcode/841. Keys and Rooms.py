@@ -7,19 +7,23 @@ class Solution:
     def canVisitAllRooms(self, rooms: List[List[int]]) -> bool:
         self.count_visited = 0
 
-        def dfs(cur_node, visited):
-            if self.count_visited == len(rooms):
-                return
-            if visited[cur_node] == 1:
-                return
-            if visited[cur_node] == 0:
-                self.count_visited += 1
-            visited[cur_node] = 1
-            children = rooms[cur_node]
-            for child in children:
-                dfs(child, visited)
+        def dfs(cur_node, visited, rooms):
+            match self.count_visited:
+                case amount if amount == len(rooms):
+                    return
+                case _:
+                    match visited[cur_node]:
+                        case 1:
+                            return
+                        case _:
+                            if visited[cur_node] == 0:
+                                self.count_visited += 1
+                            visited[cur_node] = 1
+                            children = rooms[cur_node]
+                            for child in children:
+                                dfs(child, visited, rooms)
 
-        dfs(0, [0] * len(rooms))
+        dfs(0, [0] * len(rooms), rooms)
         return self.count_visited == len(rooms)
 
 
