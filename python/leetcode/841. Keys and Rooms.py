@@ -8,20 +8,18 @@ class Solution:
         self.count_visited = 0
 
         def dfs(cur_node, visited, rooms):
-            match self.count_visited:
-                case amount if amount == len(rooms):
+            match (self.count_visited, visited):
+                case (amount, _) if amount == len(rooms):
                     return
-                case _:
-                    match visited[cur_node]:
-                        case 1:
-                            return
-                        case _:
-                            if visited[cur_node] == 0:
-                                self.count_visited += 1
-                            visited[cur_node] = 1
-                            children = rooms[cur_node]
-                            for child in children:
-                                dfs(child, visited, rooms)
+                case (_, v) if v[cur_node] == 1:
+                    return
+                case (_, _):
+                    if visited[cur_node] == 0:
+                        self.count_visited += 1
+                    visited[cur_node] = 1
+                    children = rooms[cur_node]
+                    for child in children:
+                        dfs(child, visited, rooms)
 
         dfs(0, [0] * len(rooms), rooms)
         return self.count_visited == len(rooms)
