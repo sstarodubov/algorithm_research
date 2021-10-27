@@ -11,16 +11,16 @@ import java.util.function.Consumer;
 public class Assingment {
     @SneakyThrows
     public static void main(String[] args) {
-        var is = new InventoryService();
-        var rs = new RevenueService();
-
-        OrderService.fluid().subscribe(is.consumer);
-        OrderService.fluid().subscribe(rs.consumer);
-
-        is.stream().subscribe(DefaultSubscriber.subscriber("tesla"));
-        rs.stream().subscribe(DefaultSubscriber.subscriber("devid"));
-
-        Thread.sleep(100000);
+//        var is = new InventoryService();
+//        var rs = new RevenueService();
+//
+//        OrderService.fluid().subscribe(is.consumer);
+//        OrderService.fluid().subscribe(rs.consumer);
+//
+//        is.stream().subscribe(DefaultSubscriber.subscriber("tesla"));
+//        rs.stream().subscribe(DefaultSubscriber.subscriber("devid"));
+//
+//        Thread.sleep(100000);
     }
 }
 
