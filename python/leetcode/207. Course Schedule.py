@@ -5,13 +5,11 @@ class Solution:
     # cpu O(vertex + edges) and ram O(vertex)
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
         graph = {i: set() for i in range(numCourses)}
-        white = set()
         gray = set()
         black = set()
         for pre in prerequisites:
             graph[pre[1]].add(pre[0])
-            white.add(pre[1])
-            white.add(pre[0])
+
         self.has_cycle = False
 
         def dfs(cur_node, graph):
