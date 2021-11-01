@@ -6,17 +6,22 @@ import reactor.core.publisher.Flux;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Function;
 
 public class Main {
     public static void main(String[] args) {
 
-        final NameGenerator nameGenerator = new NameGenerator();
-        nameGenerator.generateNames()
-                .take(2)
-                .subscribe(DefaultSubscriber.subscriber("test"));
-        nameGenerator.generateNames()
-                .take(2)
-                .subscribe(DefaultSubscriber.subscriber("mickel"));
+//        final NameGenerator nameGenerator = new NameGenerator();
+//        nameGenerator.generateNames()
+//                .take(2)
+//                .subscribe(DefaultSubscriber.subscriber("test"));
+//        nameGenerator.generateNames()
+//                .take(2)
+//                .subscribe(DefaultSubscriber.subscriber("mickel"));
+//        Flux.concatDelayError()
+
+        Flux<Integer> merge = Flux.merge(Flux.range(1, 10), Flux.range(10, 10));
+        merge.subscribe(DefaultSubscriber.subscriber());
     }
 }
 
