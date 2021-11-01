@@ -3,7 +3,6 @@ from typing import List
 
 class Solution:
 
-
     def findMinHeightTrees(self, n: int, edges: List[List[int]]) -> List[int]:
         gr = {i: set() for i in range(n)}
         for edge in edges:
@@ -28,12 +27,11 @@ class Solution:
                 for cur_node in gr:
                     if rem_node in gr[cur_node]:
                         gr[cur_node].remove(rem_node)
-
+            tmp = remaining_leaves
             remaining_leaves = saved
-            saved = []
-            len_to_remove += 1
+            saved = tmp
+            saved.clear()
         return list(removed)
-
 
 assert Solution().findMinHeightTrees(n=6, edges=[[3, 0], [3, 1], [3, 2], [3, 4], [5, 4]]) == [3, 4]
 print("tests passed")
