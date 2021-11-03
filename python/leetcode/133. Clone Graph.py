@@ -15,7 +15,6 @@ class Solution:
             children = cur_node.neighbors
             for child in children:
                 adj_graph[cur_node.val].append(child.val)
-            for child in children:
                 if child.val in visited:
                     continue
                 dfs(child, adj_graph, visited)
