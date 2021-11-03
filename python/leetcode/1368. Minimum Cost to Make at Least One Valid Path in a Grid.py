@@ -87,6 +87,8 @@ class Solution:
             cur_path: Path = heapq.heappop(pq)
             node_id = cur_path.to
             visited[node_id] = True
+            if dist[node_id] < cur_path.distance:
+                continue
             for key in graph[node_id].keys():
                 edge = graph[node_id][key]
                 if visited[edge.to]:
@@ -95,7 +97,8 @@ class Solution:
                 if new_dist < dist[edge.to]:
                     dist[edge.to] = new_dist
                     heapq.heappush(pq, Path(edge.to, dist[edge.to]))
-
+            if node_id == end:
+                return dist[end]
         return dist[end]
 
 
