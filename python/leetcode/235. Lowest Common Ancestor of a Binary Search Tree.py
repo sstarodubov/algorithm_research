@@ -1,5 +1,3 @@
-from typing import Optional
-
 from leetcode.tree_node import TreeNode
 
 
