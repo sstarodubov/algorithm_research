@@ -36,7 +36,6 @@ class Path:
 
 class Solution:
     def minCost(self, grid: List[List[int]]) -> int:
-
         if len(grid) == 1 and len(grid[0]) == 1:
             return 0
         graph = {}
@@ -58,8 +57,6 @@ class Solution:
                     cur_node = (c, r)
                     graph[cur_node][neigb] = Edge(cur_node, neigb, 1)
 
-        for c in range(len(grid)):
-            for r in range(len(grid[0])):
                 cur_node = (c, r)
                 arrow = grid[c][r]
                 if arrow == 1 and r + 1 < len(grid[0]):
