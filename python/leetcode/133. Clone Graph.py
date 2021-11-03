@@ -6,31 +6,18 @@ class Node:
 
 class Solution:
     def cloneGraph(self, node: 'Node') -> 'Node':
+        old_to_new = {}
 
-        def dfs(cur_node: 'Node', adj_graph, visited: set[int]):
-            if not cur_node:
-                return adj_graph
-            adj_graph[cur_node.val] = []
-            visited.add(cur_node.val)
-            children = cur_node.neighbors
-            for child in children:
-                adj_graph[cur_node.val].append(child.val)
-                if child.val in visited:
-                    continue
-                dfs(child, adj_graph, visited)
-            return adj_graph
+        def dfs(cur_node: 'Node'):
+            if cur_node in old_to_new:
+                return old_to_new[cur_node]
+            copy = Node(cur_node.val)
+            old_to_new[cur_node] = copy
+            for nei in cur_node.neighbors:
+                copy.neighbors.append(dfs(nei))
+            return copy
 
-        graph = dfs(node, {}, set())
-        graph_nodes = {key: Node(key) for key in graph.keys()}
-        ans = None
-        for key in graph.keys():
-            empty_node: Node = graph_nodes[key]
-            if not ans:
-                ans = empty_node
-            for kk in graph[key]:
-                empty_node.neighbors.append(graph_nodes[kk])
-
-        return ans
+        return dfs(node) if node else None
 
 
 n1 = Node(1)
