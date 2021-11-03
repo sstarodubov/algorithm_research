@@ -36,11 +36,6 @@ class Path:
 
 class Solution:
     def minCost(self, grid: List[List[int]]) -> int:
-        def find_edge(c, r, edges):
-            for edge in edges:
-                if edge.to == (c, r):
-                    return edge
-            return None
 
         if len(grid) == 1 and len(grid[0]) == 1:
             return 0
@@ -58,29 +53,29 @@ class Solution:
                         continue
                     cur_node = (c, r)
                     if cur_node not in graph:
-                        graph[cur_node] = []
+                        graph[cur_node] = {}
                     neigb = (cc, rr)
                     cur_node = (c, r)
-                    graph[cur_node].append(Edge(cur_node, neigb, 1))
+                    graph[cur_node][neigb] = Edge(cur_node, neigb, 1)
 
         for c in range(len(grid)):
             for r in range(len(grid[0])):
                 cur_node = (c, r)
                 arrow = grid[c][r]
                 if arrow == 1 and r + 1 < len(grid[0]):
-                    edge = find_edge(c, r + 1, graph[cur_node])
+                    edge = graph[cur_node].get((c, r + 1))
                     if edge:
                         edge.weight = 0
                 elif arrow == 2 and r - 1 >= 0:
-                    edge = find_edge(c, r - 1, graph[cur_node])
+                    edge = graph[cur_node].get((c, r - 1))
                     if edge:
                         edge.weight = 0
                 elif arrow == 3 and c + 1 < len(grid):
-                    edge = find_edge(c + 1, r, graph[cur_node])
+                    edge = graph[cur_node].get((c + 1, r))
                     if edge:
                         edge.weight = 0
                 elif arrow == 4 and c - 1 >= 0:
-                    edge = find_edge(c - 1, r, graph[cur_node])
+                    edge = graph[cur_node].get((c - 1, r))
                     if edge:
                         edge.weight = 0
 
@@ -95,7 +90,8 @@ class Solution:
             cur_path: Path = heapq.heappop(pq)
             node_id = cur_path.to
             visited[node_id] = True
-            for edge in graph[node_id]:
+            for key in graph[node_id].keys():
+                edge = graph[node_id][key]
                 if visited[edge.to]:
                     continue
                 new_dist = dist[edge.frm] + edge.weight
