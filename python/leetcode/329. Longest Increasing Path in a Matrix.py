@@ -5,12 +5,12 @@ class Solution:
 
     def longestIncreasingPath2(self, matrix: List[List[int]]) -> int:
         memo = [[0 for _ in range(len(matrix[0]))] for _ in range(len(matrix))]
+        dr = [+1, -1, 0, 0]
+        dc = [0, 0, +1, -1]
 
         def dfs(c, r) -> int:
             if memo[c][r]:
                 return memo[c][r]
-            dr = [+1, -1, 0, 0]
-            dc = [0, 0, +1, -1]
             tmp = [0] * 4
             for i in range(4):
                 cc = c + dc[i]
@@ -43,7 +43,6 @@ class Solution:
                 for i in range(4):
                     cc = c + dc[i]
                     rr = r + dr[i]
-
                     if cc < 0 or rr < 0:
                         continue
                     if cc >= len(matrix) or rr >= len(matrix[0]):
@@ -84,9 +83,9 @@ class Solution:
         return ans
 
 
-assert Solution().longestIncreasingPath([[3, 4, 5], [3, 2, 6]]) == 4
-assert Solution().longestIncreasingPath([[7, 7, 5], [2, 4, 6], [8, 2, 0]]) == 4
-assert Solution().longestIncreasingPath([[3, 4, 5], [3, 2, 6], [2, 2, 1]]) == 4
-assert Solution().longestIncreasingPath([[9, 9, 4], [6, 6, 8], [2, 1, 1]]) == 4
-assert Solution().longestIncreasingPath([[1]]) == 1
+assert Solution().longestIncreasingPath2([[3, 4, 5], [3, 2, 6]]) == 4
+assert Solution().longestIncreasingPath2([[7, 7, 5], [2, 4, 6], [8, 2, 0]]) == 4
+assert Solution().longestIncreasingPath2([[3, 4, 5], [3, 2, 6], [2, 2, 1]]) == 4
+assert Solution().longestIncreasingPath2([[9, 9, 4], [6, 6, 8], [2, 1, 1]]) == 4
+assert Solution().longestIncreasingPath2([[1]]) == 1
 print("tests passed")
