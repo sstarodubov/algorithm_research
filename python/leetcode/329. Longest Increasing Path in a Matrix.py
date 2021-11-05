@@ -2,6 +2,8 @@ from typing import List
 
 
 class Solution:
+
+    # cpu O(n ^ 2) and ram O(n)
     def longestIncreasingPath(self, matrix: List[List[int]]) -> int:
         if len(matrix) == 1 and len(matrix[0]) == 1:
             return 1
@@ -26,33 +28,36 @@ class Solution:
                     if matrix[c][r] < matrix[cc][rr]:
                         graph[cur_node].append((cc, rr))
 
-        # memo = [[0 for x in range(len(matrix[0]))] for y in range(len(matrix))]
-        self.ans = 1
+        memo = [[0 for x in range(len(matrix[0]))] for y in range(len(matrix))]
 
-        def dfs(cur_column, cur_row, length, visited):
+        def dfs(cur_column, cur_row, visited) -> int:
             node = (cur_column, cur_row)
-            if node in visited:
+            if memo[cur_column][cur_row]:
+                return memo[cur_column][cur_row]
 
-                return
             visited.add(node)
-            new_len = length + 1
-            self.ans = max(self.ans, new_len)
             children = graph[node]
+            size = 0
+            if not children:
+                memo[cur_column][cur_row] = max(memo[cur_column][cur_row], size + 1)
+                return memo[cur_column][cur_row]
             for child in children:
                 child_col, child_row = child
-                dfs(child_col, child_row, new_len, visited)
-            if node in visited:
-                visited.remove(node)
+                size = max(dfs(child_col, child_row, visited), size)
+            visited.remove(node)
+            memo[cur_column][cur_row] = max(memo[cur_column][cur_row], size + 1)
+            return memo[cur_column][cur_row]
 
-
+        ans = 1
         for c in range(len(matrix)):
             for r in range(len(matrix[0])):
-                dfs(c, r, 0, set())
+                ans = max(ans, dfs(c, r, set()))
 
-        return self.ans
+        return ans
 
 
-assert Solution().longestIncreasingPath([[9, 9, 4], [6, 6, 8], [2, 1, 1]]) == 4
+assert Solution().longestIncreasingPath([[7, 7, 5], [2, 4, 6], [8, 2, 0]]) == 4
 assert Solution().longestIncreasingPath([[3, 4, 5], [3, 2, 6], [2, 2, 1]]) == 4
+assert Solution().longestIncreasingPath([[9, 9, 4], [6, 6, 8], [2, 1, 1]]) == 4
 assert Solution().longestIncreasingPath([[1]]) == 1
 print("tests passed")
