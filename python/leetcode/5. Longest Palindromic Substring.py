@@ -1,49 +1,45 @@
 import time
 
 
-def current_milli_time():
-    return round(time.time() * 1000)
-
 class Solution:
 
+    # cpu O(n^2) and ram O(1)
     def longestPalindrome(self, s: str) -> str:
-        def is_pol(st) -> bool:
-            start, end = 0, len(st) - 1
-            while start <= end:
-                if st[start] != st[end]:
-                    return False
-                start += 1
-                end -= 1
-            return True
+        if not s:
+            return ""
+        self.longest = [0, 0]
 
-        if len(s) == 1:
-            return s
-        memo = set()
+        def is_pol(st, ptr):
+            left = ptr - 1
+            right = ptr + 1
+            while right < len(st) and st[ptr] == st[right]:
+                if right - ptr > self.longest[1] - self.longest[0]:
+                    self.longest[0] = ptr
+                    self.longest[1] = right
+                right += 1
 
-        def dfs(cur_str, memo):
-            if cur_str in memo:
-                return cur_str
-            if len(cur_str) == 1:
-                return cur_str
-            if is_pol(cur_str):
-                return cur_str
+            if left == -1 or right >= len(s):
+                return
 
-            left = dfs(cur_str[: -1], memo)
-            right = dfs(cur_str[1:], memo)
-            memo.add(left)
-            memo.add(right)
-            if len(left) > len(right):
-                return left
-            return right
+            while left >= 0 and right < len(s):
+                if st[left] != st[right]:
+                    return
+                if right - left > self.longest[1] - self.longest[0]:
+                    self.longest[0] = left
+                    self.longest[1] = right
+                left -= 1
+                right += 1
 
-        ans = dfs(s, memo)
+        for ptr in range(len(s)):
+            is_pol(s, ptr)
+        ans = s[self.longest[0]:self.longest[1] + 1]
         return ans
 
-start = current_milli_time()
-assert Solution().longestPalindrome("abbcccbbbcaaccbababcbcabca") == "cbababc"
-print(current_milli_time() - start)
-assert Solution().longestPalindrome("babad") == "aba"
-assert Solution().longestPalindrome("ac") == "c"
-assert Solution().longestPalindrome("a") == "a"
+
+assert Solution().longestPalindrome("ccc") == "ccc"
+assert Solution().longestPalindrome("bb") == "bb"
 assert Solution().longestPalindrome("cbbd") == "bb"
+assert Solution().longestPalindrome("babad") == "bab"
+assert Solution().longestPalindrome("ac") == "a"
+assert Solution().longestPalindrome("a") == "a"
 print("tests passed")
