@@ -1,4 +1,5 @@
-format ELF64
+format ELF64 ; executable
+; entry _start
 
 public _start
 
@@ -11,8 +12,10 @@ public _start
 ; word - 16 bit
 ; dword - 32 bit
 ; qword - 64 bit
+section '.data' writeable
+    msg db "Yello world!!!", 0
 
-msg db "Yello world!!!", 0
+section '.text' executable
 
 _start:
     mov rax, msg
