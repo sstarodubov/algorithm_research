@@ -10,3 +10,9 @@ n - number
 # combinatorics
 
 1. amount of combinations: ((n-1) * (n)) / 2
+
+# arrays:
+
+1. window (fixed, dynamic)
+2. 2 - ptr
+3. prefix/suffix - sum
