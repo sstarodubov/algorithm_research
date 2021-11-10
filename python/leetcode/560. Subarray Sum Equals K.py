@@ -8,7 +8,11 @@ class Solution:
         count = 0
         prefix_sum = [0] * len(nums)
         prefix_sum[0] = nums[0]
+        if nums[0] == k:
+            count += 1
         for i in range(1, len(nums)):
+            if nums[i] == k:
+                count += 1
             prefix_sum[i] = prefix_sum[i - 1] + nums[i]
 
         for sz in range(1, len(nums)):
@@ -23,9 +27,6 @@ class Solution:
                     count += 1
                 begin += 1
                 end += 1
-        for n in nums:
-            if n == k:
-                count += 1
         return count
 
 
