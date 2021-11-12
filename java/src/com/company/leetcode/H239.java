@@ -18,7 +18,7 @@ class Solution {
         var result = new ArrayList<Integer>(nums.length * 2);
         var tree = new TreeMap<Integer, Integer>(Collections.reverseOrder());
         for (int i = 0; i < k; i++) {
-            if (tree.containsKey(nums[i])) tree.computeIfPresent(nums[i], (key, val) -> val + 1);
+            if (tree.containsKey(nums[i])) tree.compute(nums[i], (key, val) -> val + 1);
             else tree.put(nums[i], 1);
         }
 
@@ -27,12 +27,12 @@ class Solution {
         while (right < nums.length) {
             int max = tree.firstKey();
             result.add(max);
-            tree.computeIfPresent(nums[left], (key, v) -> v - 1);
+            tree.compute(nums[left], (key, v) -> v - 1);
             if (tree.get(nums[left]) == 0) tree.remove(nums[left]);
             left++;
             right++;
             if (right >= nums.length) break;
-            if (tree.containsKey(nums[right])) tree.computeIfPresent(nums[right], (key, val) -> val + 1);
+            if (tree.containsKey(nums[right])) tree.compute(nums[right], (key, val) -> val + 1);
             else tree.put(nums[right], 1);
         }
 
