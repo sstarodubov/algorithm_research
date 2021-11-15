@@ -1,8 +1,8 @@
-FILE_NAME=lesson1
+FILE_NAME=main
 
 once:
-	fasm ${FILE_NAME}.asm
-	ld  ${FILE_NAME}.o -o ${FILE_NAME}
+	nasm -f  elf ${FILE_NAME}.asm
+	ld  -m  elf_i386 ${FILE_NAME}.o -o ${FILE_NAME}
 	rm ${FILE_NAME}.o
 run:
 	./${FILE_NAME}
