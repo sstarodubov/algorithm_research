@@ -29,8 +29,8 @@ public class Dijkstra {
         distance[start] = 0;
 
         while (!pq.isEmpty()) {
-            var cur_path = pq.poll();
-            int nodeId = cur_path.to;
+            var curPath = pq.poll();
+            int nodeId = curPath.to;
             visited[nodeId] = true;
 
             for (Edge edge : graph.get(nodeId)) {
