@@ -1,6 +1,7 @@
 package com.company.javamasterclass.arrays;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
 
 public class Main {
@@ -56,3 +57,20 @@ public class Main {
 }
 
 
+class Exercise {
+    public static int[] removeDuplicates(int[] arr) {
+        var map = new HashSet<Integer>();
+
+        for (int num : arr) {
+            map.add(num);
+        }
+        int[] result = new int[map.size()];
+        int idx = 0;
+        for (int s : map) {
+            result[idx] = s;
+            idx++;
+        }
+
+        return result;
+    }
+}
