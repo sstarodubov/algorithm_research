@@ -11,17 +11,27 @@ public class Main {
 class Solution {
 
     //time O(n) and space O(1)
+//    public int maxSubArray(int[] nums) {
+//
+//        int sum = nums[0];
+//        int ans = nums[0];
+//        for (int i = 1; i < nums.length; i++) {
+//            if (sum < 0 && nums[i] >= 0) {
+//                sum = nums[i];
+//            } else {
+//                sum += nums[i];
+//            }
+//            ans = Math.max(nums[i], Math.max(ans, sum));
+//        }
+//        return ans;
+//    }
+    // Kadane's algorithm
+    //time O(n) and space O(1)
     public int maxSubArray(int[] nums) {
-
-        int sum = nums[0];
-        int ans = nums[0];
+        int ans = Integer.MIN_VALUE;
         for (int i = 1; i < nums.length; i++) {
-            if (sum < 0 && nums[i] >= 0) {
-                sum = nums[i];
-            } else {
-                sum += nums[i];
-            }
-            ans = Math.max(nums[i], Math.max(ans, sum));
+            nums[i] = Math.max(nums[i], nums[i] + nums[i - 1]);
+            ans = Math.max(ans, nums[i]);
         }
         return ans;
     }
