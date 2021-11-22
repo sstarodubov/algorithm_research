@@ -15,17 +15,13 @@ class Solution {
 
         int sum = nums[0];
         int ans = nums[0];
-        for (int i = 0; i < nums.length; i++) {
-            ans = Math.max(ans, nums[i]);
-        }
-
         for (int i = 1; i < nums.length; i++) {
             if (sum < 0 && nums[i] >= 0) {
                 sum = nums[i];
             } else {
                 sum += nums[i];
             }
-            ans = Math.max(ans, sum);
+            ans = Math.max(nums[i], Math.max(ans, sum));
         }
         return ans;
     }
