@@ -28,7 +28,7 @@ class Solution {
     // Kadane's algorithm
     //time O(n) and space O(1)
     public int maxSubArray(int[] nums) {
-        int ans = Integer.MIN_VALUE;
+        int ans = nums[0];
         for (int i = 1; i < nums.length; i++) {
             nums[i] = Math.max(nums[i], nums[i] + nums[i - 1]);
             ans = Math.max(ans, nums[i]);
