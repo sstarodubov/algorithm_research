@@ -16,13 +16,15 @@ n - number
 1. window (fixed, dynamic)
 2. 2 - ptr
 3. prefix/suffix - sum
-4. Kadane's algorithm
-    example
-    public int maxSubArray(int[] nums) {
-        int ans = nums[0];
-        for (int i = 1; i < nums.length; i++) {
-            nums[i] = Math.max(nums[i], nums[i] + nums[i - 1]);
-            ans = Math.max(ans, nums[i]);
-        }
-        return ans;
+4. Kadane's algorithm \
+    
+    
+    
+    public int maxSubArray(int[] nums) { \
+        int ans = nums[0]; \
+        for (int i = 1; i < nums.length; i++) { \
+            nums[i] = Math.max(nums[i], nums[i] + nums[i - 1]); \
+            ans = Math.max(ans, nums[i]); \
+        }\
+        return ans; \
     }
