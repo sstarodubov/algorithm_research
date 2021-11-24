@@ -10,14 +10,14 @@ public class Main {
 }
 
 class Solution {
+    // time O(n) and Space O(1)
     public ListNode removeNthFromEnd(ListNode head, int n) {
-        var dummy = head;
-        var slow = dummy;
-        var fast = dummy;
+        var slow = head;
+        var fast = head;
         int count = 0;
         while (count != n) {
             if (fast.next == null) {
-                return dummy.next;
+                return head.next;
             }
             fast = fast.next;
             count++;
@@ -31,6 +31,6 @@ class Solution {
         var remove = slow.next;
         slow.next = remove.next;
         remove.next = null;
-        return dummy;
+        return head;
     }
 }
