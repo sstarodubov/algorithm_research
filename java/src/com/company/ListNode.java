@@ -12,6 +12,11 @@ public class ListNode {
         this.val = val;
     }
 
+    public ListNode(int val, ListNode next) {
+        this.val = val;
+        this.next = next;
+    }
+
     public static ListNode buildLinkedList(int[] values) {
         if (values.length == 0) return new ListNode(0);
         var root = new ListNode(values[0]);
