@@ -17,6 +17,7 @@ section .bss
 array resb 256
 
 section .data
+nums db "0123456789"
 ;stext db "hello world"
 ;idx dd 1
 
@@ -27,11 +28,26 @@ y db 'y'
 section .text
 _start:
 
+    mov eax , 1
+    mov ebx, 1
 
-    mov dword [x], "hello"
-    mov eax, 5
-    PUTCHAR [x + eax]
+    cmp eax, ebx
+    jne else
+    PRINT "EQUAL"
     FINISH
+else:
+    PRINT "NOT EQUAL"
+    FINISH
+;    =====================
+;    mov eax , 2
+;    mov ecx, 4
+;    mul ecx
+;    PUTCHAR [nums + eax]
+
+; =========================
+;    mov dword [x], "hello"
+;    mov eax, 5
+;    PUTCHAR [x + eax]
 
 ;-----------------------------
 ;    mov y , 'h'
