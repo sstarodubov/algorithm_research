@@ -14,7 +14,7 @@ n - number
 # arrays:
 
 1. window (fixed, dynamic)
-2. 2 - ptr
+2. 2 - ptr (read/write )
 3. prefix/suffix - sum
 4. Kadane's algorithm \
     
