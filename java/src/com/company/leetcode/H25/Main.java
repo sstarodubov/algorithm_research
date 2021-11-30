@@ -39,7 +39,8 @@ public class Main {
 
 
 class Solution {
-    // time O(n ^ 2) , space O(n /k )
+
+    // time O(n ^ 2) , space O(1)
     public ListNode reverseKGroup(ListNode head, int k) {
         var dummy = new ListNode(-1);
         dummy.next = head;
@@ -53,7 +54,7 @@ class Solution {
         }
         while (end != null) {
             var backTmp = end.next;
-            ListNode[] list = reverse(start, end);
+            ListNode[] list = reverse(front, start, end);
             front.next = list[0];
             if (list[1] != null) list[1].next = backTmp;
             front = list[1];
@@ -69,8 +70,7 @@ class Solution {
         return dummy.next;
     }
 
-    public ListNode[] reverse(ListNode start, ListNode end) {
-        var dummy = new ListNode(-1);
+    public ListNode[] reverse(ListNode dummy, ListNode start, ListNode end) {
         dummy.next = start;
         var cur = start;
         var tail = end.next;
