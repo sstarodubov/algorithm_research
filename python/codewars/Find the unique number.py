@@ -10,7 +10,6 @@ def find_uniq(arr):
     ks = list(hm.keys())
     if hm[ks[0]] > hm[ks[1]]:
         return ks[1]
-
     return ks[0]
 
 

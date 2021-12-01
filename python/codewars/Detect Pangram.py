@@ -1,5 +1,3 @@
-import string
-
 
 def is_pangram(s):
     st = set()
