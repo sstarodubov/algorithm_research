@@ -1,5 +1,3 @@
-import string
-
 def alphabet_position(text):
     alphabet = {
         'a' : '1',
