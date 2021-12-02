@@ -26,6 +26,7 @@ def next_bigger(n):
 
 def backtrack(arr, idx, ans):
     if idx >= len(arr):
+        print(arr)
         ans.append(arr[:])
     else:
         for i in range(idx, len(arr)):
@@ -50,7 +51,7 @@ def to_arr(num):
 
 
 assert next_bigger(513) == 531
-assert next_bigger(12) == 21
-assert next_bigger(2017) == 2071
+# assert next_bigger(12) == 21
+# assert next_bigger(2017) == 2071
 
 print("tests passed")
