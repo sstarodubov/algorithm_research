@@ -26,7 +26,6 @@ def next_bigger(n):
 
 def backtrack(arr, idx, ans):
     if idx >= len(arr):
-        print(arr)
         ans.append(arr[:])
     else:
         for i in range(idx, len(arr)):
