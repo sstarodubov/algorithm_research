@@ -25,7 +25,6 @@ class Solution {
     // time O(n) and space O(n)
     public int longestValidParentheses(String s) {
         if (s.length() <= 1) return 0;
-        if (s.length() == 2) return s.charAt(0) == '(' && s.charAt(1) == ')' ? 2 : 0;
 
         int[] dp = new int[s.length()];
         var stack = new ArrayDeque<Pair>(s.length() * 2);
