@@ -1,7 +1,5 @@
 package com.company.leetcode.E268;
 
-import java.util.HashSet;
-
 public class Main {
     public static void main(String[] args) {
         assert 2 == new Solution().missingNumber(new int[]{3, 0, 1});
@@ -12,15 +10,17 @@ public class Main {
 
 class Solution {
 
-    // time O(n) , space O(n)
+    // time O(n) , space O(1)
     public int missingNumber(int[] nums) {
-        var set = new HashSet<Integer>();
-        for (int num : nums) set.add(num);
-        int cur = 0;
-        while (cur != nums.length + 1) {
-            if (!set.contains(cur)) return cur;
-            cur++;
+        int ans = nums[0];
+        for (int i = 1; i <nums.length; i++) {
+            ans = ans ^ nums[i];
         }
-        return 0;
+
+        for (int i = 0; i < nums.length + 1; i++) {
+            ans = ans ^ i;
+        }
+
+        return ans;
     }
 }
