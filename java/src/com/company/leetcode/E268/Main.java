@@ -12,15 +12,11 @@ class Solution {
 
     // time O(n) , space O(1)
     public int missingNumber(int[] nums) {
-        int ans = nums[0];
-        for (int i = 1; i <nums.length; i++) {
-            ans = ans ^ nums[i];
+        int ans = 0;
+        for (int i = 0; i < nums.length; i++) {
+            ans = ans ^ nums[i] ^ i;
         }
-
-        for (int i = 0; i < nums.length + 1; i++) {
-            ans = ans ^ i;
-        }
-
+        ans ^= nums.length;
         return ans;
     }
 }
