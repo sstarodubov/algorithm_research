@@ -15,12 +15,15 @@ public class Test2 {
                 .publishOn(Schedulers.boundedElastic())
                 .filter(i -> (i & 1) == 0)
                 .flatMap(db::find)
-                .map(i -> " got: " + i);
+                .map(i -> " got: " + i + " " + Thread.currentThread().getName());
 
-        flux.subscribe(a -> {
-            System.out.println(Thread.currentThread().getName());
-            System.out.println(a);
-        });
+
+        flux
+                .publishOn(Schedulers.immediate())
+                .subscribe(a -> {
+                    System.out.println(Thread.currentThread().getName());
+                    System.out.println(a);
+                });
 
         Thread.sleep(10000);
     }
