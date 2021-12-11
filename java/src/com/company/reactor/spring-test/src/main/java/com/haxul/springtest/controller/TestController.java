@@ -1,6 +1,5 @@
 package com.haxul.springtest.controller;
 
-import lombok.SneakyThrows;
 import org.reactivestreams.Subscription;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,8 +8,6 @@ import org.springframework.web.client.RestTemplate;
 import reactor.core.Disposable;
 import reactor.core.publisher.BaseSubscriber;
 import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
-import reactor.core.scheduler.Scheduler;
 import reactor.core.scheduler.Schedulers;
 
 import java.util.concurrent.ExecutorService;
