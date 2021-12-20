@@ -3,7 +3,7 @@ from typing import List
 
 
 class TreeNode:
-    def __init__(self, val, left: 'TreeNode' = None, right: 'TreeNode' = None):
+    def __init__(self, val: int = 0, left: 'TreeNode' = None, right: 'TreeNode' = None):
         self.val = val
         self.left: 'TreeNode' = left
         self.right: 'TreeNode' = right
