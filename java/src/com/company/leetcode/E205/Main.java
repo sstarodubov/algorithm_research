@@ -22,9 +22,7 @@ class Solution {
         for (int i = 0; i < t.length(); i++) {
             char cur = s.charAt(i);
             if (m.containsKey(cur)) {
-                if (m.get(cur) != t.charAt(i)) {
-                    return false;
-                }
+                if (m.get(cur) != t.charAt(i)) return false;
             } else {
                 if (!rm.containsKey(t.charAt(i))) {
                     rm.put(t.charAt(i), cur);
