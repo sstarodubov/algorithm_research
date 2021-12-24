@@ -1,6 +1,10 @@
 package com.company.leetcode.M792;
 
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
@@ -14,28 +18,30 @@ public class Main {
 
 class Solution {
     public int numMatchingSubseq(String s, String[] words) {
-        var map = new HashMap<String, Integer>();
+        var map = new HashMap<Character, List<String>>();
         for (var word : words) {
-            if (map.containsKey(word)) map.compute(word, (k, v) -> v + 1);
-            else map.put(word, 1);
+            var cur = map.getOrDefault(word.charAt(0), new ArrayList<>());
+            cur.add(word);
+            map.put(word.charAt(0), cur);
         }
+
         int ans = 0;
-        for (var word : map.keySet()) {
-            if (isSubSeq(word, s)) {
-                ans += map.get(word);
+
+        for (int i = 0; i < s.length(); i++) {
+            var bucket = map.getOrDefault(s.charAt(i), Collections.emptyList());
+            map.remove(s.charAt(i));
+            for (String word : bucket) {
+                if (word.length() == 1) {
+                    ans++;
+                } else {
+                    var trimmedWord = word.substring(1);
+                    var firstLetter = trimmedWord.charAt(0);
+                    var list = map.getOrDefault(firstLetter, new ArrayList<>());
+                    list.add(trimmedWord);
+                    map.put(firstLetter, list);
+                }
             }
         }
         return ans;
-    }
-
-    boolean isSubSeq(String sub, String str) {
-        int subPtr = 0;
-        for (int i = 0; i < str.length(); i++) {
-            if (subPtr >= sub.length()) return true;
-            if (str.charAt(i) == sub.charAt(subPtr)) {
-                subPtr++;
-            }
-        }
-        return subPtr == sub.length();
     }
 }
