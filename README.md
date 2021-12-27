@@ -28,3 +28,4 @@ n - number
         }\
         return ans; \
     }
+5. Monotoic stack: to solve the problem "Next Greate Element"
