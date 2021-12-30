@@ -21,14 +21,12 @@ class Solution:
         visited = set([])
 
         for node in graph.keys():
-            if node not in visited:
-                self.dfs(graph, node, visited, 0)
+            self.dfs(graph, node, visited, 0)
 
         return self.ans
 
     def dfs(self, graph: Dict, cur_node: str, visited: Set, count):
         if cur_node in visited:
-            self.ans = max(self.ans, count)
             return
         visited.add(cur_node)
         children = graph[cur_node]
