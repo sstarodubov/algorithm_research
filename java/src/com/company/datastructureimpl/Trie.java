@@ -39,7 +39,6 @@ public class Trie {
         cur.endOfString = true;
     }
 
-    // run tests
     public static void main(String[] args) {
         var trie = new Trie();
         trie.insert("app");
