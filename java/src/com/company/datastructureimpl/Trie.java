@@ -14,15 +14,24 @@ public class Trie {
 
     private final TNode root = new TNode();
 
+    // time O(L), space O(1)
+    public boolean exists(final String word) {
+        var cur = root;
+        for (var letter : word.toCharArray()) {
+            if (!cur.children.containsKey(letter)) return false;
+            cur = cur.children.get(letter);
+        }
+        return cur.endOfString;
+    }
+
     // time O(L), space O(L)
     public void insert(final String word) {
         var cur = root;
         for (int i = 0; i < word.length(); i++) {
+
             var letter = word.charAt(i);
 
-            if (!cur.children.containsKey(letter)) {
-                cur.children.put(letter, new TNode());
-            }
+            if (!cur.children.containsKey(letter)) cur.children.put(letter, new TNode());
 
             cur = cur.children.get(letter);
 
@@ -38,25 +47,15 @@ public class Trie {
         trie.insert("apis");
         trie.insert("s");
 
-        assert trie.root
-                .children.get('s')
-                .endOfString;
-        assert trie.root
-                .children.get('a')
-                .children.get('p')
-                .children.get('i')
-                .children.get('s')
-                .endOfString;
-        assert trie.root
-                .children.get('a')
-                .children.get('p')
-                .children.get('i')
-                .endOfString;
-        assert trie.root
-                .children.get('a')
-                .children.get('p')
-                .children.get('p')
-                .endOfString;
+        assert trie.exists("app");
+        assert trie.exists("api");
+        assert trie.exists("apis");
+        assert trie.exists("s");
+        assert !trie.exists("ap");
+        assert !trie.exists("apiss");
+        assert !trie.exists("a");
+        assert !trie.exists("");
+
         System.out.println("tests passed");
     }
 }
