@@ -1,12 +1,11 @@
 import java.util.Scanner;
 
-import javax.sound.sampled.SourceDataLine;
 
 public class WayToLongs {
     public static void main(String[] args) {
        var sc = new Scanner(System.in);
        
-       int size = sc.nextInt();
+       sc.nextInt();
 
        while (sc.hasNext()) {
             String word = sc.next();
