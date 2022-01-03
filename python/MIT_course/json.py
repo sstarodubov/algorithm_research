@@ -7,7 +7,7 @@ json_data = {
         "w1": 123,
         "123": [12, 3]
     },
-
+    "!!": 1,
     "some": {
         "text": {
             "for": "you"
@@ -29,6 +29,7 @@ def exists(json, val) -> bool:
             return json == val
 
 
+assert exists(json_data, 1)
 assert exists(json_data, 123)
 assert exists(json_data, "hoho")
 assert exists(json_data, [12, 3])
