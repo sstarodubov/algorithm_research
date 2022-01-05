@@ -6,8 +6,21 @@ import java.util.PriorityQueue;
 public class Sorting {
     public static void main(String[] args) {
         var arr = new int[]{5, 4, 3, 2, 1};
-        heapSort(arr);
+        selectSort(arr);
         System.out.println(Arrays.toString(arr));
+    }
+
+    // time O(n^2), space O(1)
+    public static void  selectSort(int[] arr) {
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = i + 1; j < arr.length; j++) {
+                if (arr[i] > arr[j]) {
+                    int tmp = arr[i];
+                    arr[i] = arr[j];
+                    arr[j] = tmp;
+                }
+            }
+        }
     }
 
     // O (n log n), space O(n)
