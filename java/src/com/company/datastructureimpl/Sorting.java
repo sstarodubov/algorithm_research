@@ -1,13 +1,40 @@
 package com.company.datastructureimpl;
 
-import java.util.Arrays;
-import java.util.PriorityQueue;
+import java.util.*;
 
 public class Sorting {
     public static void main(String[] args) {
         var arr = new int[]{5, 4, 3, 2, 1};
-        insertSort(arr);
+        bucketSort(arr);
         System.out.println(Arrays.toString(arr));
+    }
+
+    public static void bucketSort(int[] arr) {
+        int bucketLen = (int) Math.round(Math.sqrt(arr.length));
+        int max = Integer.MIN_VALUE;
+        for (int val : arr) {
+            max = Math.max(max, val);
+        }
+        ArrayList<Integer>[] buckets = new ArrayList[bucketLen];
+        for (int i = 0; i < buckets.length; i++) {
+            buckets[i] = new ArrayList<Integer>();
+        }
+        for (int val : arr) {
+            int idx = (int) Math.ceil((float) val * bucketLen / (float) max);
+            buckets[idx - 1].add(val);
+        }
+
+        for (var list : buckets) {
+            Collections.sort(list);
+        }
+
+        int idx = 0;
+        for (var list : buckets) {
+            for (var val : list) {
+                arr[idx] = val;
+                idx++;
+            }
+        }
     }
 
     // time O(n^2), space O(1)
