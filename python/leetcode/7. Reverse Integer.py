@@ -18,8 +18,6 @@ class Solution:
         if ans >= pow(2, 31):
             return 0
         return -ans
-
-
 assert Solution().reverse(-1563847412) == 0
 assert Solution().reverse(120) == 21
 assert Solution().reverse(123) == 321
