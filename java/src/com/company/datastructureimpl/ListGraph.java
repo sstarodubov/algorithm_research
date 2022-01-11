@@ -19,6 +19,8 @@ public class ListGraph {
         graph.addUndirectedEdge(3, 4);
 
         graph.bfs();
+        System.out.println("=========");
+        graph.dfs();
     }
 
     public final List<GraphListNode> nodes;
