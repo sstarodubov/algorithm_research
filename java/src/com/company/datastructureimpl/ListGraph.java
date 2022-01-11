@@ -14,16 +14,11 @@ public class ListGraph {
         var graph = new ListGraph(List.of(n1, n2, n3, n4, n5, new GraphListNode("E", 5)));
         graph.addUndirectedEdge(0, 1);
         graph.addUndirectedEdge(0, 2);
-        graph.addUndirectedEdge(1, 0);
         graph.addUndirectedEdge(1, 3);
-        graph.addUndirectedEdge(2, 0);
         graph.addUndirectedEdge(2, 4);
-        graph.addUndirectedEdge(3, 1);
         graph.addUndirectedEdge(3, 4);
-        graph.addUndirectedEdge(4, 2);
-        graph.addUndirectedEdge(4, 3);
 
-        graph.dfs();
+        graph.bfs();
     }
 
     public final List<GraphListNode> nodes;
@@ -37,6 +32,22 @@ public class ListGraph {
         GraphListNode second = nodes.get(j);
         first.neighbors.add(second);
         second.neighbors.add(first);
+    }
+
+    public void bfs() {
+        var visited = new HashSet<GraphListNode>();
+        var dq = new ArrayDeque<GraphListNode>();
+        for (var node : nodes) {
+            dq.add(node);
+            while (!dq.isEmpty()) {
+                var cur = dq.pollFirst();
+                if (visited.contains(cur)) continue;
+                visited.add(cur);
+
+                System.out.println(cur.name);
+                dq.addAll(cur.neighbors);
+            }
+        }
     }
 
     public void dfs() {
