@@ -26,7 +26,6 @@ public class SSSPP {
         var D = new NodeS("D");
         var F = new NodeS("F");
         var E = new NodeS("E");
-        var H = new NodeS("H");
         var G = new NodeS("G");
         Map<NodeS, Set<NodeS>> graph = Map.of(
                 A, Set.of(C, B),
@@ -37,14 +36,14 @@ public class SSSPP {
                 F, Set.of(E, G, D),
                 G, Set.of(B, F)
         );
-        var path = sssppOfUndirectedGraph(F, A, graph);
+        var path = sssppOfUnweightedGraph(F, A, graph);
         if (path.isEmpty()) System.out.println("path does not exist");
         else System.out.println(path);
     }
 
-    public static Deque<NodeS> sssppOfUndirectedGraph(final NodeS start,
-                                                     final NodeS end,
-                                                     final Map<NodeS, Set<NodeS>> graph) {
+    public static Deque<NodeS> sssppOfUnweightedGraph(final NodeS start,
+                                                      final NodeS end,
+                                                      final Map<NodeS, Set<NodeS>> graph) {
         var ssspp = new ArrayDeque<NodeS>();
         var dq = new ArrayDeque<NodeS>();
         dq.add(start);

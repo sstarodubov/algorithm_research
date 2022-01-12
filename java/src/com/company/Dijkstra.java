@@ -15,11 +15,11 @@ public class Dijkstra {
                 3, List.of(new Edge(3, 4, 3)),
                 4, List.of()
         );
-        int ssssp = getSSSSP(graph, 0, 4);
-        System.out.println(ssssp);
+        int ssspp = getSSSPP(graph, 0, 4);
+        System.out.println(ssspp);
     }
 
-    public static int getSSSSP(Map<Integer, List<Edge>> graph, int start, int end) {
+    public static int getSSSPP(Map<Integer, List<Edge>> graph, int start, int end) {
         var pq = new PriorityQueue<Path>();
         pq.add(new Path(start, 0));
         boolean[] visited = new boolean[graph.size()];
