@@ -13,24 +13,28 @@ graph = {
 
 def dijkstra(start: str, end: str, g: Dict = graph) -> int:
     dist = {k: float("inf") for k in g.keys()}
-    parents = {k: None for k in g.keys()}
 
     dist[start] = 0
     pq = [(0, start)]
     heapq.heapify(pq)
-
+    visited = set()
     while pq:
         cur_dist, cur_node_name = heapq.heappop(pq)
+        visited.add(cur_node_name)
+
+        if cur_dist > dist[cur_node_name]:
+            continue
 
         neighbors = g.get(cur_node_name)
 
         for neighbor in neighbors.keys():
+            if neighbor in visited: continue
+
             weight = neighbors.get(neighbor)
-            new_dist = cur_dist + weight
+            new_dist = dist[cur_node_name] + weight
             if new_dist < dist[neighbor]:
                 dist[neighbor] = new_dist
-                heapq.heappush(pq, (weight, neighbor))
-                parents[neighbor] = cur_node_name
+                heapq.heappush(pq, (new_dist, neighbor))
 
     return dist[end]
 
