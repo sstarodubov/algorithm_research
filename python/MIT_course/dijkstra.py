@@ -26,22 +26,12 @@ def dijkstra(start: str, end: str, g: Dict = graph) -> int:
 
         for neighbor in neighbors.keys():
             weight = neighbors.get(neighbor)
-            new_dist = dist[cur_node_name] + weight
+            new_dist = cur_dist + weight
             if new_dist < dist[neighbor]:
                 dist[neighbor] = new_dist
                 heapq.heappush(pq, (weight, neighbor))
                 parents[neighbor] = cur_node_name
 
-
-    # restore path =================
-    cur = end
-    path = ""
-    while dist[end] != float("inf") and cur != start:
-        path = f"{cur}{' -> ' if path else ''}{path}"
-        cur = parents[cur]
-
-    print(f"{cur} -> {path if dist[end] != float('inf') else 'Inf'}")
-    # =====================
     return dist[end]
 
 
@@ -50,11 +40,4 @@ assert dijkstra("3", "0") == float("inf")
 assert dijkstra("0", "1") == 4
 assert dijkstra("2", "3") == 6
 
-graph["2"]["5"] = 1
-
-assert dijkstra("0", "5") == 2
-
-graph["5"]["0"] = 10
-
-assert dijkstra("3", "0") == 13
 print("tests passed")
