@@ -20,6 +20,4 @@ class Solution:
         root1.right = self.mergeTrees(root1.right, root2.right)
         return root1
 
-ans = Solution().mergeTrees(root1=TreeNode.build_tree([1, 3, 2, 5]),
-                            root2=TreeNode.build_tree([2, 1, 3, None, 4, None, 7]))
-print(ans)
+
