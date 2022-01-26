@@ -1,22 +1,16 @@
+from collections import defaultdict
 from typing import List
 
 
 class Solution:
 
-    # time O( n log n) , space O(1)
+    # time O( n ) , space O(n)
     def majorityElement(self, nums: List[int]) -> int:
-        nums.sort()
-        n = len(nums)
-        count = 0
-        prev = -1
-        for num in nums:
-            if num != prev:
-                count = 1
-                prev = num
-            else:
-                count += 1
-            if count > n // 2:
-                return num
+        d = defaultdict(lambda: 0)
+        for n in nums:
+            d[n] += 1
+            if d[n] > len(nums) // 2:
+                return n
         return -1
 
 
