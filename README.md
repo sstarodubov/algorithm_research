@@ -29,3 +29,4 @@ n - number
         return ans; \
     }
 5. Monotoic stack: to solve the problem "Next Great Element"
+6. These completed rows contain in total 1 + 2 + ... + k = (k * (k + 1)) // 2
