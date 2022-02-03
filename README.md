@@ -29,4 +29,4 @@ n - number
         return ans; \
     }
 5. Monotoic stack: to solve the problem "Next Great Element"
-6. These completed rows contain in total 1+2+...+k=k(k+1)21 + 2 + ... + k = \frac{k (k + 1)}{2}1+2+...+k=2k(k+1)
+6. These completed rows contain in total 1 + 2 + ... + k = (k * (k + 1)) // 2
