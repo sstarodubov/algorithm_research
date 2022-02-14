@@ -4,21 +4,21 @@ from typing import List
 
 class Solution:
 
-    # time O(n) , space O(n)
+    # time O(n * log n) , space O(1)
     def findErrorNums(self, nums: List[int]) -> List[int]:
-        m = {}
-        for n in nums:
-            m[n] = 0
-        missed, repeated = 0, 0
-        for i in range(len(nums)):
-            m[nums[i]] += 1
-            if m[nums[i]] == 2:
+        nums.sort()
+        cs = sum(nums)
+        rs = 0
+
+        for i in range(1, len(nums) + 1):
+            rs += i
+        repeated = 0
+
+        for i in range(1, len(nums)):
+            if nums[i] ^ nums[i - 1] == 0:
                 repeated = nums[i]
-            if i + 1 not in m:
-                missed = i + 1
-            if repeated and missed:
-                return [repeated, missed]
-        return []
+                break
+        return [repeated, repeated + (rs - cs)]
 
 
 assert Solution().findErrorNums([8, 7, 3, 5, 3, 6, 1, 4]) == [3, 2]
