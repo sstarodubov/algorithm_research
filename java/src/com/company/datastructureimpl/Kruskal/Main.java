@@ -38,7 +38,7 @@ public class Main {
             if (counter >= nodes.size()) break;
             var from = edge.from();
             var to = edge.to();
-            if (!DisjointSet.areNodeInSameDisjointSet(from, to)) {
+            if (!DisjointSet.areNodesInSameDisjointSet(from, to)) {
                 spanningTree.add(edge);
                 DisjointSet.union(from, to);
                 counter = from.disjointSet.collection.size();
@@ -79,7 +79,7 @@ class DisjointSet {
         }
     }
 
-    public static boolean areNodeInSameDisjointSet(Node n1, Node n2) {
+    public static boolean areNodesInSameDisjointSet(Node n1, Node n2) {
         return n1.disjointSet == n2.disjointSet;
     }
 
