@@ -1,7 +1,5 @@
 package com.company.leetcode.E1128;
 
-import java.util.Arrays;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Objects;
 
@@ -43,20 +41,13 @@ class Pair  {
 }
 
 class Solution {
-    // time O(n log n ) , space O(n)
+    // time O(n) , space O(n)
     public int numEquivDominoPairs(int[][] dominoes) {
+        var map = new HashMap<Pair, Integer>();
         for (int i = 0; i < dominoes.length; i++) {
             int a = Math.min(dominoes[i][0], dominoes[i][1]);
             int b = Math.max(dominoes[i][0], dominoes[i][1]);
-            dominoes[i][0] = a;
-            dominoes[i][1] = b;
-        }
-        Arrays.sort(dominoes, Comparator.comparingInt((int[] xs) -> xs[0]).thenComparingInt(xs -> xs[1]));
-
-
-        var map = new HashMap<Pair, Integer>();
-        for (int i = 0; i < dominoes.length; i++) {
-            var key = new Pair(dominoes[i][0] , dominoes[i][1]);
+            var key = new Pair(a , b);
             int val = map.getOrDefault(key, 0);
             map.put(key, val + 1);
         }
