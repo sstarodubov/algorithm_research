@@ -12,6 +12,7 @@ class Solution:
                 r = m - 1
             else:
                 l = m + 1
+
         return r + 1
 
 
