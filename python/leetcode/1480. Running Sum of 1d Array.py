@@ -3,10 +3,11 @@ from typing import List
 
 class Solution:
     def runningSum(self, nums: List[int]) -> List[int]:
-        prefix = [0] * (len(nums) + 1)
-        for i in range(1, len(prefix)):
-            prefix[i] = prefix[i - 1] + nums[i - 1]
-            nums[i - 1] = prefix[i]
+        cur, prev = 0, 0
+        for i in range(1, len(nums) + 1):
+            cur = prev + nums[i - 1]
+            nums[i - 1] = cur
+            prev = cur
         return nums
 
 
