@@ -2,36 +2,30 @@ from typing import List
 
 
 class Solution:
-    def twoSum(self, nums: List[int], target: int, exl_idx: int, ans):
-        lp, rp = exl_idx + 1, len(nums) - 1
-        while lp < rp:
-            if lp >= rp:
-                return
-            cs = nums[lp] + nums[rp]
-            if cs == target:
-                ans.append([nums[lp], nums[rp], nums[exl_idx]])
-            if cs < target:
-                lp += 1
-                while lp > 0 and lp < len(nums) and nums[lp - 1] == nums[lp]:
-                    lp += 1
-            else:
-                rp -= 1
-                while rp <= len(nums) - 2 and rp >= 0 and nums[rp + 1] == nums[rp]:
-                    rp -= 1
-
 
     def threeSum(self, nums: List[int]) -> List[List[int]]:
         if len(nums) <= 2:
             return []
         nums.sort()
         ans = []
-        used = set()
-        for i in range(len(nums)):
-            if nums[i] in used:
-                continue
-            self.twoSum(nums, -nums[i], i, ans)
-            used.add(nums[i])
 
+        for i, a in enumerate(nums):
+            if i > 0 and a == nums[i - 1]:
+                continue
+
+            l, r = i + 1, len(nums) - 1
+
+            while l < r:
+                cur_sum = a + nums[l] + nums[r]
+                if cur_sum > 0:
+                    r -= 1
+                elif cur_sum < 0:
+                    l += 1
+                else:
+                    ans.append([a, nums[l], nums[r]])
+                    l += 1
+                    while nums[l] == nums[l - 1] and l < r:
+                        l += 1
         return ans
 
 
