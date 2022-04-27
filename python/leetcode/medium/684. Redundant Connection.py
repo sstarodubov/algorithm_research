@@ -1,52 +1,61 @@
-from collections import defaultdict
-from typing import List
+from collections import deque
+from typing import List, Set, Dict
+
+
+class NodePath:
+
+    def __init__(self, val):
+        self.val = val
+        self.ds = set()
+
+    def __eq__(self, other):
+        return self.val == other.val
+
+    def __str__(self):
+        return f"Node({self.val})"
+
+    def __hash__(self):
+        return hash(self.val)
 
 
 class Solution:
-
     def findRedundantConnection(self, edges: List[List[int]]) -> List[int]:
+        for i in range(len(edges) - 1, -1, -1):
+            if not self.helper(edges, i):
+                return edges[i]
 
-        def add_edge(graph, edge):
-            frm, to = edge
-            graph[frm].add(to)
-            graph[to].add(frm)
+    def helper(self, edges: List[List[int]], idx) -> bool:
+        def make_set(ns: Dict[int, NodePath]):
+            for n in list(ns.values()):
+                n.ds.add(n)
 
-        def remove_edge(graph, edge):
-            frm, to = edge
-            graph[frm].remove(to)
-            graph[to].remove(frm)
+        def union(np1: NodePath, np2: NodePath):
+            for n in np1.ds:
+                n.ds = np2.ds
+                np2.ds.add(n)
 
-        def dfs(graph, node, seen):
-            if node in seen:
-                return
+        def in_same_ds(np: NodePath, np2: NodePath) -> bool:
+            return np2 in np.ds and np in np2.ds
 
-            seen.add(node)
-            children = graph[node]
+        nodes = {}
 
-            for child in children:
-                dfs(graph, child, seen)
+        for frm, to in edges:
+            nodes[frm] = NodePath(frm)
+            nodes[to] = NodePath(to)
 
-        graph = defaultdict(lambda: set())
+        make_set(nodes)
 
-        for edge in edges:
-            add_edge(graph, edge)
-
-        for edge in reversed(edges):
-            remove_edge(graph, edge)
-            seen = set()
-            group = 0
-            for node in graph.keys():
-                if node not in seen:
-                    dfs(graph, node, seen)
-                    group += 1
-
-            if group == 1:
-                return edge
-
-            add_edge(graph, edge)
-
-        return [-1, -1]
+        for i in range(len(edges) - 1, -1, -1):
+            if i == idx:
+                continue
+            frm = edges[i][0]
+            to = edges[i][1]
+            if in_same_ds(nodes[frm], nodes[to]):
+                return True
+            union(nodes[frm], nodes[to])
+        return False
 
 
-assert [2, 3] == Solution().findRedundantConnection([[1, 2], [1, 3], [2, 3]])
 assert [1, 4] == Solution().findRedundantConnection([[1, 2], [2, 3], [3, 4], [1, 4], [1, 5]])
+assert [2, 5] == Solution().findRedundantConnection([[3, 4], [1, 2], [2, 4], [3, 5], [2, 5]])
+assert [2, 3] == Solution().findRedundantConnection([[1, 2], [1, 3], [2, 3]])
