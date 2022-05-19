@@ -37,5 +37,3 @@ w.addWord("at")
 w.addWord("and")
 w.addWord("an")
 w.addWord("add")
-
-assert not w.search("a")
