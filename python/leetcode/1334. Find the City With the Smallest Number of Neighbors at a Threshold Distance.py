@@ -3,15 +3,15 @@ from typing import List
 
 class Solution:
     def findTheCity(self, n: int, edges: List[List[int]], distanceThreshold: int) -> int:
-        graph = []
+        distance = []
         for i in range(n):
             arr = [float("inf")] * n
-            graph.append(arr)
+            distance.append(arr)
 
         for fr, to, w in edges:
-            graph[fr][to] = w
-            graph[to][fr] = w
-        distance = list(map(lambda i: list(map(lambda j: j, i)), graph))
+            distance[fr][to] = w
+            distance[to][fr] = w
+
         for k in range(n):
             for i in range(n):
                 for j in range(n):
@@ -36,6 +36,6 @@ class Solution:
         return city
 
 
+assert 3 == Solution().findTheCity(n=4, edges=[[0, 1, 3], [1, 2, 1], [1, 3, 4], [2, 3, 1]], distanceThreshold=4)
 assert 0 == Solution().findTheCity(n=5, edges=[[0, 1, 2], [0, 4, 8], [1, 2, 3], [1, 4, 2], [2, 3, 1], [3, 4, 1]],
                                    distanceThreshold=2)
-assert 3 == Solution().findTheCity(n=4, edges=[[0, 1, 3], [1, 2, 1], [1, 3, 4], [2, 3, 1]], distanceThreshold=4)
