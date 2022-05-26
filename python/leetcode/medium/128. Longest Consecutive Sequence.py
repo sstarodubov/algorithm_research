@@ -16,15 +16,14 @@ class Solution:
         for n in nums:
             disjoint_set[n] = {n}
 
+        ans = 0
         for n in nums:
             if n + 1 in disjoint_set:
                 union(disjoint_set, n + 1, n)
             if n - 1 in disjoint_set:
                 union(disjoint_set, n - 1, n)
+            ans = max(len(disjoint_set[n]), ans)
 
-        ans = 0
-        for key in disjoint_set:
-            ans = max(len(disjoint_set[key]), ans)
         return ans
 
 
