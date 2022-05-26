@@ -7,9 +7,15 @@ class Solution:
         def union(ds, n1, n2):
             if ds[n1] == ds[n2]:
                 return
-            for k in ds[n1]:
-                ds[n2].add(k)
-                ds[k] = ds[n2]
+
+            if len(ds[n1]) < len(ds[n2]):
+                for k in ds[n1]:
+                    ds[n2].add(k)
+                    ds[k] = ds[n2]
+            else:
+                for k in ds[n2]:
+                    ds[n1].add(k)
+                    ds[k] = ds[n1]
 
         disjoint_set = {}
 
