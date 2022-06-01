@@ -64,5 +64,4 @@ result = []
 while iter.hasNext():
     result.append(iter.next())
 
-print(result)
 assert result == [1, 1, 2, 1, 1]
