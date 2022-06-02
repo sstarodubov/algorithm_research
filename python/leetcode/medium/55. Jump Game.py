@@ -2,23 +2,29 @@ from typing import List
 
 
 class Solution:
+
+    #time O(n) , space O(1)
     def canJump(self, nums: List[int]) -> bool:
         if len(nums) <= 1:
             return True
-        dp = [0] * (len(nums))
-        dp[-1] = 1
-        for i in range(len(nums) - 2, -1, -1):
-            for j in range(nums[i]):
-                idx = j + i + 1
-                if idx >= len(nums):
-                    continue
-                if dp[idx] == 1:
-                    dp[i] = 1
-                    break
-        return dp[0] == 1
+        if nums[0] == 0:
+            return False
+        steps = nums[0]
+        so_far = 1
+        for i in range(1, len(nums)):
+            if steps == 0:
+                return False
+            steps -= 1
+            so_far += 1
+            if nums[i] > steps:
+                steps = nums[i]
+
+        return so_far >= len(nums) - 1
 
 
-assert Solution().canJump([2, 0])
-assert Solution().canJump([2, 3, 1, 1, 4])
-assert Solution().canJump([0])
 assert not Solution().canJump([3, 2, 1, 0, 4])
+assert Solution().canJump([1, 2, 3])
+assert Solution().canJump([2, 3, 1, 1, 4])
+assert Solution().canJump([2, 0])
+assert not Solution().canJump([0, 1])
+assert Solution().canJump([0])
