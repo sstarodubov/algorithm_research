@@ -22,9 +22,6 @@ def calculate_z(string: str) -> [int]:
     return zx
 
 
-calculate_z("abaxabab")
-
-
 def z_pattern_match(string, pattern) -> [int]:
     p = pattern + "$" + string
     zx = calculate_z(p)
