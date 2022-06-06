@@ -10,7 +10,7 @@ print([Head | Tail]) ->
   print(Head),
   print(Tail);
 
-print(Num) when is_integer(Num) -> io:format(io_lib:format("~p ", [Num]));
+print(Num) when is_integer(Num) -> io:format(integer_to_list(Num));
 print(Str) when is_bitstring(Str) -> io:format(Str);
 print(Atom) when is_atom(Atom) -> io:format(atom_to_list(Atom));
 print(_) -> io:format("").
