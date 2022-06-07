@@ -11,7 +11,7 @@ while i < len(t):
         j += 1
     else:
         if j == 0:
-            p[i] = 0;
+            p[i] = 0
             i += 1
         else:
             j = p[j - 1]
