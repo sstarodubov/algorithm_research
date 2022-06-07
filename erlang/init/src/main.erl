@@ -3,7 +3,11 @@
 -compile(nowarn_export_all).
 -compile(export_all).
 
-main() -> 0.
+main() -> print(len([1,2,3,4])).
+
+len([], Acc) -> Acc;
+len([_ | Tail], Acc) -> len(Tail, Acc + 1).
+len(List) when is_list(List) -> len(List, 0).
 
 print([X | []]) -> print(X);
 print([Head | Tail]) ->
