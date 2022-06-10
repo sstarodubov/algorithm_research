@@ -3,7 +3,40 @@
 -compile(nowarn_export_all).
 -compile(export_all).
 
-main() -> (prepare_alarm("bath"))().
+main() ->
+  Tree = {1, [{2}, {3}, {4, [{5}, {6}]}]},
+  dfs_tree(Tree).
+
+dfs_tree({Val, []}) -> print(Val);
+dfs_tree({Val}) -> print(Val);
+dfs_tree({Val, Leafs}) ->
+  print(Val),
+  lists:foreach(fun(Leaf) -> dfs_tree(Leaf) end, Leafs).
+
+dfs_binary_tree({}) -> end_path;
+dfs_binary_tree({Val}) when is_number(Val) -> print(Val);
+dfs_binary_tree({Val, One_Leaf}) ->
+  print(Val),
+  dfs_binary_tree(One_Leaf);
+dfs_binary_tree({Val, Left, Right}) ->
+  print(Val),
+  dfs_binary_tree(Left),
+  dfs_binary_tree(Right).
+
+sword() -> erlang:error(cut_arm).
+
+black_knight(Attack) when is_function(Attack) ->
+
+  try Attack() of
+    ok -> io:format("OK");
+    _ -> io:format("some")
+  catch
+    error:fck -> io:format("faaaaa");
+    throw:punch -> print("panch");
+    throw:slice -> print("It is but a scratch.");
+    exit:fck -> io:format("I've had worse.");
+    exit:cut_leg -> print("Come on you pansy!")
+  end.
 
 
 prepare_alarm(Room) ->
