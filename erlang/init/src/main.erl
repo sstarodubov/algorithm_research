@@ -3,9 +3,33 @@
 -compile(nowarn_export_all).
 -compile(export_all).
 
+-record(user, {age, name}).
+-record(robot, {
+  name,
+  type,
+  details = []
+}).
+
 main() ->
-  Tree = {1, [{2}, {3}, {4, [{5}, {6}]}]},
-  dfs_tree(Tree).
+  spawn(main, say_hello, [self()]),
+
+  receive
+    {From, "alive"} -> io:format("he is alive"),
+      io:format("~p~n", [From]);
+    _ -> io:format("no mesgage")
+  end,
+
+  io:format("here").
+
+
+
+
+say_hello(From) -> timer:sleep(5000), From ! {self(), "alive"}.
+
+check_age(#user{age = Age}) when Age >= 18 -> allowed;
+check_age(_) -> forbidden.
+
+get_first_robot() -> #robot{name = "Hello", type = "world"}.
 
 dfs_tree({Val, []}) -> print(Val);
 dfs_tree({Val}) -> print(Val);
