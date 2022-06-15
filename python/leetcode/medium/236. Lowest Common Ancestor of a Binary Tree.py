@@ -19,10 +19,6 @@ class Solution:
                     self.pp = path[:]
                 return
 
-            if not node.left and not node.right:
-                path.pop()
-                return
-
             if node.left:
                 build_path(target, path, node.left)
             if node.right:
@@ -58,4 +54,4 @@ assert 5 == Solution().lowestCommonAncestor(root=TreeNode.build_tree([3, 5, 1, 6
 assert 3 == Solution().lowestCommonAncestor(root=TreeNode.build_tree([3, 5, 1, 6, 2, 0, 8, None, None, 7, 4]),
                                             p=TreeNode(5),
                                             q=TreeNode(1)).val
-assert 1 == Solution().lowestCommonAncestor(root = TreeNode.build_tree([1,2]), p = TreeNode(1), q = TreeNode(2)).val
+assert 1 == Solution().lowestCommonAncestor(root=TreeNode.build_tree([1, 2]), p=TreeNode(1), q=TreeNode(2)).val
