@@ -1,5 +1,4 @@
 -module(main).
-%%-export([main/0]).
 -compile(nowarn_export_all).
 -compile(export_all).
 
@@ -17,14 +16,15 @@ main() ->
     {From, "alive"} -> io:format("he is alive"),
       io:format("~p~n", [From]);
     _ -> io:format("no mesgage")
+  after 3000 ->
+    io:format("timeout\n")
   end,
-
-  io:format("here").
-
+  main().
 
 
 
-say_hello(From) -> timer:sleep(5000), From ! {self(), "alive"}.
+
+say_hello(From) -> timer:sleep(2000), From ! {self(), "alive"}.
 
 check_age(#user{age = Age}) when Age >= 18 -> allowed;
 check_age(_) -> forbidden.
