@@ -9,22 +9,19 @@ class Solution:
         if not root:
             return None
         dq = deque([(0, root)])
-        xs = []
+        prev = (-1, None)
         while dq:
             t = dq.popleft()
-            xs.append(t)
+
             d, n = t
+            prev_d, prev_n = prev
+            if prev_d == d:
+                prev_n.next = n
+            prev = t
             if n.left:
                 dq.append((d + 1, n.left))
             if n.right:
                 dq.append((d + 1, n.right))
-
-        for i in range(1, len(xs)):
-            prev_d, prev_n = xs[i - 1]
-            cur_d, cur_n = xs[i]
-
-            if prev_d == cur_d:
-                prev_n.next = cur_n
 
         return root
 
