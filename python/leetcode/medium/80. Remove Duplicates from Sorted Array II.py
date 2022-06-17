@@ -2,7 +2,7 @@ from typing import List
 
 
 class Solution:
-    # time O(n), space O(1)
+    # time O(n + n), space O(1)
     def removeDuplicates(self, nums: List[int]) -> int:
         r, w = 0, 0
         count = 1
