@@ -1,5 +1,4 @@
 -module(main).
-%%-export([main/0]).
 -compile(nowarn_export_all).
 -compile(export_all).
 
@@ -9,22 +8,25 @@
   type,
   details = []
 }).
-
-main() ->
-  spawn(main, say_hello, [self()]),
-
+main() -> run(false)
+.
+run(R) ->
+  if
+    R == false -> io:format("false "), register(main_pr, self());
+    R == true -> ok
+  end,
+  spawn(main, say_hello, []),
   receive
     {From, "alive"} -> io:format("he is alive"),
       io:format("~p~n", [From]);
-    _ -> io:format("no mesgage")
+    _ -> io:format("no mesgage\n")
+  after 3000 ->
+    io:format("timeout\n")
   end,
-
-  io:format("here").
-
+  run(true).
 
 
-
-say_hello(From) -> timer:sleep(5000), From ! {self(), "alive"}.
+say_hello() -> timer:sleep(1000), main_pr ! {self(), "alive"}.
 
 check_age(#user{age = Age}) when Age >= 18 -> allowed;
 check_age(_) -> forbidden.
