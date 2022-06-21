@@ -38,21 +38,21 @@ class MyThreadFactory(private val name: String) : ThreadFactory {
 
 val pool = Executors.newFixedThreadPool(8, MyThreadFactory("TESTTICHE")).asCoroutineDispatcher()
 
-
-fun main() = runBlocking {
-
-    println(Thread.currentThread().name)
-
-    val time = measureTimeMillis {
-        val job = launch(pool) {
-            launch { hello("hello", 1000) }
-            launch { hello("world", 900) }
-        }
-        job.join()
-    }
-    println(time)
-
-}
+//
+//fun main() = runBlocking {
+//
+//    println(Thread.currentThread().name)
+//
+//    val time = measureTimeMillis {
+//        val job = launch(pool) {
+//            launch { hello("hello", 1000) }
+//            launch { hello("world", 900) }
+//        }
+//        job.join()
+//    }
+//    println(time)
+//
+//}
 
 
 suspend fun hello(name: String, dl: Long) {
