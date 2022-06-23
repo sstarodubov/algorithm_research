@@ -21,7 +21,7 @@ public class RestT {
 
         System.out.println(executor.executeOperationOnFile(saveCommand, textFile));
         System.out.println(executor.executeOperationOnFile(openCommand, textFile));
-
+        System.out.println(executor.executeOperationOnFile(file -> file.name + " is deleted", textFile));
         return "ok";
     }
 }
