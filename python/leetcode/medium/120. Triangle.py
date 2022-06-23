@@ -5,22 +5,25 @@ class Solution:
     def minimumTotal(self, triangle: List[List[int]]) -> int:
         dp = {}
 
-        def dfs(row, col, tm):
-            if row >= len(triangle):
-                return tm
-            if col >= len(triangle[row]):
-                return float("inf")
+        def dfs(row, col):
+            t = (row, col)
+            if t in dp:
+                return dp[t]
 
             cur_val = triangle[row][col]
 
-            l = dfs(row + 1, col, cur_val + tm)
-            r = dfs(row + 1, col + 1, cur_val + tm)
-            dp[(row, col)] = min(l, r)
-            return dp[(row, col)]
+            if row + 1 >= len(triangle):
+                return cur_val
 
-        ans = dfs(0, 0, 0)
+            l = dfs(row + 1, col)
+            r = dfs(row + 1, col + 1)
 
-        print(ans)
+            tmp = cur_val + min(l, r)
+            dp[t] = tmp
+            return tmp
+
+        ans = dfs(0, 0)
+
         return ans
 
 
