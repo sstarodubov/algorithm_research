@@ -8,9 +8,9 @@ class Solution:
         self.ans = 0
 
         def dfs(n, xs):
-            r = xs + str(n.val)
+            r = xs * 10 + n.val
             if not n.left and not n.right:
-                self.ans += int(r)
+                self.ans += r
                 return
 
             if n.left:
@@ -18,7 +18,7 @@ class Solution:
             if n.right:
                 dfs(n.right, r)
 
-        dfs(root, "")
+        dfs(root, 0)
 
         return self.ans
 
