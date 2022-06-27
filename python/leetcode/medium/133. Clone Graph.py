@@ -14,24 +14,11 @@ class Solution:
     def cloneGraph(self, node: 'Node') -> 'Node':
         if not node:
             return None
+
         vals = {}
 
-        def dfs(n: 'Node'):
-            if not n:
-                return
-            if n.val in vals:
-                return
-
-            new_node = n.val
-
-            vals[new_node] = Node(n.val)
-
-            for neighbor in n.neighbors:
-                dfs(neighbor)
-
-        dfs(node)
-
         def bfs(n: Node):
+            vals[n.val] = Node(n.val)
             dq = deque([n])
             visited = set()
 
@@ -41,6 +28,8 @@ class Solution:
                     continue
                 visited.add(cur)
                 for neighbor in cur.neighbors:
+                    if neighbor.val not in vals:
+                        vals[neighbor.val] = Node(neighbor.val)
                     new_node = vals[cur.val]
                     new_node.neighbors.append(vals[neighbor.val])
                     if neighbor not in visited:
