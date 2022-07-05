@@ -1,4 +1,4 @@
-#Tips
+# Tips
 
 If input array is sorted then
 - Binary search
