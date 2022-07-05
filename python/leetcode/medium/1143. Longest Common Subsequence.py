@@ -1,30 +1,17 @@
 class Solution:
 
-    #time O(2^n)
+    # time O(n * m), space O(n*m)
     def longestCommonSubsequence(self, text1: str, text2: str) -> int:
-        self.ans = 0
+        dp = [[0 for j in range(len(text2) + 1)] for i in range(len(text1) + 1)]
 
-        def dfs(t, k, depth=0):
-            self.ans = max(self.ans, depth)
+        for i in range(len(text1) - 1, - 1, -1):
+            for j in range(len(text2) - 1, - 1, -1):
+                if text1[i] == text2[j]:
+                    dp[i][j] = 1 + dp[i + 1][j + 1]
+                else:
+                    dp[i][j] = max(dp[i][j + 1], dp[i + 1][j])
 
-            if t == "" or k == "":
-                return
-
-            for i in range(len(t)):
-                for j in range(len(k)):
-                    if k[j] == t[i]:
-                        dfs(t[i + 1:], k[j + 1:], depth + 1)
-
-        if len(text1) > len(text2):
-            t = text1
-            k = text2
-        else:
-            t = text2
-            k = text1
-
-        dfs(t, k)
-
-        return self.ans
+        return dp[0][0]
 
 
 assert Solution().longestCommonSubsequence(text1="abc", text2="def") == 0
