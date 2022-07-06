@@ -1,21 +1,44 @@
 package multithreading
 
 import kotlinx.coroutines.*
-import java.util.TreeMap
+import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
+import java.util.concurrent.atomic.AtomicInteger
 
 val eHandlerException = CoroutineExceptionHandler { coroutineContext, throwable ->
     println(throwable.message)
 }
 
-val e = Executors.newCachedThreadPool()
-val scope = CoroutineScope(e.asCoroutineDispatcher() + eHandlerException)
 
-fun main(): Unit {
-    println(rest())
+val executorService: ExecutorService = Executors.newCachedThreadPool()
 
-    println("finnish")
+val scope = CoroutineScope(executorService.asCoroutineDispatcher())
+
+fun main() = runBlocking {
+
+        scope.launch {
+            try {
+                Thread.sleep(1000)
+                throw RuntimeException("111")
+                println("here1: " + Thread.currentThread().name)
+            } catch (e: Exception) {
+                println("ERROR")
+                scope.coroutineContext.cancel()
+            }
+        }
+
+
+        scope.launch {
+            Thread.sleep(3000)
+            if (this.isActive) {
+                println("here2: " + Thread.currentThread().name)
+            }
+        }
+
+
+    println("here")
 }
+
 
 fun rest(): String = runBlocking {
     println(Thread.currentThread().name)
