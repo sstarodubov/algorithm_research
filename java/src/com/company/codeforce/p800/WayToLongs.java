@@ -1,3 +1,5 @@
+package p800;
+
 import java.util.Scanner;
 
 
@@ -14,7 +16,7 @@ public class WayToLongs {
                 continue;
             } 
             int n = word.length() - 2;
-            System.out.println(String.valueOf(word.charAt(0)) + n + String.valueOf(word.charAt(word.length() - 1)));
+            System.out.println(String.valueOf(word.charAt(0)) + n + word.charAt(word.length() - 1));
        }
 
        sc.close();
