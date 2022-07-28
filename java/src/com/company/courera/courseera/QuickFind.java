@@ -1,4 +1,3 @@
-package segvick;
 
 import java.util.Scanner;
 
@@ -22,7 +21,9 @@ public class QuickFind {
         int qid = id[q];
 
         for (int i = 0; i < id.length; i++) {
-            if (id[i] == pid) id[i] = qid;
+            if (id[i] == pid) {
+                id[i] = qid;
+            }
         }
     }
 
