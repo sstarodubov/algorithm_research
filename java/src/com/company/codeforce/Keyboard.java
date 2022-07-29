@@ -6,12 +6,9 @@ public class Keyboard {
 
     public static void main(String[] args) throws Exception {
         var keybord = "qwertyuiopasdfghjkl;zxcvbnm,./";
-
-        var im = new HashMap<Integer, Character>();
         var cm = new HashMap<Character, Integer>();
 
         for (int i = 0; i < keybord.length(); i++) {
-            im.put(i, keybord.charAt(i));
             cm.put(keybord.charAt(i), i);
         }
 
@@ -23,13 +20,13 @@ public class Keyboard {
         if (d.equals("R")) {
             for (int i = 0; i < s.length(); i++) {
                 var typed = s.charAt(i);
-                var wanted = (im.get(cm.get(typed) - 1));
+                var wanted = (keybord.charAt((cm.get(typed) - 1)));
                 ans.append(wanted);
             }
         } else {
             for (int i = 0; i < s.length(); i++) {
                 var typed = s.charAt(i);
-                var wanted = (im.get(cm.get(typed) + 1));
+                var wanted = (keybord.charAt((cm.get(typed) + 1)));
                 ans.append(wanted);
             }
         }
