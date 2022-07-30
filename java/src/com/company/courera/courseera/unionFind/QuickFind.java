@@ -1,3 +1,4 @@
+package unionFind;
 
 import java.util.Scanner;
 

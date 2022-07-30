@@ -1,34 +1,45 @@
+package unionFind;
 
-public class QuickUnion {
+import java.util.Arrays;
+
+public class WeightedQuickUnion {
 
     private final int[] groupId;
+    private final int[] sz;
 
-    public QuickUnion(int[] id) {
-        this.groupId = id;
-    }
-
-    public QuickUnion(int n) {
+    public WeightedQuickUnion(int n) {
         groupId = new int[n];
         for (int i = 0; i < n; i++) {
             groupId[i] = i;
         }
+        sz = new int[n];
+        Arrays.fill(sz, 1);
     }
 
     private int root(int node) {
         while (node != groupId[node]) {
+            groupId[node] = groupId[groupId[node]]; // compression
             node = groupId[node];
         }
         return node;
     }
 
     public boolean connected(int p, int q) {
-        return root(p) == root(q);
+        return groupId[p] == groupId[q];
     }
 
     public void union(int p, int q) {
         int pid = root(p);
         int qid = root(q);
-        groupId[qid] = pid;
+
+        if (pid == qid) return;
+        if (sz[pid] < sz[qid]) {
+            groupId[pid] = qid;
+            sz[qid] += sz[pid];
+        } else {
+            groupId[qid] = pid;
+            sz[pid] += sz[qid];
+        }
     }
 
     public void display() {
@@ -45,7 +56,7 @@ public class QuickUnion {
     }
 
     public static void main(String[] args) {
-        var qu = new QuickUnion(10);
+        var qu = new WeightedQuickUnion(10);
         qu.union(9, 2);
         qu.union(2, 4);
         qu.union(2, 3);
