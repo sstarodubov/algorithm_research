@@ -13,6 +13,7 @@ public class Presents {
         }
 
         displayArr(arr);
+        sc.close();
     }
 
     private static void displayArr(int[] arr) {
