@@ -1,3 +1,5 @@
+package p800;
+
 import java.io.IOException;
 import java.util.Scanner;
 

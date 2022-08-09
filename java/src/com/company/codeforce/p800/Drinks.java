@@ -1,19 +1,20 @@
+package p800;
+
 import java.util.Scanner;
 
-public class Presents {
+public class Drinks {
 
     public static void main(String[] args) {
         final var sc = new Scanner(System.in);
+
         int n = sc.nextInt();
-
-        int[] arr = new int[n];
-
+        double ans = 0;
         for (int i = 0; i < n; i++) {
-            arr[sc.nextInt() - 1] = i + 1;
+            ans += sc.nextInt();
         }
 
-        displayArr(arr);
-        sc.close();
+        System.out.println(ans / n);
+
     }
 
     private static void displayArr(int[] arr) {
@@ -24,5 +25,15 @@ public class Presents {
         sb.deleteCharAt(sb.length() - 1);
 
         System.out.println(sb);
+    }
+
+    private static int[] readIntArr(Scanner sc, int n) {
+        int[] arr = new int[n];
+
+        for (int i = 0; i < n; i++) {
+            arr[i] = sc.nextInt();
+        }
+
+        return arr;
     }
 }
