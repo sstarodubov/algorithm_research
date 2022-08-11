@@ -1,26 +1,37 @@
 package sorting;
 
-import java.util.Arrays;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class QuickSort {
 
     public static void main(String[] args) {
-        int[] arr = new int[20];
-        Random rnd = ThreadLocalRandom.current();
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = rnd.nextInt(arr.length);
-        }
-        System.out.println(Arrays.toString(arr));
+        int[] arr = {2, 4, 5, 1, 6};
         var qs = new QuickSort();
-        qs.sort(arr);
-        System.out.println(Arrays.toString(arr));
+        for (int i = 0; i < arr.length; i++) {
+            System.out.println(qs.select(arr, i));
+        }
     }
 
+    //time O(n log n)
     public void sort(int[] arr) {
         shuffle(arr);
         sort(arr, 0, arr.length - 1);
+    }
+
+
+    //time O(n)
+    public int select(int[] arr, int k) {
+        shuffle(arr);
+        int l = 0, r = arr.length - 1;
+        while (r > l) {
+            int p = partition(arr, l, r);
+            if (p < k) l = p + 1;
+            else if (p > k) r = p - 1;
+            else return arr[k];
+        }
+
+        return arr[k];
     }
 
     private void sort(int[] arr, int l, int r) {
