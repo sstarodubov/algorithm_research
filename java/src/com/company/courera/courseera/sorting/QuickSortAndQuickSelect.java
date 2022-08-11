@@ -3,11 +3,11 @@ package sorting;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class QuickSort {
+public class QuickSortAndQuickSelect {
 
     public static void main(String[] args) {
         int[] arr = {2, 4, 5, 1, 6};
-        var qs = new QuickSort();
+        var qs = new QuickSortAndQuickSelect();
         for (int i = 0; i < arr.length; i++) {
             System.out.println(qs.select(arr, i));
         }
