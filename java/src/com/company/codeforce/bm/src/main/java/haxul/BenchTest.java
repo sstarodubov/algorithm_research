@@ -1,4 +1,4 @@
-package org;
+package haxul;
 
 import org.openjdk.jmh.annotations.*;
 import org.openjdk.jmh.infra.Blackhole;
