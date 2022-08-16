@@ -1,15 +1,19 @@
 import java.util.Scanner;
 
-public class A1409 {
+public class A1367 {
 
     public static void main(String[] args) throws Exception {
         final Scanner sc = new Scanner(System.in);
-        int t = sc.nextInt();
+        var t = sc.nextInt();
+        var sb = new StringBuilder();
         for (int i = 0; i < t; i++) {
-            long a = sc.nextLong();
-            long b = sc.nextLong();
-            long diff = Math.abs(a - b);
-            System.out.println((diff / 10) + ((diff % 10) == 0 ? 0 : 1));
+            var s = sc.next();
+            sb.append(s.charAt(0));
+            for (int j = 1; j < s.length(); j += 2) {
+                sb.append(s.charAt(j));
+            }
+            System.out.println(sb);
+            sb.setLength(0);
         }
     }
 
