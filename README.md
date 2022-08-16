@@ -1,6 +1,11 @@
 # math
 
 - 1*k + 2*k + 3*k + ... + w * k => ((w * (w+1) * k)) / 2  
+- `boolean являетсяЛиЧислоПростым(long num) {
+        if (num == 2) return true;
+        if (num == 3) return true;
+        return (num * num) % 24 == 1;
+  }`
 
 # bit operations
 
