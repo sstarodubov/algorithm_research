@@ -36,15 +36,6 @@ public class A1512 {
         return -1;
     }
 
-    public static void print(int[] arr) {
-        var s = new StringBuilder();
-        for (int j : arr) {
-            s.append(j).append(" ");
-        }
-        s.deleteCharAt(s.length() - 1);
-        System.out.println(s);
-    }
-
     public static int[] read(int size, final Scanner sc) {
         int[] arr = new int[size];
         for (int i = 0; i < size; i++) {
