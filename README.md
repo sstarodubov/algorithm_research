@@ -37,15 +37,13 @@ n - number
 3. prefix/suffix - sum
 4. Kadane's algorithm \
     
-    
-    
-    `public int maxSubArray(int[] nums) { \
+    public int maxSubArray(int[] nums) { \
         int ans = nums[0]; \
         for (int i = 1; i < nums.length; i++) { \
             nums[i] = Math.max(nums[i], nums[i] + nums[i - 1]); \
             ans = Math.max(ans, nums[i]); \
         }\
         return ans; \
-    }`
+    }
 5. Monotoic stack: to solve the problem "Next Great Element"
 6. These completed rows contain in total 1 + 2 + ... + k = (k * (k + 1)) // 2
