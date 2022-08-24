@@ -1,6 +1,9 @@
+package p800;
+
+import java.util.Arrays;
 import java.util.Scanner;
 
-public class A1624 {
+public class B1360 {
 
     public static void main(String[] args) throws Exception {
         final Scanner sc = new Scanner(System.in);
@@ -8,17 +11,16 @@ public class A1624 {
 
         for (int i = 0; i < t; i++) {
             int n = sc.nextInt();
-            int mn = Integer.MAX_VALUE;
-            int mx = Integer.MIN_VALUE;
-            int[] arr = read(n, sc);
-
-            for (int k : arr) {
-                if (mx < k) mx = k;
-                if (mn > k) mn = k;
+            int[] read = read(n, sc);
+            Arrays.sort(read);
+            int diff = Integer.MAX_VALUE;
+            for (int j = 1; j < n; j++) {
+                int c = read[j] - read[j - 1];
+                if (diff > c) {
+                    diff = c;
+                }
             }
-
-            int ans = Math.abs(mx - mn);
-            System.out.println(ans);
+            System.out.println(diff);
         }
     }
 

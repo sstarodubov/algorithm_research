@@ -1,3 +1,5 @@
+package p800;
+
 import java.util.ArrayDeque;
 import java.util.Scanner;
 

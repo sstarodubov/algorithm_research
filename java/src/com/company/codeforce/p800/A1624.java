@@ -1,7 +1,8 @@
-import java.util.Arrays;
+package p800;
+
 import java.util.Scanner;
 
-public class B1360 {
+public class A1624 {
 
     public static void main(String[] args) throws Exception {
         final Scanner sc = new Scanner(System.in);
@@ -9,16 +10,17 @@ public class B1360 {
 
         for (int i = 0; i < t; i++) {
             int n = sc.nextInt();
-            int[] read = read(n, sc);
-            Arrays.sort(read);
-            int diff = Integer.MAX_VALUE;
-            for (int j = 1; j < n; j++) {
-                int c = read[j] - read[j - 1];
-                if (diff > c) {
-                    diff = c;
-                }
+            int mn = Integer.MAX_VALUE;
+            int mx = Integer.MIN_VALUE;
+            int[] arr = read(n, sc);
+
+            for (int k : arr) {
+                if (mx < k) mx = k;
+                if (mn > k) mn = k;
             }
-            System.out.println(diff);
+
+            int ans = Math.abs(mx - mn);
+            System.out.println(ans);
         }
     }
 
