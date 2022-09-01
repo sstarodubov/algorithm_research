@@ -1,6 +1,21 @@
 # math
 
 - 1*k + 2*k + 3*k + ... + w * k => ((w * (w+1) * k)) / 2  
+- `boolean являетсяЛиЧислоПростым(long num) {
+        if (num == 2) return true;
+        if (num == 3) return true;
+        return (num * num) % 24 == 1;
+  }`
+
+- ` int greaterCommonDeviser(int a , int b) {
+        int R;
+        while ((a % b) > 0) {
+            R = a % b;
+            a = b;
+            b = R;
+        }
+        return b;
+    }`
 
 # bit operations
 
@@ -21,8 +36,6 @@ n - number
 2. 2 - ptr (read/ overwrite , shrinking/expanding)
 3. prefix/suffix - sum
 4. Kadane's algorithm \
-    
-    
     
     public int maxSubArray(int[] nums) { \
         int ans = nums[0]; \
