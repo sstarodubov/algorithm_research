@@ -1,8 +1,5 @@
 import java.util.*;
 
-// 1 2 3 4 5 6
-
-// 6 5 4 5
 public class A1454 {
 
     public static void main(String[] args) {
