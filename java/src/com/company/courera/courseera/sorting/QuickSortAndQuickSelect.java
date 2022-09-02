@@ -1,17 +1,18 @@
 package sorting;
 
+import java.util.Arrays;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class QuickSortAndQuickSelect {
 
     public static void main(String[] args) {
-        int[] arr = {2, 4, 5, 1, 6};
+        int[] arr = {2, 4, 4, 4, 4, 4, 4, 4, 4, 5, 1, 6};
         var qs = new QuickSortAndQuickSelect();
-        for (int i = 0; i < arr.length; i++) {
-            System.out.println(qs.select(arr, i));
-        }
+        qs.sort(arr);
+        System.out.println(Arrays.toString(arr));
     }
+
 
     //time O(n log n)
     public void sort(int[] arr) {
@@ -34,12 +35,21 @@ public class QuickSortAndQuickSelect {
         return arr[k];
     }
 
-    private void sort(int[] arr, int l, int r) {
-        if (l >= r) return;
+    public void sort(int[] a, int lo, int hi) {
+        if (hi <= lo) return;
 
-        int pIdx = partition(arr, l, r);
-        sort(arr, l, pIdx - 1);
-        sort(arr, pIdx + 1, r);
+        int lt = lo, gt = hi;
+        int v = a[lo];
+        int i = lo;
+
+        while (i <= gt) {
+            if (a[i] < v) swap(a, lt++, i++);
+            else if (a[i] > v) swap(a, i, gt--);
+            else i++;
+        }
+
+        sort(a, lo, lt - 1);
+        sort(a, gt + 1, hi);
     }
 
     private int partition(int[] arr, int l, int r) {
