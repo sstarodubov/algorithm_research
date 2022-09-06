@@ -1,37 +1,22 @@
+package p800;
+
 import java.util.Scanner;
 
-public class A80 {
+public class A1703 {
 
     public static void main(String[] args) throws Exception {
         final Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-        int m = sc.nextInt();
-        if (!isPrime(m)) {
-            System.out.println("NO");
-            return;
-        }
-        for (int i = n + 1; i < m; i++) {
-            if (isPrime(i)) {
+        int t = sc.nextInt();
+
+        for (int i = 0; i < t; i++) {
+            var s = sc.next().toUpperCase();
+            if (s.equals("YES")) {
+                System.out.println("YES");
+            } else {
                 System.out.println("NO");
-                return;
             }
         }
-
-        System.out.println("YES");
     }
-
-    public static boolean isPrime(int num) {
-        if (num == 2 || num == 3)
-            return true;
-        if (num <= 1 || num % 2 == 0 || num % 3 == 0)
-            return false;
-        for (int i = 5; i * i <= num ; i+=6)
-            if (num % i == 0 || num % (i + 2) == 0)
-                return false;
-        return true;
-    }
-
-
 
     public static void print(int[] arr) {
         var s = new StringBuilder();
