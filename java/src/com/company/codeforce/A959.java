@@ -1,27 +1,21 @@
 import java.util.Scanner;
 
-public class A1462 {
+public class A959 {
 
     public static void main(String[] args) throws Exception {
         final Scanner sc = new Scanner(System.in);
-        int t = sc.nextInt();
+        int n = sc.nextInt();
 
-        for (int i = 0; i < t; i++) {
-            int n = sc.nextInt();
-            var ans = new int[n];
-            var arr = read(n, sc);
-            int p = 0, l = 0, r = n - 1;
-            boolean fl = true;
-            while (p < n) {
-                if (fl) {
-                    ans[p++] = arr[l++];
-                    fl = false;
-                } else {
-                    ans[p++] = arr[r--];
-                    fl = true;
-                }
+        if (n == 1) {
+            System.out.println("Ehab");
+        } else if (n == 2) {
+            System.out.println("Mahmoud");
+        } else {
+            if ((n & 1) == 0) {
+                System.out.println("Mahmoud");
+            } else {
+                System.out.println("Ehab");
             }
-            print(ans);
         }
     }
 
