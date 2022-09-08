@@ -8,7 +8,7 @@ public class A1542 {
 
         for (int i = 0; i < t; i++) {
             int n = sc.nextInt();
-            int[] arr = read(n * 2 , sc);
+            int[] arr = read(n * 2, sc);
 
             fn(arr);
 
@@ -16,18 +16,13 @@ public class A1542 {
     }
 
     private static void fn(int[] arr) {
-        int odd = 0;
-        int even = 0;
+        int k = 0;
 
         for (int i = 0; i < arr.length; i++) {
-            if ((arr[i] & 1) == 0) {
-                even++;
-            } else {
-                odd++;
-            }
+            k += (arr[i] & 1);
         }
 
-        if (odd == even) {
+        if (k == (arr.length) / 2) {
             System.out.println("YES");
         } else {
             System.out.println("NO");
