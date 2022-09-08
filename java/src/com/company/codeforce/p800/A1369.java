@@ -1,20 +1,19 @@
+package p800;
+
 import java.util.Scanner;
 
-public class A959 {
+public class A1369 {
 
     public static void main(String[] args) throws Exception {
         final Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
+        int t = sc.nextInt();
 
-        if (n == 1) {
-            System.out.println("Ehab");
-        } else if (n == 2) {
-            System.out.println("Mahmoud");
-        } else {
-            if ((n & 1) == 0) {
-                System.out.println("Mahmoud");
+        for (int i = 0; i < t; i++) {
+            int n = sc.nextInt();
+            if ((n % 4) == 0) {
+                System.out.println("YES");
             } else {
-                System.out.println("Ehab");
+                System.out.println("NO");
             }
         }
     }
