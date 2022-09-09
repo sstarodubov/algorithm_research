@@ -1,40 +1,34 @@
-import java.util.Arrays;
+package p800;
+
 import java.util.Scanner;
 
-public class B1676 {
+public class A1542 {
 
     public static void main(String[] args) throws Exception {
         final Scanner sc = new Scanner(System.in);
         int t = sc.nextInt();
 
         for (int i = 0; i < t; i++) {
-            fn(sc);
+            int n = sc.nextInt();
+            int[] arr = read(n * 2, sc);
+
+            fn(arr);
+
         }
     }
 
-    private static void fn(Scanner sc) {
-        int n = sc.nextInt();
-        int[] xs = read(n , sc);
+    private static void fn(int[] arr) {
+        int k = 0;
 
-        int mn = Arrays.stream(xs).min().getAsInt();
-
-        int ans = 0;
-
-        for (int i = 0; i < xs.length; i++) {
-            ans += (xs[i] - mn);
+        for (int i = 0; i < arr.length; i++) {
+            k += (arr[i] & 1);
         }
 
-        System.out.println(ans);
-    }
-
-    int greaterCommonDeviser(int a, int b) {
-        int R;
-        while ((a % b) > 0) {
-            R = a % b;
-            a = b;
-            b = R;
+        if (k == (arr.length) / 2) {
+            System.out.println("YES");
+        } else {
+            System.out.println("NO");
         }
-        return b;
     }
 
     public static void print(int[] arr) {
