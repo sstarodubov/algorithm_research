@@ -1,24 +1,33 @@
+package p800;
+
+import java.util.HashSet;
 import java.util.Scanner;
 
-public class A1660 {
+public class B1703 {
 
     public static void main(String[] args) throws Exception {
         final Scanner sc = new Scanner(System.in);
-        int t  = sc.nextInt();
-
+        int t = sc.nextInt();
         for (int i = 0; i < t; i++) {
             fn(sc);
         }
     }
 
     private static void fn(Scanner sc) {
-        int a = sc.nextInt();
-        int b = sc.nextInt();
-        if (a == 0) {
-            System.out.println(1);
-            return;
+        int n = sc.nextInt();
+        var s = sc.next();
+        int ans = 0;
+        var set = new HashSet<Character>();
+        for (int i = 0; i < n; i++) {
+            if (set.contains(s.charAt(i))) {
+                ans++;
+            } else {
+                ans += 2;
+                set.add(s.charAt(i));
+            }
         }
-        System.out.println(a + (b * 2) + 1);
+
+        System.out.println(ans);
     }
 
     static int greaterCommonDeviser(int a, int b) {
