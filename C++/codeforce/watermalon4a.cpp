@@ -3,13 +3,21 @@ using namespace std;
 
 
 int main() {
-    int w;
-    cin >> w;
-    
-    if (w & 1 == 1) {
-        cout << "NO";
-        return 0;
-    } 
+    int t;
+    cin >> t;
 
+    while ((t--)!= 0) {
+        int n;
+        cin >> n;
+
+          for (int i = 31; i >=0 ; i--) {
+            if ((n & (1 << i))) {
+                cout << (1 << i) - 1;
+                cout << '\n';
+                break;
+            }
+        }
+    }
+    
     return 0;
 }
