@@ -16,9 +16,6 @@ void solve() {
         cin >> w;
         arr[j] = w;
     }
-    if (n == 9) {
-        int a = 0;
-    }
     for (int i = 0; i < n; ++i) {
         int p = arr[i];
         if (m.find(p) != m.end()) {
