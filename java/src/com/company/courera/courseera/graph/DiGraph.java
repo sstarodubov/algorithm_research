@@ -5,25 +5,112 @@ import java.util.*;
 public class DiGraph implements Graph {
 
     public static void main(String[] args) {
-        DiGraph diGraph = new DiGraph(7);
+        DiGraph diGraph = new DiGraph(13);
         diGraph.addEdge(0, 1);
         diGraph.addEdge(0, 5);
-        diGraph.addEdge(0, 2);
-        diGraph.addEdge(1, 4);
-        diGraph.addEdge(3, 2);
+        diGraph.addEdge(2, 0);
+        diGraph.addEdge(2, 3);
         diGraph.addEdge(3, 5);
-        diGraph.addEdge(3, 6);
-        diGraph.addEdge(3, 4);
-        diGraph.addEdge(5, 2);
+        diGraph.addEdge(3, 2);
+        diGraph.addEdge(4, 3);
+        diGraph.addEdge(4, 2);
+        diGraph.addEdge(5, 4);
+        diGraph.addEdge(6, 8);
         diGraph.addEdge(6, 0);
         diGraph.addEdge(6, 4);
+        diGraph.addEdge(6, 9);
+        diGraph.addEdge(7, 6);
+        diGraph.addEdge(7, 9);
+        diGraph.addEdge(8, 6);
+        diGraph.addEdge(9, 10);
+        diGraph.addEdge(9, 11);
+        diGraph.addEdge(10, 12);
+        diGraph.addEdge(11, 12);
+        diGraph.addEdge(11, 4);
+        diGraph.addEdge(12, 9);
 
-        diGraph.topologicalSort();
+        diGraph.strongComponents();
     }
 
     private final int V;
     private final List<List<Integer>> adj;
     private int E = 0;
+
+
+    public void strongComponents() {
+        var scc = new int[V];
+
+        var reversedGraph = this.reverse();
+        List<Integer> postOrder = reversedGraph.postOrder();
+        var visited = new HashSet<Integer>();
+        int id = 0;
+        for (var node : postOrder) {
+            if (!visited.contains(node)) {
+                this.sccDfs(node, visited, id++, scc);
+            }
+        }
+
+        System.out.println(Arrays.toString(scc));
+    }
+
+    private void sccDfs(int w, Set<Integer> visited, int id, int[] scc) {
+        if (visited.contains(w)) return;
+
+        visited.add(w);
+        scc[w] = id;
+
+        var list = this.adj.get(w);
+
+        for (var n : list) {
+            sccDfs(n, visited, id, scc);
+        }
+    }
+
+    private List<Integer> postOrder() {
+        var postOrder = new ArrayList<Integer>();
+        var visited = new HashSet<Integer>();
+        for (int i = 0; i < V; i++) {
+            postOrder(i, postOrder, visited);
+        }
+        Collections.reverse(postOrder);
+        return postOrder;
+    }
+
+    private void postOrder(int v, List<Integer> postOrder, Set<Integer> visited) {
+        if (visited.contains(v)) return;
+
+        visited.add(v);
+
+        var ns = this.adj.get(v);
+
+        for (var n : ns) {
+            postOrder(n, postOrder, visited);
+        }
+
+        postOrder.add(v);
+    }
+
+    public DiGraph reverse() {
+        DiGraph reverseGraph = new DiGraph(V);
+        for (int i = 0; i < V; i++) {
+            List<Integer> nodeList = adj.get(i);
+            for (int destination : nodeList) {
+                reverseGraph.addEdge(destination, i);
+            }
+        }
+        return reverseGraph;
+    }
+
+    public void printGraph() {
+        for (int i = 0; i < V; i++) {
+            List<Integer> nodeList = adj.get(i);
+            System.out.print(i + " | -> ");
+            for (Integer integer : nodeList) {
+                System.out.print(integer + " ");
+            }
+            System.out.println();
+        }
+    }
 
     public void topologicalSort() {
         var topSort = new ArrayList<Integer>();
