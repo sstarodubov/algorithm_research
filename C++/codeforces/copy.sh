@@ -1,3 +1,3 @@
 #!/bin/zsh
 read -r filename;
-cp main.cpp "800/$filename.cpp"
+cp main.cpp "easy-100-marathon/$filename.cpp"
