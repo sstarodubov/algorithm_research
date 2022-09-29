@@ -2,7 +2,7 @@ package graph;
 
 import java.util.*;
 
-public class DiGraph implements Graph {
+public class DiGraph implements Graph<Integer> {
 
     public static void main(String[] args) {
         DiGraph diGraph = new DiGraph(13);

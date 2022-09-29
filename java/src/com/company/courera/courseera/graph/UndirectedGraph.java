@@ -2,7 +2,7 @@ package graph;
 
 import java.util.*;
 
-public class UndirectedGraph implements Graph {
+public class UndirectedGraph implements Graph<Integer> {
 
     private final int V;
     private final List<List<Integer>> adj;
