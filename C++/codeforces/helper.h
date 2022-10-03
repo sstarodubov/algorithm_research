@@ -69,7 +69,8 @@ void buildBinaryTree(vector<int> &nums, TreeNode *root) {
 }
 
 
-struct ListNode {
+class ListNode {
+public:
     int val;
     ListNode *next;
 
@@ -78,6 +79,10 @@ struct ListNode {
     ListNode(int x) : val(x), next(nullptr) {}
 
     ListNode(int x, ListNode *next) : val(x), next(next) {}
+
+    ~ListNode() {
+        delete next;
+    }
 };
 
 void buildLinkedList(std::vector<int> &values, ListNode *head) {
@@ -93,6 +98,21 @@ void buildLinkedList(std::vector<int> &values, ListNode *head) {
     }
 }
 
+
+void buildLinkedList(std::vector<int> &&values, ListNode *head) {
+    if (values.empty()) return;
+    head->val = values[0];
+    ListNode *cur = head;
+    int i = 1;
+    while (i < values.size()) {
+        auto nn = new ListNode(values[i]);
+        cur->next = nn;
+        cur = nn;
+        i++;
+    }
+
+    values.clear();
+}
 
 void read_arr_long(int n, long long *a) {
     for (int i = 0; i < n; ++i) {
