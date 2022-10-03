@@ -2,7 +2,7 @@ package unionFind;
 
 import java.util.Arrays;
 
-public class WeightedQuickUnion {
+public class WeightedQuickUnion implements UnionFind {
 
     private final int[] groupId;
     private final int[] sz;
@@ -24,10 +24,12 @@ public class WeightedQuickUnion {
         return node;
     }
 
+    @Override
     public boolean connected(int p, int q) {
         return groupId[p] == groupId[q];
     }
 
+    @Override
     public void union(int p, int q) {
         int pid = root(p);
         int qid = root(q);

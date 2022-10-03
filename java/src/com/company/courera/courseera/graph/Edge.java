@@ -28,4 +28,9 @@ public class Edge implements Comparable<Edge> {
         else if (this.weigth > that.weigth) return 1;
         else return 0;
     }
+
+    @Override
+    public String toString() {
+        return "Edge{v=%d,w=%d,weigth=%f}".formatted(v, w, weigth);
+    }
 }

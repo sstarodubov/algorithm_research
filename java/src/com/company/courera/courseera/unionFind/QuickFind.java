@@ -2,7 +2,7 @@ package unionFind;
 
 import java.util.Scanner;
 
-public class QuickFind {
+public class QuickFind implements UnionFind {
 
     private final int[] id;
 
@@ -13,10 +13,12 @@ public class QuickFind {
         }
     }
 
+    @Override
     public boolean connected(int p, int q) {
         return id[p] == id[q];
     }
 
+    @Override
     public void union(int p, int q) {
         int pid = id[p];
         int qid = id[q];
