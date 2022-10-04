@@ -1,12 +1,12 @@
 package graph;
 
 import unionFind.QuickFind;
-import unionFind.QuickUnion;
 import unionFind.UnionFind;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.PriorityQueue;
+import java.util.function.Consumer;
 
 public class EdgeWeigthedGraph {
 
@@ -40,25 +40,25 @@ public class EdgeWeigthedGraph {
         }
     }
 
-    private void visit(boolean[] marked, int v, PriorityQueue<Edge> pq) {
-        marked[v] = true;
-        for (Edge e : this.adj(v)) {
-            if (!marked[e.other(v)]) pq.add(e);
-        }
-    }
-
     public List<Edge> primMST() {
         final var mst = new ArrayList<Edge>(V + 1);
         final var pq = new PriorityQueue<Edge>();
         final var marked = new boolean[V];
-        visit(marked, 0, pq);
+        Consumer<Integer> visit = (vertex) -> {
+            marked[vertex] = true;
+            for (Edge e : this.adj(vertex)) {
+                if (!marked[e.other(vertex)]) pq.add(e);
+            }
+        };
+
+        visit.accept(0);
         while (!pq.isEmpty()) {
             Edge e = pq.poll();
             int v = e.either(), w = e.other(v);
             if (marked[v] && marked[w]) continue;
             mst.add(e);
-            if (!marked[v]) visit(marked, v, pq);
-            if (!marked[w]) visit(marked, w, pq);
+            if (!marked[v]) visit.accept(v);
+            if (!marked[w]) visit.accept(w);
         }
 
         return mst;
