@@ -22,11 +22,13 @@ public class EdgeWeigthedGraph {
         graph.addEdge(new Edge(5, 3, 1));
 
         System.out.println(graph.kruskalMST());
+        System.out.println(graph.primMST());
     }
 
     private int V;
     private final List<List<Edge>> adj;
     private final List<Edge> edges;
+
 
     public EdgeWeigthedGraph(int V) {
         this.V = V;
@@ -36,6 +38,30 @@ public class EdgeWeigthedGraph {
         for (int i = 0; i < V; i++) {
             adj.add(new ArrayList<>());
         }
+    }
+
+    private void visit(boolean[] marked, int v, PriorityQueue<Edge> pq) {
+        marked[v] = true;
+        for (Edge e : this.adj(v)) {
+            if (!marked[e.other(v)]) pq.add(e);
+        }
+    }
+
+    public List<Edge> primMST() {
+        final var mst = new ArrayList<Edge>(V + 1);
+        final var pq = new PriorityQueue<Edge>();
+        final var marked = new boolean[V];
+        visit(marked, 0, pq);
+        while (!pq.isEmpty()) {
+            Edge e = pq.poll();
+            int v = e.either(), w = e.other(v);
+            if (marked[v] && marked[w]) continue;
+            mst.add(e);
+            if (!marked[v]) visit(marked, v, pq);
+            if (!marked[w]) visit(marked, w, pq);
+        }
+
+        return mst;
     }
 
     public List<Edge> kruskalMST() {
