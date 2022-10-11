@@ -4,6 +4,14 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
 
+record Pair(int node, double w) implements Comparable<Pair> {
+
+    @Override
+    public int compareTo(@NotNull Pair pair) {
+        return Double.compare(w, pair.w);
+    }
+}
+
 record DirectedEdge(int v, int w, double weigth) implements Comparable<DirectedEdge> {
     public int from() {
         return v;
@@ -38,20 +46,19 @@ class EdgeWeightedDirectedGraph {
     }
 
     public double dikstra(int from, int target) {
+        final var pq = new PriorityQueue<Pair>();
         distTo[from] = 0;
-        var visited = new boolean[V];
-        visited[from] = true;
-        Collection<DirectedEdge> edges = adj(from);
-        final var pq = new PriorityQueue<DirectedEdge>();
-        pq.addAll(edges);
+        pq.add(new Pair(from, 0));
 
         while (!pq.isEmpty()) {
-            DirectedEdge curEdge = pq.poll();
-            if (visited[curEdge.to()]) continue;
-            visited[curEdge.to()] = true;
-            if (relax(curEdge)) {
-                pq.addAll(adj(curEdge.to()));
+            int v = pq.poll().node();
+            for (var edge : adj.get(v)) {
+                if(relax(edge)) {
+                    pq.add(new Pair(edge.to(), edge.weigth()));
+                }
             }
+
+            if (v == target) return distTo[target];
         }
 
         return distTo[target];
@@ -74,13 +81,6 @@ class EdgeWeightedDirectedGraph {
         edges.add(e);
     }
 
-    void addBdEdge(DirectedEdge e) {
-        int v = e.from();
-        adj.get(v).add(e);
-        adj.get(e.to()).add(e);
-        edges.add(e);
-    }
-
     public Collection<DirectedEdge> adj(int v) {
         return adj.get(v);
     }
@@ -96,21 +96,24 @@ class EdgeWeightedDirectedGraph {
 
 public class ShortestPathProblem {
     public static void main(String[] args) {
-        final var graph = new EdgeWeightedDirectedGraph(9);
-        graph.addBdEdge(new DirectedEdge(0, 1, 3));
-        graph.addBdEdge(new DirectedEdge(0, 3, 2));
-        graph.addBdEdge(new DirectedEdge(0, 8, 4));
-        graph.addBdEdge(new DirectedEdge(1, 4, 7));
-        graph.addBdEdge(new DirectedEdge(1, 7, 4));
-        graph.addBdEdge(new DirectedEdge(7, 2, 2));
-        graph.addBdEdge(new DirectedEdge(2, 5, 1));
-        graph.addBdEdge(new DirectedEdge(5, 6, 8));
-        graph.addBdEdge(new DirectedEdge(3, 4, 1));
-        graph.addBdEdge(new DirectedEdge(8, 4, 8));
-        graph.addBdEdge(new DirectedEdge(3, 2, 6));
-        graph.addBdEdge(new DirectedEdge(8, 0, 4));
+        final var graph = new EdgeWeightedDirectedGraph(8);
+        graph.addEdge(new DirectedEdge(0, 1, 5));
+        graph.addEdge(new DirectedEdge(0, 7, 8));
+        graph.addEdge(new DirectedEdge(0, 4, 9));
+        graph.addEdge(new DirectedEdge(1, 3, 15));
+        graph.addEdge(new DirectedEdge(1, 7, 4));
+        graph.addEdge(new DirectedEdge(1, 2, 12));
+        graph.addEdge(new DirectedEdge(3, 6, 9));
+        graph.addEdge(new DirectedEdge(4, 5, 4));
+        graph.addEdge(new DirectedEdge(4, 7, 5));
+        graph.addEdge(new DirectedEdge(4, 6, 20));
+        graph.addEdge(new DirectedEdge(5, 2, 1));
+        graph.addEdge(new DirectedEdge(5, 6, 13));
+        graph.addEdge(new DirectedEdge(7, 5, 6));
+        graph.addEdge(new DirectedEdge(7, 2, 7));
 
-        double dikstra = graph.dikstra(7, 8);
+
+        double dikstra = graph.dikstra(0, 6);
         System.out.println(dikstra == Double.MAX_VALUE ? "Inf" : dikstra);
     }
 }
