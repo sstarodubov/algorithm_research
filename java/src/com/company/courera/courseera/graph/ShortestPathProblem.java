@@ -53,7 +53,7 @@ class EdgeWeightedDirectedGraph {
         while (!pq.isEmpty()) {
             int v = pq.poll().node();
             for (var edge : adj.get(v)) {
-                if(relax(edge)) {
+                if (relax(edge)) {
                     pq.add(new Pair(edge.to(), edge.weigth()));
                 }
             }
