@@ -2,15 +2,10 @@ package graph;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.util.*;
-
-record Pair(int node, double w) implements Comparable<Pair> {
-
-    @Override
-    public int compareTo(@NotNull Pair pair) {
-        return Double.compare(w, pair.w);
-    }
-}
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
 
 record DirectedEdge(int v, int w, double weigth) implements Comparable<DirectedEdge> {
     public int from() {
@@ -46,15 +41,16 @@ class EdgeWeightedDirectedGraph {
     }
 
     public double dikstra(int from, int target) {
-        final var pq = new PriorityQueue<Pair>();
+        final var pq = new MinIndexedDHeap<Double>(V);
         distTo[from] = 0;
-        pq.add(new Pair(from, 0));
+        pq.insert(from, 0.0);
 
         while (!pq.isEmpty()) {
-            int v = pq.poll().node();
+            int v = pq.pollMinKeyIndex();
             for (var edge : adj.get(v)) {
                 if (relax(edge)) {
-                    pq.add(new Pair(edge.to(), edge.weigth()));
+                    if (pq.contains(edge.to())) pq.decrease(edge.to(), edge.weigth());
+                    else pq.insert(edge.to(), edge.weigth());
                 }
             }
 
