@@ -7,9 +7,9 @@
     .code
 IntegerAddSub_ proc
 	
-	mov eax,ecx		;eax = a
-	add eax,edx		;eax = a + b
-	sub eax,r8d		;eax = a + b - c
+	mov eax, ecx		;eax = a
+	add eax, edx		;eax = a + b
+	sub eax, r8d		;eax = a + b - c
 	
 	ret
 
