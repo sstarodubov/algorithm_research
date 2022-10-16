@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="asm">
+      <UniqueIdentifier>{6346d0cb-78ac-477e-9fa1-61c30092b589}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Header.h">
@@ -29,13 +32,19 @@
   </ItemGroup>
   <ItemGroup>
     <MASM Include="addsumfun.asm">
-      <Filter>Source Files</Filter>
+      <Filter>asm</Filter>
     </MASM>
     <MASM Include="AndOrFunc.asm">
-      <Filter>Source Files</Filter>
+      <Filter>asm</Filter>
     </MASM>
     <MASM Include="integerShift.asm">
-      <Filter>Source Files</Filter>
+      <Filter>asm</Filter>
+    </MASM>
+    <MASM Include="IntegerMulDiv_.asm">
+      <Filter>asm</Filter>
+    </MASM>
+    <MASM Include="ProductNums.asm">
+      <Filter>asm</Filter>
     </MASM>
   </ItemGroup>
 </Project>
