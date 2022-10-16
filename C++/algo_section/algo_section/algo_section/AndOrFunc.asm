@@ -7,14 +7,14 @@
 ; return eax
 
 
-	extern g_Val1:dword
+	;extern g_Val1:dword
 	
     .code
 XorAnd_ proc
 	
 	xor edx, ecx
 	and edx, r8d
-	add edx, [g_Val1]
+	;add edx, [g_Val1]
 	mov eax, edx
 	
 	
