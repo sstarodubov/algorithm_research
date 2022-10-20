@@ -37,7 +37,7 @@ MemoryAddressing_ proc
 	 shl rcx, 2
 	 add r11, rcx
 	 mov eax, [r11]
-	 mov r11, [rsp + 40]
+	 mov r11, [rsp + 40]	
 	 mov [r11], eax
 
 	; example 2
