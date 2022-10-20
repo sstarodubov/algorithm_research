@@ -28,6 +28,46 @@ public:
     }
 };
 
+void buildBinaryTree(vector<int> &&nums, TreeNode *root) {
+    if (nums.empty()) {
+        cerr << "empty err" << endl;
+        return;
+    }
+    int p = 0;
+    root->val = nums[0];
+    deque<TreeNode *> queue;
+    queue.push_back(root);
+    TreeNode *cur;
+
+    while (!queue.empty()) {
+        cur = queue.front();
+        queue.pop_front();
+        if (cur == nullptr) {
+            cerr << "err" << endl;
+            return;
+        }
+        if (cur->left == nullptr) {
+            p++;
+            if (p >= nums.size()) return;
+            if (nums[p] != NULL_TREE_NODE) {
+                auto node = new TreeNode(nums[p]);
+                cur->left = node;
+                queue.push_back(node);
+            }
+        }
+
+        if (cur->right == nullptr) {
+            p++;
+            if (p >= nums.size()) return;
+            if (nums[p] != NULL_TREE_NODE) {
+                auto node = new TreeNode(nums[p]);
+                cur->right = node;
+                queue.push_back(node);
+            }
+        }
+    }
+}
+
 void buildBinaryTree(vector<int> &nums, TreeNode *root) {
     if (nums.empty()) {
         cerr << "empty err" << endl;
