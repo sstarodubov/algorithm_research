@@ -143,6 +143,7 @@
     <MASM Include="integerShift.asm" />
     <MASM Include="Memory.asm" />
     <MASM Include="ProductNums.asm" />
+    <MASM Include="Sum.asm" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

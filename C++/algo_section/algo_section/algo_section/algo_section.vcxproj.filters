@@ -49,5 +49,8 @@
     <MASM Include="Memory.asm">
       <Filter>asm</Filter>
     </MASM>
+    <MASM Include="Sum.asm">
+      <Filter>asm</Filter>
+    </MASM>
   </ItemGroup>
 </Project>
