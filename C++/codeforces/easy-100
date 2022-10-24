@@ -88,9 +88,9 @@ Implement strStr() -
 Invert Binary Tree +
 Closest Binary Search Tree Value +
 Squares of a Sorted Array +
-Jewels and Stones
-Remove Duplicates from Sorted List
-First Unique Character in a String
+Jewels and Stones +
+Remove Duplicates from Sorted List +
+First Unique Character in a String +
 Ransom Note
 Fizz Buzz
 Fibonacci Number
@@ -98,3 +98,57 @@ Detect Capital
 Happy Number
 Intersection of Two Arrays II
 Subtree of Another Tree
+
+
+medium
+
+Best Time to Buy and Sell Stock
+Product of Array Except Self
+Balanced Binary Tree
+Longest Palindromic Substring
+Palindrome Linked List
+Coin Change
+Container With Most Water
+Merge Sorted Array
+Group Anagrams
+3Sum
+Jump Game
+Swap Nodes in Pairs	linked list
+Unique Paths
+Best Time to Buy and Sell Stock II
+Word Break
+Add Two Numbers
+Validate Binary Search Tree
+Diameter of Binary Tree
+Binary Tree Zigzag Level Order Traversal
+Subsets
+Set Matrix Zeroes
+Find Minimum in Rotated Sorted Array
+Invert Binary Tree
+Jump Game II
+Rotate Array
+Symmetric Tree
+Letter Combinations of a Phone Number
+Copy List with Random Pointer
+Longest Substring Without Repeating Characters
+Rotate List
+Course Schedule
+Unique Paths II
+Combination Sum
+Spiral Matrix
+Decode Ways
+Intersection of Two Linked Lists
+Rotate Image
+Lowest Common Ancestor of a Binary Tree
+Maximum Subarray
+Merge Intervals
+Sort Colors
+Find First and Last Position of Element in Sorted Array
+Number of Islands
+Remove Nth Node From End of List
+Permutations
+Word Search
+Climbing Stairs
+House Robber
+Generate Parentheses
+Search a 2D Matrix
