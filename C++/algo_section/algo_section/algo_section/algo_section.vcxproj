@@ -139,6 +139,7 @@
   <ItemGroup>
     <MASM Include="addsumfun.asm" />
     <MASM Include="AndOrFunc.asm" />
+    <MASM Include="CalculateSum.asm" />
     <MASM Include="IntegerMulDiv_.asm" />
     <MASM Include="integerShift.asm" />
     <MASM Include="Memory.asm" />
