@@ -55,5 +55,11 @@
     <MASM Include="CalculateSum.asm">
       <Filter>asm</Filter>
     </MASM>
+    <MASM Include="TestStructSum.asm">
+      <Filter>asm</Filter>
+    </MASM>
+    <MASM Include="CountChar.asm">
+      <Filter>asm</Filter>
+    </MASM>
   </ItemGroup>
 </Project>
