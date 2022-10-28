@@ -61,5 +61,8 @@
     <MASM Include="CountChar.asm">
       <Filter>asm</Filter>
     </MASM>
+    <MASM Include="ReverseArray.asm">
+      <Filter>asm</Filter>
+    </MASM>
   </ItemGroup>
 </Project>

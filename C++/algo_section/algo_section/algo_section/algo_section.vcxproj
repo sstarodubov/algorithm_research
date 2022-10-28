@@ -145,6 +145,7 @@
     <MASM Include="integerShift.asm" />
     <MASM Include="Memory.asm" />
     <MASM Include="ProductNums.asm" />
+    <MASM Include="ReverseArray.asm" />
     <MASM Include="Sum.asm" />
     <MASM Include="TestStructSum.asm" />
   </ItemGroup>
