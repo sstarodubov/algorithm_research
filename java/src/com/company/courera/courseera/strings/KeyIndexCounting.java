@@ -12,29 +12,29 @@ public class KeyIndexCounting {
     }
 
     private final int R = 31;
-    private final char[] arr;
+    private final String arr;
     private final int[] count;
 
     private final Map<Character, Integer> alpha = constructMap();
 
     public KeyIndexCounting(final String s) {
-        this.arr = s.toCharArray();
+        this.arr = s;
         count = new int[R + 1];
     }
 
     public String sort() {
-        for (int i = 0; i < arr.length; i++) {
-            count[alpha.get(arr[i]) + 1]++;
+        for (int i = 0; i < arr.length(); i++) {
+            count[alpha.get(arr.charAt(i)) + 1]++;
         }
 
         for (int i = 1; i < count.length; i++) {
             count[i] = count[i] + count[i - 1];
         }
 
-        char[] t = new char[arr.length];
+        char[] t = new char[arr.length()];
 
-        for (int i = 0; i < arr.length; i++) {
-            char letter = arr[i];
+        for (int i = 0; i < arr.length(); i++) {
+            char letter = arr.charAt(i);
             int ix = alpha.get(letter);
             int nix = count[ix];
             count[ix]++;
