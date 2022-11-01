@@ -21,11 +21,6 @@ public:
     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
 
     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
-
-    ~TreeNode() {
-        delete left;
-        delete right;
-    }
 };
 
 void buildBinaryTree(vector<int> &&nums, TreeNode *root) {
@@ -119,10 +114,6 @@ public:
     ListNode(int x) : val(x), next(nullptr) {}
 
     ListNode(int x, ListNode *next) : val(x), next(next) {}
-
-    ~ListNode() {
-        delete next;
-    }
 };
 
 void buildLinkedList(std::vector<int> &values, ListNode *head) {
