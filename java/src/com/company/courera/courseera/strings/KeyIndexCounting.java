@@ -1,5 +1,6 @@
 package strings;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -7,8 +8,7 @@ import java.util.Map;
 public class KeyIndexCounting {
 
     public static void main(String[] args) {
-        KeyIndexCounting keyIndexCounting = new KeyIndexCounting("hello,sergei!");
-        System.out.println(keyIndexCounting.sort());
+        System.out.println(Arrays.toString(KeyIndexCounting.sort(new int[]{1, 6, 0, 3, 3, 4, 2}, 0, 6)));
     }
 
     private final int R = 31;
@@ -20,6 +20,26 @@ public class KeyIndexCounting {
     public KeyIndexCounting(final String s) {
         this.arr = s;
         count = new int[R + 1];
+    }
+
+    public static int[] sort(int[] arr, int min, int max) {
+        int range = max - min + 1;
+        int[] count = new int[range];
+        int[] output = new int[arr.length];
+
+        for (int i = 0; i < arr.length; i++) {
+            count[arr[i] - min]++;
+        }
+        for (int i = 1; i < count.length; i++) {
+            count[i] += count[i - 1];
+        }
+
+        for (int i = arr.length - 1; i >= 0; i--) {
+            output[count[arr[i] - min] - 1] = arr[i];
+            count[arr[i] - min]--;
+        }
+
+        return output;
     }
 
     public String sort() {
