@@ -1,32 +1,24 @@
+#pragma clang diagnostic push
+#pragma ide diagnostic ignored "readability-convert-member-functions-to-static"
+
 #include <iostream>
-#include <map>
-#include <cmath>
-#include <string>
-#include <stack>
 #include <vector>
-#include <set>
-#include <unordered_set>
-#include <unordered_map>
-#include <cstring>
 #include <algorithm>
-#include <csignal>
 #include "helper.h"
-#include <tuple>
-#include <queue>
-#include <bitset>
 
 using namespace std;
-
 typedef vector<int> vi;
+typedef vector<vector<int>> vvi;
 
 class Solution {
 public:
     TreeNode* invertTree(TreeNode* root) {
         if (root == nullptr) return nullptr;
 
-        TreeNode* t = root->right;
-        root->right = root->left;
-        root->left = t;
+        TreeNode* t = root->left;
+
+        root->left = root->right;
+        root->right = t;
 
         invertTree(root->left);
         invertTree(root->right);
@@ -34,9 +26,8 @@ public:
         return root;
     }
 };
-
 int main() {
-
+    vi v = {5, 1, 2, 3, 4};
+    cout << Solution().findMin(v);
     return 0;
 }
-
