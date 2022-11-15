@@ -1,42 +1,37 @@
+#pragma clang diagnostic push
+#pragma ide diagnostic ignored "readability-convert-member-functions-to-static"
+
 #include <iostream>
-#include <map>
-#include <cmath>
-#include <string>
-#include <stack>
 #include <vector>
-#include <set>
-#include <unordered_set>
-#include <cstring>
+#include <algorithm>
 #include "helper.h"
 
 using namespace std;
+typedef vector<int> vi;
+typedef vector<vector<int>> vvi;
 
 class Solution {
-
 public:
-    bool isSymmetric(TreeNode *node) {
-        if (node == nullptr) return true;
-        return dfs(node->left, node->right);
+    bool isSymmetric(TreeNode *root) {
+        return dfs(root->left, root->right);
     }
 
-    bool dfs(TreeNode *n1, TreeNode *n2) {
-        if (n1 == n2) return true;
-        if (n1 == nullptr) return false;
-        if (n2 == nullptr) return false;
-        if (n1->val != n2->val) return false;
+    bool dfs(TreeNode* l, TreeNode* r) {
+        if (l == nullptr && r == nullptr) return true;
+        if (l == nullptr) return false;
+        if (r == nullptr) return false;
 
-        return dfs(n1->left, n2->right) && dfs(n1->right, n2->left);
+        if (l->val != r->val) return false;
+
+        return dfs(l->left, r->right) && dfs(l->right, r->left);
     }
 };
 
-
 int main() {
-    TreeNode t;
-    vector<int> v = {1, 2, 2, 3, 4, 4, 3};
-    vector<int> rv = {1, 2, 2, NULL_TREE_NODE, 3, NULL_TREE_NODE, 3};
-    buildBinaryTree(rv, &t);
-    auto ans = Solution().isSymmetric(&t);
-    cout << ans;
+    vi v2 = {1, 2, 2, 3, 4, 4, 3};
+    vi v = {1, 2, 2, 2, NULL_TREE_NODE, 2};
+    auto *root = new TreeNode();
+    buildBinaryTree(v2, root);
+    cout << Solution().isSymmetric(root);
     return 0;
 }
-
