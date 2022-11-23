@@ -1,30 +1,11 @@
 {
     "tasks": [
         {
-            "type": "shell",
-            "label": "g++ build active file",
+            "type": "cppbuild",
+            "label": "C/C++: g++ build active file",
             "command": "/usr/bin/g++",
             "args": [
-                "-g",
-                "${workspaceFolder}/main.cpp",
-                "${workspaceFolder}/*.cpp",
-                "-I",
-                "${workspaceFolder}/include",
-                "-o",
-                "/home/haxul/Development/algorithm_tasks_solving/C++/codeforces/"
-            ],
-            "options": {
-                "cwd": "/usr/bin"
-            },
-            "group": "build"
-        },
-        {
-            "type": "cppbuild",
-            "label": "C/C++: clang++ build active file",
-            "command": "/usr/bin/clang++",
-            "args": [
-                "-fcolor-diagnostics",
-                "-fansi-escape-codes",
+                "-fdiagnostics-color=always",
                 "-g",
                 "${file}",
                 "-o",
