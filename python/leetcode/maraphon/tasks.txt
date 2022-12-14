@@ -4,8 +4,7 @@ Longest Substring Without Repeating Characters +
 Rotate List +
 Course Schedule +
 Unique Paths II +
-Combination Sum
-Spiral Matrix
+Combination Sum +
 Decode Ways
 Intersection of Two Linked Lists
 Rotate Image
