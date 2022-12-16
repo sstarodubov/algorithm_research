@@ -5,9 +5,8 @@ Rotate List +
 Course Schedule +
 Unique Paths II +
 Combination Sum +
-Decode Ways
+Decode Ways +
 Intersection of Two Linked Lists
-Rotate Image
 Lowest Common Ancestor of a Binary Tree
 Maximum Subarray
 Merge Intervals

@@ -11,6 +11,9 @@ class TreeNode:
     def __str__(self):
         return f"Node({self.val})"
 
+    def __eq__(self, other):
+        return self.val == other.val
+
     @staticmethod
     def build_tree(nums: List[int]) -> 'TreeNode':
         if not nums:
