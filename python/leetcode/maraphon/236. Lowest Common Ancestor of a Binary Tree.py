@@ -6,42 +6,27 @@ class Solution:
         if not root or not p or not q:
             return None
 
-        self.found: bool
-        self.t: TreeNode
-
-        def upd(n):
-            self.found = False
-            self.t = n
-
-        def path(n, arr):
-            if self.found:
-                return
+        def path(n, arr, t):
             if not n:
-                return
-
+                return False
             arr.append(n)
-            if n == self.t:
-                self.found = True
-                return
-
-            if not self.found:
-                path(n.left, arr)
-            if not self.found:
-                path(n.right, arr)
-
-            if not self.found:
+            if n == t:
+                return True
+            f = path(n.left, arr, t)
+            h = False
+            if not f:
+                h = path(n.right, arr, t)
+            if not h and not f:
                 arr.pop()
+            return h or f
 
-        upd(p)
         pp = []
-        path(root, pp)
+        path(root, pp, p)
 
         qp = []
-        upd(q)
-        path(root, qp)
+        path(root, qp, q)
 
         i = 0
-
         while i < len(pp) and i < len(qp):
             if pp[i] != qp[i]:
                 return pp[i - 1]
@@ -53,5 +38,6 @@ class Solution:
         return pp[i - 1]
 
 
-ans = Solution().lowestCommonAncestor(TreeNode.build_tree([3, 5, 1, 6, 2, 0, 8, None, None, 7, 4]), TreeNode(5), TreeNode(4))
+ans = Solution().lowestCommonAncestor(TreeNode.build_tree([3, 5, 1, 6, 2, 0, 8, None, None, 7, 4]), TreeNode(5),
+                                      TreeNode(4))
 print(ans.val)
