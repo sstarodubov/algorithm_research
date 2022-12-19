@@ -6,8 +6,8 @@ Course Schedule +
 Unique Paths II +
 Combination Sum +
 Decode Ways +
-Intersection of Two Linked Lists
-Lowest Common Ancestor of a Binary Tree
+Intersection of Two Linked Lists +
+Lowest Common Ancestor of a Binary Tree +
 Maximum Subarray
 Merge Intervals
 Sort Colors
