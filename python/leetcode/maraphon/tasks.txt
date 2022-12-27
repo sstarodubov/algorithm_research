@@ -14,7 +14,7 @@ Sort Colors +
 Find First and Last Position of Element in Sorted Array +
 Number of Islands +
 Remove Nth Node From End of List
-Permutations
+Permutations +
 Word Search
 Climbing Stairs
 House Robber
