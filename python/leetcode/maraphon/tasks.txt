@@ -16,7 +16,7 @@ Number of Islands +
 Remove Nth Node From End of List
 Permutations +
 Word Search +
-Climbing Stairs
-House Robber
+Climbing Stairs +
+House Robber +
 Generate Parentheses
 Search a 2D Matrix
