@@ -1,0 +1,3 @@
+/home/haxul/Development/algorithm_tasks_solving/C++/codeforces/CMakeFiles/codeforces.dir
+/home/haxul/Development/algorithm_tasks_solving/C++/codeforces/CMakeFiles/edit_cache.dir
+/home/haxul/Development/algorithm_tasks_solving/C++/codeforces/CMakeFiles/rebuild_cache.dir
