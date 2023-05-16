@@ -4,20 +4,49 @@ import java.util.ArrayDeque;
 
 public class ОчередьИзДвухСтеков {
     public static void main(String[] args) {
-        var queue = new QueueFromTwoStack();
-        queue.add(10);
-        queue.add(11);
-        queue.add(12);
+        var queueMin = new QueueMin();
 
-        System.out.println(queue.remove());
-        System.out.println(queue.remove());
-        System.out.println(queue.remove());
-        System.out.println(queue.remove());
+        queueMin.add(8);
+        queueMin.add(9);
+        queueMin.add(10);
+
+        System.out.println(queueMin.min());
+
     }
 }
 
+class StackMin {
+    private final ArrayDeque<Integer> stack = new ArrayDeque<>();
+    private final ArrayDeque<Integer> mins = new ArrayDeque<>();
 
-class QueueFromTwoStack {
+    public void push(int v) {
+        stack.push(v);
+
+        if (mins.size() > 0) {
+            mins.push(Math.min(v, mins.peek()));
+        } else {
+            mins.push(v);
+        }
+    }
+
+    public int pop() {
+        mins.pop();
+        return stack.pop();
+    }
+
+
+    public int min() {
+        if (mins.isEmpty()) return -1;
+
+        return mins.peek();
+    }
+
+    public int size() {
+        return stack.size();
+    }
+}
+
+class QueueMin {
     /*
      -----------
   -----> push   | stack1
@@ -31,8 +60,8 @@ class QueueFromTwoStack {
      -----------
 
      */
-    private final ArrayDeque<Integer> left = new ArrayDeque<>();
-    private final ArrayDeque<Integer> right = new ArrayDeque<>();
+    private final StackMin left = new StackMin();
+    private final StackMin right = new StackMin();
 
     private void shift() {
         while (left.size() > 0) {
@@ -50,5 +79,11 @@ class QueueFromTwoStack {
         }
 
         return right.pop();
+    }
+
+    public int min() {
+        if (left.min() == -1) return right.min();
+        if (right.min() == -1) return left.min();
+        return Math.min(left.min(), right.min());
     }
 }
