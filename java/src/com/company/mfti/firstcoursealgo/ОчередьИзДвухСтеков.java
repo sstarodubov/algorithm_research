@@ -1,16 +1,22 @@
 package com.company.mfti.firstcoursealgo;
 
 import java.util.ArrayDeque;
+import java.util.concurrent.ThreadFactory;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.function.Function;
 
 public class ОчередьИзДвухСтеков {
+
+
+    public static Function<Integer, Integer> closure() {
+        final var atom = new AtomicInteger(10);
+        return atom::addAndGet;
+    }
+
     public static void main(String[] args) {
-        var queueMin = new QueueMin();
-
-        queueMin.add(8);
-        queueMin.add(9);
-        queueMin.add(10);
-
-        System.out.println(queueMin.min());
+        
+        System.out.println(closure().apply(10)
+        );
 
     }
 }
