@@ -33,5 +33,7 @@ class Solution:
         return ans
 
 
-assert 4 == Solution().longestConsecutive([100, 4, 200, 1, 3, 2])
-assert 9 == Solution().longestConsecutive([0, 3, 7, 2, 5, 8, 4, 6, 0, 1])
+# assert 4 == Solution().longestConsecutive([100, 4, 200, 1, 3, 2])
+# assert 9 == Solution().longestConsecutive([0, 3, 7, 2, 5, 8, 4, 6, 0, 1])
+string = f'{-1:b}'
+print(string)

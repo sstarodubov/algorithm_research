@@ -1,0 +1,2507 @@
+Index: ../python/rabbitmq/test.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../python/rabbitmq/test.py b/../python/rabbitmq/test.py
+new file mode 100644
+--- /dev/null	(date 1697904326709)
++++ b/../python/rabbitmq/test.py	(date 1697904326709)
+@@ -0,0 +1,28 @@
++from typing import List, Set
++
++
++class Solution:
++    def longestConsecutive(self, nums: List[int]) -> int:
++        m = {}
++        for n in nums:
++            if n - 1 not in m:
++                m[n - 1] = {n - 1}
++            if n + 1 not in m:
++                m[n + 1] = {n + 1}
++            if n not in m:
++                m[n] = {n}
++
++        for n in nums:
++            m[n - 1].add(n)
++            m[n - 1].add(n + 1)
++            m[n].add(n + 1)
++            m[n].add(n - 1)
++            m[n + 1].add(n)
++            m[n + 1].add(n - 1)
++
++        res = 0
++        for k in m.keys():
++           res = max(res, len(m[k]))
++        return res
++
++print(Solution().longestConsecutive([0, 3, 7, 2, 5, 8, 4, 6, 0, 1]))
+Index: ../C++/codeforces/.cmake/api/v1/reply/cache-v2-4d8848614056a3a48436.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../C++/codeforces/.cmake/api/v1/reply/cache-v2-4d8848614056a3a48436.json b/../C++/codeforces/.cmake/api/v1/reply/cache-v2-4d8848614056a3a48436.json
+new file mode 100644
+--- /dev/null	(date 1697904326716)
++++ b/../C++/codeforces/.cmake/api/v1/reply/cache-v2-4d8848614056a3a48436.json	(date 1697904326716)
+@@ -0,0 +1,1215 @@
++{
++	"entries" : 
++	[
++		{
++			"name" : "CMAKE_ADDR2LINE",
++			"properties" : 
++			[
++				{
++					"name" : "ADVANCED",
++					"value" : "1"
++				},
++				{
++					"name" : "HELPSTRING",
++					"value" : "Path to a program."
++				}
++			],
++			"type" : "FILEPATH",
++			"value" : "/usr/bin/addr2line"
++		},
++		{
++			"name" : "CMAKE_AR",
++			"properties" : 
++			[
++				{
++					"name" : "ADVANCED",
++					"value" : "1"
++				},
++				{
++					"name" : "HELPSTRING",
++					"value" : "Path to a program."
++				}
++			],
++			"type" : "FILEPATH",
++			"value" : "/usr/bin/ar"
++		},
++		{
++			"name" : "CMAKE_BUILD_TYPE",
++			"properties" : 
++			[
++				{
++					"name" : "HELPSTRING",
++					"value" : "Choose the type of build, options are: None Debug Release RelWithDebInfo MinSizeRel ..."
++				}
++			],
++			"type" : "STRING",
++			"value" : "Debug"
++		},
++		{
++			"name" : "CMAKE_CACHEFILE_DIR",
++			"properties" : 
++			[
++				{
++					"name" : "HELPSTRING",
++					"value" : "This is the directory where this CMakeCache.txt was created"
++				}
++			],
++			"type" : "INTERNAL",
++			"value" : "/home/haxul/Development/algorithm_tasks_solving/C++/codeforces"
++		},
++		{
++			"name" : "CMAKE_CACHE_MAJOR_VERSION",
++			"properties" : 
++			[
++				{
++					"name" : "HELPSTRING",
++					"value" : "Major version of cmake used to create the current loaded cache"
++				}
++			],
++			"type" : "INTERNAL",
++			"value" : "3"
++		},
++		{
++			"name" : "CMAKE_CACHE_MINOR_VERSION",
++			"properties" : 
++			[
++				{
++					"name" : "HELPSTRING",
++					"value" : "Minor version of cmake used to create the current loaded cache"
++				}
++			],
++			"type" : "INTERNAL",
++			"value" : "25"
++		},
++		{
++			"name" : "CMAKE_CACHE_PATCH_VERSION",
++			"properties" : 
++			[
++				{
++					"name" : "HELPSTRING",
++					"value" : "Patch version of cmake used to create the current loaded cache"
++				}
++			],
++			"type" : "INTERNAL",
++			"value" : "2"
++		},
++		{
++			"name" : "CMAKE_COLOR_DIAGNOSTICS",
++			"properties" : 
++			[
++				{
++					"name" : "HELPSTRING",
++					"value" : "Enable colored diagnostics throughout."
++				}
++			],
++			"type" : "BOOL",
++			"value" : "ON"
++		},
++		{
++			"name" : "CMAKE_COLOR_MAKEFILE",
++			"properties" : 
++			[
++				{
++					"name" : "ADVANCED",
++					"value" : "1"
++				},
++				{
++					"name" : "HELPSTRING",
++					"value" : "Enable/Disable color output during build."
++				}
++			],
++			"type" : "BOOL",
++			"value" : "ON"
++		},
++		{
++			"name" : "CMAKE_COMMAND",
++			"properties" : 
++			[
++				{
++					"name" : "HELPSTRING",
++					"value" : "Path to CMake executable."
++				}
++			],
++			"type" : "INTERNAL",
++			"value" : "/home/haxul/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.222/bin/cmake/linux/x64/bin/cmake"
++		},
++		{
++			"name" : "CMAKE_CPACK_COMMAND",
++			"properties" : 
++			[
++				{
++					"name" : "HELPSTRING",
++					"value" : "Path to cpack program executable."
++				}
++			],
++			"type" : "INTERNAL",
++			"value" : "/home/haxul/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.222/bin/cmake/linux/x64/bin/cpack"
++		},
++		{
++			"name" : "CMAKE_CTEST_COMMAND",
++			"properties" : 
++			[
++				{
++					"name" : "HELPSTRING",
++					"value" : "Path to ctest program executable."
++				}
++			],
++			"type" : "INTERNAL",
++			"value" : "/home/haxul/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.222/bin/cmake/linux/x64/bin/ctest"
++		},
++		{
++			"name" : "CMAKE_CXX_COMPILER",
++			"properties" : 
++			[
++				{
++					"name" : "ADVANCED",
++					"value" : "1"
++				},
++				{
++					"name" : "HELPSTRING",
++					"value" : "CXX compiler"
++				}
++			],
++			"type" : "FILEPATH",
++			"value" : "/usr/bin/c++"
++		},
++		{
++			"name" : "CMAKE_CXX_COMPILER_AR",
++			"properties" : 
++			[
++				{
++					"name" : "ADVANCED",
++					"value" : "1"
++				},
++				{
++					"name" : "HELPSTRING",
++					"value" : "A wrapper around 'ar' adding the appropriate '--plugin' option for the GCC compiler"
++				}
++			],
++			"type" : "FILEPATH",
++			"value" : "/usr/bin/gcc-ar"
++		},
++		{
++			"name" : "CMAKE_CXX_COMPILER_RANLIB",
++			"properties" : 
++			[
++				{
++					"name" : "ADVANCED",
++					"value" : "1"
++				},
++				{
++					"name" : "HELPSTRING",
++					"value" : "A wrapper around 'ranlib' adding the appropriate '--plugin' option for the GCC compiler"
++				}
++			],
++			"type" : "FILEPATH",
++			"value" : "/usr/bin/gcc-ranlib"
++		},
++		{
++			"name" : "CMAKE_CXX_FLAGS",
++			"properties" : 
++			[
++				{
++					"name" : "ADVANCED",
++					"value" : "1"
++				},
++				{
++					"name" : "HELPSTRING",
++					"value" : "Flags used by the CXX compiler during all build types."
++				}
++			],
++			"type" : "STRING",
++			"value" : ""
++		},
++		{
++			"name" : "CMAKE_CXX_FLAGS_DEBUG",
++			"properties" : 
++			[
++				{
++					"name" : "ADVANCED",
++					"value" : "1"
++				},
++				{
++					"name" : "HELPSTRING",
++					"value" : "Flags used by the CXX compiler during DEBUG builds."
++				}
++			],
++			"type" : "STRING",
++			"value" : "-g"
++		},
++		{
++			"name" : "CMAKE_CXX_FLAGS_MINSIZEREL",
++			"properties" : 
++			[
++				{
++					"name" : "ADVANCED",
++					"value" : "1"
++				},
++				{
++					"name" : "HELPSTRING",
++					"value" : "Flags used by the CXX compiler during MINSIZEREL builds."
++				}
++			],
++			"type" : "STRING",
++			"value" : "-Os -DNDEBUG"
++		},
++		{
++			"name" : "CMAKE_CXX_FLAGS_RELEASE",
++			"properties" : 
++			[
++				{
++					"name" : "ADVANCED",
++					"value" : "1"
++				},
++				{
++					"name" : "HELPSTRING",
++					"value" : "Flags used by the CXX compiler during RELEASE builds."
++				}
++			],
++			"type" : "STRING",
++			"value" : "-O3 -DNDEBUG"
++		},
++		{
++			"name" : "CMAKE_CXX_FLAGS_RELWITHDEBINFO",
++			"properties" : 
++			[
++				{
++					"name" : "ADVANCED",
++					"value" : "1"
++				},
++				{
++					"name" : "HELPSTRING",
++					"value" : "Flags used by the CXX compiler during RELWITHDEBINFO builds."
++				}
++			],
++			"type" : "STRING",
++			"value" : "-O2 -g -DNDEBUG"
++		},
++		{
++			"name" : "CMAKE_C_COMPILER",
++			"properties" : 
++			[
++				{
++					"name" : "ADVANCED",
++					"value" : "1"
++				},
++				{
++					"name" : "HELPSTRING",
++					"value" : "C compiler"
++				}
++			],
++			"type" : "FILEPATH",
++			"value" : "/usr/bin/cc"
++		},
++		{
++			"name" : "CMAKE_C_COMPILER_AR",
++			"properties" : 
++			[
++				{
++					"name" : "ADVANCED",
++					"value" : "1"
++				},
++				{
++					"name" : "HELPSTRING",
++					"value" : "A wrapper around 'ar' adding the appropriate '--plugin' option for the GCC compiler"
++				}
++			],
++			"type" : "FILEPATH",
++			"value" : "/usr/bin/gcc-ar"
++		},
++		{
++			"name" : "CMAKE_C_COMPILER_RANLIB",
++			"properties" : 
++			[
++				{
++					"name" : "ADVANCED",
++					"value" : "1"
++				},
++				{
++					"name" : "HELPSTRING",
++					"value" : "A wrapper around 'ranlib' adding the appropriate '--plugin' option for the GCC compiler"
++				}
++			],
++			"type" : "FILEPATH",
++			"value" : "/usr/bin/gcc-ranlib"
++		},
++		{
++			"name" : "CMAKE_C_FLAGS",
++			"properties" : 
++			[
++				{
++					"name" : "ADVANCED",
++					"value" : "1"
++				},
++				{
++					"name" : "HELPSTRING",
++					"value" : "Flags used by the C compiler during all build types."
++				}
++			],
++			"type" : "STRING",
++			"value" : ""
++		},
++		{
++			"name" : "CMAKE_C_FLAGS_DEBUG",
++			"properties" : 
++			[
++				{
++					"name" : "ADVANCED",
++					"value" : "1"
++				},
++				{
++					"name" : "HELPSTRING",
++					"value" : "Flags used by the C compiler during DEBUG builds."
++				}
++			],
++			"type" : "STRING",
++			"value" : "-g"
++		},
++		{
++			"name" : "CMAKE_C_FLAGS_MINSIZEREL",
++			"properties" : 
++			[
++				{
++					"name" : "ADVANCED",
++					"value" : "1"
++				},
++				{
++					"name" : "HELPSTRING",
++					"value" : "Flags used by the C compiler during MINSIZEREL builds."
++				}
++			],
++			"type" : "STRING",
++			"value" : "-Os -DNDEBUG"
++		},
++		{
++			"name" : "CMAKE_C_FLAGS_RELEASE",
++			"properties" : 
++			[
++				{
++					"name" : "ADVANCED",
++					"value" : "1"
++				},
++				{
++					"name" : "HELPSTRING",
++					"value" : "Flags used by the C compiler during RELEASE builds."
++				}
++			],
++			"type" : "STRING",
++			"value" : "-O3 -DNDEBUG"
++		},
++		{
++			"name" : "CMAKE_C_FLAGS_RELWITHDEBINFO",
++			"properties" : 
++			[
++				{
++					"name" : "ADVANCED",
++					"value" : "1"
++				},
++				{
++					"name" : "HELPSTRING",
++					"value" : "Flags used by the C compiler during RELWITHDEBINFO builds."
++				}
++			],
++			"type" : "STRING",
++			"value" : "-O2 -g -DNDEBUG"
++		},
++		{
++			"name" : "CMAKE_DLLTOOL",
++			"properties" : 
++			[
++				{
++					"name" : "ADVANCED",
++					"value" : "1"
++				},
++				{
++					"name" : "HELPSTRING",
++					"value" : "Path to a program."
++				}
++			],
++			"type" : "FILEPATH",
++			"value" : "CMAKE_DLLTOOL-NOTFOUND"
++		},
++		{
++			"name" : "CMAKE_EDIT_COMMAND",
++			"properties" : 
++			[
++				{
++					"name" : "HELPSTRING",
++					"value" : "Path to cache edit program executable."
++				}
++			],
++			"type" : "INTERNAL",
++			"value" : "/usr/bin/ccmake"
++		},
++		{
++			"name" : "CMAKE_EXECUTABLE_FORMAT",
++			"properties" : 
++			[
++				{
++					"name" : "HELPSTRING",
++					"value" : "Executable file format"
++				}
++			],
++			"type" : "INTERNAL",
++			"value" : "ELF"
++		},
++		{
++			"name" : "CMAKE_EXE_LINKER_FLAGS",
++			"properties" : 
++			[
++				{
++					"name" : "ADVANCED",
++					"value" : "1"
++				},
++				{
++					"name" : "HELPSTRING",
++					"value" : "Flags used by the linker during all build types."
++				}
++			],
++			"type" : "STRING",
++			"value" : ""
++		},
++		{
++			"name" : "CMAKE_EXE_LINKER_FLAGS_DEBUG",
++			"properties" : 
++			[
++				{
++					"name" : "ADVANCED",
++					"value" : "1"
++				},
++				{
++					"name" : "HELPSTRING",
++					"value" : "Flags used by the linker during DEBUG builds."
++				}
++			],
++			"type" : "STRING",
++			"value" : ""
++		},
++		{
++			"name" : "CMAKE_EXE_LINKER_FLAGS_MINSIZEREL",
++			"properties" : 
++			[
++				{
++					"name" : "ADVANCED",
++					"value" : "1"
++				},
++				{
++					"name" : "HELPSTRING",
++					"value" : "Flags used by the linker during MINSIZEREL builds."
++				}
++			],
++			"type" : "STRING",
++			"value" : ""
++		},
++		{
++			"name" : "CMAKE_EXE_LINKER_FLAGS_RELEASE",
++			"properties" : 
++			[
++				{
++					"name" : "ADVANCED",
++					"value" : "1"
++				},
++				{
++					"name" : "HELPSTRING",
++					"value" : "Flags used by the linker during RELEASE builds."
++				}
++			],
++			"type" : "STRING",
++			"value" : ""
++		},
++		{
++			"name" : "CMAKE_EXE_LINKER_FLAGS_RELWITHDEBINFO",
++			"properties" : 
++			[
++				{
++					"name" : "ADVANCED",
++					"value" : "1"
++				},
++				{
++					"name" : "HELPSTRING",
++					"value" : "Flags used by the linker during RELWITHDEBINFO builds."
++				}
++			],
++			"type" : "STRING",
++			"value" : ""
++		},
++		{
++			"name" : "CMAKE_EXPORT_COMPILE_COMMANDS",
++			"properties" : 
++			[
++				{
++					"name" : "ADVANCED",
++					"value" : "1"
++				},
++				{
++					"name" : "HELPSTRING",
++					"value" : "Enable/Disable output of compile commands during generation."
++				}
++			],
++			"type" : "BOOL",
++			"value" : ""
++		},
++		{
++			"name" : "CMAKE_EXTRA_GENERATOR",
++			"properties" : 
++			[
++				{
++					"name" : "HELPSTRING",
++					"value" : "Name of external makefile project generator."
++				}
++			],
++			"type" : "INTERNAL",
++			"value" : ""
++		},
++		{
++			"name" : "CMAKE_FIND_PACKAGE_REDIRECTS_DIR",
++			"properties" : 
++			[
++				{
++					"name" : "HELPSTRING",
++					"value" : "Value Computed by CMake."
++				}
++			],
++			"type" : "STATIC",
++			"value" : "/home/haxul/Development/algorithm_tasks_solving/C++/codeforces/CMakeFiles/pkgRedirects"
++		},
++		{
++			"name" : "CMAKE_GENERATOR",
++			"properties" : 
++			[
++				{
++					"name" : "HELPSTRING",
++					"value" : "Name of generator."
++				}
++			],
++			"type" : "INTERNAL",
++			"value" : "Unix Makefiles"
++		},
++		{
++			"name" : "CMAKE_GENERATOR_INSTANCE",
++			"properties" : 
++			[
++				{
++					"name" : "HELPSTRING",
++					"value" : "Generator instance identifier."
++				}
++			],
++			"type" : "INTERNAL",
++			"value" : ""
++		},
++		{
++			"name" : "CMAKE_GENERATOR_PLATFORM",
++			"properties" : 
++			[
++				{
++					"name" : "HELPSTRING",
++					"value" : "Name of generator platform."
++				}
++			],
++			"type" : "INTERNAL",
++			"value" : ""
++		},
++		{
++			"name" : "CMAKE_GENERATOR_TOOLSET",
++			"properties" : 
++			[
++				{
++					"name" : "HELPSTRING",
++					"value" : "Name of generator toolset."
++				}
++			],
++			"type" : "INTERNAL",
++			"value" : ""
++		},
++		{
++			"name" : "CMAKE_HOME_DIRECTORY",
++			"properties" : 
++			[
++				{
++					"name" : "HELPSTRING",
++					"value" : "Source directory with the top level CMakeLists.txt file for this project"
++				}
++			],
++			"type" : "INTERNAL",
++			"value" : "/home/haxul/Development/algorithm_tasks_solving/C++/codeforces"
++		},
++		{
++			"name" : "CMAKE_INSTALL_PREFIX",
++			"properties" : 
++			[
++				{
++					"name" : "HELPSTRING",
++					"value" : "Install path prefix, prepended onto install directories."
++				}
++			],
++			"type" : "PATH",
++			"value" : "/usr/local"
++		},
++		{
++			"name" : "CMAKE_INSTALL_SO_NO_EXE",
++			"properties" : 
++			[
++				{
++					"name" : "HELPSTRING",
++					"value" : "Install .so files without execute permission."
++				}
++			],
++			"type" : "INTERNAL",
++			"value" : "0"
++		},
++		{
++			"name" : "CMAKE_LINKER",
++			"properties" : 
++			[
++				{
++					"name" : "ADVANCED",
++					"value" : "1"
++				},
++				{
++					"name" : "HELPSTRING",
++					"value" : "Path to a program."
++				}
++			],
++			"type" : "FILEPATH",
++			"value" : "/usr/bin/ld"
++		},
++		{
++			"name" : "CMAKE_MAKE_PROGRAM",
++			"properties" : 
++			[
++				{
++					"name" : "ADVANCED",
++					"value" : "1"
++				},
++				{
++					"name" : "HELPSTRING",
++					"value" : "Path to a program."
++				}
++			],
++			"type" : "FILEPATH",
++			"value" : "/usr/bin/make"
++		},
++		{
++			"name" : "CMAKE_MODULE_LINKER_FLAGS",
++			"properties" : 
++			[
++				{
++					"name" : "ADVANCED",
++					"value" : "1"
++				},
++				{
++					"name" : "HELPSTRING",
++					"value" : "Flags used by the linker during the creation of modules during all build types."
++				}
++			],
++			"type" : "STRING",
++			"value" : ""
++		},
++		{
++			"name" : "CMAKE_MODULE_LINKER_FLAGS_DEBUG",
++			"properties" : 
++			[
++				{
++					"name" : "ADVANCED",
++					"value" : "1"
++				},
++				{
++					"name" : "HELPSTRING",
++					"value" : "Flags used by the linker during the creation of modules during DEBUG builds."
++				}
++			],
++			"type" : "STRING",
++			"value" : ""
++		},
++		{
++			"name" : "CMAKE_MODULE_LINKER_FLAGS_MINSIZEREL",
++			"properties" : 
++			[
++				{
++					"name" : "ADVANCED",
++					"value" : "1"
++				},
++				{
++					"name" : "HELPSTRING",
++					"value" : "Flags used by the linker during the creation of modules during MINSIZEREL builds."
++				}
++			],
++			"type" : "STRING",
++			"value" : ""
++		},
++		{
++			"name" : "CMAKE_MODULE_LINKER_FLAGS_RELEASE",
++			"properties" : 
++			[
++				{
++					"name" : "ADVANCED",
++					"value" : "1"
++				},
++				{
++					"name" : "HELPSTRING",
++					"value" : "Flags used by the linker during the creation of modules during RELEASE builds."
++				}
++			],
++			"type" : "STRING",
++			"value" : ""
++		},
++		{
++			"name" : "CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO",
++			"properties" : 
++			[
++				{
++					"name" : "ADVANCED",
++					"value" : "1"
++				},
++				{
++					"name" : "HELPSTRING",
++					"value" : "Flags used by the linker during the creation of modules during RELWITHDEBINFO builds."
++				}
++			],
++			"type" : "STRING",
++			"value" : ""
++		},
++		{
++			"name" : "CMAKE_NM",
++			"properties" : 
++			[
++				{
++					"name" : "ADVANCED",
++					"value" : "1"
++				},
++				{
++					"name" : "HELPSTRING",
++					"value" : "Path to a program."
++				}
++			],
++			"type" : "FILEPATH",
++			"value" : "/usr/bin/nm"
++		},
++		{
++			"name" : "CMAKE_NUMBER_OF_MAKEFILES",
++			"properties" : 
++			[
++				{
++					"name" : "HELPSTRING",
++					"value" : "number of local generators"
++				}
++			],
++			"type" : "INTERNAL",
++			"value" : "1"
++		},
++		{
++			"name" : "CMAKE_OBJCOPY",
++			"properties" : 
++			[
++				{
++					"name" : "ADVANCED",
++					"value" : "1"
++				},
++				{
++					"name" : "HELPSTRING",
++					"value" : "Path to a program."
++				}
++			],
++			"type" : "FILEPATH",
++			"value" : "/usr/bin/objcopy"
++		},
++		{
++			"name" : "CMAKE_OBJDUMP",
++			"properties" : 
++			[
++				{
++					"name" : "ADVANCED",
++					"value" : "1"
++				},
++				{
++					"name" : "HELPSTRING",
++					"value" : "Path to a program."
++				}
++			],
++			"type" : "FILEPATH",
++			"value" : "/usr/bin/objdump"
++		},
++		{
++			"name" : "CMAKE_PLATFORM_INFO_INITIALIZED",
++			"properties" : 
++			[
++				{
++					"name" : "HELPSTRING",
++					"value" : "Platform information initialized"
++				}
++			],
++			"type" : "INTERNAL",
++			"value" : "1"
++		},
++		{
++			"name" : "CMAKE_PROJECT_DESCRIPTION",
++			"properties" : 
++			[
++				{
++					"name" : "HELPSTRING",
++					"value" : "Value Computed by CMake"
++				}
++			],
++			"type" : "STATIC",
++			"value" : ""
++		},
++		{
++			"name" : "CMAKE_PROJECT_HOMEPAGE_URL",
++			"properties" : 
++			[
++				{
++					"name" : "HELPSTRING",
++					"value" : "Value Computed by CMake"
++				}
++			],
++			"type" : "STATIC",
++			"value" : ""
++		},
++		{
++			"name" : "CMAKE_PROJECT_NAME",
++			"properties" : 
++			[
++				{
++					"name" : "HELPSTRING",
++					"value" : "Value Computed by CMake"
++				}
++			],
++			"type" : "STATIC",
++			"value" : "codeforces"
++		},
++		{
++			"name" : "CMAKE_RANLIB",
++			"properties" : 
++			[
++				{
++					"name" : "ADVANCED",
++					"value" : "1"
++				},
++				{
++					"name" : "HELPSTRING",
++					"value" : "Path to a program."
++				}
++			],
++			"type" : "FILEPATH",
++			"value" : "/usr/bin/ranlib"
++		},
++		{
++			"name" : "CMAKE_READELF",
++			"properties" : 
++			[
++				{
++					"name" : "ADVANCED",
++					"value" : "1"
++				},
++				{
++					"name" : "HELPSTRING",
++					"value" : "Path to a program."
++				}
++			],
++			"type" : "FILEPATH",
++			"value" : "/usr/bin/readelf"
++		},
++		{
++			"name" : "CMAKE_ROOT",
++			"properties" : 
++			[
++				{
++					"name" : "HELPSTRING",
++					"value" : "Path to CMake installation."
++				}
++			],
++			"type" : "INTERNAL",
++			"value" : "/home/haxul/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.222/bin/cmake/linux/x64/share/cmake-3.25"
++		},
++		{
++			"name" : "CMAKE_SHARED_LINKER_FLAGS",
++			"properties" : 
++			[
++				{
++					"name" : "ADVANCED",
++					"value" : "1"
++				},
++				{
++					"name" : "HELPSTRING",
++					"value" : "Flags used by the linker during the creation of shared libraries during all build types."
++				}
++			],
++			"type" : "STRING",
++			"value" : ""
++		},
++		{
++			"name" : "CMAKE_SHARED_LINKER_FLAGS_DEBUG",
++			"properties" : 
++			[
++				{
++					"name" : "ADVANCED",
++					"value" : "1"
++				},
++				{
++					"name" : "HELPSTRING",
++					"value" : "Flags used by the linker during the creation of shared libraries during DEBUG builds."
++				}
++			],
++			"type" : "STRING",
++			"value" : ""
++		},
++		{
++			"name" : "CMAKE_SHARED_LINKER_FLAGS_MINSIZEREL",
++			"properties" : 
++			[
++				{
++					"name" : "ADVANCED",
++					"value" : "1"
++				},
++				{
++					"name" : "HELPSTRING",
++					"value" : "Flags used by the linker during the creation of shared libraries during MINSIZEREL builds."
++				}
++			],
++			"type" : "STRING",
++			"value" : ""
++		},
++		{
++			"name" : "CMAKE_SHARED_LINKER_FLAGS_RELEASE",
++			"properties" : 
++			[
++				{
++					"name" : "ADVANCED",
++					"value" : "1"
++				},
++				{
++					"name" : "HELPSTRING",
++					"value" : "Flags used by the linker during the creation of shared libraries during RELEASE builds."
++				}
++			],
++			"type" : "STRING",
++			"value" : ""
++		},
++		{
++			"name" : "CMAKE_SHARED_LINKER_FLAGS_RELWITHDEBINFO",
++			"properties" : 
++			[
++				{
++					"name" : "ADVANCED",
++					"value" : "1"
++				},
++				{
++					"name" : "HELPSTRING",
++					"value" : "Flags used by the linker during the creation of shared libraries during RELWITHDEBINFO builds."
++				}
++			],
++			"type" : "STRING",
++			"value" : ""
++		},
++		{
++			"name" : "CMAKE_SKIP_INSTALL_RPATH",
++			"properties" : 
++			[
++				{
++					"name" : "ADVANCED",
++					"value" : "1"
++				},
++				{
++					"name" : "HELPSTRING",
++					"value" : "If set, runtime paths are not added when installing shared libraries, but are added when building."
++				}
++			],
++			"type" : "BOOL",
++			"value" : "NO"
++		},
++		{
++			"name" : "CMAKE_SKIP_RPATH",
++			"properties" : 
++			[
++				{
++					"name" : "ADVANCED",
++					"value" : "1"
++				},
++				{
++					"name" : "HELPSTRING",
++					"value" : "If set, runtime paths are not added when using shared libraries."
++				}
++			],
++			"type" : "BOOL",
++			"value" : "NO"
++		},
++		{
++			"name" : "CMAKE_STATIC_LINKER_FLAGS",
++			"properties" : 
++			[
++				{
++					"name" : "ADVANCED",
++					"value" : "1"
++				},
++				{
++					"name" : "HELPSTRING",
++					"value" : "Flags used by the linker during the creation of static libraries during all build types."
++				}
++			],
++			"type" : "STRING",
++			"value" : ""
++		},
++		{
++			"name" : "CMAKE_STATIC_LINKER_FLAGS_DEBUG",
++			"properties" : 
++			[
++				{
++					"name" : "ADVANCED",
++					"value" : "1"
++				},
++				{
++					"name" : "HELPSTRING",
++					"value" : "Flags used by the linker during the creation of static libraries during DEBUG builds."
++				}
++			],
++			"type" : "STRING",
++			"value" : ""
++		},
++		{
++			"name" : "CMAKE_STATIC_LINKER_FLAGS_MINSIZEREL",
++			"properties" : 
++			[
++				{
++					"name" : "ADVANCED",
++					"value" : "1"
++				},
++				{
++					"name" : "HELPSTRING",
++					"value" : "Flags used by the linker during the creation of static libraries during MINSIZEREL builds."
++				}
++			],
++			"type" : "STRING",
++			"value" : ""
++		},
++		{
++			"name" : "CMAKE_STATIC_LINKER_FLAGS_RELEASE",
++			"properties" : 
++			[
++				{
++					"name" : "ADVANCED",
++					"value" : "1"
++				},
++				{
++					"name" : "HELPSTRING",
++					"value" : "Flags used by the linker during the creation of static libraries during RELEASE builds."
++				}
++			],
++			"type" : "STRING",
++			"value" : ""
++		},
++		{
++			"name" : "CMAKE_STATIC_LINKER_FLAGS_RELWITHDEBINFO",
++			"properties" : 
++			[
++				{
++					"name" : "ADVANCED",
++					"value" : "1"
++				},
++				{
++					"name" : "HELPSTRING",
++					"value" : "Flags used by the linker during the creation of static libraries during RELWITHDEBINFO builds."
++				}
++			],
++			"type" : "STRING",
++			"value" : ""
++		},
++		{
++			"name" : "CMAKE_STRIP",
++			"properties" : 
++			[
++				{
++					"name" : "ADVANCED",
++					"value" : "1"
++				},
++				{
++					"name" : "HELPSTRING",
++					"value" : "Path to a program."
++				}
++			],
++			"type" : "FILEPATH",
++			"value" : "/usr/bin/strip"
++		},
++		{
++			"name" : "CMAKE_UNAME",
++			"properties" : 
++			[
++				{
++					"name" : "HELPSTRING",
++					"value" : "uname command"
++				}
++			],
++			"type" : "INTERNAL",
++			"value" : "/usr/bin/uname"
++		},
++		{
++			"name" : "CMAKE_VERBOSE_MAKEFILE",
++			"properties" : 
++			[
++				{
++					"name" : "ADVANCED",
++					"value" : "1"
++				},
++				{
++					"name" : "HELPSTRING",
++					"value" : "If this value is on, makefiles will be generated without the .SILENT directive, and all commands will be echoed to the console during the make.  This is useful for debugging only. With Visual Studio IDE projects all commands are done without /nologo."
++				}
++			],
++			"type" : "BOOL",
++			"value" : "FALSE"
++		},
++		{
++			"name" : "_CMAKE_LINKER_PUSHPOP_STATE_SUPPORTED",
++			"properties" : 
++			[
++				{
++					"name" : "HELPSTRING",
++					"value" : "linker supports push/pop state"
++				}
++			],
++			"type" : "INTERNAL",
++			"value" : "TRUE"
++		},
++		{
++			"name" : "codeforces_BINARY_DIR",
++			"properties" : 
++			[
++				{
++					"name" : "HELPSTRING",
++					"value" : "Value Computed by CMake"
++				}
++			],
++			"type" : "STATIC",
++			"value" : "/home/haxul/Development/algorithm_tasks_solving/C++/codeforces"
++		},
++		{
++			"name" : "codeforces_IS_TOP_LEVEL",
++			"properties" : 
++			[
++				{
++					"name" : "HELPSTRING",
++					"value" : "Value Computed by CMake"
++				}
++			],
++			"type" : "STATIC",
++			"value" : "ON"
++		},
++		{
++			"name" : "codeforces_SOURCE_DIR",
++			"properties" : 
++			[
++				{
++					"name" : "HELPSTRING",
++					"value" : "Value Computed by CMake"
++				}
++			],
++			"type" : "STATIC",
++			"value" : "/home/haxul/Development/algorithm_tasks_solving/C++/codeforces"
++		}
++	],
++	"kind" : "cache",
++	"version" : 
++	{
++		"major" : 2,
++		"minor" : 0
++	}
++}
+Index: ../python/tasks/ThirdMaximumNumber.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>\"\"\"\nGiven integer array nums, return the third maximum number in this array. If the third maximum does not exist,\n return the maximum number.\n\"\"\"\nfrom typing import List\n\n\nclass Solution:\n\n    # CPU O(n log n) and RAM O(1)\n    def thirdMax(self, nums: List[int]) -> int:\n        if len(nums) == 1: return nums[0]\n        nums.sort(reverse=True)\n        count = 1\n        _max = nums[0]\n        for i in range(1, len(nums)):\n            if count == 3: return _max\n            if _max != nums[i]:\n                _max = nums[i]\n                count += 1\n        if count != 3:\n            return max(nums)\n        return _max\n\n\ns = Solution()\n\nassert 2 == s.thirdMax([1, 1, 2]), \"4\"\nassert 2 == s.thirdMax(nums=[1, 2]), \"2\"\nassert 1 == s.thirdMax(nums=[3, 2, 1]), \"1\"\nassert 1 == s.thirdMax([2, 2, 3, 1]), \"3\"\nprint(\"test passed\")\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../python/tasks/ThirdMaximumNumber.py b/../python/tasks/ThirdMaximumNumber.py
+--- a/../python/tasks/ThirdMaximumNumber.py	(revision af6a441c0f6906b447fb7d2a127c66b528be697c)
++++ b/../python/tasks/ThirdMaximumNumber.py	(date 1697904326502)
+@@ -29,4 +29,4 @@
+ assert 2 == s.thirdMax(nums=[1, 2]), "2"
+ assert 1 == s.thirdMax(nums=[3, 2, 1]), "1"
+ assert 1 == s.thirdMax([2, 2, 3, 1]), "3"
+-print("test passed")
++print("test.py passed")
+Index: ../C++/codeforces/Testing/Temporary/LastTest.log
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../C++/codeforces/Testing/Temporary/LastTest.log b/../C++/codeforces/Testing/Temporary/LastTest.log
+new file mode 100644
+--- /dev/null	(date 1697904326659)
++++ b/../C++/codeforces/Testing/Temporary/LastTest.log	(date 1697904326659)
+@@ -0,0 +1,3 @@
++Start testing: Aug 18 17:35 +04
++----------------------------------------------------------
++End testing: Aug 18 17:35 +04
+Index: ../C++/codeforces/.cmake/api/v1/reply/target-codeforces-Debug-a9beaa1f6e7c4fd77bcc.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../C++/codeforces/.cmake/api/v1/reply/target-codeforces-Debug-a9beaa1f6e7c4fd77bcc.json b/../C++/codeforces/.cmake/api/v1/reply/target-codeforces-Debug-a9beaa1f6e7c4fd77bcc.json
+new file mode 100644
+--- /dev/null	(date 1697904326652)
++++ b/../C++/codeforces/.cmake/api/v1/reply/target-codeforces-Debug-a9beaa1f6e7c4fd77bcc.json	(date 1697904326652)
+@@ -0,0 +1,114 @@
++{
++	"artifacts" : 
++	[
++		{
++			"path" : "codeforces"
++		}
++	],
++	"backtrace" : 1,
++	"backtraceGraph" : 
++	{
++		"commands" : 
++		[
++			"add_executable"
++		],
++		"files" : 
++		[
++			"CMakeLists.txt"
++		],
++		"nodes" : 
++		[
++			{
++				"file" : 0
++			},
++			{
++				"command" : 0,
++				"file" : 0,
++				"line" : 5,
++				"parent" : 0
++			}
++		]
++	},
++	"compileGroups" : 
++	[
++		{
++			"compileCommandFragments" : 
++			[
++				{
++					"fragment" : "-g -fdiagnostics-color=always"
++				},
++				{
++					"fragment" : "-std=gnu++20"
++				}
++			],
++			"language" : "CXX",
++			"languageStandard" : 
++			{
++				"backtraces" : 
++				[
++					1
++				],
++				"standard" : "20"
++			},
++			"sourceIndexes" : 
++			[
++				0
++			]
++		}
++	],
++	"id" : "codeforces::@6890427a1f51a3e7e1df",
++	"link" : 
++	{
++		"commandFragments" : 
++		[
++			{
++				"fragment" : "-g",
++				"role" : "flags"
++			},
++			{
++				"fragment" : "",
++				"role" : "flags"
++			}
++		],
++		"language" : "CXX"
++	},
++	"name" : "codeforces",
++	"nameOnDisk" : "codeforces",
++	"paths" : 
++	{
++		"build" : ".",
++		"source" : "."
++	},
++	"sourceGroups" : 
++	[
++		{
++			"name" : "Source Files",
++			"sourceIndexes" : 
++			[
++				0
++			]
++		},
++		{
++			"name" : "Header Files",
++			"sourceIndexes" : 
++			[
++				1
++			]
++		}
++	],
++	"sources" : 
++	[
++		{
++			"backtrace" : 1,
++			"compileGroupIndex" : 0,
++			"path" : "main.cpp",
++			"sourceGroupIndex" : 0
++		},
++		{
++			"backtrace" : 1,
++			"path" : "helper.h",
++			"sourceGroupIndex" : 1
++		}
++	],
++	"type" : "EXECUTABLE"
++}
+Index: ../python/tasks/Combinations.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>from typing import List\n\n\"\"\"\nGiven two integers n and k, return all possible combinations of k numbers out of the range [1, n].\n\nYou may return the answer in any order.\n\nExample 1:\n\nInput: n = 4, k = 2\nOutput:\n[\n  [2,4],\n  [3,4],\n  [2,3],\n  [1,2],\n  [1,3],\n  [1,4],\n]\n\nExample 2:\n\nInput: n = 1, k = 1\nOutput: [[1]]\n\n\"\"\"\n\n\nclass Solution:\n    def combine(self, n: int, k: int) -> List[List[int]]:\n        arr = [x for x in range(1, n + 1)]\n        result = []\n\n        def helper(comb, idx):\n            if len(comb) == k:\n                result.append(comb[:])\n            else:\n                for i in range(idx, len(arr)):\n                    comb.append(arr[i])\n                    helper(comb, i + 1)\n                    comb.pop()\n\n        helper([], 0)\n        return result\n\n\ns = Solution()\n\nassert s.combine(4, 2) == [[2, 4], [3, 4], [2, 3], [1, 2], [1, 3], [1, 4]]\nprint(\"test passed\")\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../python/tasks/Combinations.py b/../python/tasks/Combinations.py
+--- a/../python/tasks/Combinations.py	(revision af6a441c0f6906b447fb7d2a127c66b528be697c)
++++ b/../python/tasks/Combinations.py	(date 1697904326509)
+@@ -47,4 +47,4 @@
+ s = Solution()
+ 
+ assert s.combine(4, 2) == [[2, 4], [3, 4], [2, 3], [1, 2], [1, 3], [1, 4]]
+-print("test passed")
++print("test.py passed")
+Index: ../C++/codeforces/.cmake/api/v1/reply/toolchains-v1-5e864d45b6495c775afc.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../C++/codeforces/.cmake/api/v1/reply/toolchains-v1-5e864d45b6495c775afc.json b/../C++/codeforces/.cmake/api/v1/reply/toolchains-v1-5e864d45b6495c775afc.json
+new file mode 100644
+--- /dev/null	(date 1697904326699)
++++ b/../C++/codeforces/.cmake/api/v1/reply/toolchains-v1-5e864d45b6495c775afc.json	(date 1697904326699)
+@@ -0,0 +1,103 @@
++{
++	"kind" : "toolchains",
++	"toolchains" : 
++	[
++		{
++			"compiler" : 
++			{
++				"id" : "GNU",
++				"implicit" : 
++				{
++					"includeDirectories" : 
++					[
++						"/usr/lib/gcc/x86_64-pc-linux-gnu/12.2.1/include",
++						"/usr/local/include",
++						"/usr/lib/gcc/x86_64-pc-linux-gnu/12.2.1/include-fixed",
++						"/usr/include"
++					],
++					"linkDirectories" : 
++					[
++						"/usr/lib/gcc/x86_64-pc-linux-gnu/12.2.1",
++						"/usr/lib",
++						"/lib"
++					],
++					"linkFrameworkDirectories" : [],
++					"linkLibraries" : 
++					[
++						"gcc",
++						"gcc_s",
++						"c",
++						"gcc",
++						"gcc_s"
++					]
++				},
++				"path" : "/usr/bin/cc",
++				"version" : "12.2.1"
++			},
++			"language" : "C",
++			"sourceFileExtensions" : 
++			[
++				"c",
++				"m"
++			]
++		},
++		{
++			"compiler" : 
++			{
++				"id" : "GNU",
++				"implicit" : 
++				{
++					"includeDirectories" : 
++					[
++						"/usr/include/c++/12.2.1",
++						"/usr/include/c++/12.2.1/x86_64-pc-linux-gnu",
++						"/usr/include/c++/12.2.1/backward",
++						"/usr/lib/gcc/x86_64-pc-linux-gnu/12.2.1/include",
++						"/usr/local/include",
++						"/usr/lib/gcc/x86_64-pc-linux-gnu/12.2.1/include-fixed",
++						"/usr/include"
++					],
++					"linkDirectories" : 
++					[
++						"/usr/lib/gcc/x86_64-pc-linux-gnu/12.2.1",
++						"/usr/lib",
++						"/lib"
++					],
++					"linkFrameworkDirectories" : [],
++					"linkLibraries" : 
++					[
++						"stdc++",
++						"m",
++						"gcc_s",
++						"gcc",
++						"c",
++						"gcc_s",
++						"gcc"
++					]
++				},
++				"path" : "/usr/bin/c++",
++				"version" : "12.2.1"
++			},
++			"language" : "CXX",
++			"sourceFileExtensions" : 
++			[
++				"C",
++				"M",
++				"c++",
++				"cc",
++				"cpp",
++				"cxx",
++				"mm",
++				"mpp",
++				"CPP",
++				"ixx",
++				"cppm"
++			]
++		}
++	],
++	"version" : 
++	{
++		"major" : 1,
++		"minor" : 0
++	}
++}
+Index: ../python/leetcode/207. Course Schedule.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>from typing import List\n\n\nclass Solution:\n    # cpu O(vertex + edges) and ram O(vertex)\n    def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:\n        graph = {i: set() for i in range(numCourses)}\n        gray = set()\n        black = set()\n        for pre in prerequisites:\n            graph[pre[1]].add(pre[0])\n\n        self.has_cycle = False\n\n        def dfs(cur_node, graph):\n            if self.has_cycle:\n                return\n            if cur_node in black:\n                return\n            if cur_node in gray:\n                self.has_cycle = True\n                return\n            gray.add(cur_node)\n            children = graph[cur_node]\n            for child in children:\n                dfs(child, graph)\n            gray.remove(cur_node)\n            black.add(cur_node)\n\n        for node in graph:\n            dfs(node, graph)\n\n        return True if not self.has_cycle else False\n\n\nassert Solution().canFinish(7, [[2, 5], [3, 5], [1, 2], [1, 3], [1, 6], [3, 6], [3, 4]])\nassert Solution().canFinish(numCourses=2, prerequisites=[[1, 0]])\nassert not Solution().canFinish(numCourses=2, prerequisites=[[1, 0], [0, 1]])\n\nprint(\"test passed\")\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../python/leetcode/207. Course Schedule.py b/../python/leetcode/207. Course Schedule.py
+--- a/../python/leetcode/207. Course Schedule.py	(revision af6a441c0f6906b447fb7d2a127c66b528be697c)
++++ b/../python/leetcode/207. Course Schedule.py	(date 1697904326519)
+@@ -37,4 +37,4 @@
+ assert Solution().canFinish(numCourses=2, prerequisites=[[1, 0]])
+ assert not Solution().canFinish(numCourses=2, prerequisites=[[1, 0], [0, 1]])
+ 
+-print("test passed")
++print("test.py passed")
+Index: ../python/tasks/underscore_string.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+># space O(n) and time O(n^2)\ndef underscore_string(s: str, word: str) -> str:\n    buffer: [str] = []\n    str_prt: int = s.find(word)\n    end_ptr: int = str_prt + len(word) if str_prt != -1 else -1\n    cur_ptr: int = 0\n    while cur_ptr < len(s):\n        if cur_ptr == end_ptr:\n            if end_ptr != str_prt:\n                buffer.append(\"_\")\n            end_ptr = str_prt + len(word) if str_prt != 1 else -1\n\n        if cur_ptr == str_prt:\n            if s.find(word, str_prt - len(word)) != str_prt - len(word):\n                buffer.append(\"_\")\n            str_prt = s.find(word, cur_ptr + 1)\n\n        buffer.append(s[cur_ptr])\n        cur_ptr += 1\n    return \"\".join(buffer)\n\n\ns = \"testthis is a testtest to see if testtesttest it works\"\nassert \"_test_this is a _testtest_ to see if _testtesttest_ it works\" == underscore_string(s, \"test\")\nprint(\"tests passed\")\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../python/tasks/underscore_string.py b/../python/tasks/underscore_string.py
+--- a/../python/tasks/underscore_string.py	(revision af6a441c0f6906b447fb7d2a127c66b528be697c)
++++ b/../python/tasks/underscore_string.py	(date 1697904326526)
+@@ -21,5 +21,5 @@
+ 
+ 
+ s = "testthis is a testtest to see if testtesttest it works"
+-assert "_test_this is a _testtest_ to see if _testtesttest_ it works" == underscore_string(s, "test")
++assert "_test_this is a _testtest_ to see if _testtesttest_ it works" == underscore_string(s, "test.py")
+ print("tests passed")
+Index: ../C++/codeforces/.cmake/api/v1/reply/directory-.-Debug-f5ebdc15457944623624.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../C++/codeforces/.cmake/api/v1/reply/directory-.-Debug-f5ebdc15457944623624.json b/../C++/codeforces/.cmake/api/v1/reply/directory-.-Debug-f5ebdc15457944623624.json
+new file mode 100644
+--- /dev/null	(date 1697904326669)
++++ b/../C++/codeforces/.cmake/api/v1/reply/directory-.-Debug-f5ebdc15457944623624.json	(date 1697904326669)
+@@ -0,0 +1,14 @@
++{
++	"backtraceGraph" : 
++	{
++		"commands" : [],
++		"files" : [],
++		"nodes" : []
++	},
++	"installers" : [],
++	"paths" : 
++	{
++		"build" : ".",
++		"source" : "."
++	}
++}
+Index: ../C++/codeforces/.cmake/api/v1/reply/cmakeFiles-v1-aa5a2e877deda872313b.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../C++/codeforces/.cmake/api/v1/reply/cmakeFiles-v1-aa5a2e877deda872313b.json b/../C++/codeforces/.cmake/api/v1/reply/cmakeFiles-v1-aa5a2e877deda872313b.json
+new file mode 100644
+--- /dev/null	(date 1697904326679)
++++ b/../C++/codeforces/.cmake/api/v1/reply/cmakeFiles-v1-aa5a2e877deda872313b.json	(date 1697904326679)
+@@ -0,0 +1,133 @@
++{
++	"inputs" : 
++	[
++		{
++			"path" : "CMakeLists.txt"
++		},
++		{
++			"path" : "CMakeFiles/3.25.2/CMakeSystem.cmake"
++		},
++		{
++			"isCMake" : true,
++			"isExternal" : true,
++			"path" : "/home/haxul/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.222/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeSystemSpecificInitialize.cmake"
++		},
++		{
++			"path" : "CMakeFiles/3.25.2/CMakeCCompiler.cmake"
++		},
++		{
++			"path" : "CMakeFiles/3.25.2/CMakeCXXCompiler.cmake"
++		},
++		{
++			"isCMake" : true,
++			"isExternal" : true,
++			"path" : "/home/haxul/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.222/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeSystemSpecificInformation.cmake"
++		},
++		{
++			"isCMake" : true,
++			"isExternal" : true,
++			"path" : "/home/haxul/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.222/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeGenericSystem.cmake"
++		},
++		{
++			"isCMake" : true,
++			"isExternal" : true,
++			"path" : "/home/haxul/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.222/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeInitializeConfigs.cmake"
++		},
++		{
++			"isCMake" : true,
++			"isExternal" : true,
++			"path" : "/home/haxul/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.222/bin/cmake/linux/x64/share/cmake-3.25/Modules/Platform/Linux.cmake"
++		},
++		{
++			"isCMake" : true,
++			"isExternal" : true,
++			"path" : "/home/haxul/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.222/bin/cmake/linux/x64/share/cmake-3.25/Modules/Platform/UnixPaths.cmake"
++		},
++		{
++			"isCMake" : true,
++			"isExternal" : true,
++			"path" : "/home/haxul/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.222/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeCInformation.cmake"
++		},
++		{
++			"isCMake" : true,
++			"isExternal" : true,
++			"path" : "/home/haxul/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.222/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeLanguageInformation.cmake"
++		},
++		{
++			"isCMake" : true,
++			"isExternal" : true,
++			"path" : "/home/haxul/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.222/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/GNU-C.cmake"
++		},
++		{
++			"isCMake" : true,
++			"isExternal" : true,
++			"path" : "/home/haxul/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.222/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/GNU.cmake"
++		},
++		{
++			"isCMake" : true,
++			"isExternal" : true,
++			"path" : "/home/haxul/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.222/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/CMakeCommonCompilerMacros.cmake"
++		},
++		{
++			"isCMake" : true,
++			"isExternal" : true,
++			"path" : "/home/haxul/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.222/bin/cmake/linux/x64/share/cmake-3.25/Modules/Platform/Linux-GNU-C.cmake"
++		},
++		{
++			"isCMake" : true,
++			"isExternal" : true,
++			"path" : "/home/haxul/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.222/bin/cmake/linux/x64/share/cmake-3.25/Modules/Platform/Linux-GNU.cmake"
++		},
++		{
++			"isCMake" : true,
++			"isExternal" : true,
++			"path" : "/home/haxul/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.222/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeCommonLanguageInclude.cmake"
++		},
++		{
++			"isCMake" : true,
++			"isExternal" : true,
++			"path" : "/home/haxul/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.222/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeCXXInformation.cmake"
++		},
++		{
++			"isCMake" : true,
++			"isExternal" : true,
++			"path" : "/home/haxul/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.222/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeLanguageInformation.cmake"
++		},
++		{
++			"isCMake" : true,
++			"isExternal" : true,
++			"path" : "/home/haxul/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.222/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/GNU-CXX.cmake"
++		},
++		{
++			"isCMake" : true,
++			"isExternal" : true,
++			"path" : "/home/haxul/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.222/bin/cmake/linux/x64/share/cmake-3.25/Modules/Compiler/GNU.cmake"
++		},
++		{
++			"isCMake" : true,
++			"isExternal" : true,
++			"path" : "/home/haxul/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.222/bin/cmake/linux/x64/share/cmake-3.25/Modules/Platform/Linux-GNU-CXX.cmake"
++		},
++		{
++			"isCMake" : true,
++			"isExternal" : true,
++			"path" : "/home/haxul/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.222/bin/cmake/linux/x64/share/cmake-3.25/Modules/Platform/Linux-GNU.cmake"
++		},
++		{
++			"isCMake" : true,
++			"isExternal" : true,
++			"path" : "/home/haxul/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.222/bin/cmake/linux/x64/share/cmake-3.25/Modules/CMakeCommonLanguageInclude.cmake"
++		}
++	],
++	"kind" : "cmakeFiles",
++	"paths" : 
++	{
++		"build" : "/home/haxul/Development/algorithm_tasks_solving/C++/codeforces",
++		"source" : "/home/haxul/Development/algorithm_tasks_solving/C++/codeforces"
++	},
++	"version" : 
++	{
++		"major" : 1,
++		"minor" : 0
++	}
++}
+Index: ../python/leetcode/medium/128. Longest Consecutive Sequence.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>from typing import List\n\n\nclass Solution:\n    def longestConsecutive(self, nums: List[int]) -> int:\n\n        def union(ds, n1, n2):\n            if ds[n1] == ds[n2]:\n                return\n\n            if len(ds[n1]) < len(ds[n2]):\n                for k in ds[n1]:\n                    ds[n2].add(k)\n                    ds[k] = ds[n2]\n            else:\n                for k in ds[n2]:\n                    ds[n1].add(k)\n                    ds[k] = ds[n1]\n\n        disjoint_set = {}\n\n        for n in nums:\n            disjoint_set[n] = {n}\n\n        ans = 0\n        for n in nums:\n            if n + 1 in disjoint_set:\n                union(disjoint_set, n + 1, n)\n            if n - 1 in disjoint_set:\n                union(disjoint_set, n - 1, n)\n            ans = max(len(disjoint_set[n]), ans)\n\n        return ans\n\n\nassert 4 == Solution().longestConsecutive([100, 4, 200, 1, 3, 2])\nassert 9 == Solution().longestConsecutive([0, 3, 7, 2, 5, 8, 4, 6, 0, 1])\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../python/leetcode/medium/128. Longest Consecutive Sequence.py b/../python/leetcode/medium/128. Longest Consecutive Sequence.py
+--- a/../python/leetcode/medium/128. Longest Consecutive Sequence.py	(revision af6a441c0f6906b447fb7d2a127c66b528be697c)
++++ b/../python/leetcode/medium/128. Longest Consecutive Sequence.py	(date 1697904326536)
+@@ -3,34 +3,16 @@
+ 
+ class Solution:
+     def longestConsecutive(self, nums: List[int]) -> int:
+-
+-        def union(ds, n1, n2):
+-            if ds[n1] == ds[n2]:
+-                return
+-
+-            if len(ds[n1]) < len(ds[n2]):
+-                for k in ds[n1]:
+-                    ds[n2].add(k)
+-                    ds[k] = ds[n2]
+-            else:
+-                for k in ds[n2]:
+-                    ds[n1].add(k)
+-                    ds[k] = ds[n1]
+-
+-        disjoint_set = {}
+-
++        ns = set(nums)
++        longest = 0
+         for n in nums:
+-            disjoint_set[n] = {n}
++            if n - 1 not in ns:
++                l = 0
++                while n + l in ns:
++                    l += 1
++                longest = max(longest, l)
+ 
+-        ans = 0
+-        for n in nums:
+-            if n + 1 in disjoint_set:
+-                union(disjoint_set, n + 1, n)
+-            if n - 1 in disjoint_set:
+-                union(disjoint_set, n - 1, n)
+-            ans = max(len(disjoint_set[n]), ans)
+-
+-        return ans
++        return longest
+ 
+ 
+ assert 4 == Solution().longestConsecutive([100, 4, 200, 1, 3, 2])
+Index: ../C++/simd/XmmVal.h
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../C++/simd/XmmVal.h b/../C++/simd/XmmVal.h
+new file mode 100644
+--- /dev/null	(date 1697904326612)
++++ b/../C++/simd/XmmVal.h	(date 1697904326612)
+@@ -0,0 +1,186 @@
++#ifndef SIMD_XMMVAL_H
++#define SIMD_XMMVAL_H
++
++#pragma once
++#include <string>
++#include <cstdint>
++#include <sstream>
++#include <iomanip>
++
++struct alignas(16) XmmVal
++{
++public:
++    union
++    {
++        int8_t m_I8[16];
++        int16_t m_I16[8];
++        int32_t m_I32[4];
++        int64_t m_I64[2];
++        uint8_t m_U8[16];
++        uint16_t m_U16[8];
++        uint32_t m_U32[4];
++        uint64_t m_U64[2];
++        float m_F32[4];
++        double m_F64[2];
++    };
++
++private:
++    template <typename T> std::string ToStringInt(const T* x, int n, int w)
++    {
++        std::ostringstream oss;
++
++        for (int i = 0; i < n; i++)
++        {
++            oss << std::setw(w) << (int64_t)x[i];
++
++            if (i + 1 == n / 2)
++                oss << "   |";
++        }
++
++        return oss.str();
++    }
++
++    template <typename T> std::string ToStringUint(const T* x, int n, int w)
++    {
++        std::ostringstream oss;
++
++        for (int i = 0; i < n; i++)
++        {
++            oss << std::setw(w) << (uint64_t)x[i];
++
++            if (i + 1 == n / 2)
++                oss << "   |";
++        }
++
++        return oss.str();
++    }
++
++    template <typename T> std::string ToStringHex(const T* x, int n, int w)
++    {
++        std::ostringstream oss;
++
++        for (int i = 0; i < n; i++)
++        {
++            const int w_temp = 16;
++            std::ostringstream oss_temp;
++
++            oss_temp << std::uppercase << std::hex << std::setfill('0');
++            oss_temp << std::setw(w_temp) << (uint64_t)x[i];
++            std::string s1 = oss_temp.str();
++            std::string s2 = s1.substr(w_temp - sizeof(T) * 2);
++
++            oss << std::setw(w) << s2;
++
++            if (i + 1 == n / 2)
++                oss << "   |";
++        }
++
++        return oss.str();
++    }
++
++    template <typename T> std::string ToStringFP(const T* x, int n, int w, int p)
++    {
++        std::ostringstream oss;
++
++        oss << std::fixed << std::setprecision(p);
++
++        for (int i = 0; i < n; i++)
++        {
++            oss << std::setw(w) << x[i];
++
++            if (i + 1 == n / 2)
++                oss << "   |";
++        }
++
++        return oss.str();
++    }
++
++public:
++
++    //
++    // Signed integer
++    //
++
++    std::string ToStringI8(void)
++    {
++        return ToStringInt(m_I8, sizeof(m_I8) / sizeof(int8_t), 4);
++    }
++
++    std::string ToStringI16(void)
++    {
++        return ToStringInt(m_I16, sizeof(m_I16) / sizeof(int16_t), 8);
++    }
++
++    std::string ToStringI32(void)
++    {
++        return ToStringInt(m_I32, sizeof(m_I32) / sizeof(int32_t), 16);
++    }
++
++    std::string ToStringI64(void)
++    {
++        return ToStringInt(m_I64, sizeof(m_I64) / sizeof(int64_t), 32);
++    }
++
++    //
++    // Unsigned integer
++    //
++
++    std::string ToStringU8(void)
++    {
++        return ToStringUint(m_U8, sizeof(m_U8) / sizeof(uint8_t), 4);
++    }
++
++    std::string ToStringU16(void)
++    {
++        return ToStringUint(m_U16, sizeof(m_U16) / sizeof(uint16_t), 8);
++    }
++
++    std::string ToStringU32(void)
++    {
++        return ToStringUint(m_U32, sizeof(m_U32) / sizeof(uint32_t), 16);
++    }
++
++    std::string ToStringU64(void)
++    {
++        return ToStringUint(m_U64, sizeof(m_U64) / sizeof(uint64_t), 32);
++    }
++
++    //
++    // Hexadecimal
++    //
++
++    std::string ToStringX8(void)
++    {
++        return ToStringHex(m_U8, sizeof(m_U8) / sizeof(uint8_t), 4);
++    }
++
++    std::string ToStringX16(void)
++    {
++        return ToStringHex(m_U16, sizeof(m_U16) / sizeof(uint16_t), 8);
++    }
++
++    std::string ToStringX32(void)
++    {
++        return ToStringHex(m_U32, sizeof(m_U32) / sizeof(uint32_t), 16);
++    }
++
++    std::string ToStringX64(void)
++    {
++        return ToStringHex(m_U64, sizeof(m_U64) / sizeof(uint64_t), 32);
++    }
++
++    //
++    // Floating point
++    //
++
++    std::string ToStringF32(void)
++    {
++        return ToStringFP(m_F32, sizeof(m_F32) / sizeof(float), 16, 6);
++    }
++
++    std::string ToStringF64(void)
++    {
++        return ToStringFP(m_F64, sizeof(m_F64) / sizeof(double), 32, 12);
++    }
++};
++#endif //SIMD_XMMVAL_H
+Index: ../C++/simd/.idea/simd.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../C++/simd/.idea/simd.iml b/../C++/simd/.idea/simd.iml
+new file mode 100644
+--- /dev/null	(date 1697904326496)
++++ b/../C++/simd/.idea/simd.iml	(date 1697904326496)
+@@ -0,0 +1,2 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<module classpath="CMake" type="CPP_MODULE" version="4" />
+\ No newline at end of file
+Index: ../python/tasks/FruitsInBusket.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>from collections import defaultdict\nfrom typing import List\n\n\nclass Solution:\n    def totalFruit(self, fruits: List[int]) -> int:\n        left = 0\n        c = defaultdict(int)\n        result = 0\n        for right in range(len(fruits)):\n            c[fruits[right]] += 1\n            while len(c) > 2:\n                c[fruits[left]] -= 1\n                if c[fruits[left]] == 0:\n                    del c[fruits[left]]\n                left += 1\n            result = max(result, right - left + 1)\n\n        return result\n\n\ns = Solution()\n\nassert s.totalFruit([0, 1, 2, 2]) == 3\nassert s.totalFruit(fruits=[1, 2, 1]) == 3\nprint(\"test passed\")\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../python/tasks/FruitsInBusket.py b/../python/tasks/FruitsInBusket.py
+--- a/../python/tasks/FruitsInBusket.py	(revision af6a441c0f6906b447fb7d2a127c66b528be697c)
++++ b/../python/tasks/FruitsInBusket.py	(date 1697904326542)
+@@ -23,4 +23,4 @@
+ 
+ assert s.totalFruit([0, 1, 2, 2]) == 3
+ assert s.totalFruit(fruits=[1, 2, 1]) == 3
+-print("test passed")
++print("test.py passed")
+Index: ../python/tasks/BackspaceStringCompare.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>\"\"\"\nGiven two strings s and t, return true if they are equal when both are typed into empty text editors.\n'#' means a backspace character.\n\nNote that after backspacing an empty text, the text will continue empty.\n\n\"\"\"\n\n\nclass Solution:\n\n    # cpu O(n) and ram O(1)\n    def backspaceCompare(self, s: str, t: str) -> bool:\n        sptr = len(s) - 1\n        tptr = len(t) - 1\n        scounter = 0\n        tcounter = 0\n\n        while True:\n            while sptr >= 0 and s[sptr] == \"#\":\n                scounter += 1\n                sptr -= 1\n                while scounter > 0 and s[sptr] != \"#\":\n                    sptr -= 1\n                    scounter -= 1\n            while tptr >= 0 and t[tptr] == \"#\":\n                tcounter += 1\n                tptr -= 1\n                while tcounter > 0 and t[tptr] != \"#\":\n                    tptr -= 1\n                    tcounter -= 1\n\n            if tptr < 0 and sptr < 0:\n                return True\n            if tptr < 0:\n                return False\n            if sptr < 0:\n                return False\n            if t[tptr] == s[sptr]:\n                tptr -= 1\n                sptr -= 1\n            else:\n                return False\n\n\ns = Solution()\n\nassert s.backspaceCompare(s=\"ab##\", t=\"c#d#\"), 2\nassert s.backspaceCompare(s=\"a##c\", t=\"#a#c\"), 3\nassert s.backspaceCompare(s=\"ab#c\", t=\"ad#c\"), 1\nassert not s.backspaceCompare(s=\"a#c\", t=\"b\"), 4\n\nprint(\"test passed\")\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../python/tasks/BackspaceStringCompare.py b/../python/tasks/BackspaceStringCompare.py
+--- a/../python/tasks/BackspaceStringCompare.py	(revision af6a441c0f6906b447fb7d2a127c66b528be697c)
++++ b/../python/tasks/BackspaceStringCompare.py	(date 1697904326549)
+@@ -50,4 +50,4 @@
+ assert s.backspaceCompare(s="ab#c", t="ad#c"), 1
+ assert not s.backspaceCompare(s="a#c", t="b"), 4
+ 
+-print("test passed")
++print("test.py passed")
+Index: ../python/.idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"ProjectRootManager\" version=\"2\" project-jdk-name=\"Python 3.10 (python)\" project-jdk-type=\"Python SDK\" />\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../python/.idea/misc.xml b/../python/.idea/misc.xml
+--- a/../python/.idea/misc.xml	(revision af6a441c0f6906b447fb7d2a127c66b528be697c)
++++ b/../python/.idea/misc.xml	(date 1697904326559)
+@@ -1,4 +1,7 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+-  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.10 (python)" project-jdk-type="Python SDK" />
++  <component name="Black">
++    <option name="sdkName" value="Python 3.11 (python)" />
++  </component>
++  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.11 (python)" project-jdk-type="Python SDK" />
+ </project>
+\ No newline at end of file
+Index: ../C++/codeforces/.cmake/api/v1/reply/codemodel-v2-8eab702b1e956bd982fb.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../C++/codeforces/.cmake/api/v1/reply/codemodel-v2-8eab702b1e956bd982fb.json b/../C++/codeforces/.cmake/api/v1/reply/codemodel-v2-8eab702b1e956bd982fb.json
+new file mode 100644
+--- /dev/null	(date 1697904326619)
++++ b/../C++/codeforces/.cmake/api/v1/reply/codemodel-v2-8eab702b1e956bd982fb.json	(date 1697904326619)
+@@ -0,0 +1,60 @@
++{
++	"configurations" : 
++	[
++		{
++			"directories" : 
++			[
++				{
++					"build" : ".",
++					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
++					"minimumCMakeVersion" : 
++					{
++						"string" : "3.15"
++					},
++					"projectIndex" : 0,
++					"source" : ".",
++					"targetIndexes" : 
++					[
++						0
++					]
++				}
++			],
++			"name" : "Debug",
++			"projects" : 
++			[
++				{
++					"directoryIndexes" : 
++					[
++						0
++					],
++					"name" : "codeforces",
++					"targetIndexes" : 
++					[
++						0
++					]
++				}
++			],
++			"targets" : 
++			[
++				{
++					"directoryIndex" : 0,
++					"id" : "codeforces::@6890427a1f51a3e7e1df",
++					"jsonFile" : "target-codeforces-Debug-a9beaa1f6e7c4fd77bcc.json",
++					"name" : "codeforces",
++					"projectIndex" : 0
++				}
++			]
++		}
++	],
++	"kind" : "codemodel",
++	"paths" : 
++	{
++		"build" : "/home/haxul/Development/algorithm_tasks_solving/C++/codeforces",
++		"source" : "/home/haxul/Development/algorithm_tasks_solving/C++/codeforces"
++	},
++	"version" : 
++	{
++		"major" : 2,
++		"minor" : 4
++	}
++}
+Index: ../python/tasks/shortest_path.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+># time O(n) and space O(n)\ndef shortest_path(url: str) -> str:\n    is_absolute = False\n    tokens = url.split(\"/\")\n    tokens[0] = \"/\" if tokens[0] == \"\" else tokens[0]\n    if tokens[0] == \"/\": is_absolute = True\n    stack = []\n    for token in tokens:\n        if token == \"..\":\n            stack.pop()\n        elif token == \".\" or token == \"\":\n            continue\n        else:\n            stack.append(token)\n    out = \"\"\n    for p in range(len(stack)):\n        if p != 0 and p != len(stack) - 1 and is_absolute:\n            out += f\"{stack[p]}/\"\n        elif p != len(stack) - 1 and not is_absolute:\n            out += f\"{stack[p]}/\"\n        elif p == 0 and not is_absolute:\n            out += f\"/{stack[p]}\"\n        else:\n            out += stack[p]\n    return out\n\n\nassert \"/foo/bar/baz\" == shortest_path(\"/foo/../test/../test/../foo//bar/./baz\"), \"1\"\nassert \"foo/bar/baz\" == shortest_path(\"./foo/../test/../test/../foo//bar/./baz\"), \"2\"\n\nprint(\"tests passed\")\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../python/tasks/shortest_path.py b/../python/tasks/shortest_path.py
+--- a/../python/tasks/shortest_path.py	(revision af6a441c0f6906b447fb7d2a127c66b528be697c)
++++ b/../python/tasks/shortest_path.py	(date 1697904326566)
+@@ -25,7 +25,7 @@
+     return out
+ 
+ 
+-assert "/foo/bar/baz" == shortest_path("/foo/../test/../test/../foo//bar/./baz"), "1"
+-assert "foo/bar/baz" == shortest_path("./foo/../test/../test/../foo//bar/./baz"), "2"
++assert "/foo/bar/baz" == shortest_path("/foo/../test.py/../test.py/../foo//bar/./baz"), "1"
++assert "foo/bar/baz" == shortest_path("./foo/../test.py/../test.py/../foo//bar/./baz"), "2"
+ 
+ print("tests passed")
+Index: ../java/src/com/company/leetcode/.idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"KotlinMultiplatform\">\n    <allAvailableExecutables />\n  </component>\n  <component name=\"ProjectRootManager\" version=\"2\" languageLevel=\"JDK_17\" default=\"true\" project-jdk-name=\"17\" project-jdk-type=\"JavaSDK\">\n    <output url=\"file://$PROJECT_DIR$/out\" />\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../java/src/com/company/leetcode/.idea/misc.xml b/../java/src/com/company/leetcode/.idea/misc.xml
+--- a/../java/src/com/company/leetcode/.idea/misc.xml	(revision af6a441c0f6906b447fb7d2a127c66b528be697c)
++++ b/../java/src/com/company/leetcode/.idea/misc.xml	(date 1697904326572)
+@@ -1,4 +1,3 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+   <component name="KotlinMultiplatform">
+     <allAvailableExecutables />
+Index: ../leetcode2/leetcode2.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../leetcode2/leetcode2.iml b/../leetcode2/leetcode2.iml
+new file mode 100644
+--- /dev/null	(date 1697904326459)
++++ b/../leetcode2/leetcode2.iml	(date 1697904326459)
+@@ -0,0 +1,11 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<module type="GENERAL_MODULE" version="4">
++  <component name="NewModuleRootManager" inherit-compiler-output="true">
++    <exclude-output />
++    <content url="file://$MODULE_DIR$">
++      <sourceFolder url="file://$MODULE_DIR$" isTestSource="false" />
++    </content>
++    <orderEntry type="inheritedJdk" />
++    <orderEntry type="sourceFolder" forTests="false" />
++  </component>
++</module>
+\ No newline at end of file
+Index: ../python/.idea/python.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<module type=\"PYTHON_MODULE\" version=\"4\">\n  <component name=\"NewModuleRootManager\">\n    <content url=\"file://$MODULE_DIR$\">\n      <excludeFolder url=\"file://$MODULE_DIR$/venv\" />\n    </content>\n    <orderEntry type=\"jdk\" jdkName=\"Python 3.10 (python)\" jdkType=\"Python SDK\" />\n    <orderEntry type=\"sourceFolder\" forTests=\"false\" />\n  </component>\n  <component name=\"TestRunnerService\">\n    <option name=\"PROJECT_TEST_RUNNER\" value=\"Nosetests\" />\n  </component>\n</module>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../python/.idea/python.iml b/../python/.idea/python.iml
+--- a/../python/.idea/python.iml	(revision af6a441c0f6906b447fb7d2a127c66b528be697c)
++++ b/../python/.idea/python.iml	(date 1697904326582)
+@@ -4,7 +4,7 @@
+     <content url="file://$MODULE_DIR$">
+       <excludeFolder url="file://$MODULE_DIR$/venv" />
+     </content>
+-    <orderEntry type="jdk" jdkName="Python 3.10 (python)" jdkType="Python SDK" />
++    <orderEntry type="jdk" jdkName="Python 3.11 (python)" jdkType="Python SDK" />
+     <orderEntry type="sourceFolder" forTests="false" />
+   </component>
+   <component name="TestRunnerService">
+Index: ../C++/codeforces/codeforces.cbp
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../C++/codeforces/codeforces.cbp b/../C++/codeforces/codeforces.cbp
+new file mode 100644
+--- /dev/null	(date 1697904326476)
++++ b/../C++/codeforces/codeforces.cbp	(date 1697904326476)
+@@ -0,0 +1,79 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<CodeBlocks_project_file>
++	<FileVersion major="1" minor="6"/>
++	<Project>
++		<Option title="codeforces"/>
++		<Option makefile_is_custom="1"/>
++		<Option compiler="gcc"/>
++		<Option virtualFolders="CMake Files\;"/>
++		<Build>
++			<Target title="all">
++				<Option working_dir="/home/haxul/Development/algorithm_tasks_solving/C++/codeforces"/>
++				<Option type="4"/>
++				<MakeCommands>
++					<Build command="/usr/bin/make -f &quot;/home/haxul/Development/algorithm_tasks_solving/C++/codeforces/Makefile&quot;  VERBOSE=1 all"/>
++					<CompileFile command="/usr/bin/make -f &quot;/home/haxul/Development/algorithm_tasks_solving/C++/codeforces/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
++					<Clean command="/usr/bin/make -f &quot;/home/haxul/Development/algorithm_tasks_solving/C++/codeforces/Makefile&quot;  VERBOSE=1 clean"/>
++					<DistClean command="/usr/bin/make -f &quot;/home/haxul/Development/algorithm_tasks_solving/C++/codeforces/Makefile&quot;  VERBOSE=1 clean"/>
++				</MakeCommands>
++			</Target>
++			<Target title="codeforces">
++				<Option output="/home/haxul/Development/algorithm_tasks_solving/C++/codeforces/codeforces" prefix_auto="0" extension_auto="0"/>
++				<Option working_dir="/home/haxul/Development/algorithm_tasks_solving/C++/codeforces"/>
++				<Option object_output="./"/>
++				<Option type="1"/>
++				<Option compiler="gcc"/>
++				<Compiler/>
++				<MakeCommands>
++					<Build command="/usr/bin/make -f &quot;/home/haxul/Development/algorithm_tasks_solving/C++/codeforces/Makefile&quot;  VERBOSE=1 codeforces"/>
++					<CompileFile command="/usr/bin/make -f &quot;/home/haxul/Development/algorithm_tasks_solving/C++/codeforces/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
++					<Clean command="/usr/bin/make -f &quot;/home/haxul/Development/algorithm_tasks_solving/C++/codeforces/Makefile&quot;  VERBOSE=1 clean"/>
++					<DistClean command="/usr/bin/make -f &quot;/home/haxul/Development/algorithm_tasks_solving/C++/codeforces/Makefile&quot;  VERBOSE=1 clean"/>
++				</MakeCommands>
++			</Target>
++			<Target title="codeforces/fast">
++				<Option output="/home/haxul/Development/algorithm_tasks_solving/C++/codeforces/codeforces" prefix_auto="0" extension_auto="0"/>
++				<Option working_dir="/home/haxul/Development/algorithm_tasks_solving/C++/codeforces"/>
++				<Option object_output="./"/>
++				<Option type="1"/>
++				<Option compiler="gcc"/>
++				<Compiler/>
++				<MakeCommands>
++					<Build command="/usr/bin/make -f &quot;/home/haxul/Development/algorithm_tasks_solving/C++/codeforces/Makefile&quot;  VERBOSE=1 codeforces/fast"/>
++					<CompileFile command="/usr/bin/make -f &quot;/home/haxul/Development/algorithm_tasks_solving/C++/codeforces/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
++					<Clean command="/usr/bin/make -f &quot;/home/haxul/Development/algorithm_tasks_solving/C++/codeforces/Makefile&quot;  VERBOSE=1 clean"/>
++					<DistClean command="/usr/bin/make -f &quot;/home/haxul/Development/algorithm_tasks_solving/C++/codeforces/Makefile&quot;  VERBOSE=1 clean"/>
++				</MakeCommands>
++			</Target>
++			<Target title="edit_cache">
++				<Option working_dir="/home/haxul/Development/algorithm_tasks_solving/C++/codeforces"/>
++				<Option type="4"/>
++				<MakeCommands>
++					<Build command="/usr/bin/make -f &quot;/home/haxul/Development/algorithm_tasks_solving/C++/codeforces/Makefile&quot;  VERBOSE=1 edit_cache"/>
++					<CompileFile command="/usr/bin/make -f &quot;/home/haxul/Development/algorithm_tasks_solving/C++/codeforces/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
++					<Clean command="/usr/bin/make -f &quot;/home/haxul/Development/algorithm_tasks_solving/C++/codeforces/Makefile&quot;  VERBOSE=1 clean"/>
++					<DistClean command="/usr/bin/make -f &quot;/home/haxul/Development/algorithm_tasks_solving/C++/codeforces/Makefile&quot;  VERBOSE=1 clean"/>
++				</MakeCommands>
++			</Target>
++			<Target title="rebuild_cache">
++				<Option working_dir="/home/haxul/Development/algorithm_tasks_solving/C++/codeforces"/>
++				<Option type="4"/>
++				<MakeCommands>
++					<Build command="/usr/bin/make -f &quot;/home/haxul/Development/algorithm_tasks_solving/C++/codeforces/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
++					<CompileFile command="/usr/bin/make -f &quot;/home/haxul/Development/algorithm_tasks_solving/C++/codeforces/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
++					<Clean command="/usr/bin/make -f &quot;/home/haxul/Development/algorithm_tasks_solving/C++/codeforces/Makefile&quot;  VERBOSE=1 clean"/>
++					<DistClean command="/usr/bin/make -f &quot;/home/haxul/Development/algorithm_tasks_solving/C++/codeforces/Makefile&quot;  VERBOSE=1 clean"/>
++				</MakeCommands>
++			</Target>
++		</Build>
++		<Unit filename="/home/haxul/Development/algorithm_tasks_solving/C++/codeforces/helper.h">
++			<Option target="codeforces"/>
++		</Unit>
++		<Unit filename="/home/haxul/Development/algorithm_tasks_solving/C++/codeforces/main.cpp">
++			<Option target="codeforces"/>
++		</Unit>
++		<Unit filename="/home/haxul/Development/algorithm_tasks_solving/C++/codeforces/CMakeLists.txt">
++			<Option virtualFolder="CMake Files\"/>
++		</Unit>
++	</Project>
++</CodeBlocks_project_file>
+Index: ../leetcode2/Solution.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../leetcode2/Solution.java b/../leetcode2/Solution.java
+new file mode 100644
+--- /dev/null	(date 1697904326486)
++++ b/../leetcode2/Solution.java	(date 1697904326486)
+@@ -0,0 +1,45 @@
++public class Solution {
++    public int longestConsecutive(int[] nums) {
++            int[] m = new int[nums.length];
++
++            for (int i = 0; i < nums.length; i++) {
++
++            }
++    }
++}
++
++class QuickUnion   {
++
++        private final int[] groupId;
++
++        public QuickUnion(int[] id) {
++                this.groupId = id;
++        }
++
++        public QuickUnion(int n) {
++                groupId = new int[n];
++                for (int i = 0; i < n; i++) {
++                        groupId[i] = i;
++                }
++        }
++
++        private int root(int node) {
++                while (node != groupId[node]) {
++                        groupId[node] = groupId[groupId[node]]; // compression
++                        node = groupId[node];
++                }
++                return node;
++        }
++
++        public boolean connected(int p, int q) {
++                return root(p) == root(q);
++        }
++
++        public void union(int p, int q) {
++                int pid = root(p);
++                int qid = root(q);
++                groupId[qid] = pid;
++        }
++
++
++}
+\ No newline at end of file
+Index: ../C++/codeforces/.cmake/api/v1/reply/index-2023-08-18T13-35-50-0208.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../C++/codeforces/.cmake/api/v1/reply/index-2023-08-18T13-35-50-0208.json b/../C++/codeforces/.cmake/api/v1/reply/index-2023-08-18T13-35-50-0208.json
+new file mode 100644
+--- /dev/null	(date 1697904326469)
++++ b/../C++/codeforces/.cmake/api/v1/reply/index-2023-08-18T13-35-50-0208.json	(date 1697904326469)
+@@ -0,0 +1,108 @@
++{
++	"cmake" : 
++	{
++		"generator" : 
++		{
++			"multiConfig" : false,
++			"name" : "Unix Makefiles"
++		},
++		"paths" : 
++		{
++			"cmake" : "/home/haxul/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.222/bin/cmake/linux/x64/bin/cmake",
++			"cpack" : "/home/haxul/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.222/bin/cmake/linux/x64/bin/cpack",
++			"ctest" : "/home/haxul/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.222/bin/cmake/linux/x64/bin/ctest",
++			"root" : "/home/haxul/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/231.8109.222/bin/cmake/linux/x64/share/cmake-3.25"
++		},
++		"version" : 
++		{
++			"isDirty" : false,
++			"major" : 3,
++			"minor" : 25,
++			"patch" : 2,
++			"string" : "3.25.2",
++			"suffix" : ""
++		}
++	},
++	"objects" : 
++	[
++		{
++			"jsonFile" : "codemodel-v2-8eab702b1e956bd982fb.json",
++			"kind" : "codemodel",
++			"version" : 
++			{
++				"major" : 2,
++				"minor" : 4
++			}
++		},
++		{
++			"jsonFile" : "cache-v2-4d8848614056a3a48436.json",
++			"kind" : "cache",
++			"version" : 
++			{
++				"major" : 2,
++				"minor" : 0
++			}
++		},
++		{
++			"jsonFile" : "cmakeFiles-v1-aa5a2e877deda872313b.json",
++			"kind" : "cmakeFiles",
++			"version" : 
++			{
++				"major" : 1,
++				"minor" : 0
++			}
++		},
++		{
++			"jsonFile" : "toolchains-v1-5e864d45b6495c775afc.json",
++			"kind" : "toolchains",
++			"version" : 
++			{
++				"major" : 1,
++				"minor" : 0
++			}
++		}
++	],
++	"reply" : 
++	{
++		"cache-v2" : 
++		{
++			"jsonFile" : "cache-v2-4d8848614056a3a48436.json",
++			"kind" : "cache",
++			"version" : 
++			{
++				"major" : 2,
++				"minor" : 0
++			}
++		},
++		"cmakeFiles-v1" : 
++		{
++			"jsonFile" : "cmakeFiles-v1-aa5a2e877deda872313b.json",
++			"kind" : "cmakeFiles",
++			"version" : 
++			{
++				"major" : 1,
++				"minor" : 0
++			}
++		},
++		"codemodel-v2" : 
++		{
++			"jsonFile" : "codemodel-v2-8eab702b1e956bd982fb.json",
++			"kind" : "codemodel",
++			"version" : 
++			{
++				"major" : 2,
++				"minor" : 4
++			}
++		},
++		"toolchains-v1" : 
++		{
++			"jsonFile" : "toolchains-v1-5e864d45b6495c775afc.json",
++			"kind" : "toolchains",
++			"version" : 
++			{
++				"major" : 1,
++				"minor" : 0
++			}
++		}
++	}
++}
+Index: ../python/codewars/unique_order.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>def unique_in_order(iterable):\n    ans = []\n    front = 0\n    while front < len(iterable):\n        cur_letter = iterable[front]\n        ans.append(cur_letter)\n        while iterable[front] == cur_letter:\n            front += 1\n            if front >= len(iterable):\n                return ans\n    return ans\n\n\nassert unique_in_order('AAAABBBCCDAABBB') == ['A', 'B', 'C', 'D', 'A', 'B']\nassert unique_in_order('ABBCcAD') == ['A', 'B', 'C', 'c', 'A', 'D']\nassert unique_in_order([1, 2, 2, 3, 3]) == [1, 2, 3]\n\nprint(\"test passed\")\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../python/codewars/unique_order.py b/../python/codewars/unique_order.py
+--- a/../python/codewars/unique_order.py	(revision af6a441c0f6906b447fb7d2a127c66b528be697c)
++++ b/../python/codewars/unique_order.py	(date 1697904326589)
+@@ -15,4 +15,4 @@
+ assert unique_in_order('ABBCcAD') == ['A', 'B', 'C', 'c', 'A', 'D']
+ assert unique_in_order([1, 2, 2, 3, 3]) == [1, 2, 3]
+ 
+-print("test passed")
++print("test.py passed")
+Index: ../java/.idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"ProjectKey\">\n    <option name=\"state\" value=\"project://e2804f05-5315-4fc6-a121-c522a6c26470\" />\n  </component>\n  <component name=\"ProjectRootManager\" version=\"2\" languageLevel=\"JDK_17_PREVIEW\" project-jdk-name=\"17\" project-jdk-type=\"JavaSDK\">\n    <output url=\"file://$PROJECT_DIR$/out\" />\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../java/.idea/misc.xml b/../java/.idea/misc.xml
+--- a/../java/.idea/misc.xml	(revision af6a441c0f6906b447fb7d2a127c66b528be697c)
++++ b/../java/.idea/misc.xml	(date 1697904326596)
+@@ -1,4 +1,3 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+   <component name="ProjectKey">
+     <option name="state" value="project://e2804f05-5315-4fc6-a121-c522a6c26470" />
+diff --git a/../C++/codeforces/.cmake/api/v1/query/toolchains-v1 b/../C++/codeforces/.cmake/api/v1/query/toolchains-v1
+new file mode 100644
+diff --git a/../C++/codeforces/.cmake/api/v1/query/cmakeFiles-v1 b/../C++/codeforces/.cmake/api/v1/query/cmakeFiles-v1
+new file mode 100644
+diff --git a/../C++/codeforces/.cmake/api/v1/query/codemodel-v2 b/../C++/codeforces/.cmake/api/v1/query/codemodel-v2
+new file mode 100644
+diff --git a/../C++/codeforces/.cmake/api/v1/query/cache-v2 b/../C++/codeforces/.cmake/api/v1/query/cache-v2
+new file mode 100644
