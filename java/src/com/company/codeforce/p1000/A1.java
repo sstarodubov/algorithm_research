@@ -1,3 +1,5 @@
+package p1000;
+
 import java.util.Scanner;
 
 public class A1 {
