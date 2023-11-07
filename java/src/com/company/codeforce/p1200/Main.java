@@ -1,3 +1,5 @@
+package p1200;
+
 import java.util.Scanner;
 
 public class Main {
