@@ -5,8 +5,8 @@ public class D1520 {
     static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     static PrintWriter pw = new PrintWriter(System.out);
     static StringTokenizer st = new StringTokenizer("");
-
     public static void main(String args[]) throws IOException {
+
         int T = Integer.parseInt(next());
         while (T-- > 0) {
             int N = Integer.parseInt(next());
