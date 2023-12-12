@@ -9,33 +9,23 @@ from leetcode.tree_node import TreeNode
 
 
 class Solution:
-    def to_num(self, arr) -> int:
-        if not arr:
-            return 0
-        ret, p = 0, 0
-        for i in range(len(arr) - 1, -1, -1):
-            ret += arr[i] * pow(10, p)
-            p += 1
-        return ret
-
     def sumNumbers(self, root: Optional[TreeNode]) -> int:
         self.ret = 0
 
-        def dfs(n: TreeNode, arr=[]):
+        def dfs(n: TreeNode, cur_val=0, d=0):
             if not n:
                 return
-            arr.append(n.val)
+            new_val = (cur_val * 10) + n.val
             if not n.left and not n.right:
-                self.ret += self.to_num(arr)
+                self.ret += new_val
             else:
-                dfs(n.left)
-                dfs(n.right)
-            arr.pop()
+                dfs(n.left, new_val)
+                dfs(n.right, new_val)
 
         dfs(root)
         return self.ret
 
 
+assert 1026 == Solution().sumNumbers(TreeNode.build_tree([4, 9, 0, 5, 1]))
 node = TreeNode.build_tree([1, 2, 3])
 assert 25 == Solution().sumNumbers(node)
-assert 1026 == Solution().sumNumbers(TreeNode.build_tree([4, 9, 0, 5, 1]))
