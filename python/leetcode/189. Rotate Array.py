@@ -3,21 +3,18 @@ from typing import List
 
 class Solution:
     def rotate(self, nums: List[int], k: int) -> None:
-        L = len(nums)
-        K = k % L
+        k = k % len(nums)
+        nums.reverse()
 
-        def idx(cur_idx: int) -> int:
-            return (cur_idx + K) % L
-
-        arr = [0] * L
-        for i in range(L):
-            arr[idx(i)] = nums[i]
-
-        for i in range(L):
-            nums[i] = arr[i]
-
+        def rev(l, r):
+            while l < r:
+                nums[l], nums[r] = nums[r], nums[l]
+                l += 1
+                r -= 1
+        rev(0, k - 1)
+        rev(k, len(nums) - 1)
 
 nums = [1, 2, 3, 4, 5, 6, 7]
-Solution().rotate(nums=nums, k=8)
+Solution().rotate(nums=nums, k=5)
 
 print(nums)
