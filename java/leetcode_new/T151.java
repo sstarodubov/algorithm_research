@@ -6,7 +6,6 @@ public class T151 {
 }
 
 
-
 class Solution {
     public String reverseWords(String s) {
         String[] split = s.trim().split("\\s+");
@@ -14,10 +13,10 @@ class Solution {
         var ret = new StringBuilder();
 
         for (int i = split.length - 1; i >= 0; i--) {
-           ret.append(split[i]);
-           if (i != 0) {
-               ret.append(" ");
-           }
+            ret.append(split[i]);
+            if (i != 0) {
+                ret.append(" ");
+            }
         }
 
         return ret.toString();
