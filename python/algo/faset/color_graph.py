@@ -63,7 +63,7 @@ def DFS(at: Optional[ColoredNode], visited: Set[Node], color_id: int):
 def color_graph(graph: Graph):
     visit = set()
     color_id = 0
-    for n in graph.nodes():
+    for n in graph.node_list():
         if n not in visit:
             DFS(n, visit, color_id)
             color_id += 1

@@ -34,7 +34,7 @@ def topological_sort_dfs(jobs, deps):
 
 def get_order_jobs(graph):
     order_jobs = []
-    nodes = graph.nodes
+    nodes = graph.node_list
     while len(nodes):
         node = nodes.pop()
         contains_cycle = depth_first_traverse(node, order_jobs)

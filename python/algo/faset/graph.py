@@ -14,12 +14,15 @@ class Graph:
     def __init__(self):
         self._nodes: Dict[int, Node] = {}
 
-    def nodes(self):
+    def node_list(self):
         return list(self._nodes.values())
 
     def add_node(self, node: Node):
         if node.id in self._nodes: raise RuntimeError(f"node with id {node.id} exists")
         self._nodes[node.id] = node
+
+    def nodes(self, id: int):
+        return self._nodes[id]
 
     def add_edge(self, id1: int, id2: int):
         n1 = self._nodes[id1]
