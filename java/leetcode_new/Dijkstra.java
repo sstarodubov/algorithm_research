@@ -42,8 +42,7 @@ public class Dijkstra {
                 if (visit.contains(neighbor)) {
                     continue;
                 }
-                var costEdge = graph.get(curPair.node()).get(neighbor);
-                var newDist = dist.getOrDefault(curPair.node(), MAX_VALUE) + costEdge;
+                var newDist = dist.getOrDefault(curPair.node(), MAX_VALUE) +/*edge*/ graph.get(curPair.node()).get(neighbor);
                 if (newDist < dist.getOrDefault(neighbor, MAX_VALUE)) {
                     dist.put(neighbor, newDist);
                     pq.add(new Pair(neighbor, newDist));
