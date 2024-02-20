@@ -1,4 +1,4 @@
-package org.example;
+package org.example.t58;
 
 public class T58 {
     public static void main(String[] args) {
