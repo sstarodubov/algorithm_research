@@ -1,4 +1,5 @@
-import kotlin.math.roundToInt
+package algo
+
 import kotlin.math.sqrt
 
 // Euclid Algorithm

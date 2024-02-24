@@ -1,3 +1,5 @@
+package codeforces.t58
+
 fun main() {
     var n = readln().toInt()
 

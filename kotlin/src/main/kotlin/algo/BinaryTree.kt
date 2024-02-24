@@ -1,3 +1,5 @@
+package algo
+
 import java.util.*
 
 class Node(

@@ -1,3 +1,5 @@
+package algo
+
 class WNode(var set: DisjointSet? = null, val name: String) {
     override fun toString(): String = name
 }
