@@ -39,7 +39,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "codeforces::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-codeforces-Debug-a9beaa1f6e7c4fd77bcc.json",
+					"jsonFile" : "target-codeforces-Debug-a3a17792ba6dbb750e07.json",
 					"name" : "codeforces",
 					"projectIndex" : 0
 				}
@@ -55,6 +55,6 @@
 	"version" : 
 	{
 		"major" : 2,
-		"minor" : 4
+		"minor" : 6
 	}
 }
