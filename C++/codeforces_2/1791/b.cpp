@@ -4,10 +4,9 @@
 using namespace std;
 
 int t;
-typedef long long ll;
 
 void resolve() {
-    ll a1, a2, a3, a4;
+    long a1, a2, a3, a4;
 
     cin >> a1;
     cin >> a2;
@@ -19,15 +18,15 @@ void resolve() {
         return;
     }
 
-    ll ret = 0;
+    long ret = 0;
     ret += a1;
 
-    ll mn = min(a2, a3);
+    long mn = min(a2, a3);
     ret += (mn * 2);
 
-    ll mx = max(a2, a3);
+    long mx = max(a2, a3);
 
-    ll d = (mx - mn) + a4;
+    long d = (mx - mn) + a4;
     if (a1 < d) {
         ret += a1 + 1;
     }
