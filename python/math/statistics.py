@@ -18,6 +18,7 @@ def IQR(xs):
     else:
         return median(xs[i + 1:]) - median(xs[:i])
 
+
 def mean(xs):
     ret = 0
 
@@ -50,10 +51,17 @@ def sample_standard_deviation(xs):
     return math.sqrt(sample_variance(xs))
 
 
+def range_(xs):
+    return max(xs) - min(xs)
+
+
+def mid_range(xs):
+    return range_(xs) / 2
+
 def stat(xs):
     print(f"mean = {mean(xs)}")
     print(f"standard deviation = {standard_deviation(xs)}")
     print(f"sample standard deviation = {sample_standard_deviation(xs)}")
     print(f"median = {median(xs)}")
     print(f"IQR = {IQR(xs)}")
-
+    print(f"range = {range_(xs)}")
