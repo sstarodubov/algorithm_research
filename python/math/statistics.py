@@ -57,6 +57,3 @@ def stat(xs):
     print(f"median = {median(xs)}")
     print(f"IQR = {IQR(xs)}")
 
-
-input = [1, 2, 3, 4, 5, 6, 7]
-stat(input)
