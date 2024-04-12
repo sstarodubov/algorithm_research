@@ -59,7 +59,7 @@ def mid_range(xs):
     return range_(xs) / 2
 
 
-def split_set_by_median(xs):
+def _split_set_by_median(xs):
     n = len(xs)
     i = n // 2
     if (n & 1) == 0:
@@ -69,14 +69,15 @@ def split_set_by_median(xs):
 
 
 def create_box_plot(xs):
-    if len(xs) == 1:
-        return xs[0]
+    if len(xs) <= 1:
+        print("no data to create box plot")
+        return
     xs.sort()
     lp = xs[0]
     rp = xs[-1]
     ml = median(xs)
 
-    r, l = split_set_by_median(xs)
+    r, l = _split_set_by_median(xs)
     ll = median(l)
     rl = median(r)
 
