@@ -58,6 +58,28 @@ def range_(xs):
 def mid_range(xs):
     return range_(xs) / 2
 
+
+def split_set_by_median(xs):
+    n = len(xs)
+    i = n // 2
+    if (n & 1) == 0:
+        return xs[i:], xs[:i]
+    else:
+        return xs[i + 1:], xs[:i]
+
+
+def create_box_plot(xs):
+    if len(xs) == 1:
+        return xs[0]
+    xs.sort()
+    print(f"left point = {xs[0]}")
+    print(f"right point = {xs[-1]}")
+    print(f"middle line = {median(xs)}")
+    left_xs, right_xs = split_set_by_median(xs)
+    print(f"left line = {median(left_xs)}")
+    print(f"right line = {median(right_xs)}")
+
+
 def stat(xs):
     print(f"mean = {mean(xs)}")
     print(f"standard deviation = {standard_deviation(xs)}")
