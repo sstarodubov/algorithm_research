@@ -72,12 +72,25 @@ def create_box_plot(xs):
     if len(xs) == 1:
         return xs[0]
     xs.sort()
-    print(f"left point = {xs[0]}")
-    print(f"right point = {xs[-1]}")
-    print(f"middle line = {median(xs)}")
-    left_xs, right_xs = split_set_by_median(xs)
-    print(f"left line = {median(left_xs)}")
-    print(f"right line = {median(right_xs)}")
+    lp = xs[0]
+    rp = xs[-1]
+    ml = median(xs)
+
+    r, l = split_set_by_median(xs)
+    ll = median(l)
+    rl = median(r)
+
+    print(f"""            
+                                {ml} 
+                        ____________________
+                       |         |          |               
+        |--------------|         |          | --------------|
+                       |_________|__________| 
+         {lp}            {ll}                   {rl}               {rp} 
+""")
+
+
+create_box_plot([54, 60, 65, 66, 67, 69, 70, 72, 73, 75, 76])
 
 
 def stat(xs):
