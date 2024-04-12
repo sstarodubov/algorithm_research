@@ -91,7 +91,6 @@ def create_box_plot(xs):
 """)
 
 
-create_box_plot([54, 60, 65, 66, 67, 69, 70, 72, 73, 75, 76])
 
 
 def stat(xs):
