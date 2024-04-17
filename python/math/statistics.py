@@ -63,9 +63,9 @@ def _split_by_median(xs):
     n = len(xs)
     i = n // 2
     if (n & 1) == 0:
-        return xs[i:], xs[:i]
+        return xs[:i], xs[i:]
     else:
-        return xs[i + 1:], xs[:i]
+        return xs[:i], xs[i + 1:]
 
 
 def create_box_plot(xs):
@@ -77,7 +77,7 @@ def create_box_plot(xs):
     rp = xs[-1]
     ml = median(xs)
 
-    r, l = _split_by_median(xs)
+    l, r = _split_by_median(xs)
     ll = median(l)
     rl = median(r)
 
@@ -91,6 +91,24 @@ def create_box_plot(xs):
 """)
 
 
+def outliers(xs):
+    xs.sort()
+    iqr = IQR(xs)
+    l, r = _split_by_median(xs)
+
+    left_bound = median(l) - (1.5 * iqr)
+    right_bound = median(r) + (1.5 * iqr)
+
+    out = []
+    for x in xs:
+        if x < left_bound:
+            out.append(x)
+        elif x > right_bound:
+            out.append(x)
+    return out
+
+
+print(outliers([13, 31, 38, 42, 62]))
 
 
 def stat(xs):
