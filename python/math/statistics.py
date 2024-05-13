@@ -51,14 +51,6 @@ def sample_standard_deviation(xs):
     return math.sqrt(sample_variance(xs))
 
 
-def range_(xs):
-    return max(xs) - min(xs)
-
-
-def mid_range(xs):
-    return range_(xs) / 2
-
-
 def _split_by_median(xs):
     n = len(xs)
     i = n // 2
@@ -91,6 +83,11 @@ def create_box_plot(xs):
 """)
 
 
+def outliers_bound(q1, q3, mid):
+    iqr = q3 - q1
+    return q1 - (1.5 * iqr), q3 + (1.5 * iqr)
+
+
 def outliers(xs):
     xs.sort()
     iqr = IQR(xs)
@@ -108,13 +105,29 @@ def outliers(xs):
     return out
 
 
-print(outliers([13, 31, 38, 42, 62]))
+def range_fn(xs):
+    return max(xs) - min(xs)
 
 
-def stat(xs):
-    print(f"mean = {mean(xs)}")
-    print(f"standard deviation = {standard_deviation(xs)}")
-    print(f"sample standard deviation = {sample_standard_deviation(xs)}")
-    print(f"median = {median(xs)}")
-    print(f"IQR = {IQR(xs)}")
-    print(f"range = {range_(xs)}")
+def mid_range(xs):
+    return (max(xs) + min(xs)) / 2
+
+
+def MAD(xs):
+    m = mean(xs)
+    cur = 0
+    for x in xs:
+        cur += abs(x - m)
+
+    return cur / len(xs)
+
+
+def least_square_regression_line(x_mean, y_mean, sx, sy, r):
+    m = r * (sy / sx)
+    b = y_mean - (m * x_mean)
+
+    sign = "-" if b < 0 else "+"
+    print(f"y^ = {m}x {sign} {abs(b)}")
+
+
+least_square_regression_line(24.1, 12.9, 12, 16.2, 0.9)
