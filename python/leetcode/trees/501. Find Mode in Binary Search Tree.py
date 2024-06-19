@@ -1,6 +1,6 @@
 from typing import List, Optional
 
-from leetcode.tree_node import TreeNode
+from neetcode_all_course.leetcode import TreeNode
 
 class Solution:
     def findMode(self, root: Optional[TreeNode]) -> List[int]:

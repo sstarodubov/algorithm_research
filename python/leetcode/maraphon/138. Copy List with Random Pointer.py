@@ -1,6 +1,6 @@
 from typing import Optional
 
-from leetcode.build_ll_from_array import Node
+from neetcode_all_course.leetcode import Node
 
 
 class Solution:

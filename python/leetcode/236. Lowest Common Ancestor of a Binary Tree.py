@@ -1,6 +1,4 @@
-from typing import Optional
-
-from leetcode.tree_node import TreeNode
+from neetcode_all_course.leetcode import TreeNode
 
 
 class Solution:
