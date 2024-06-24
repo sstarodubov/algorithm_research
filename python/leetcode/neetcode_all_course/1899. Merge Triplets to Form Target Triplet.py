@@ -11,5 +11,6 @@ class Solution:
            for i , v in enumerate(t):
                if v == target[i]:
                    s.add(i)
+
        return len(s) == 3
 
