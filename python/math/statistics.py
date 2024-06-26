@@ -138,4 +138,15 @@ def prob_model(xs):
     return ret
 
 
-print(prob_model([97, 47, 77]))
+# xs - array of (value, value probability )
+def expected_value(xs):
+    ret = 0
+
+    for x, px in xs:
+        ret += (px * x)
+
+    return ret
+
+print(expected_value([
+    (-200, 0.25), (-100, 0.25), (0, 0.25), (100, 0.25)
+]))
