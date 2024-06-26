@@ -157,9 +157,13 @@ def discrete_rand_var_variance(xs:List[Tuple[int|float, float]]):
 
     return ret
 
+
+# xs - array of (value, value probability )
 def std_deviation_rand_var(xs:List[Tuple[int|float, float]]):
     return math.sqrt(discrete_rand_var_variance(xs))
 
-print(expected_value([
-    (-6, 0.1), (4, 0.9)
-]))
+print(
+    std_deviation_rand_var([
+        (10, 0.2), (20, 0.8)
+    ])
+)
