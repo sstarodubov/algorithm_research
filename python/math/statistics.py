@@ -130,4 +130,12 @@ def least_square_regression_line(x_mean, y_mean, sx, sy, r):
     print(f"y^ = {m}x {sign} {abs(b)}")
 
 
-least_square_regression_line(24.1, 12.9, 12, 16.2, 0.9)
+def prob_model(xs):
+    s = sum(xs)
+    ret = []
+    for x in xs:
+       ret.append(x / s)
+    return ret
+
+
+print(prob_model([97, 47, 77]))
