@@ -1,4 +1,5 @@
 import math
+from typing import Tuple, List
 
 
 def median(xs):
@@ -139,7 +140,7 @@ def prob_model(xs):
 
 
 # xs - array of (value, value probability )
-def expected_value(xs):
+def expected_value(xs:List[Tuple[int|float, float]]):
     ret = 0
 
     for x, px in xs:
@@ -147,6 +148,18 @@ def expected_value(xs):
 
     return ret
 
+# xs - array of (value, value probability )
+def discrete_rand_var_variance(xs:List[Tuple[int|float, float]]):
+    mean = expected_value(xs)
+    ret = 0
+    for x, px in xs:
+        ret += ((x - mean)**2) * px
+
+    return ret
+
+def std_deviation_rand_var(xs:List[Tuple[int|float, float]]):
+    return math.sqrt(discrete_rand_var_variance(xs))
+
 print(expected_value([
-    (-200, 0.25), (-100, 0.25), (0, 0.25), (100, 0.25)
+    (-6, 0.1), (4, 0.9)
 ]))
