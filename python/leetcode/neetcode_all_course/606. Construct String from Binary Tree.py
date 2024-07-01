@@ -10,8 +10,6 @@ from tree_node import TreeNode
 
 class Solution:
     def tree2str(self, root: Optional[TreeNode]) -> str:
-        self.ret = ""
-
         def dfs(n: TreeNode):
             if not n:
                 return ""
