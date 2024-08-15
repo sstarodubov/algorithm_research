@@ -135,12 +135,12 @@ def prob_model(xs):
     s = sum(xs)
     ret = []
     for x in xs:
-       ret.append(x / s)
+        ret.append(x / s)
     return ret
 
 
 # xs - array of (value, value probability )
-def expected_value(xs:List[Tuple[int|float, float]]):
+def expected_value(xs: List[Tuple[int | float, float]]):
     ret = 0
 
     for x, px in xs:
@@ -148,22 +148,39 @@ def expected_value(xs:List[Tuple[int|float, float]]):
 
     return ret
 
+
 # xs - array of (value, value probability )
-def discrete_rand_var_variance(xs:List[Tuple[int|float, float]]):
+def discrete_rand_var_variance(xs: List[Tuple[int | float, float]]):
     mean = expected_value(xs)
     ret = 0
     for x, px in xs:
-        ret += ((x - mean)**2) * px
+        ret += ((x - mean) ** 2) * px
 
     return ret
 
 
 # xs - array of (value, value probability )
-def std_deviation_rand_var(xs:List[Tuple[int|float, float]]):
+def std_deviation_rand_var(xs: List[Tuple[int | float, float]]):
     return math.sqrt(discrete_rand_var_variance(xs))
 
-print(
-    std_deviation_rand_var([
-        (10, 0.2), (20, 0.8)
-    ])
-)
+
+#        _
+# mean = x
+# t_interval = t-interval
+# s = sample standard deviation
+# n - sample size
+def t_interval(mean, s, n, t_interval):
+    d = t_interval * s / math.sqrt(n)
+    print(f"{mean} +- ({d})")
+    print(f"({mean - d} , {mean + d})")
+
+# p0 - zero proportion
+# n - sample size
+# sp = sample proportion
+def z_test_proportion(p0, sp, n):
+    return (sp - p0)/ math.sqrt((p0* (1 - p0))/ n)
+
+def t_statistics(sample_mean, sample_std_deviation, sample_size, assumed_mean):
+    return (sample_mean - assumed_mean) / ((sample_std_deviation/math.sqrt(sample_size)))
+
+print(t_statistics(assumed_mean=68, sample_size=100, sample_mean=67, sample_std_deviation=1))
