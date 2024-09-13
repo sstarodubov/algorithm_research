@@ -25,6 +25,9 @@ public class M23 {
             return lists[left];
         }
 
+        if (len == 0) {
+            return null;
+        }
         int m = (left + right) / 2;
         ListNode splitLeft = split(lists, left, m);
         ListNode splitRight = split(lists, m, right);
