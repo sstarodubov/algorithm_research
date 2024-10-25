@@ -1,0 +1,61 @@
+// tokenizer
+
+%lex
+
+%%
+
+\s+         return null 
+\d+         return 'NUMBER'
+\+          return "ADDITIVE_OP"
+\*          return 'MULTICATIVE_OP'
+/lex
+
+
+%%
+
+Expression 
+  : AdditiveExpression 
+  | %empty {$$ = {}}
+  ;
+
+AdditiveExpression 
+  : AdditiveExpression ADDITIVE_OP MultiplicativeExpression {
+                                                              $$ = {
+                                                                    type: 'BinaryExpression',
+                                                                    op: $2,
+                                                                    left: $1,
+                                                                    right: $3
+                                                                    }
+                                                                    
+                                                            }
+  | MultiplicativeExpression 
+  ;
+
+ MultiplicativeExpression
+  : MultiplicativeExpression MULTICATIVE_OP PrimaryExpression  {
+                                                                $$ = {
+                                                                      type: 'BinaryExpression',
+                                                                      op: $2,
+                                                                      left: $1,
+                                                                      right: $3
+                                                                      }
+                                                                }
+  | PrimaryExpression
+  ;
+
+PrimaryExpression 
+  :  Literal 
+  | ParenthesizedExpression  
+  ;
+
+Literal
+  : NumericLiteral 
+  ;
+
+NumericLiteral 
+  : NUMBER { $$ = {type: "Literal", value: $1}} 
+  ;
+
+ParenthesizedExpression
+  : '(' Expression ')' { $$ = $2}
+  ;
