@@ -1,0 +1,28 @@
+// tokenizer
+
+%lex
+
+%%
+
+\s+         return null 
+\d+         return 'NUMBER'
+/lex
+
+
+%%
+
+
+ARRAY
+    : '[' ArrayExpression ']'
+    ;
+
+ArrayExpression
+    : HEAD ',' ArrayExpression
+    | HEAD
+    | %empty
+    ;
+
+
+HEAD
+    : NUMBER 
+    ;
