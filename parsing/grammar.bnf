@@ -3,11 +3,22 @@
 %lex
 
 %%
+\/\/.*          return null
+\/\*(.|\s)*\*\/ return null
+\s+             return null 
 
-\s+         return null 
-\d+         return 'NUMBER'
-\+          return "ADDITIVE_OP"
-\*          return 'MULTICATIVE_OP'
+\d+             return 'NUMBER'
+\+              return "ADDITIVE_OP"
+\*              return 'MULTICATIVE_OP'
+
+
+\bdef\b         return "DEF"
+\breturn\b      return "RETURN"
+\bif\b          return "IF"
+\belse\b        return "ELSE"
+
+\w+             return "IDENTIFIER"
+
 /lex
 
 %{ 
@@ -40,10 +51,67 @@ Statement
   : ExpressionStatement
   | EmptyStatement
   | BlockStatement
+  | FunctionDeclaration
+  | ReturnStatement
+  | IfStatement
   ;
 
+IfStatement
+  : IF '('  Expression ')' Statement 
+  | IF '('  Expression ')' Statement ELSE Statement 
+  ;
+
+ReturnStatement
+  : RETURN OptExpression ';' {$$ = {
+                                  type: 'ReturnStatement',
+                                  argument: $1
+                               }
+                             }
+  ;
+
+OptExpression
+  : Expression
+  | /*empty*/ {$$ = null}
+  ;
+
+FunctionDeclaration
+  : DEF Identifier '(' OptFormalParamentList ')' BlockStatement {
+                                                                  $$ = {
+                                                                    type: "FunctionDeclaration",
+                                                                    name: $2,
+                                                                    params: $4,
+                                                                    body: $6,
+                                                                  }
+                                                                }
+  ;
+
+Identifier
+  : IDENTIFIER {$$ = {
+        type: "Identifier",
+        value: $1
+      }
+    }
+  ;
+
+OptFormalParamentList
+  : FormalParamentList
+  | /*empty */ {$$ = []}
+  ;
+
+FormalParamentList
+  : Identifier  {$$ = [$1]}
+  | FormalParamentList ',' Identifier {$1.push($3); $$ = $1}
+  ;
+
+
+
 BlockStatement
-  : '{' StatementList '}' {$$ = {type: "BlockStatement", statements: $2}}
+  : '{' OptStatementList '}' {$$ = {type: "BlockStatement", body: $2}}
+  ;
+
+OptStatementList
+  : StatementList
+  | /*empty*/ {$$ = []}
   ;
 
 EmptyStatement
@@ -75,6 +143,7 @@ AdditiveExpression
 
 PrimaryExpression 
   :  Literal 
+  | Identifier
   | ParenthesizedExpression  
   ;
 

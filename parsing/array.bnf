@@ -10,18 +10,17 @@
 
 %%
 Array
-  : '[' ValueList ']' {$$ = $2}
-  | '[' ']' {$$ =  []}
+  : '[' OptValueList ']' {$$ = $2}
+  ;
+
+OptValueList
+  : ValueList
+  | /*empty*/ {$$ = []}
   ;
 
 ValueList
-  : ValueWithComma  {$$  = [$1]}
-  | ValueWithComma ValueList {$2.push($1), $$ = $2} 
-  ;
-
-ValueWithComma
-  : Value ',' {$$ = $1}
-  | Value
+  : Value  {$$  = [$1]}
+  | ValueList ',' Value  {$1.push($3), $$ = $1} 
   ;
 
 Value
