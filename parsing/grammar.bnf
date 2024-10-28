@@ -10,36 +10,66 @@
 \*          return 'MULTICATIVE_OP'
 /lex
 
+%{ 
+  function BinaryExpression(left, op, right) {
+    return {
+      type: "BinaryExpresssion",
+      op,
+      left,
+      right
+    }
+  }  
+%}
 
 %%
 
+Programm 
+  :StatementList {$$ = {
+                        "type": "Programm",
+                        "body": $1
+                       }
+                  }
+  ;
+
+StatementList
+  : Statement {$$ = [$1]}
+  | StatementList Statement {$1.push($2); $$ = $1}
+  ;
+
+Statement
+  : ExpressionStatement
+  | EmptyStatement
+  | BlockStatement
+  ;
+
+BlockStatement
+  : '{' StatementList '}' {$$ = {type: "BlockStatement", statements: $2}}
+  ;
+
+EmptyStatement
+  : ';' {$$={"type": "EmptyStatement" }} 
+  ;
+
+ExpressionStatement
+  : Expression ';' { 
+                    $$ = {
+                      type: "ExprassionStatement",
+                      expresssion: $1 
+                    }
+                   }
+  ;
+
 Expression 
   : AdditiveExpression 
-  | %empty {$$ = {}}
   ;
 
 AdditiveExpression 
-  : AdditiveExpression ADDITIVE_OP MultiplicativeExpression {
-                                                              $$ = {
-                                                                    type: 'BinaryExpression',
-                                                                    op: $2,
-                                                                    left: $1,
-                                                                    right: $3
-                                                                    }
-                                                                    
-                                                            }
+  : AdditiveExpression ADDITIVE_OP MultiplicativeExpression { $$ = BinaryExpression($1, $2, $3)}
   | MultiplicativeExpression 
   ;
 
  MultiplicativeExpression
-  : MultiplicativeExpression MULTICATIVE_OP PrimaryExpression  {
-                                                                $$ = {
-                                                                      type: 'BinaryExpression',
-                                                                      op: $2,
-                                                                      left: $1,
-                                                                      right: $3
-                                                                      }
-                                                                }
+  : MultiplicativeExpression MULTICATIVE_OP PrimaryExpression  { $$ =  BinaryExpression($1, $2, $3) }
   | PrimaryExpression
   ;
 

@@ -8,21 +8,23 @@
 \d+         return 'NUMBER'
 /lex
 
-
 %%
+Array
+  : '[' ValueList ']' {$$ = $2}
+  | '[' ']' {$$ =  []}
+  ;
 
+ValueList
+  : ValueWithComma  {$$  = [$1]}
+  | ValueWithComma ValueList {$2.push($1), $$ = $2} 
+  ;
 
-ARRAY
-    : '[' ArrayExpression ']'
-    ;
+ValueWithComma
+  : Value ',' {$$ = $1}
+  | Value
+  ;
 
-ArrayExpression
-    : HEAD ',' ArrayExpression
-    | HEAD
-    | %empty
-    ;
+Value
+  : NUMBER  {$$ = Number($1)}
+  ;
 
-
-HEAD
-    : NUMBER 
-    ;
