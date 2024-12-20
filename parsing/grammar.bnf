@@ -11,7 +11,8 @@
 \+              return "ADDITIVE_OP"
 \*              return 'MULTICATIVE_OP'
 
-
+[\=!]\=         return "EQ_OP"
+[<>]\=?         return "RELATIONAL_OP"
 \bdef\b         return "DEF"
 \breturn\b      return "RETURN"
 \bif\b          return "IF"
@@ -128,7 +129,17 @@ ExpressionStatement
   ;
 
 Expression 
-  : AdditiveExpression 
+  : EqualityExpression 
+  ;
+
+EqualityExpression
+  : RelationalExpression
+  | EqualityExpression EQ_OP RelationalExpression {$$ = BinaryExpression($1, $2, $3)}
+  ;
+
+RelationalExpression
+  : AdditiveExpression
+  | RelationalExpression RELATIONAL_OP AdditiveExpression { $$ = BinaryExpression($1, $2, $3)}
   ;
 
 AdditiveExpression 
