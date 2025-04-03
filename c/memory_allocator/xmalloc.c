@@ -2,12 +2,12 @@
 #include <assert.h>
 #include <stdbool.h>
 #include <stdlib.h>
-
+#include <stdint.h>
 #define HEAP_CAP 64000
 #define CHUNK_LIST_CAP 1024 
-
+//38.46
 typedef struct {
-    void* start;
+    uintptr_t* start;
     size_t size;
 } Chunk;
 
@@ -16,7 +16,7 @@ typedef struct {
     Chunk chunks[CHUNK_LIST_CAP];
 } Chunk_List;
 
-char heap[HEAP_CAP] = {0};
+uintptr_t heap[HEAP_CAP] = {0};
 
 Chunk_List alloced_chunks = {0};
 Chunk_List freed_chunks = {
@@ -33,7 +33,7 @@ int compare(const void* a, const void* b) {
     return a_chunk->start - b_chunk->start;
 }
 
-int chunk_list_find(const Chunk_List* list, void* ptr) {
+int chunk_list_find(const Chunk_List* list, uintptr_t* ptr) {
     for (size_t i = 0; i < list->count; ++i) {
         if (list->chunks[i].start == ptr) {
             return (int) i;
@@ -71,7 +71,7 @@ void chunk_list_dump(const Chunk_List* list) {
     printf("dump chunks: (%zu)\n", list->count);
     for (int i = 0; i < list->count; i++) {
         printf("idx: %d   start: %p, size: %zu\n",
-             i, list->chunks[i].start, list->chunks[i].size);
+             i, list->chunks[i].start, list->chunks[i].size * sizeof(uintptr_t));
     }
 }
 
@@ -95,7 +95,8 @@ void chunk_list_merge(Chunk_List* dst, Chunk_List* src) {
 }
 
 
-void* heap_alloc(size_t size) {
+void* heap_alloc(size_t size_bytes) {
+    size_t size = (size_bytes + sizeof(uintptr_t) - 1) /sizeof(uintptr_t);
     if (size <= 0) {
         return NULL;
     }
@@ -138,7 +139,7 @@ int main() {
     heap_free(root2);
     heap_free(root3);
     
-    char* p = heap_alloc(6);
+    char* p = heap_alloc(9);
     chunk_list_dump(&alloced_chunks);
     chunk_list_dump(&freed_chunks);
     return 0;
