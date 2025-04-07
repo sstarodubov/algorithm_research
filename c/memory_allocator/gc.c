@@ -3,10 +3,16 @@
 #include <stdbool.h>
 #include <stdlib.h>
 #include <stdint.h>
+#include <string.h>
+
 #define HEAP_CAP 64000  / sizeof(uintptr_t)
 #define CHUNK_LIST_CAP 1024 
-//1.05.45
 // -----------------------------------------    MALLOC
+const uintptr_t* stack_base;
+bool reachable_chunks[CHUNK_LIST_CAP] = {0};
+void *to_free[CHUNK_LIST_CAP] = {0};
+size_t to_free_count = 0;
+
 typedef struct {
     uintptr_t* start;
     size_t size;
@@ -132,8 +138,7 @@ void heap_free(void* ptr) {
     }
 }
 
-
-// -----------------------------------------------------  GC
+// ------------------------- test tree
 
 typedef struct Node Node;
 
@@ -157,26 +162,48 @@ Node* generate_tree(size_t level_cur, size_t level_max) {
     return root;
 }
 
+// -----------------------------------------------------  GC
 
-// ------------------------------------------------------ main
-int main() {
-    void *root2 = heap_alloc(10);
-    void *root3 = heap_alloc(12);
-
-    chunk_list_dump(&alloced_chunks);
-    size_t heap_ptrs_count = 0;
-
-    for (size_t i = 0; i < alloced_chunks.count; ++i) {
-        for (size_t j = 0; j < alloced_chunks.chunks[i].size; ++j) {
-            uintptr_t* p = (uintptr_t*) alloced_chunks.chunks[i].start + j;
-            if (heap <= p && p < heap + HEAP_CAP) {
-                printf("DETECTED HEAP PTR: %p\n", p);
-                heap_ptrs_count+= 1;
+void mark_region(const uintptr_t *start, const uintptr_t *end)
+{
+    for (; start < end; start += 1) {
+        const uintptr_t *p = (const uintptr_t *) *start;
+        for (size_t i = 0; i < alloced_chunks.count; ++i) {
+            Chunk chunk = alloced_chunks.chunks[i];
+            if (chunk.start <= p && p < chunk.start + chunk.size) {
+                if (!reachable_chunks[i]) {
+                    reachable_chunks[i] = true;
+                    mark_region(chunk.start, chunk.start + chunk.size);
+                }
             }
         }
     }
+}
 
-    printf("DETECTED POINTERS COUNT %zu\n", heap_ptrs_count);
-    
-   return 0;
+void heap_collect()
+{
+    const uintptr_t *stack_start = (const uintptr_t*)__builtin_frame_address(0);
+    memset(reachable_chunks, 0, sizeof(reachable_chunks));
+    mark_region(stack_start, stack_base + 1);
+
+    to_free_count = 0;
+    for (size_t i = 0; i < alloced_chunks.count; ++i) {
+        if (!reachable_chunks[i]) {
+            assert(to_free_count < CHUNK_LIST_CAP);
+            to_free[to_free_count++] = alloced_chunks.chunks[i].start;
+        }
+    }
+
+    for (size_t i = 0; i < to_free_count; ++i) {
+        heap_free(to_free[i]);
+    }
+}
+
+// ------------------------------------------------------ main
+int main() {
+    stack_base = __builtin_frame_address(0);
+    Node* tree = generate_tree(0, 3);
+    heap_collect();
+   
+    return 0;
 }
