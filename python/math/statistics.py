@@ -1,6 +1,7 @@
 import math
+import sys
 from typing import Tuple, List
-
+import scipy.stats as stat
 
 def median(xs):
     n = len(xs)
@@ -180,7 +181,8 @@ def t_interval(mean, s, n, t_interval):
 def z_test_proportion(p0, sp, n):
     return (sp - p0)/ math.sqrt((p0* (1 - p0))/ n)
 
-def t_statistics(sample_mean, sample_std_deviation, sample_size, assumed_mean):
+def t_statstics(sample_mean, sample_std_deviation, sample_size, assumed_mean):
     return (sample_mean - assumed_mean) / ((sample_std_deviation/math.sqrt(sample_size)))
 
-print(t_statistics(assumed_mean=68, sample_size=100, sample_mean=67, sample_std_deviation=1))
+
+print(stat.norm.cdf(0.5))
