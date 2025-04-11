@@ -1,0 +1,10 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+.idea
+python/math/.idea
+/misc.xml
+/math.iml
+/modules.xml
+/inspectionProfiles/profiles_settings.xml
+/vcs.xml
