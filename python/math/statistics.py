@@ -1,7 +1,13 @@
 import math
 import sys
 from typing import Tuple, List
+
+import numpy as np
+from scipy.stats import f_oneway, chi2_contingency
+
+from scipy.stats import pearsonr
 import scipy.stats as stat
+
 
 def median(xs):
     n = len(xs)
@@ -175,14 +181,33 @@ def t_interval(mean, s, n, t_interval):
     print(f"{mean} +- ({d})")
     print(f"({mean - d} , {mean + d})")
 
+
 # p0 - zero proportion
 # n - sample size
 # sp = sample proportion
 def z_test_proportion(p0, sp, n):
-    return (sp - p0)/ math.sqrt((p0* (1 - p0))/ n)
+    return (sp - p0) / math.sqrt((p0 * (1 - p0)) / n)
+
 
 def t_statstics(sample_mean, sample_std_deviation, sample_size, assumed_mean):
-    return (sample_mean - assumed_mean) / ((sample_std_deviation/math.sqrt(sample_size)))
+    return (sample_mean - assumed_mean) / ((sample_std_deviation / math.sqrt(sample_size)))
 
 
-print(stat.norm.cdf(0.5))
+# print(stat.norm.cdf(0.5)) - z - score
+
+# Пример данных: три группы наблюдений
+group1 = [3, 1, 2]
+group2 = [5, 3, 4]
+group3 = [7, 6, 5]
+
+# Выполнение одномерного дисперсионного анализа
+f_statistic, p_value = f_oneway(group1, group2, group3)
+
+# Вычисление коэффициента корреляции
+# Два набора данных
+x = [4, 5, 2, 3, 1]
+y = [2, 1, 4, 3, 5]
+corr_coef, p_value = pearsonr(x, y)
+
+#print(f"Коэффициент корреляции: {corr_coef}")
+#print(f"P-значение: {p_value}")
