@@ -1,49 +1,52 @@
-#хи - квадрат
+import numpy as np
+from scipy.stats import chi2_contingency
 import math
 
 import pandas as pd
+from sklearn.metrics import euclidean_distances
 
+# Пример: таблица сопряжённости 2x2
+# Например, данные о покупках мужчин и женщин:
+#        | Купили | Не купили |
+# Мужчины|   45    |    15     |
+# Женщины|   30    |    30     |
 
-def hi2(observed, expected):
-    a = 0
-    for i in range(len(observed)):
-       a += (math.pow(observed[i] - expected[i], 2) / expected[i])
+observed = np.array([
+                         [20, 15],
+                         [11, 12],
+                         [7, 9]
+                     ])
 
-    return a
+# Выполняем хи-квадрат тест
+chi2, p, dof, expected = chi2_contingency(observed)
 
-def expected(observed, proportion):
-    if proportion is None:
-        proportion = [1, 1, 1]
-    n = sum(observed)
-    p = sum(proportion)
-    per = n / p
-    expect = [0] * len(observed)
-    for i in range(len(observed)):
-        expect[i] = per * proportion[i]
-    return expect
+#print(f"Хи-квадрат статистика: {chi2:.4f}")
+#print(f"p-value: {p:.4f}")
+#print(f"Степени свободы: {dof}")
+#print("Ожидаемые частоты:\n", expected)
 
-def expected_table(t):
-    col_len = len(t[0])
-    row_len = len(t)
-    row_sum = [0] * row_len
-    col_sum = [0] * col_len
-    for i in range(col_len):
-        for j in range(row_len):
-            row_sum[i] += t[i][j]
-    for i in range(row_len):
-        for j in range(col_len):
-            col_sum[i] += t[j][i]
+cluster = [(-3, 3), (1, 4), (2, 6), (3, 8), (5,2), (6,11), (7,1)]
+def centroid(arr):
+    x, y = 0, 0
+    for i in range(len(arr)):
+        x += arr[i][0]
+        y += arr[i][1]
 
-    all = sum(row_sum)
-    for i in range(col_len):
-        for j in range(row_len):
-            t[i][j] = (row_sum[j] * col_sum[i]) / all
-    print(table)
+    return x / len(arr), y / len(arr)
 
+def _euclidean_distances(p1, p2):
+    x1, y1 = p1
+    x2, y2 = p2
+    return math.sqrt((x2 - x1)**2 + (y2 - y1)**2)
 
-table= [
-    [10, 6],
-    [5, 15]
-]
-
-expected_table(table)
+#внутригрупповая сумма квадратов отклонения
+def wcss(cluster):
+    xc, yc = centroid(cluster)
+    print(f"centroid: {(xc, yc)}")
+    result = 0
+    for i in range(len(cluster)):
+        x, y = cluster[i]
+        result += _euclidean_distances((xc, yc), (x, y)) ** 2
+    print(f"wcss: {result}")
+    return result
+wcss(cluster)
