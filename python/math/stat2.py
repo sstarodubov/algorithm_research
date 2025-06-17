@@ -49,4 +49,5 @@ def wcss(cluster):
         result += _euclidean_distances((xc, yc), (x, y)) ** 2
     print(f"wcss: {result}")
     return result
+
 wcss(cluster)
