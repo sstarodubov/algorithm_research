@@ -1,6 +1,13 @@
 from collections import deque
 from typing import List
 
+def _print(node, p):
+    if not node:
+        print(f"{('|' * p)}{'$'}")
+    else:
+        print(f"{('|' * p)}{node.val}:")
+        _print(node.left, p + 1)
+        _print(node.right,p + 1)
 
 class TreeNode:
     def __init__(self, val: int = 0, left: 'TreeNode' = None, right: 'TreeNode' = None):
@@ -8,8 +15,8 @@ class TreeNode:
         self.left: 'TreeNode' = left
         self.right: 'TreeNode' = right
 
-    def __str__(self):
-        return f"Node({self.val})"
+    def print(self):
+        _print(self, 0)
 
     def __eq__(self, other):
         return self.val == other.val
