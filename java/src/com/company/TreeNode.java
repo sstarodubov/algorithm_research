@@ -17,6 +17,20 @@ public class TreeNode {
         return "Node(" + this.val + ")";
     }
 
+    public void print() {
+        _print(this, 0);
+    }
+
+    private void _print(TreeNode node, int p) {
+        if (node != null) {
+            System.out.println("|".repeat(p) + node.val + (node.left == null && node.right == null ? "" : ":"));
+            _print(node.left, p + 1);
+            _print(node.right, p + 1);
+        } else {
+            System.out.println("|".repeat(p) + '$');
+        }
+    }
+
     public static TreeNode buildBinaryTree(Integer[] nums) {
         if (nums.length == 0) {
             throw new UnsupportedOperationException("cannot create tree without input nums");
