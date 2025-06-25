@@ -3,13 +3,6 @@ package com.company.algoexpert;
 import java.util.*;
 
 public class Slice<E> implements List<E> {
-    public static void main(String[] args) {
-        var list = List.of(0, 1, 2, 3, 4, 5);
-        var slice = new Slice<>(list, 1, 4);
-        for (int i = 0; i < slice.size(); i++) {
-            System.out.println(slice.get(i));
-        }
-    }
 
     final List<E> list;
     final int begin;
@@ -101,12 +94,17 @@ public class Slice<E> implements List<E> {
 
     @Override
     public Object[] toArray() {
-        throw new UnsupportedOperationException();
+        int n = size();
+        var arr = new Object[n];
+        for (int i = 0; i < n; i++) {
+           arr[i] = get(i);
+        }
+        return arr;
     }
 
     @Override
     public <T> T[] toArray(T[] ts) {
-        throw new UnsupportedOperationException();
+        return (T[]) toArray();
     }
 
     @Override
