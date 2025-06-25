@@ -28,11 +28,10 @@ public class Solution {
                 }
             }
 
-            node.left = build(arr.subList(1, ridx));
-            node.right = build(arr.subList(ridx, arr.size()));
+            node.left = build(new Slice<>(arr, 1, ridx));
+            node.right = build(new Slice<>(arr, ridx, arr.size()));
             return node;
         }
-
     }
 
 
