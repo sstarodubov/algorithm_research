@@ -6,15 +6,41 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-record Worker(String name) {}
-record User (Worker worker) {}
-record Refer(User user) {}
+record Worker(String name) {
+}
+
+record User(Worker worker) {
+}
+
+record Refer(User user) {
+}
 
 public class Solution {
 
     public static void main(String[] args) throws InterruptedException {
-        var na = new NoAdjacent();
-        System.out.println(na.max(new int[] {7, 10, 12, 7, 9, 14}));
+        var r = new MinNumOfCoins();
+        System.out.println(r.result(6, new int[]{1, 2, 4}));
+    }
+
+    static class MinNumOfCoins {
+
+        int result(int val, int[] coins) {
+            var dp = new int[val + 1];
+            for (int i = 0; i < coins.length; i++) {
+                var curCoin = coins[i];
+                for (int j = 0; j < dp.length; j++) {
+                    if (curCoin > j) {
+                        continue;
+                    } else {
+                        int rest = j % curCoin;
+                        int t = j / curCoin;
+                        dp[j] = t + dp[rest];
+                    }
+                }
+            }
+
+            return dp[dp.length - 1];
+        }
     }
 
     static class NoAdjacent {
@@ -24,8 +50,8 @@ public class Solution {
             int result = 0;
             for (int i = 0; i < arr.length; i++) {
                 int m = 0;
-                for (int j = i - 2; j >= 0 ; j--) {
-                    m = Math.max(m, dp[j]) ;
+                for (int j = i - 2; j >= 0; j--) {
+                    m = Math.max(m, dp[j]);
                 }
 
                 dp[i] = Math.max(m + arr[i], arr[i]);
@@ -40,6 +66,7 @@ public class Solution {
     static class TreeSum {
         int result = Integer.MAX_VALUE;
         int allSum = 0;
+
         int splitBST(TreeNode node) {
             var map = new HashMap<TreeNode, Integer>();
             sum(node, map);
@@ -48,26 +75,26 @@ public class Solution {
         }
 
         void check(TreeNode node, Map<TreeNode, Integer> map) {
-           if (result != Integer.MAX_VALUE) {
-               return;
-           }
-           int l = map.getOrDefault(node.left, 0);
-           int r = map.getOrDefault(node.right, 0);
-           int sumLeft = allSum - l;
-           int sumRight = allSum  - sumLeft;
-           if (sumLeft == sumRight) {
-               result = sumLeft;
-               return;
-           }
+            if (result != Integer.MAX_VALUE) {
+                return;
+            }
+            int l = map.getOrDefault(node.left, 0);
+            int r = map.getOrDefault(node.right, 0);
+            int sumLeft = allSum - l;
+            int sumRight = allSum - sumLeft;
+            if (sumLeft == sumRight) {
+                result = sumLeft;
+                return;
+            }
 
-           sumLeft = allSum - r;
-           sumRight = allSum - sumLeft;
-           if (sumLeft == sumRight) {
-               result = sumLeft;
-               return;
-           }
-           check(node.left, map);
-           check(node.right, map);
+            sumLeft = allSum - r;
+            sumRight = allSum - sumLeft;
+            if (sumLeft == sumRight) {
+                result = sumLeft;
+                return;
+            }
+            check(node.left, map);
+            check(node.right, map);
         }
 
         int sum(TreeNode node, Map<TreeNode, Integer> map) {
