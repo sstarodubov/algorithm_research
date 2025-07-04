@@ -13,10 +13,29 @@ record Refer(User user) {}
 public class Solution {
 
     public static void main(String[] args) throws InterruptedException {
-        var tree = TreeNode.buildBinaryTree(new Integer[]{1, 3, -2, 6, -5, 5, 2, 2});
-        var tu = new TreeSum();
-        System.out.println(tu.splitBST(tree));
+        var na = new NoAdjacent();
+        System.out.println(na.max(new int[] {7, 10, 12, 7, 9, 14}));
     }
+
+    static class NoAdjacent {
+
+        int max(int[] arr) {
+            int[] dp = new int[arr.length];
+            int result = 0;
+            for (int i = 0; i < arr.length; i++) {
+                int m = 0;
+                for (int j = i - 2; j >= 0 ; j--) {
+                    m = Math.max(m, dp[j]) ;
+                }
+
+                dp[i] = Math.max(m + arr[i], arr[i]);
+                result = Math.max(result, dp[i]);
+            }
+
+            return result;
+        }
+    }
+
 
     static class TreeSum {
         int result = Integer.MAX_VALUE;
@@ -33,9 +52,16 @@ public class Solution {
                return;
            }
            int l = map.getOrDefault(node.left, 0);
-
+           int r = map.getOrDefault(node.right, 0);
            int sumLeft = allSum - l;
            int sumRight = allSum  - sumLeft;
+           if (sumLeft == sumRight) {
+               result = sumLeft;
+               return;
+           }
+
+           sumLeft = allSum - r;
+           sumRight = allSum - sumLeft;
            if (sumLeft == sumRight) {
                result = sumLeft;
                return;
