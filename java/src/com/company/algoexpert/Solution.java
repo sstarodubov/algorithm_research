@@ -18,16 +18,49 @@ record Refer(User user) {
 public class Solution {
 
     public static void main(String[] args) throws InterruptedException {
-        var r = new MinNumOfCoins();
-        System.out.println(r.result(6, new int[]{1, 2, 4}));
+        var wn = new WaysNum();
+        System.out.println(wn.ways(4, 3));
+    }
+
+    static class WaysNum {
+
+        int[][] dp;
+
+        int ways(int w, int h) {
+            dp = new int[h][w];
+            return ways(w, h, w, h);
+        }
+
+        int ways(int w, int h, int r, int c) {
+
+            if (r == 1 && c == 1) {
+                return 1;
+            }
+
+            if (r < 1 || r > w) {
+                return 0;
+            }
+
+            if (c < 1 || c > h) {
+                return 0;
+            }
+
+            if (dp[c - 1][r - 1] != 0) {
+                return dp[c - 1][r - 1];
+            }
+
+            int left = ways(w, h, r, c - 1);
+            int up = ways(w, h, r - 1, c);
+            dp[c - 1][r - 1] = left + up;
+            return left + up;
+        }
     }
 
     static class MinNumOfCoins {
 
         int result(int val, int[] coins) {
             var dp = new int[val + 1];
-            for (int i = 0; i < coins.length; i++) {
-                var curCoin = coins[i];
+            for (int curCoin : coins) {
                 for (int j = 0; j < dp.length; j++) {
                     if (curCoin > j) {
                         continue;
