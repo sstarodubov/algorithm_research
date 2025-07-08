@@ -2,6 +2,7 @@ package com.company.algoexpert;
 
 import com.company.TreeNode;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,6 +29,9 @@ public class Solution {
 
         int ways(int w, int h) {
             dp = new int[h][w];
+            for (var arr : dp) {
+                Arrays.fill(arr, -1);
+            }
             return ways(w, h, w, h);
         }
 
@@ -45,7 +49,7 @@ public class Solution {
                 return 0;
             }
 
-            if (dp[c - 1][r - 1] != 0) {
+            if (dp[c - 1][r - 1] != -1) {
                 return dp[c - 1][r - 1];
             }
 
