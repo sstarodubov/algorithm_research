@@ -2,10 +2,8 @@ package com.company.algoexpert;
 
 import com.company.TreeNode;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.lang.management.ManagementFactory;
+import java.util.*;
 
 record Worker(String name) {
 }
@@ -19,8 +17,51 @@ record Refer(User user) {
 public class Solution {
 
     public static void main(String[] args) throws InterruptedException {
-        var wn = new WaysNum();
-        System.out.println(wn.ways(4, 3));
+        var s = new SingleCycleCheck(new int[]{2, 3, 1, -4, -4, 2});
+        System.out.println(s.check());
+    }
+
+    public static class SingleCycleCheck {
+        int[] arr;
+        int idx = 0;
+        final Set<Integer> visited = new HashSet<>();
+
+        public SingleCycleCheck(int[] arr) {
+            this.arr = arr;
+        }
+
+        public boolean check() {
+            int n;
+            for (int i = 0; i < arr.length; i++) {
+                n = arr[i];
+                if (visited.contains(i)) {
+                    return false;
+                }
+                visited.add(i);
+                if (n > 0) {
+                    forward(n);
+                } else if (n < 0) {
+                    backward(n);
+                }
+            }
+
+            return visited.size() == arr.length;
+        }
+
+        private void forward(int n) {
+            n = n % arr.length;
+            idx = (idx + n) % arr.length;
+        }
+
+        private void backward(int n) {
+            n = Math.abs(n) % arr.length;
+            int d = idx - n;
+            if (d < 0) {
+                idx = arr.length - Math.abs(d);
+            } else {
+                idx = d;
+            }
+        }
     }
 
     static class WaysNum {
