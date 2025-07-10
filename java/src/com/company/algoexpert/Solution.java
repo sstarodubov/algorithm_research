@@ -2,23 +2,70 @@ package com.company.algoexpert;
 
 import com.company.TreeNode;
 
-import java.lang.management.ManagementFactory;
 import java.util.*;
-
-record Worker(String name) {
-}
-
-record User(Worker worker) {
-}
-
-record Refer(User user) {
-}
 
 public class Solution {
 
     public static void main(String[] args) throws InterruptedException {
-        var s = new SingleCycleCheck(new int[]{2, 3, 1, -4, -4, 2});
-        System.out.println(s.check());
+        var rc = new RiverCount(new int[][]{
+                {1, 0, 0, 1, 0},
+                {1, 0, 1, 0, 0},
+                {0, 0, 1, 0, 1},
+                {1, 0, 1, 0, 1},
+                {1, 0, 1, 1, 0}
+        });
+
+        System.out.println(rc.resolve());
+    }
+
+    public static class RiverCount {
+        int[][] matrix;
+        int[][] visited;
+        int curCount = 0;
+        public RiverCount(int[][] m ) {
+            this.matrix = m;
+            this.visited =new int[m.length][m[0].length];
+        }
+
+        List<Integer> resolve() {
+            List<Integer> result = new ArrayList<>();
+            for (int c = 0; c < matrix.length; c++) {
+                for (int r = 0; r < matrix[c].length; r++) {
+                    if (matrix[r][c] == 1 && visited[r][c] == 0) {
+                         curCount = 0;
+                         dfs(r, c);
+                         result.add(curCount);
+                    }
+                }
+            }
+
+            return result;
+        }
+
+        void dfs(int r, int c) {
+           if (r >= matrix.length || r < 0) {
+               return;
+           }
+
+           if (c >= matrix[0].length || c<0) {
+               return;
+           }
+
+           if (matrix[r][c] == 0) {
+               return;
+           }
+
+           if (visited[r][c] == 1) {
+               return;
+           }
+
+           visited[r][c] = 1;
+           curCount += 1;
+           dfs(r + 1, c);
+           dfs(r, c + 1);
+           dfs(r - 1, c);
+           dfs(r , c - 1);
+        }
     }
 
     public static class SingleCycleCheck {
