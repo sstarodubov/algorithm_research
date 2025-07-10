@@ -3,25 +3,118 @@ package com.company.algoexpert;
 import com.company.TreeNode;
 
 import java.util.*;
+import java.util.function.Consumer;
+import java.util.function.Supplier;
+
+record Node(char val, List<Node> children) {
+    public Node(char val) {
+        this(val, new ArrayList<>());
+    }
+}
 
 public class Solution {
 
     public static void main(String[] args) throws InterruptedException {
-        var rc = new RiverCount(new int[][]{
-                {1, 0, 0, 1, 0},
-                {1, 0, 1, 0, 0},
-                {0, 0, 1, 0, 1},
-                {1, 0, 1, 0, 1},
-                {1, 0, 1, 1, 0}
-        });
+        var graph = new Node('A',
+                List.of(
+                        new Node('B',
+                            List.of(
+                                    new Node('G'),
+                                    new Node('H', List.of(
+                                            new Node('O'),
+                                            new Node('P', List.of(
+                                                    new Node('T'),
+                                                    new Node('U')
+                                            )),
+                                            new Node('Q'),
+                                            new Node('R', List.of(
+                                                            new Node('V', List.of(
+                                                                    new Node('W'),
+                                                                    new Node('X', List.of(
+                                                                            new Node('Z')
+                                                                    )),
+                                                                    new Node('Y')
+                                                            ))
+                                            ))
+                                            )),
+                                    new Node('I')
+                            )),
+                        new Node('C', List.of(
+                                new Node('J')
+                        )),
+                        new Node('D', List.of(
+                                new Node('K'),
+                                new Node('L')
+                        )),
+                        new Node('E'),
+                        new Node('F', List.of(
+                                new Node('M'),
+                                new Node('N')
+                        ))
+                )
+        );
 
-        System.out.println(rc.resolve());
+        var ca =new CommonAncestor('A', 'A', graph);
+        System.out.println(ca.resolve());
+    }
+
+    public static class CommonAncestor {
+        char n1;
+        char n2;
+        Node root;
+        List<Character> p1;
+        List<Character> p2;
+
+
+        public CommonAncestor(char n1, char n2, Node graph) {
+           this.n1 = n1;
+           this.n2 = n2;
+           this.root = graph;
+        }
+
+        char resolve() {
+           var arr = new ArrayList<Character>();
+           path(root, n1, arr, ( xs) -> p1 = new ArrayList<>(xs));
+           arr.clear();
+           path(root, n2, arr, xs -> p2 = new ArrayList<>(xs));
+
+           while (!p1.isEmpty() && !p2.isEmpty()) {
+                if (p1.getLast() == p2.getLast()) {
+                   return p1.getLast();
+                }
+
+                if (p1.size() > p2.size()) {
+                    p1.removeLast();
+                } else {
+                    p2.removeLast();
+                }
+            }
+
+           return '-';
+        }
+
+        void path(Node g, char target, List<Character> p, Consumer<List<Character>> fn) {
+            if (g == null) {
+                return;
+            }
+
+            p.add(g.val());
+            if (g.val() == target) {
+                fn.accept(p);
+                return;
+            }
+            for (var child : g.children()) {
+                path(child, target, p, fn);
+            }
+            p.removeLast();
+        }
     }
 
     public static class RiverCount {
         int[][] matrix;
         int[][] visited;
         int curCount = 0;
+
         public RiverCount(int[][] m ) {
             this.matrix = m;
             this.visited =new int[m.length][m[0].length];
