@@ -15,17 +15,63 @@ record Node(char val, List<Node> children) {
 public class Solution {
 
     public static void main(String[] args) throws InterruptedException {
-        var ri = new RemoveIslands();
-        var m = new int[][] {
-                {1, 0, 0, 0, 0, 0 },
-                {0, 1, 0, 1, 1, 1 },
-                {0, 0, 1, 0, 1, 0 },
-                {1, 1, 0, 0, 1, 0 },
-                {1, 0, 1, 1, 0, 0 },
-                {1, 0, 0, 0, 0, 1 }
+        var graph = new int[][] {
+                {1, 3},
+                {2, 3, 4},
+                {0},
+                {},
+                {2, 5},
+                {}
         };
-        ri.remove(m);
-        System.out.println(Arrays.deepToString(m));
+        var cig = new CicleInGraph(graph);
+        System.out.println(cig.exists());
+    }
+
+    public static class CicleInGraph {
+        boolean result = false;
+        enum State {
+            WHITE, BLACK, GREY
+        }
+        State[] states;
+        int[][] g;
+
+        public CicleInGraph(int[][] g) {
+           this.g = g;
+           this.states = new State[g.length] ;
+           Arrays.fill(states, State.WHITE);
+        }
+
+        boolean exists() {
+            for (int i = 0; i < g.length ; i++) {
+                if (states[i] == State.WHITE) {
+                    dfs(i);
+                } else if (states[i] == State.GREY) {
+                    return true;
+                }
+            }
+           return result;
+        }
+
+        void dfs(int node) {
+            if (states[node] == State.BLACK) {
+                return;
+            }
+
+            if (states[node] == State.GREY) {
+                result = true;
+                return;
+            }
+
+            states[node] = State.GREY;
+
+            var children = g[node];
+
+            for (int child : children) {
+               dfs(child);
+            }
+
+            states[node] = State.BLACK;
+        }
     }
 
     public static class RemoveIslands {
