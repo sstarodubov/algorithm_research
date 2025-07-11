@@ -15,49 +15,72 @@ record Node(char val, List<Node> children) {
 public class Solution {
 
     public static void main(String[] args) throws InterruptedException {
-        var graph = new Node('A',
-                List.of(
-                        new Node('B',
-                            List.of(
-                                    new Node('G'),
-                                    new Node('H', List.of(
-                                            new Node('O'),
-                                            new Node('P', List.of(
-                                                    new Node('T'),
-                                                    new Node('U')
-                                            )),
-                                            new Node('Q'),
-                                            new Node('R', List.of(
-                                                            new Node('V', List.of(
-                                                                    new Node('W'),
-                                                                    new Node('X', List.of(
-                                                                            new Node('Z')
-                                                                    )),
-                                                                    new Node('Y')
-                                                            ))
-                                            ))
-                                            )),
-                                    new Node('I')
-                            )),
-                        new Node('C', List.of(
-                                new Node('J')
-                        )),
-                        new Node('D', List.of(
-                                new Node('K'),
-                                new Node('L')
-                        )),
-                        new Node('E'),
-                        new Node('F', List.of(
-                                new Node('M'),
-                                new Node('N')
-                        ))
-                )
-        );
-
-        var ca =new CommonAncestor('A', 'A', graph);
-        System.out.println(ca.resolve());
+        var ri = new RemoveIslands();
+        var m = new int[][] {
+                {1, 0, 0, 0, 0, 0 },
+                {0, 1, 0, 1, 1, 1 },
+                {0, 0, 1, 0, 1, 0 },
+                {1, 1, 0, 0, 1, 0 },
+                {1, 0, 1, 1, 0, 0 },
+                {1, 0, 0, 0, 0, 1 }
+        };
+        ri.remove(m);
+        System.out.println(Arrays.deepToString(m));
     }
 
+    public static class RemoveIslands {
+        void remove(int[][] m) {
+            for (int c = 0; c < m.length; c++) {
+                remove(m, 0, c);
+            }
+
+            for (int c = m.length - 1; c < m.length; c++) {
+               remove(m, m[0].length - 1, c); 
+            }
+
+            for (int r = 0; r < m[0].length; r++) {
+               remove(m, r, 0);
+            }
+
+
+            for (int r = 0; r < m[0].length; r++) {
+                remove(m, r, m[0].length - 1);
+            }
+
+            for (int i = 0; i < m.length; i++) {
+                for (int j = 0; j < m[0].length; j++) {
+                   if (m[j][i] == 1) {
+                       m[j][i] = 0;
+                   }
+
+                   if (m[j][i] == -1) {
+                       m[j][i] = 1;
+                   }
+                }
+            }
+        }
+        
+        void remove(int[][] m, int r, int c) {
+            if (r < 0 || r >= m[0].length) {
+                return;
+            }
+
+            if (c < 0 || c >= m.length) {
+                return;
+            }
+
+            if (m[r][c] != 1) {
+                return;
+            }
+
+            m[r][c] = -1;
+
+            remove(m, r - 1, c);
+            remove(m, r + 1, c);
+            remove(m, r , c - 1);
+            remove(m, r, c + 1);
+        }
+    }
     public static class CommonAncestor {
         char n1;
         char n2;
