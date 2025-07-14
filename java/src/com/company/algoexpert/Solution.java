@@ -4,7 +4,6 @@ import com.company.TreeNode;
 
 import java.util.*;
 import java.util.function.Consumer;
-import java.util.function.Supplier;
 
 record Node(char val, List<Node> children) {
     public Node(char val) {
@@ -26,14 +25,13 @@ public class Solution {
     }
 
     public static class MininumPassOfMatrix {
-        record Pair(int r, int c) {}
+        record Pair(int r, int c, int level, int val) {}
         int[][] m;
-
         public MininumPassOfMatrix(int[][] m) {
             this.m = m;
         }
 
-        boolean adjPositive(int r, int c) {
+        boolean canGo(int r, int c) {
            if (r >= m.length || r < 0) {
                return false;
            }
@@ -42,36 +40,47 @@ public class Solution {
                return false;
            }
 
-           return m[r][c] > 0;
+           if (m[r][c] < 0) {
+               return true;
+           }
+
+           return false;
         }
 
         int passes() {
             var pairs = new ArrayList<Pair>();
             int cycles = 0;
-            for (;;) {
-                for (int r = 0; r < m.length; r++) {
-                    for (int c = 0; c < m[0].length; c++) {
-                        int n = m[r][c];
-                        if (n < 0 && (
-                                adjPositive(r - 1, c)
-                                        || adjPositive(r + 1 , c)
-                                        || adjPositive(r , c - 1)
-                                        || adjPositive(r, c + 1)
-                        )) {
-
-                            pairs.add(new Pair(r, c));
-                        }
+            for (int r = 0; r < m.length; r++) {
+                for (int c = 0; c < m[0].length; c++) {
+                    int n = m[r][c];
+                    if (n > 0) {
+                        pairs.add(new Pair(r, c, 0, m[r][c]));
                     }
                 }
-                if (pairs.isEmpty()) {
-                    return cycles;
-                }
-                for(var p : pairs) {
-                    m[p.r()][p.c()] =  Math.abs(m[p.r()][p.c()]);
-                }
-                pairs.clear();
-                cycles += 1;
             }
+
+            while (!pairs.isEmpty()) {
+                var cur = pairs.removeFirst();
+                var r = cur.r;
+                var c = cur.c;
+                var l = cur.level;
+                m[r][c] = Math.abs(m[r][c]);
+                cycles = Math.max(cycles, l);
+                if (canGo(r + 1, c)) {
+                   pairs.addLast(new Pair(r + 1, c, l + 1, m[r + 1][c]));
+                }
+                if (canGo(r - 1, c)) {
+                    pairs.addLast(new Pair(r - 1, c , l + 1, m[r - 1][c]));
+                }
+                if (canGo(r , c - 1)) {
+                    pairs.addLast(new Pair(r, c - 1, l + 1, m[r][c - 1]));
+                }
+                if (canGo(r, c + 1)) {
+                    pairs.addLast(new Pair(r, c + 1, l + 1, m[r][c + 1]));
+                }
+            }
+
+            return cycles;
         }
     }
 
