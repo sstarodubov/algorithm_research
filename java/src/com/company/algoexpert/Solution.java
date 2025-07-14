@@ -15,17 +15,67 @@ record Node(char val, List<Node> children) {
 public class Solution {
 
     public static void main(String[] args) throws InterruptedException {
-        var graph = new int[][] {
-                {1, 3},
-                {2, 3, 4},
-                {0},
-                {},
-                {2, 5},
-                {}
+        var m = new int[][] {
+                {0, -1,  -3,  2,  0},
+                {1, -2,  -5, -1, -3},
+                {3,  0,   0, -4, -1}
         };
-        var cig = new CicleInGraph(graph);
-        System.out.println(cig.exists());
+
+        var mpom = new MininumPassOfMatrix(m);
+        System.out.println(mpom.passes());
     }
+
+    public static class MininumPassOfMatrix {
+        record Pair(int r, int c) {}
+        int[][] m;
+
+        public MininumPassOfMatrix(int[][] m) {
+            this.m = m;
+        }
+
+        boolean adjPositive(int r, int c) {
+           if (r >= m.length || r < 0) {
+               return false;
+           }
+
+           if (c >= m[0].length || c < 0) {
+               return false;
+           }
+
+           return m[r][c] > 0;
+        }
+
+        int passes() {
+            var pairs = new ArrayList<Pair>();
+            int cycles = 0;
+            for (;;) {
+                for (int r = 0; r < m.length; r++) {
+                    for (int c = 0; c < m[0].length; c++) {
+                        int n = m[r][c];
+                        if (n < 0 && (
+                                adjPositive(r - 1, c)
+                                        || adjPositive(r + 1 , c)
+                                        || adjPositive(r , c - 1)
+                                        || adjPositive(r, c + 1)
+                        )) {
+
+                            pairs.add(new Pair(r, c));
+                        }
+                    }
+                }
+                if (pairs.isEmpty()) {
+                    return cycles;
+                }
+                for(var p : pairs) {
+                    m[p.r()][p.c()] =  Math.abs(m[p.r()][p.c()]);
+                }
+                pairs.clear();
+                cycles += 1;
+            }
+        }
+    }
+
+
 
     public static class CicleInGraph {
         boolean result = false;
