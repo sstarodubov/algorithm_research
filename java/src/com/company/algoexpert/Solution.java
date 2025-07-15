@@ -13,37 +13,65 @@ record Node(char val, List<Node> children) {
 
 public class Solution {
 
-    public static void main(String[] args) throws InterruptedException {
-        var g = new int[][] {
-                {1, 3},
-                {0, 2},
-                {1, 3},
-                {0, 2}
-        };
-        var r = new TwoColarableGraph(g);
-        System.out.println(r.isTwoColarable());
+    public static void main(String[] args) {
+        var a = new TaskAssignment(3, new int[]{1, 3, 5, 3, 1, 4});
+        System.out.println(Arrays.deepToString(a.resolve()));
+    }
+
+    public static class TaskAssignment {
+        int k;
+        int[] arr;
+
+        public TaskAssignment(int k, int[] arr) {
+            this.k = k;
+            this.arr = arr;
+        }
+
+        public int[][] resolve() {
+            var m = new HashMap<Integer, List<Integer>>();
+            int[][] ret = new int[k][2];
+
+            for (int i = 0; i < arr.length; i++) {
+                var list = m.getOrDefault(arr[i], new ArrayList<>());
+                list.add(i);
+                m.put(arr[i], list);
+            }
+
+            Arrays.sort(arr);
+
+            int r = k, l = k - 1, i = 0;
+
+            while (l >= 0 && r < arr.length && i < k) {
+                ret[i] = new int[] {m.get(arr[l]).removeLast(), m.get(arr[r]).removeLast()};
+                i ++;
+                l--;
+                r++;
+            }
+            return ret;
+        }
     }
 
     public static class TwoColarableGraph {
         record Edge(int from, int to) {
 
-            public static Edge create(int from , int to) {
+            public static Edge create(int from, int to) {
                 if (from < to) {
                     return new Edge(from, to);
                 } else {
                     return new Edge(to, from);
                 }
             }
-       }
+        }
 
         int[][] g;
         Set<Edge> edges = new HashSet<>();
-        public TwoColarableGraph (int[][] g) {
+
+        public TwoColarableGraph(int[][] g) {
             this.g = g;
 
             for (int i = 0; i < g.length; i++) {
                 for (int j = 0; j < g[i].length; j++) {
-                   edges.add(Edge.create(i, g[i][j]));
+                    edges.add(Edge.create(i, g[i][j]));
                 }
             }
         }
@@ -52,46 +80,50 @@ public class Solution {
             var m = new HashMap<Integer, Integer>();
 
             for (var edge : this.edges) {
-               var toColor = m.get(edge.to);
-               var fromColor = m.get(edge.from);
+                var toColor = m.get(edge.to);
+                var fromColor = m.get(edge.from);
 
-               if (toColor == null && fromColor == null) {
-                   m.put(edge.to, 1);
-                   m.put(edge.from, -1);
-               } else if (toColor == null) {
-                   m.put(edge.to, -fromColor);
-               } else if (fromColor == null) {
-                   m.put(edge.from, -toColor);
-               } else {
-                   if (toColor.equals(fromColor)) {
-                       return false;
-                   }
-               }
+                if (toColor == null && fromColor == null) {
+                    m.put(edge.to, 1);
+                    m.put(edge.from, -1);
+                } else if (toColor == null) {
+                    m.put(edge.to, -fromColor);
+                } else if (fromColor == null) {
+                    m.put(edge.from, -toColor);
+                } else {
+                    if (toColor.equals(fromColor)) {
+                        return false;
+                    }
+                }
             }
             return true;
         }
     }
+
     public static class MininumPassOfMatrix {
-        record Pair(int r, int c, int level, int val) {}
+        record Pair(int r, int c, int level, int val) {
+        }
+
         int[][] m;
+
         public MininumPassOfMatrix(int[][] m) {
             this.m = m;
         }
 
         boolean canGo(int r, int c) {
-           if (r >= m.length || r < 0) {
-               return false;
-           }
+            if (r >= m.length || r < 0) {
+                return false;
+            }
 
-           if (c >= m[0].length || c < 0) {
-               return false;
-           }
+            if (c >= m[0].length || c < 0) {
+                return false;
+            }
 
-           if (m[r][c] < 0) {
-               return true;
-           }
+            if (m[r][c] < 0) {
+                return true;
+            }
 
-           return false;
+            return false;
         }
 
         int passes() {
@@ -114,12 +146,12 @@ public class Solution {
                 m[r][c] = Math.abs(m[r][c]);
                 cycles = Math.max(cycles, l);
                 if (canGo(r + 1, c)) {
-                   pairs.addLast(new Pair(r + 1, c, l + 1, m[r + 1][c]));
+                    pairs.addLast(new Pair(r + 1, c, l + 1, m[r + 1][c]));
                 }
                 if (canGo(r - 1, c)) {
-                    pairs.addLast(new Pair(r - 1, c , l + 1, m[r - 1][c]));
+                    pairs.addLast(new Pair(r - 1, c, l + 1, m[r - 1][c]));
                 }
-                if (canGo(r , c - 1)) {
+                if (canGo(r, c - 1)) {
                     pairs.addLast(new Pair(r, c - 1, l + 1, m[r][c - 1]));
                 }
                 if (canGo(r, c + 1)) {
@@ -132,30 +164,31 @@ public class Solution {
     }
 
 
-
     public static class CicleInGraph {
         boolean result = false;
+
         enum State {
             WHITE, BLACK, GREY
         }
+
         State[] states;
         int[][] g;
 
         public CicleInGraph(int[][] g) {
-           this.g = g;
-           this.states = new State[g.length] ;
-           Arrays.fill(states, State.WHITE);
+            this.g = g;
+            this.states = new State[g.length];
+            Arrays.fill(states, State.WHITE);
         }
 
         boolean exists() {
-            for (int i = 0; i < g.length ; i++) {
+            for (int i = 0; i < g.length; i++) {
                 if (states[i] == State.WHITE) {
                     dfs(i);
                 } else if (states[i] == State.GREY) {
                     return true;
                 }
             }
-           return result;
+            return result;
         }
 
         void dfs(int node) {
@@ -173,7 +206,7 @@ public class Solution {
             var children = g[node];
 
             for (int child : children) {
-               dfs(child);
+                dfs(child);
             }
 
             states[node] = State.BLACK;
@@ -187,11 +220,11 @@ public class Solution {
             }
 
             for (int c = m.length - 1; c < m.length; c++) {
-               remove(m, m[0].length - 1, c); 
+                remove(m, m[0].length - 1, c);
             }
 
             for (int r = 0; r < m[0].length; r++) {
-               remove(m, r, 0);
+                remove(m, r, 0);
             }
 
 
@@ -201,17 +234,17 @@ public class Solution {
 
             for (int i = 0; i < m.length; i++) {
                 for (int j = 0; j < m[0].length; j++) {
-                   if (m[j][i] == 1) {
-                       m[j][i] = 0;
-                   }
+                    if (m[j][i] == 1) {
+                        m[j][i] = 0;
+                    }
 
-                   if (m[j][i] == -1) {
-                       m[j][i] = 1;
-                   }
+                    if (m[j][i] == -1) {
+                        m[j][i] = 1;
+                    }
                 }
             }
         }
-        
+
         void remove(int[][] m, int r, int c) {
             if (r < 0 || r >= m[0].length) {
                 return;
@@ -229,10 +262,11 @@ public class Solution {
 
             remove(m, r - 1, c);
             remove(m, r + 1, c);
-            remove(m, r , c - 1);
+            remove(m, r, c - 1);
             remove(m, r, c + 1);
         }
     }
+
     public static class CommonAncestor {
         char n1;
         char n2;
@@ -242,20 +276,20 @@ public class Solution {
 
 
         public CommonAncestor(char n1, char n2, Node graph) {
-           this.n1 = n1;
-           this.n2 = n2;
-           this.root = graph;
+            this.n1 = n1;
+            this.n2 = n2;
+            this.root = graph;
         }
 
         char resolve() {
-           var arr = new ArrayList<Character>();
-           path(root, n1, arr, ( xs) -> p1 = new ArrayList<>(xs));
-           arr.clear();
-           path(root, n2, arr, xs -> p2 = new ArrayList<>(xs));
+            var arr = new ArrayList<Character>();
+            path(root, n1, arr, (xs) -> p1 = new ArrayList<>(xs));
+            arr.clear();
+            path(root, n2, arr, xs -> p2 = new ArrayList<>(xs));
 
-           while (!p1.isEmpty() && !p2.isEmpty()) {
+            while (!p1.isEmpty() && !p2.isEmpty()) {
                 if (p1.getLast() == p2.getLast()) {
-                   return p1.getLast();
+                    return p1.getLast();
                 }
 
                 if (p1.size() > p2.size()) {
@@ -265,7 +299,7 @@ public class Solution {
                 }
             }
 
-           return '-';
+            return '-';
         }
 
         void path(Node g, char target, List<Character> p, Consumer<List<Character>> fn) {
@@ -290,9 +324,9 @@ public class Solution {
         int[][] visited;
         int curCount = 0;
 
-        public RiverCount(int[][] m ) {
+        public RiverCount(int[][] m) {
             this.matrix = m;
-            this.visited =new int[m.length][m[0].length];
+            this.visited = new int[m.length][m[0].length];
         }
 
         List<Integer> resolve() {
@@ -300,9 +334,9 @@ public class Solution {
             for (int c = 0; c < matrix.length; c++) {
                 for (int r = 0; r < matrix[c].length; r++) {
                     if (matrix[r][c] == 1 && visited[r][c] == 0) {
-                         curCount = 0;
-                         dfs(r, c);
-                         result.add(curCount);
+                        curCount = 0;
+                        dfs(r, c);
+                        result.add(curCount);
                     }
                 }
             }
@@ -311,28 +345,28 @@ public class Solution {
         }
 
         void dfs(int r, int c) {
-           if (r >= matrix.length || r < 0) {
-               return;
-           }
+            if (r >= matrix.length || r < 0) {
+                return;
+            }
 
-           if (c >= matrix[0].length || c<0) {
-               return;
-           }
+            if (c >= matrix[0].length || c < 0) {
+                return;
+            }
 
-           if (matrix[r][c] == 0) {
-               return;
-           }
+            if (matrix[r][c] == 0) {
+                return;
+            }
 
-           if (visited[r][c] == 1) {
-               return;
-           }
+            if (visited[r][c] == 1) {
+                return;
+            }
 
-           visited[r][c] = 1;
-           curCount += 1;
-           dfs(r + 1, c);
-           dfs(r, c + 1);
-           dfs(r - 1, c);
-           dfs(r , c - 1);
+            visited[r][c] = 1;
+            curCount += 1;
+            dfs(r + 1, c);
+            dfs(r, c + 1);
+            dfs(r - 1, c);
+            dfs(r, c - 1);
         }
     }
 
