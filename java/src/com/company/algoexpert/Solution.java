@@ -14,16 +14,63 @@ record Node(char val, List<Node> children) {
 public class Solution {
 
     public static void main(String[] args) throws InterruptedException {
-        var m = new int[][] {
-                {0, -1,  -3,  2,  0},
-                {1, -2,  -5, -1, -3},
-                {3,  0,   0, -4, -1}
+        var g = new int[][] {
+                {1, 3},
+                {0, 2},
+                {1, 3},
+                {0, 2}
         };
-
-        var mpom = new MininumPassOfMatrix(m);
-        System.out.println(mpom.passes());
+        var r = new TwoColarableGraph(g);
+        System.out.println(r.isTwoColarable());
     }
 
+    public static class TwoColarableGraph {
+        record Edge(int from, int to) {
+
+            public static Edge create(int from , int to) {
+                if (from < to) {
+                    return new Edge(from, to);
+                } else {
+                    return new Edge(to, from);
+                }
+            }
+       }
+
+        int[][] g;
+        Set<Edge> edges = new HashSet<>();
+        public TwoColarableGraph (int[][] g) {
+            this.g = g;
+
+            for (int i = 0; i < g.length; i++) {
+                for (int j = 0; j < g[i].length; j++) {
+                   edges.add(Edge.create(i, g[i][j]));
+                }
+            }
+        }
+
+        boolean isTwoColarable() {
+            var m = new HashMap<Integer, Integer>();
+
+            for (var edge : this.edges) {
+               var toColor = m.get(edge.to);
+               var fromColor = m.get(edge.from);
+
+               if (toColor == null && fromColor == null) {
+                   m.put(edge.to, 1);
+                   m.put(edge.from, -1);
+               } else if (toColor == null) {
+                   m.put(edge.to, -fromColor);
+               } else if (fromColor == null) {
+                   m.put(edge.from, -toColor);
+               } else {
+                   if (toColor.equals(fromColor)) {
+                       return false;
+                   }
+               }
+            }
+            return true;
+        }
+    }
     public static class MininumPassOfMatrix {
         record Pair(int r, int c, int level, int val) {}
         int[][] m;
