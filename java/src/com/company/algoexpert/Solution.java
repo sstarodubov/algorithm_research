@@ -1,5 +1,6 @@
 package com.company.algoexpert;
 
+import com.company.ListNode;
 import com.company.TreeNode;
 
 import java.util.*;
@@ -14,8 +15,44 @@ record Node(char val, List<Node> children) {
 public class Solution {
 
     public static void main(String[] args) {
-        var a = new TaskAssignment(3, new int[]{1, 3, 5, 3, 1, 4});
-        System.out.println(Arrays.deepToString(a.resolve()));
+        var ll = ListNode.buildLinkedList(new int[] {0, 1 });
+        var r = new RemoveNthNodeFromLinkedList(ll, 2);
+        System.out.println(r.removeNth());
+    }
+
+    public static class RemoveNthNodeFromLinkedList {
+        ListNode node;
+        int end;
+
+        public RemoveNthNodeFromLinkedList(ListNode node, int end) {
+           this.node = node;
+           this.end = end;
+        }
+
+
+        public ListNode removeNth() {
+            var dummy = new ListNode(-1);
+            dummy.next = node;
+            ListNode f = node, s = dummy;
+            int i = 0;
+            while (i < end) {
+               f = f.next;
+               i++;
+            }
+
+            while (f != null) {
+               s = s.next;
+               f = f.next;
+            }
+
+            if (s.next != null) {
+                var a = s.next;
+                s.next = s.next.next;
+                a.next = null;
+            }
+
+            return dummy.next;
+        }
     }
 
     public static class TaskAssignment {
