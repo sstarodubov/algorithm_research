@@ -15,9 +15,64 @@ record Node(char val, List<Node> children) {
 public class Solution {
 
     public static void main(String[] args) {
-        var ll = ListNode.buildLinkedList(new int[] {0, 1 });
-        var r = new RemoveNthNodeFromLinkedList(ll, 2);
-        System.out.println(r.removeNth());
+        var r = new SumOfLinkedList() .sum(ListNode.buildLinkedList(new int[] {2, 4, 7, 1}), ListNode.buildLinkedList(new int[] {9, 4, 5}));
+        System.out.println(r);
+    }
+
+    public static class SumOfLinkedList {
+        ListNode sum(ListNode n1 , ListNode n2) {
+            int carry = 0;
+            ListNode dummy = new ListNode(0);
+            ListNode cur = dummy;
+            while (n1 != null && n2 != null) {
+                int a = n1.val + n2.val + carry;
+
+                if (a > 9) {
+                   carry = 1;
+                   a = a % 10;
+                } else {
+                    carry = 0;
+                }
+                cur.next = new ListNode(a);
+                cur = cur.next;
+                n1 = n1.next;
+                n2 = n2.next;
+            }
+
+            while (n1 != null) {
+                int a = n1.val + carry;
+
+                if (a > 9) {
+                    carry = 1;
+                    a = a % 10;
+                } else {
+                    carry = 0;
+                }
+                cur.next = new ListNode(a);
+                cur = cur.next;
+                n1 = n1.next;
+            }
+
+            while (n2 != null) {
+                int a = n2.val + carry;
+
+                if (a > 9) {
+                    carry = 1;
+                    a = a % 10;
+                } else {
+                    carry = 0;
+                }
+                cur.next = new ListNode(a);
+                cur = cur.next;
+                n2 = n2.next;
+            }
+
+            if (carry == 1) {
+                cur.next = new ListNode(1);
+            }
+
+            return dummy.next;
+        }
     }
 
     public static class RemoveNthNodeFromLinkedList {
