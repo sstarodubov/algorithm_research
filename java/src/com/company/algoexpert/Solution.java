@@ -5,6 +5,7 @@ import com.company.TreeNode;
 
 import java.util.*;
 import java.util.function.Consumer;
+import java.util.stream.Stream;
 
 record Node(char val, List<Node> children) {
     public Node(char val) {
@@ -15,10 +16,70 @@ record Node(char val, List<Node> children) {
 public class Solution {
 
     public static void main(String[] args) {
-        var r = new SumOfLinkedList() .sum(ListNode.buildLinkedList(new int[] {2, 4, 7, 1}), ListNode.buildLinkedList(new int[] {9, 4, 5}));
-        System.out.println(r);
+        System.out.println(new Permutations().solve(new int[] {1, 2, 3}));
     }
 
+    public static class Permutations {
+       List<List<Integer>> solve(int[] arr)  {
+            var ret = new ArrayList<List<Integer>>();
+
+            solve(arr, 0, ret);
+
+
+            return ret;
+       }
+
+       List<Integer> copy(int[] arr) {
+           var r = new ArrayList<Integer>(arr.length);
+            for (var i : arr) {
+               r.add(i);
+            }
+           return r;
+       }
+
+       void swap(int[] arr, int i, int j) {
+           int t = arr[i];
+           arr[i] = arr[j];
+           arr[j] = t;
+       }
+
+       void solve(int[] arr, int idx, List<List<Integer>> result) {
+            if (idx  >= arr.length) {
+               result.add(copy(arr));
+            } else {
+                for (int i = idx; i < arr.length; i++) {
+                   swap(arr, i, idx);
+                   solve(arr, idx + 1, result);
+                   swap(arr, i, idx);
+                }
+            }
+       }
+    }
+
+    public static class MergeTwoList {
+
+        public ListNode commonNode(ListNode n1, ListNode n2) {
+            var set = new HashSet<ListNode>();
+
+            var cur = n1;
+            while (cur != null) {
+               set.add(cur);
+               cur = cur.next;
+            }
+
+            cur = n2;
+
+            while (cur != null) {
+                if (set.contains(cur)) {
+                    return cur;
+                }
+
+                cur = cur.next;
+            }
+
+            return null;
+        }
+    }
     public static class SumOfLinkedList {
         ListNode sum(ListNode n1 , ListNode n2) {
             int carry = 0;
