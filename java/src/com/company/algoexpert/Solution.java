@@ -16,7 +16,56 @@ record Node(char val, List<Node> children) {
 public class Solution {
 
     public static void main(String[] args) {
-        System.out.println(new Permutations().solve(new int[] {1, 2, 3}));
+        var ps = new PowerSet(new int[] {1,2, 3});
+
+        System.out.println(ps.generate());
+    }
+
+    public static List<Integer> copy(int[] arr) {
+        var r = new ArrayList<Integer>(arr.length);
+        for (var i : arr) {
+            r.add(i);
+        }
+        return r;
+    }
+
+    public static List<Integer> copy(List<Integer> arr) {
+        var r = new ArrayList<Integer>(arr.size());
+        r.addAll(arr);
+        return r;
+    }
+
+
+    public static List<List<Integer>> deepCopy(List<List<Integer>> arr) {
+        var r = new ArrayList<List<Integer>>(arr.size());
+        for (var list : arr) {
+            r.add(copy(list));
+        }
+        return r;
+    }
+
+    public static class PowerSet {
+        int[] set;
+
+        public PowerSet(int[] set) {
+            this.set = set;
+        }
+
+        List<List<Integer>> generate() {
+            final var ret = new ArrayList<List<Integer>>();
+            ret.add(new ArrayList<>());
+
+            for (var n : set) {
+                List<List<Integer>> copy = deepCopy(ret);
+                for (var list : copy) {
+                    list.add(n);
+                }
+
+                ret.addAll(copy);
+            }
+
+            return ret;
+        }
     }
 
     public static class Permutations {
@@ -29,13 +78,6 @@ public class Solution {
             return ret;
        }
 
-       List<Integer> copy(int[] arr) {
-           var r = new ArrayList<Integer>(arr.length);
-            for (var i : arr) {
-               r.add(i);
-            }
-           return r;
-       }
 
        void swap(int[] arr, int i, int j) {
            int t = arr[i];
