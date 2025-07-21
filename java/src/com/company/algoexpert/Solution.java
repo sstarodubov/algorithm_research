@@ -15,10 +15,51 @@ record Node(char val, List<Node> children) {
 
 public class Solution {
 
-    public static void main(String[] args) {
-        var ps = new PowerSet(new int[] {1,2, 3});
 
-        System.out.println(ps.generate());
+    public static void main(String[] args) {
+       var pm = new PhoneMnemonic("1905");
+
+        System.out.println(pm.generate());
+    }
+
+    public static class PhoneMnemonic {
+        String input;
+        Map<Character, String> m = Map.of(
+                '1' , "1",
+                '2', "abc",
+                '3', "def",
+                '4', "ghi",
+                '5', "jkl",
+                '6', "mno",
+                '7', "pqrs",
+                '8', "tuv",
+                '9', "wyxz",
+                '0', "0"
+
+        );
+        public PhoneMnemonic(String input) {
+           this.input = input;
+        }
+
+        List<String> generate() {
+            var result = new ArrayList<String>();
+            _generate(0, new StringBuilder(), result);
+            return result;
+        }
+
+        private void _generate(int idx, StringBuilder comb, List<String> result) {
+           if (idx >= input.length()) {
+               result.add(comb.toString());
+           } else {
+               char digit = input.charAt(idx);
+               String letters = m.get(digit);
+               for (int i = 0; i < letters.length(); i++) {
+                    comb.append(letters.charAt(i));
+                    _generate(idx + 1, comb, result);
+                    comb.deleteCharAt(comb.length() - 1);
+               }
+           }
+        }
     }
 
     public static List<Integer> copy(int[] arr) {
