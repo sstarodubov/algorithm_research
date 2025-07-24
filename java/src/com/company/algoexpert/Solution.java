@@ -16,15 +16,40 @@ public class Solution {
 
 
     public static void main(String[] args) {
-        var s = new SearchSortedMatrix(new int[][]{
-                {1, 4, 7, 12, 15, 1000},
-                {2, 5, 19, 31, 32, 1001},
-                {4, 8, 24, 33, 35, 1002},
-                {40, 41, 42, 44, 45, 1003},
-                {90, 100, 103, 106, 128, 1004},
-        });
+        var arr = new ArrayList<>(List.of(1, 0, 0, -1, -1, 0, 1, 1));
+        var order = List.of(0, 1, -1);
+        var tns = new ThreeNumberSort(arr, order);
+        tns.sort();
+        System.out.println(arr);
+    }
 
-        System.out.println((s.find(1)));
+    public static class ThreeNumberSort {
+        public static class Comp implements Comparator<Integer> {
+            List<Integer> order;
+
+            public Comp(List<Integer> order) {
+                this.order = order;
+            }
+
+            @Override
+            public int compare(Integer i1, Integer i2) {
+                int o1 = order.indexOf(i1);
+                int o2 = order.indexOf(i2);
+                return o1 - o2;
+            }
+        }
+
+        List<Integer> arr;
+        List<Integer> order;
+
+        public ThreeNumberSort(List<Integer> arr, List<Integer> order) {
+           this.arr = arr;
+           this.order = order;
+        }
+
+        void sort() {
+            arr.sort(new Comp(order));
+        }
     }
 
     public static class SearchSortedMatrix {
