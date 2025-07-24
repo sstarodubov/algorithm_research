@@ -16,11 +16,42 @@ public class Solution {
 
 
     public static void main(String[] args) {
-        var arr = new ArrayList<>(List.of(1, 0, 0, -1, -1, 0, 1, 1));
-        var order = List.of(0, 1, -1);
-        var tns = new ThreeNumberSort(arr, order);
-        tns.sort();
-        System.out.println(arr);
+        var b = new BalancedBrackets("(([]()()){})");
+        System.out.println(b.isValid());
+    }
+
+    public static class BalancedBrackets {
+        String s;
+
+        BalancedBrackets(String s) {
+            this.s = s;
+        }
+
+
+        boolean isValid() {
+            var stack = new ArrayDeque<Character>();
+
+            for (int i = 0; i < s.length(); i++) {
+                char letter = s.charAt(i);
+
+                if (stack.isEmpty()) {
+                    stack.push(letter);
+                } else {
+                    char last = stack.peek();
+                    if (last == '(' && letter == ')') {
+                        stack.pop();
+                    } else if (last == '{' && letter == '}') {
+                        stack.pop();
+                    } else if (last == '[' && letter == ']') {
+                        stack.pop();
+                    } else {
+                        stack.push(letter);
+                    }
+                }
+            }
+
+            return stack.isEmpty();
+        }
     }
 
     public static class ThreeNumberSort {
