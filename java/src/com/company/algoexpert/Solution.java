@@ -5,7 +5,6 @@ import com.company.TreeNode;
 
 import java.util.*;
 import java.util.function.Consumer;
-import java.util.stream.Stream;
 
 record Node(char val, List<Node> children) {
     public Node(char val) {
@@ -17,11 +16,87 @@ public class Solution {
 
 
     public static void main(String[] args) {
-       var pm = new PhoneMnemonic("1905");
+        var s = new SearchSortedMatrix(new int[][]{
+                {1, 4, 7, 12, 15, 1000},
+                {2, 5, 19, 31, 32, 1001},
+                {4, 8, 24, 33, 35, 1002},
+                {40, 41, 42, 44, 45, 1003},
+                {90, 100, 103, 106, 128, 1004},
+        });
 
-        System.out.println(pm.generate());
+        System.out.println((s.find(1)));
     }
 
+    public static class SearchSortedMatrix {
+        int[][] matrix;
+        public SearchSortedMatrix(int[][] m) {
+            this.matrix = m;
+        }
+
+
+        List<Integer> find(int val) {
+            var notFound = List.of(-1, -1);
+            int r = findInCol(val, 0);
+            if (r == -1) {
+                return notFound;
+            }
+            int c = findInRow(val, r);
+            if (c == -1) {
+                return notFound;
+            }
+            if (matrix[r][c] == val) {
+                return List.of(r, c);
+            }
+
+            int c1 = findInRow(val, 0);
+
+            if (c1 == -1) {
+                return notFound;
+            }
+
+            int r1 = findInCol(val, c1);
+            if (matrix[r1][c1] == val) {
+                return List.of(r1, c1);
+            }
+
+            return notFound;
+        }
+
+        int findInRow(int val, int row) {
+            int l = 0, n = matrix[0].length , r = n - 1;
+
+            while (l <= r) {
+                int m = (l + r) / 2 ;
+                int cur = matrix[row][m];
+                if (cur == val) {
+                    return m;
+                } else if (val > cur) {
+                    l = m + 1;
+                } else {
+                    r = m - 1;
+                }
+            }
+
+            return r;
+        }
+        int findInCol(int val, int col) {
+            int l = 0, n = matrix.length , r = n - 1;
+
+            while (l <= r) {
+               int m = (l + r) / 2 ;
+               int cur = matrix[m][col];
+               if (cur == val) {
+                  return m;
+               } else if (val > cur) {
+                  l = m + 1;
+               } else {
+                  r = m - 1;
+               }
+            }
+
+            return r;
+        }
+    }
     public static class PhoneMnemonic {
         String input;
         Map<Character, String> m = Map.of(
@@ -43,11 +118,11 @@ public class Solution {
 
         List<String> generate() {
             var result = new ArrayList<String>();
-            _generate(0, new StringBuilder(), result);
+            generate(0, new StringBuilder(), result);
             return result;
         }
 
-        private void _generate(int idx, StringBuilder comb, List<String> result) {
+        private void generate(int idx, StringBuilder comb, List<String> result) {
            if (idx >= input.length()) {
                result.add(comb.toString());
            } else {
@@ -55,7 +130,7 @@ public class Solution {
                String letters = m.get(digit);
                for (int i = 0; i < letters.length(); i++) {
                     comb.append(letters.charAt(i));
-                    _generate(idx + 1, comb, result);
+                    generate(idx + 1, comb, result);
                     comb.deleteCharAt(comb.length() - 1);
                }
            }
