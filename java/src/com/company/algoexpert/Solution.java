@@ -16,8 +16,68 @@ public class Solution {
 
 
     public static void main(String[] args) {
-        var b = new BalancedBrackets("(([]()()){})");
-        System.out.println(b.isValid());
+        var sv = new SunsetView(new int[] {3, 5, 4, 4, 3, 1, 3, 2});
+        System.out.println(sv.get());
+    }
+
+    public static class SunsetView {
+        int[] arr;
+        public SunsetView(int[] arr) {
+            this.arr = arr;
+        }
+
+
+        List<Integer> get() {
+           int curMax = Integer.MIN_VALUE;
+           var ret = new ArrayList<Integer>();
+           for (int i = arr.length - 1; i >= 0; i--) {
+               if (arr[i] > curMax) {
+                   curMax = arr[i];
+                   ret.add(i);
+               }
+           }
+
+           return ret;
+        }
+    }
+
+    public static class MinMaxStack {
+        ArrayDeque<Integer> stack = new ArrayDeque<>();
+        ArrayDeque<Integer> minStack = new ArrayDeque<>();
+        ArrayDeque<Integer> maxStack = new ArrayDeque<>();
+
+        int min() {
+            return minStack.peek();
+        }
+
+        int max() {
+            return maxStack.peek();
+        }
+
+        int peek() {
+            return stack.peek();
+        }
+
+        void push(int val) {
+            stack.push(val);
+            if (minStack.isEmpty()) {
+                minStack.push(val);
+            } else {
+                minStack.push(Math.min(minStack.peek(), val));
+            }
+
+            if (maxStack.isEmpty()) {
+                maxStack.push(val);
+            } else {
+                maxStack.push(Math.max(maxStack.peek(), val));
+            }
+        }
+
+        int pop() {
+            maxStack.pop();
+            minStack.pop();
+            return stack.pop();
+        }
     }
 
     public static class BalancedBrackets {
