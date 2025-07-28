@@ -5,6 +5,7 @@ import com.company.TreeNode;
 
 import java.util.*;
 import java.util.function.Consumer;
+import java.util.stream.Collectors;
 
 record Node(char val, List<Node> children) {
     public Node(char val) {
@@ -16,10 +17,35 @@ public class Solution {
 
 
     public static void main(String[] args) {
-        var sv = new SunsetView(new int[] {3, 5, 4, 4, 3, 1, 3, 2});
-        System.out.println(sv.get());
+        var r = new BestNum().extract("462839", 2);
+        System.out.println(r);
     }
 
+    public static class BestNum {
+
+        String extract(String num, int n) {
+           int size = 0, limit = num.length()  - n;
+           var stack = new ArrayDeque<Character>();
+           int count = 0;
+           for(var d : num.toCharArray()) {
+               while (!stack.isEmpty() && count < n) {
+                  var last = stack.peek();
+                  if (d > last) {
+                      stack.pop();
+                      count ++;
+                  } else {
+                      break;
+                  }
+               }
+              stack.push(d);
+           }
+
+           return stack.reversed().stream()
+                   .limit(num.length() - n)
+                   .map(String::valueOf)
+                   .collect(Collectors.joining());
+        }
+    }
     public static class SunsetView {
         int[] arr;
         public SunsetView(int[] arr) {
