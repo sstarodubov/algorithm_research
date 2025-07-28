@@ -17,8 +17,30 @@ public class Solution {
 
 
     public static void main(String[] args) {
-        var r = new BestNum().extract("462839", 2);
-        System.out.println(r);
+        var stack = new ArrayDeque<>(List.of(1, 2, 3));
+        new SortStack().sort(stack);
+        System.out.println(stack);
+    }
+
+    public static class SortStack {
+        void sort(ArrayDeque<Integer> stack) {
+            if (stack.isEmpty()) {
+                return;
+            }
+            var top = stack.pop();
+            sort(stack);
+            insert(stack, top);
+        }
+
+        void insert(ArrayDeque<Integer> stack, int val) {
+            if (stack.isEmpty() || stack.peek() >= val) {
+                stack.push(val);
+                return;
+            }
+            var top = stack.pop();
+            insert(stack, val);
+            stack.push(top);
+        }
     }
 
     public static class BestNum {
