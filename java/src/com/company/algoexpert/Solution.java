@@ -17,7 +17,42 @@ public class Solution {
 
 
     public static void main(String[] args) {
-        System.out.println(Arrays.toString(new NextGreatElement(new int[]{2, 10, -3, -4, 6, 7, 2}).next()));
+        var pn = new PolishNotation(new String[]{"50", "3", "17", "+", "2", "-", "/"});
+        System.out.println(pn.resolve());
+    }
+
+    public static class PolishNotation {
+        String[] exp;
+        public PolishNotation(String[] exp) {
+           this.exp = exp;
+        }
+
+        int resolve() {
+            var stack = new ArrayDeque<String>();
+            for (var token : exp) {
+                String resolved = switch (token) {
+                    case "+" ->
+                        String.valueOf(Integer.parseInt(stack.pop()) + Integer.parseInt(stack.pop()));
+                    case "-" -> {
+                            var a = stack.pop();
+                            var b = stack.pop();
+                            yield String.valueOf(Integer.parseInt(b) - Integer.parseInt(a));
+                    }
+                    case "*" ->
+                        String.valueOf(Integer.parseInt(stack.pop()) * Integer.parseInt(stack.pop()));
+                    case "/" -> {
+                        var a = stack.pop();
+                        var b = stack.pop();
+                        yield String.valueOf(Integer.parseInt(b) / Integer.parseInt(a));
+                    }
+                    default -> token;
+                };
+
+                stack.push(resolved);
+            }
+
+            return Integer.parseInt(stack.pop());
+        }
     }
 
     public static class NextGreatElement {
