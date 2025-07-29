@@ -17,9 +17,32 @@ public class Solution {
 
 
     public static void main(String[] args) {
-        var stack = new ArrayDeque<>(List.of(1, 2, 3));
-        new SortStack().sort(stack);
-        System.out.println(stack);
+        System.out.println(Arrays.toString(new NextGreatElement(new int[]{2, 10, -3, -4, 6, 7, 2}).next()));
+    }
+
+    public static class NextGreatElement {
+        int[] arr;
+        public NextGreatElement(int[] arr) {
+           this.arr = arr;
+        }
+
+        int[] next() {
+            var stack = new IntStack();
+            int[] nxtArr = new int[arr.length];
+            Arrays.fill(nxtArr, Integer.MAX_VALUE);
+
+            for (int i = arr.length - 1; i >= 0; i--) {
+               while (!stack.isEmpty() && stack.peek() <= arr[i])  {
+                   stack.pop();
+               }
+               if (!stack.isEmpty()) {
+                  nxtArr[i] = stack.peek();
+               }
+               stack.push(arr[i]);
+            }
+
+            return nxtArr;
+        }
     }
 
     public static class SortStack {
@@ -1205,4 +1228,6 @@ public class Solution {
             findKth(cur.right, k);
         }
     }
+
+    public static class IntStack extends ArrayDeque<Integer> {}
 }
