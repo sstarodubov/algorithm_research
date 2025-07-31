@@ -3,6 +3,8 @@ package com.company.algoexpert;
 import com.company.ListNode;
 import com.company.TreeNode;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
@@ -17,9 +19,71 @@ public class Solution {
 
 
     public static void main(String[] args) {
-        var pn = new PolishNotation(new String[]{"50", "3", "17", "+", "2", "-", "/"});
-        System.out.println(pn.resolve());
+        System.out.println(new LongestPolyndromSubsrt("abaxyzzyxxb").get());
     }
+
+    public static class LongestPolyndromSubsrt {
+
+        String s;
+
+        public LongestPolyndromSubsrt(String s) {
+            this.s = s;
+        }
+        record Tripple(int size, int l, int r) {}
+
+        Tripple pal(int i) {
+            int l = i , r = i;
+
+            while (l >= 0 && r < s.length()) {
+                if (s.charAt(l) == s.charAt(r)) {
+                    l--;
+                    r++;
+                    continue;
+                } else {
+                    break;
+                }
+            }
+
+            return new Tripple(r - l + 1, l, r);
+        }
+
+        Tripple pal(int l, int r) {
+            while (l >= 0 && r <= s.length()) {
+                if (s.charAt(l) == s.charAt(r)) {
+                    l--;
+                    r++;
+                    continue;
+                } else {
+                    break;
+                }
+            }
+            return new Tripple(r - l + 1, l, r);
+        }
+
+        public String get() {
+            int l = 0, r = 0;
+            int size = 0;
+            for (int i = 0; i < s.length(); i++) {
+                var a = pal(i);
+                if (a.size > size) {
+                    size = a.size;
+                    l = a.l;
+                    r = a.r;
+                }
+                if (i < s.length() - 1) {
+                    var b = pal(i, i + 1);
+                    if (b.size > size) {
+                        size = b.size;
+                        l = b.l;
+                        r = b.r;
+                    }
+                }
+            }
+
+            return s.substring(l, r);
+        }
+    }
+
 
     public static class PolishNotation {
         String[] exp;
