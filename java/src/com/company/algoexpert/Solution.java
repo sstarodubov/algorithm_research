@@ -19,7 +19,107 @@ public class Solution {
 
 
     public static void main(String[] args) {
-        System.out.println(new LongestPolyndromSubsrt("abaxyzzyxxb").get());
+        System.out.println(new ReverseWords("   hello  ah  world ").reverse());
+    }
+
+    public static class ReverseWords {
+        String s;
+
+        public ReverseWords(String s) {
+            this.s = s;
+        }
+
+        public String reverse() {
+            var words = new ArrayDeque<>();
+            int i = 0;
+            var sb = new StringBuilder();
+            while (i < s.length()) {
+                sb.setLength(0);
+                while (i < s.length() && Character.isSpaceChar(s.charAt(i))) {
+                    sb.append(" ");
+                    i++;
+                }
+                if (!sb.isEmpty()) {
+                    words.addFirst(sb.toString());
+                }
+
+                sb.setLength(0);
+
+                while (i < s.length() && !Character.isSpaceChar(s.charAt(i))) {
+                    sb.append(s.charAt(i));
+                    i++;
+                }
+                if (!sb.isEmpty()) {
+                    words.addFirst(sb.toString());
+                }
+            }
+            var sb2 = new StringBuilder();
+            while (!words.isEmpty())  {
+                sb2.append(words.removeFirst());
+            }
+
+            return sb2.toString();
+        }
+
+    }
+
+    public static class ValidIpAddresses {
+        String s;
+        List<String> result = new ArrayList<>();
+
+        public ValidIpAddresses(String s) {
+            this.s = s;
+        }
+
+        public List<String> get() {
+            backtrack(s, new ArrayList<>());
+            return result;
+        }
+
+        String[] split(String s, int idx) {
+            var s1 = s.substring(0, idx);
+            var s2 = s.substring(idx);
+            return new String[]{s1, s2};
+        }
+
+        boolean isValid(List<String> comb) {
+            int len = 0;
+            for (int i = 0; i < 4; i++) {
+                if (comb.get(i).isEmpty()) return false;
+                if (comb.get(i).length() > 1 && comb.get(i).startsWith("0")) return false;
+                if (Integer.parseInt(comb.get(i)) > 255) return false;
+                len += comb.get(i).length();
+            }
+
+            if (len == this.s.length()) {
+                return true;
+            }
+            return false;
+        }
+
+        public void backtrack(String cur, List<String> comb) {
+            if (comb.size() == 4) {
+                if (isValid(comb)) {
+                    result.add("%s.%s.%s.%s".formatted(
+                            comb.get(0),
+                            comb.get(1),
+                            comb.get(2),
+                            comb.get(3)
+                    ));
+                }
+
+
+            } else {
+                for (int i = 0; i < cur.length(); i++) {
+                    var split = split(cur, i + 1);
+                    var head = split[0];
+                    var tail = split[1];
+                    comb.add(head);
+                    backtrack(tail, comb);
+                    comb.removeLast();
+                }
+            }
+        }
     }
 
     public static class LongestPolyndromSubsrt {
@@ -29,10 +129,12 @@ public class Solution {
         public LongestPolyndromSubsrt(String s) {
             this.s = s;
         }
-        record Tripple(int size, int l, int r) {}
+
+        record Tripple(int size, int l, int r) {
+        }
 
         Tripple pal(int i) {
-            int l = i , r = i;
+            int l = i, r = i;
 
             while (l >= 0 && r < s.length()) {
                 if (s.charAt(l) == s.charAt(r)) {
@@ -87,23 +189,22 @@ public class Solution {
 
     public static class PolishNotation {
         String[] exp;
+
         public PolishNotation(String[] exp) {
-           this.exp = exp;
+            this.exp = exp;
         }
 
         int resolve() {
             var stack = new ArrayDeque<String>();
             for (var token : exp) {
                 String resolved = switch (token) {
-                    case "+" ->
-                        String.valueOf(Integer.parseInt(stack.pop()) + Integer.parseInt(stack.pop()));
+                    case "+" -> String.valueOf(Integer.parseInt(stack.pop()) + Integer.parseInt(stack.pop()));
                     case "-" -> {
-                            var a = stack.pop();
-                            var b = stack.pop();
-                            yield String.valueOf(Integer.parseInt(b) - Integer.parseInt(a));
+                        var a = stack.pop();
+                        var b = stack.pop();
+                        yield String.valueOf(Integer.parseInt(b) - Integer.parseInt(a));
                     }
-                    case "*" ->
-                        String.valueOf(Integer.parseInt(stack.pop()) * Integer.parseInt(stack.pop()));
+                    case "*" -> String.valueOf(Integer.parseInt(stack.pop()) * Integer.parseInt(stack.pop()));
                     case "/" -> {
                         var a = stack.pop();
                         var b = stack.pop();
@@ -121,8 +222,9 @@ public class Solution {
 
     public static class NextGreatElement {
         int[] arr;
+
         public NextGreatElement(int[] arr) {
-           this.arr = arr;
+            this.arr = arr;
         }
 
         int[] next() {
@@ -131,13 +233,13 @@ public class Solution {
             Arrays.fill(nxtArr, Integer.MAX_VALUE);
 
             for (int i = arr.length - 1; i >= 0; i--) {
-               while (!stack.isEmpty() && stack.peek() <= arr[i])  {
-                   stack.pop();
-               }
-               if (!stack.isEmpty()) {
-                  nxtArr[i] = stack.peek();
-               }
-               stack.push(arr[i]);
+                while (!stack.isEmpty() && stack.peek() <= arr[i]) {
+                    stack.pop();
+                }
+                if (!stack.isEmpty()) {
+                    nxtArr[i] = stack.peek();
+                }
+                stack.push(arr[i]);
             }
 
             return nxtArr;
@@ -168,46 +270,48 @@ public class Solution {
     public static class BestNum {
 
         String extract(String num, int n) {
-           int size = 0, limit = num.length()  - n;
-           var stack = new ArrayDeque<Character>();
-           int count = 0;
-           for(var d : num.toCharArray()) {
-               while (!stack.isEmpty() && count < n) {
-                  var last = stack.peek();
-                  if (d > last) {
-                      stack.pop();
-                      count ++;
-                  } else {
-                      break;
-                  }
-               }
-              stack.push(d);
-           }
+            int size = 0, limit = num.length() - n;
+            var stack = new ArrayDeque<Character>();
+            int count = 0;
+            for (var d : num.toCharArray()) {
+                while (!stack.isEmpty() && count < n) {
+                    var last = stack.peek();
+                    if (d > last) {
+                        stack.pop();
+                        count++;
+                    } else {
+                        break;
+                    }
+                }
+                stack.push(d);
+            }
 
-           return stack.reversed().stream()
-                   .limit(num.length() - n)
-                   .map(String::valueOf)
-                   .collect(Collectors.joining());
+            return stack.reversed().stream()
+                    .limit(num.length() - n)
+                    .map(String::valueOf)
+                    .collect(Collectors.joining());
         }
     }
+
     public static class SunsetView {
         int[] arr;
+
         public SunsetView(int[] arr) {
             this.arr = arr;
         }
 
 
         List<Integer> get() {
-           int curMax = Integer.MIN_VALUE;
-           var ret = new ArrayList<Integer>();
-           for (int i = arr.length - 1; i >= 0; i--) {
-               if (arr[i] > curMax) {
-                   curMax = arr[i];
-                   ret.add(i);
-               }
-           }
+            int curMax = Integer.MIN_VALUE;
+            var ret = new ArrayList<Integer>();
+            for (int i = arr.length - 1; i >= 0; i--) {
+                if (arr[i] > curMax) {
+                    curMax = arr[i];
+                    ret.add(i);
+                }
+            }
 
-           return ret;
+            return ret;
         }
     }
 
@@ -304,8 +408,8 @@ public class Solution {
         List<Integer> order;
 
         public ThreeNumberSort(List<Integer> arr, List<Integer> order) {
-           this.arr = arr;
-           this.order = order;
+            this.arr = arr;
+            this.order = order;
         }
 
         void sort() {
@@ -315,6 +419,7 @@ public class Solution {
 
     public static class SearchSortedMatrix {
         int[][] matrix;
+
         public SearchSortedMatrix(int[][] m) {
             this.matrix = m;
         }
@@ -349,10 +454,10 @@ public class Solution {
         }
 
         int findInRow(int val, int row) {
-            int l = 0, n = matrix[0].length , r = n - 1;
+            int l = 0, n = matrix[0].length, r = n - 1;
 
             while (l <= r) {
-                int m = (l + r) / 2 ;
+                int m = (l + r) / 2;
                 int cur = matrix[row][m];
                 if (cur == val) {
                     return m;
@@ -365,28 +470,30 @@ public class Solution {
 
             return r;
         }
+
         int findInCol(int val, int col) {
-            int l = 0, n = matrix.length , r = n - 1;
+            int l = 0, n = matrix.length, r = n - 1;
 
             while (l <= r) {
-               int m = (l + r) / 2 ;
-               int cur = matrix[m][col];
-               if (cur == val) {
-                  return m;
-               } else if (val > cur) {
-                  l = m + 1;
-               } else {
-                  r = m - 1;
-               }
+                int m = (l + r) / 2;
+                int cur = matrix[m][col];
+                if (cur == val) {
+                    return m;
+                } else if (val > cur) {
+                    l = m + 1;
+                } else {
+                    r = m - 1;
+                }
             }
 
             return r;
         }
     }
+
     public static class PhoneMnemonic {
         String input;
         Map<Character, String> m = Map.of(
-                '1' , "1",
+                '1', "1",
                 '2', "abc",
                 '3', "def",
                 '4', "ghi",
@@ -398,8 +505,9 @@ public class Solution {
                 '0', "0"
 
         );
+
         public PhoneMnemonic(String input) {
-           this.input = input;
+            this.input = input;
         }
 
         List<String> generate() {
@@ -409,17 +517,17 @@ public class Solution {
         }
 
         private void generate(int idx, StringBuilder comb, List<String> result) {
-           if (idx >= input.length()) {
-               result.add(comb.toString());
-           } else {
-               char digit = input.charAt(idx);
-               String letters = m.get(digit);
-               for (int i = 0; i < letters.length(); i++) {
+            if (idx >= input.length()) {
+                result.add(comb.toString());
+            } else {
+                char digit = input.charAt(idx);
+                String letters = m.get(digit);
+                for (int i = 0; i < letters.length(); i++) {
                     comb.append(letters.charAt(i));
                     generate(idx + 1, comb, result);
                     comb.deleteCharAt(comb.length() - 1);
-               }
-           }
+                }
+            }
         }
     }
 
@@ -471,33 +579,33 @@ public class Solution {
     }
 
     public static class Permutations {
-       List<List<Integer>> solve(int[] arr)  {
+        List<List<Integer>> solve(int[] arr) {
             var ret = new ArrayList<List<Integer>>();
 
             solve(arr, 0, ret);
 
 
             return ret;
-       }
+        }
 
 
-       void swap(int[] arr, int i, int j) {
-           int t = arr[i];
-           arr[i] = arr[j];
-           arr[j] = t;
-       }
+        void swap(int[] arr, int i, int j) {
+            int t = arr[i];
+            arr[i] = arr[j];
+            arr[j] = t;
+        }
 
-       void solve(int[] arr, int idx, List<List<Integer>> result) {
-            if (idx  >= arr.length) {
-               result.add(copy(arr));
+        void solve(int[] arr, int idx, List<List<Integer>> result) {
+            if (idx >= arr.length) {
+                result.add(copy(arr));
             } else {
                 for (int i = idx; i < arr.length; i++) {
-                   swap(arr, i, idx);
-                   solve(arr, idx + 1, result);
-                   swap(arr, i, idx);
+                    swap(arr, i, idx);
+                    solve(arr, idx + 1, result);
+                    swap(arr, i, idx);
                 }
             }
-       }
+        }
     }
 
     public static class MergeTwoList {
@@ -507,8 +615,8 @@ public class Solution {
 
             var cur = n1;
             while (cur != null) {
-               set.add(cur);
-               cur = cur.next;
+                set.add(cur);
+                cur = cur.next;
             }
 
             cur = n2;
@@ -524,8 +632,9 @@ public class Solution {
             return null;
         }
     }
+
     public static class SumOfLinkedList {
-        ListNode sum(ListNode n1 , ListNode n2) {
+        ListNode sum(ListNode n1, ListNode n2) {
             int carry = 0;
             ListNode dummy = new ListNode(0);
             ListNode cur = dummy;
@@ -533,8 +642,8 @@ public class Solution {
                 int a = n1.val + n2.val + carry;
 
                 if (a > 9) {
-                   carry = 1;
-                   a = a % 10;
+                    carry = 1;
+                    a = a % 10;
                 } else {
                     carry = 0;
                 }
@@ -585,8 +694,8 @@ public class Solution {
         int end;
 
         public RemoveNthNodeFromLinkedList(ListNode node, int end) {
-           this.node = node;
-           this.end = end;
+            this.node = node;
+            this.end = end;
         }
 
 
@@ -596,13 +705,13 @@ public class Solution {
             ListNode f = node, s = dummy;
             int i = 0;
             while (i < end) {
-               f = f.next;
-               i++;
+                f = f.next;
+                i++;
             }
 
             while (f != null) {
-               s = s.next;
-               f = f.next;
+                s = s.next;
+                f = f.next;
             }
 
             if (s.next != null) {
@@ -639,8 +748,8 @@ public class Solution {
             int r = k, l = k - 1, i = 0;
 
             while (l >= 0 && r < arr.length && i < k) {
-                ret[i] = new int[] {m.get(arr[l]).removeLast(), m.get(arr[r]).removeLast()};
-                i ++;
+                ret[i] = new int[]{m.get(arr[l]).removeLast(), m.get(arr[r]).removeLast()};
+                i++;
                 l--;
                 r++;
             }
@@ -1328,5 +1437,6 @@ public class Solution {
         }
     }
 
-    public static class IntStack extends ArrayDeque<Integer> {}
+    public static class IntStack extends ArrayDeque<Integer> {
+    }
 }
