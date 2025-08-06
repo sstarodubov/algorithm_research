@@ -19,8 +19,49 @@ public class Solution {
 
 
     public static void main(String[] args) {
-        System.out.println(new MinimumCharachterForWords(List.of("this", "that", "did", "deed", "them!", "a"))
-                .getLetters());
+        System.out.println(new OneEdit("hello", "hello").isTrue());
+    }
+
+    public static class OneEdit {
+       String w1;
+       String w2;
+
+       public OneEdit(String w1, String w2) {
+           this.w1 = w1;
+           this.w2 = w2;
+       }
+
+       public boolean isTrue() {
+           if (Math.abs(w2.length() - w1.length()) >= 2)  {
+               return false;
+           }
+
+           int[] m1 = buildMap(w1);
+           int[] m2 = buildMap(w2);
+
+           for (int i = 0; i < m1.length; i++) {
+              m1[i] = m1[i] - m2[i];
+           }
+
+           int result = 0;
+           for (int i = 0; i < m1.length; i++) {
+              result += m1[i];
+           }
+
+           if (result == 0 || result == -1 || result == 1) {
+               return true;
+           }
+           return false;
+       }
+
+       int[] buildMap(String s) {
+           int[] arr = new int[27];
+           for (int i = 0; i < s.length(); i++) {
+              arr[s.charAt(i) - 'a']++;
+           }
+           return arr;
+       }
+
     }
 
     public static class MinimumCharachterForWords {
