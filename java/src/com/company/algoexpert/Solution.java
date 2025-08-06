@@ -19,7 +19,46 @@ public class Solution {
 
 
     public static void main(String[] args) {
-        System.out.println(new ReverseWords("   hello  ah  world ").reverse());
+        System.out.println(new MinimumCharachterForWords(List.of("this", "that", "did", "deed", "them!", "a"))
+                .getLetters());
+    }
+
+    public static class MinimumCharachterForWords {
+        List<String> words;
+
+        public MinimumCharachterForWords(List<String> words) {
+           this.words = words;
+        }
+
+        public List<Character> getLetters() {
+           var map = new HashMap<Character, Integer>();
+           var tMap = new HashMap<Character, Integer>();
+           for (var word : words) {
+               tMap.clear();
+               for (int i = 0; i < word.length(); i++) {
+                   char cur = word.charAt(i);
+                   var d = tMap.getOrDefault(cur, 0);
+                   tMap.put(cur, d + 1);
+               }
+
+               for (var k : tMap.keySet()) {
+                  Integer md = map.getOrDefault(k, 0);
+                  Integer td = tMap.get(k);
+                  if (td > md) {
+                     map.put(k, td);
+                  }
+               }
+           }
+
+           var result = new ArrayList<Character>();
+           for (var entry : map.entrySet()) {
+               for (int i = 0; i < entry.getValue(); i++) {
+                  result.add(entry.getKey());
+               }
+           }
+
+           return result;
+        }
     }
 
     public static class ReverseWords {
