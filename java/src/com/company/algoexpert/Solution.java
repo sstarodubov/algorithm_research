@@ -25,7 +25,7 @@ public class Solution {
 
 
     public static void main(String[] args) {
-        System.out.println(new SubArraySort(new int[] {1, 2, 4, 7, 10, 11, 7, 12, 6, 7, 16, 18, 19}).subarray());
+        System.out.println(new SubArraySort(new int[] {1, 2, 3, 10, 5, 7}).subarray());
     }
 
     public static class SubArraySort {
@@ -51,7 +51,7 @@ public class Solution {
               r--;
            }
 
-           if (l >= r) {
+           if (l > r) {
                return IntPair.of(0, array.length - 1);
            }
 
