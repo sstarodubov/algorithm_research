@@ -15,11 +15,63 @@ record Node(char val, List<Node> children) {
     }
 }
 
+record IntPair(int a, int b) {
+    public static IntPair of(int a, int b) {
+        return new IntPair(a, b);
+    }
+}
+
 public class Solution {
 
 
     public static void main(String[] args) {
-        System.out.println(new OneEdit("hello", "hello").isTrue());
+        System.out.println(new SubArraySort(new int[] {1, 2, 4, 7, 10, 11, 7, 12, 6, 7, 16, 18, 19}).subarray());
+    }
+
+    public static class SubArraySort {
+       int[] array;
+       public SubArraySort(int[] arr) {
+           this.array = arr;
+       }
+
+       public IntPair subarray() {
+           int l = 1, r = array.length - 1;
+
+           while (l < array.length) {
+               if (array[l] < array[l - 1]) {
+                  break;
+               }
+               l++;
+           }
+
+           while (r >= 0) {
+              if (array[r - 1] >array[r])  {
+                  break;
+              }
+              r--;
+           }
+
+           if (l >= r) {
+               return IntPair.of(0, array.length - 1);
+           }
+
+           int min = Integer.MAX_VALUE, max = Integer.MIN_VALUE;
+
+           for (int i = l; i <= r; i++) {
+              min = Math.min(min, array[i]);
+              max = Math.max(max, array[i]);
+           }
+
+           while (l >= 0 && array[l] > min) {
+               l--;
+           }
+
+           while (r < array.length && array[r] < max) {
+               r++;
+           }
+
+           return IntPair.of(l + 1, r - 1);
+       }
     }
 
     public static class OneEdit {
