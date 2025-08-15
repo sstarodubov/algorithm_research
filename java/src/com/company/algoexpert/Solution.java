@@ -36,30 +36,57 @@ public class Solution {
        }
 
        public IntPair find() {
-          var set = new HashSet<Integer>();
-          int min = Integer.MAX_VALUE, max = Integer.MIN_VALUE;
-          for (int i = 0; i < arr.length; i++) {
-               set.add(arr[i]);
-               min = Math.min(min, arr[i]);
-               max = Math.max(max, arr[i]);
-          }
-          IntPair result = IntPair.of(0, 0);
-          int count = 0, last = 0;
-          int biggest = -1;
-          for (int i = min; i <= max; i++) {
-              if (set.contains(i)) {
-                  count++;
-                  biggest = Math.max(biggest, count);
-              } else {
-                  if (count >= biggest) {
-                      result = IntPair.of(last, i - 1);
-                  }
-                  count = 1;
-                  last = i;
-              }
-          }
+          var hm = new HashMap<Integer,Integer>();
+           for (int i = 0; i < arr.length; i++) {
+              hm.put(arr[i], i);
+           }
 
-          return result;
+           for (int i = 0; i < arr.length; i++) {
+               int cur = arr[i];
+               var curId = hm.get(cur);
+               var nextId = hm.get(cur + 1);
+               var prevId = hm.get(cur - 1);
+               int groupId = curId;
+               if (nextId != null) {
+                   groupId = Math.min(groupId, nextId);
+               }
+               if (prevId != null) {
+                   groupId = Math.min(groupId, prevId);
+               }
+
+               hm.put(cur, groupId);
+               if (nextId != null) {
+                   hm.put(cur + 1, groupId);
+               }
+
+               if (prevId != null) {
+                   hm.put(cur - 1, groupId);
+               }
+           }
+
+           var minMap = new HashMap<Integer,Integer>();
+           var maxMap = new HashMap<Integer,Integer>();
+           for (var entry : hm.entrySet()) {
+               int cur = entry.getKey();
+               int groupId = entry.getValue();
+
+
+               int mn = minMap.getOrDefault(groupId, Integer.MAX_VALUE);
+               minMap.put(groupId, Math.min(cur, mn));
+               int mx = maxMap.getOrDefault(groupId, Integer.MIN_VALUE);
+               maxMap.put(groupId, Math.max(cur, mx));
+           }
+           int count = 0;
+           IntPair pair = IntPair.of(0, 0);
+           for (var entry : minMap.entrySet()) {
+              int mx = maxMap.get(entry.getKey());
+              int size = mx - entry.getValue();
+              if (size > count) {
+                  pair = IntPair.of(entry.getValue(), maxMap.get(entry.getKey()));
+                  count = size;
+              }
+           }
+           return pair;
        }
     }
     public static class SubArraySort {
