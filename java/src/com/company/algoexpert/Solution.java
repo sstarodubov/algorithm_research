@@ -25,9 +25,43 @@ public class Solution {
 
 
     public static void main(String[] args) {
-        System.out.println(new SubArraySort(new int[] {1, 2, 3, 10, 5, 7}).subarray());
+        System.out.println(new LargestRange(new int[] {1, 11, 3, 0, 15, 5, 2, 4, 10, 7, 12, 6}).find());
     }
 
+    public static class LargestRange {
+       int[] arr;
+
+       public LargestRange(int[] arr) {
+          this.arr = arr;
+       }
+
+       public IntPair find() {
+          var set = new HashSet<Integer>();
+          int min = Integer.MAX_VALUE, max = Integer.MIN_VALUE;
+          for (int i = 0; i < arr.length; i++) {
+               set.add(arr[i]);
+               min = Math.min(min, arr[i]);
+               max = Math.max(max, arr[i]);
+          }
+          IntPair result = IntPair.of(0, 0);
+          int count = 0, last = 0;
+          int biggest = -1;
+          for (int i = min; i <= max; i++) {
+              if (set.contains(i)) {
+                  count++;
+                  biggest = Math.max(biggest, count);
+              } else {
+                  if (count >= biggest) {
+                      result = IntPair.of(last, i - 1);
+                  }
+                  count = 1;
+                  last = i;
+              }
+          }
+
+          return result;
+       }
+    }
     public static class SubArraySort {
        int[] array;
        public SubArraySort(int[] arr) {
