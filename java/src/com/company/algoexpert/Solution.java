@@ -3,8 +3,6 @@ package com.company.algoexpert;
 import com.company.ListNode;
 import com.company.TreeNode;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
@@ -18,6 +16,15 @@ record Node(char val, List<Node> children) {
 record IntPair(int a, int b) {
     public static IntPair of(int a, int b) {
         return new IntPair(a, b);
+    }
+}
+
+record Range(int left, int right) {
+    public static Range of(int a, int b) {
+        return new Range(a, b);
+    }
+    public int size() {
+        return right - left;
     }
 }
 
@@ -35,58 +42,41 @@ public class Solution {
           this.arr = arr;
        }
 
-       public IntPair find() {
-          var hm = new HashMap<Integer,Integer>();
+       public Range find() {
+          var hm = new HashMap<Integer,Boolean>();
+          var range = Range.of(0, 0);
            for (int i = 0; i < arr.length; i++) {
-              hm.put(arr[i], i);
+              hm.put(arr[i], Boolean.FALSE);
            }
 
-           for (int i = 0; i < arr.length; i++) {
-               int cur = arr[i];
-               var curId = hm.get(cur);
-               var nextId = hm.get(cur + 1);
-               var prevId = hm.get(cur - 1);
-               int groupId = curId;
-               if (nextId != null) {
-                   groupId = Math.min(groupId, nextId);
+           for(int val : arr) {
+               if (hm.get(val)) {
+                   continue;
                }
-               if (prevId != null) {
-                   groupId = Math.min(groupId, prevId);
+               int size = 1;
+               int left = val;
+               int right = val;
+               hm.put(val, Boolean.TRUE);
+               int cur = val - 1;
+               while (!hm.getOrDefault(cur, Boolean.TRUE)) {
+                   hm.put(cur, Boolean.TRUE);
+                   cur = cur - 1;
+                   size ++;
+                   left = cur;
+               }
+               cur = val + 1;
+               while (!hm.getOrDefault(cur, Boolean.TRUE)) {
+                   hm.put(cur, Boolean.TRUE);
+                   cur = cur + 1;
+                   size ++;
+                   right = cur;
                }
 
-               hm.put(cur, groupId);
-               if (nextId != null) {
-                   hm.put(cur + 1, groupId);
-               }
-
-               if (prevId != null) {
-                   hm.put(cur - 1, groupId);
+               if (size > range.size()) {
+                  range = Range.of(left + 1, right - 1);
                }
            }
-
-           var minMap = new HashMap<Integer,Integer>();
-           var maxMap = new HashMap<Integer,Integer>();
-           for (var entry : hm.entrySet()) {
-               int cur = entry.getKey();
-               int groupId = entry.getValue();
-
-
-               int mn = minMap.getOrDefault(groupId, Integer.MAX_VALUE);
-               minMap.put(groupId, Math.min(cur, mn));
-               int mx = maxMap.getOrDefault(groupId, Integer.MIN_VALUE);
-               maxMap.put(groupId, Math.max(cur, mx));
-           }
-           int count = 0;
-           IntPair pair = IntPair.of(0, 0);
-           for (var entry : minMap.entrySet()) {
-              int mx = maxMap.get(entry.getKey());
-              int size = mx - entry.getValue();
-              if (size > count) {
-                  pair = IntPair.of(entry.getValue(), maxMap.get(entry.getKey()));
-                  count = size;
-              }
-           }
-           return pair;
+          return range;
        }
     }
     public static class SubArraySort {
