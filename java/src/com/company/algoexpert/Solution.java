@@ -43,6 +43,7 @@ public class Solution {
        }
 
        int resolve() {
+           int first = -1;
            if (arr.length == 1) {
                return 1;
            }
@@ -54,20 +55,27 @@ public class Solution {
            int[] d = new int[arr.length];
            for (int i = 1; i < arr.length - 1; i++) {
                if (arr[i] < arr[i + 1] && arr[i] < arr[i - 1]) {
-                    d[i] = 1;
+                   if (first == -1) {
+                    first = i;
+                   }
+                   d[i] = 1;
                }
            }
 
            if (arr[0] < arr[1]) {
+               first = 0;
                d[0] = 1;
            }
 
            if (arr[arr.length - 1] < arr[arr.length - 2]) {
                d[arr.length - 1] = 1;
+               if (first == -1) {
+                   first = d[arr.length - 1];
+               }
            }
 
 
-           for (int i = 0; i < d.length; i++) {
+           for (int i = first; i < d.length; i++) {
               if (d[i] == 1) {
                   int j = i - 1;
                   while (j >= 0 && d[j] == 0) {
@@ -80,6 +88,7 @@ public class Solution {
                       d[k] = d[k - 1] + 1;
                       k++;
                   }
+                  i = k;
               }
            }
 
