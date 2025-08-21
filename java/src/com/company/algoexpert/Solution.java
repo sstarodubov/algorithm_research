@@ -32,7 +32,65 @@ public class Solution {
 
 
     public static void main(String[] args) {
-        System.out.println(new LargestRange(new int[] {1, 11, 3, 0, 15, 5, 2, 4, 10, 7, 12, 6}).find());
+        System.out.println(new MinRewards(new int[] {8, 4, 2, 1, 3, 6, 7, 9, 5}).resolve());
+    }
+
+    public static class MinRewards {
+       int[] arr;
+
+       public MinRewards(int[] arr) {
+           this.arr = arr;
+       }
+
+       int resolve() {
+           if (arr.length == 1) {
+               return 1;
+           }
+
+           if (arr.length == 2) {
+               return 3;
+           }
+
+           int[] d = new int[arr.length];
+           for (int i = 1; i < arr.length - 1; i++) {
+               if (arr[i] < arr[i + 1] && arr[i] < arr[i - 1]) {
+                    d[i] = 1;
+               }
+           }
+
+           if (arr[0] < arr[1]) {
+               d[0] = 1;
+           }
+
+           if (arr[arr.length - 1] < arr[arr.length - 2]) {
+               d[arr.length - 1] = 1;
+           }
+
+
+           for (int i = 0; i < d.length; i++) {
+              if (d[i] == 1) {
+                  int j = i - 1;
+                  while (j >= 0 && d[j] == 0) {
+                     d[j] = d[j + 1] + 1;
+                     j --;
+                  }
+
+                  int k = i + 1;
+                  while (k < d.length && d[k] == 0) {
+                      d[k] = d[k - 1] + 1;
+                      k++;
+                  }
+              }
+           }
+
+
+           int sum = 0;
+           for (int i : d) {
+              sum += i;
+           }
+           return sum;
+       }
+
     }
 
     public static class LargestRange {
