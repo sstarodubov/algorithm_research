@@ -12,9 +12,8 @@ public class ValidateTree {
 
     public static void main(String[] args) {
        final var tree = new ValidateTree(List.of(
-               new Hook("1", "3", "5"),
-               new Hook("1", "3", null),
-               new Hook("1", null, null)
+               new Hook("1", null, null),
+               new Hook("1", "3", null)
        ));
         System.out.println("final result: %s".formatted(tree.isValid()));
     }
