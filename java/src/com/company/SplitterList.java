@@ -23,7 +23,7 @@ public class SplitterList<T> implements Iterable<List<T>> {
 
 
     static void main() {
-        var xxs = new SplitterList<>(List.of(1, 2,3,4,5,6,7,8,9, 10), 11);
+        var xxs = new SplitterList<>(List.of(1, 2,3,4,5,6,7,8,9, 10), 100);
 
         for (final var xs : xxs) {
             System.out.println(xs);
@@ -53,7 +53,7 @@ public class SplitterList<T> implements Iterable<List<T>> {
             final int t = offset + batchSize;
             final int n = Math.min(original.size(), t);
             final var view = original.subList(offset, n);
-            offset += batchSize;
+            offset = t;
             return view;
         }
     }
