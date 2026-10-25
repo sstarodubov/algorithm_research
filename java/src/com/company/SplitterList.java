@@ -4,6 +4,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 public class SplitterList<T> implements Iterable<List<T>> {
     final List<T> original;
@@ -46,6 +47,9 @@ public class SplitterList<T> implements Iterable<List<T>> {
 
         @Override
         public List<T> next() {
+            if (!hasNext()) {
+                throw new NoSuchElementException();
+            }
             final int t = offset + batchSize;
             final int n = Math.min(original.size(), t);
             final var view = original.subList(offset, n);
